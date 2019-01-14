@@ -1,24 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ncp-qV-6Iy">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Navigation Controller-->
+        <scene sceneID="H64-0h-gLQ">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <navigationController id="ncp-qV-6Iy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YId-3m-7GM">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ndk-90-Gf5" kind="relationship" relationship="rootViewController" id="bfs-RN-g4L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WNF-WX-fQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-785" y="14"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="juq-ZS-a0U">
+            <objects>
+                <viewController id="ndk-90-Gf5" customClass="ViewController" customModule="OktaLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ji8-1e-0Hg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-28-7hG">
+                                <rect key="frame" x="40" y="154" width="295" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="66o-wY-JyG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HmO-q9-Y0m">
+                                <rect key="frame" x="40" y="214" width="295" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cOR-Qh-doF"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKG-nE-Rxd">
+                                <rect key="frame" x="117.5" y="284" width="140" height="50"/>
+                                <color key="backgroundColor" white="0.95280393839999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="6iP-4i-wEM"/>
+                                    <constraint firstAttribute="height" constant="50" id="Vdq-Wt-zA4"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginTapped" destination="ndk-90-Gf5" eventType="touchUpInside" id="vJZ-PY-gri"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="38c-1x-AMt">
+                                <rect key="frame" x="131.5" y="299" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native Login Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bJ-0f-GeF">
+                                <rect key="frame" x="119.5" y="104" width="136" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <color key="textColor" red="0.0021179995965212584" green="0.48863452672958374" blue="0.75864893198013306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="HmO-q9-Y0m" firstAttribute="leading" secondItem="cP7-Ls-qnE" secondAttribute="leading" constant="40" id="0WT-zA-vvm"/>
+                            <constraint firstItem="FKG-nE-Rxd" firstAttribute="leading" secondItem="38c-1x-AMt" secondAttribute="leading" constant="-14" id="2Qe-NS-Lfn"/>
+                            <constraint firstItem="HmO-q9-Y0m" firstAttribute="top" secondItem="Imd-28-7hG" secondAttribute="bottom" constant="20" id="3sK-Qr-Jrl"/>
+                            <constraint firstItem="4bJ-0f-GeF" firstAttribute="top" secondItem="cP7-Ls-qnE" secondAttribute="top" constant="40" id="8Ak-eX-YjI"/>
+                            <constraint firstItem="cP7-Ls-qnE" firstAttribute="trailing" secondItem="HmO-q9-Y0m" secondAttribute="trailing" constant="40" id="A5I-lN-HDl"/>
+                            <constraint firstItem="FKG-nE-Rxd" firstAttribute="centerX" secondItem="ji8-1e-0Hg" secondAttribute="centerX" id="FBU-yN-kw9"/>
+                            <constraint firstItem="cP7-Ls-qnE" firstAttribute="trailing" secondItem="Imd-28-7hG" secondAttribute="trailing" constant="40" id="G6j-at-Wo9"/>
+                            <constraint firstItem="FKG-nE-Rxd" firstAttribute="top" secondItem="HmO-q9-Y0m" secondAttribute="bottom" constant="30" id="IOH-8m-3NQ"/>
+                            <constraint firstItem="38c-1x-AMt" firstAttribute="centerY" secondItem="FKG-nE-Rxd" secondAttribute="centerY" id="NHA-mS-n2b"/>
+                            <constraint firstItem="4bJ-0f-GeF" firstAttribute="centerX" secondItem="ji8-1e-0Hg" secondAttribute="centerX" id="g8T-Bd-gOn"/>
+                            <constraint firstItem="Imd-28-7hG" firstAttribute="top" secondItem="cP7-Ls-qnE" secondAttribute="top" constant="90" id="lDG-cb-DH9"/>
+                            <constraint firstItem="Imd-28-7hG" firstAttribute="leading" secondItem="cP7-Ls-qnE" secondAttribute="leading" constant="40" id="nas-Pi-oAM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cP7-Ls-qnE"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RWG-cz-lBJ">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="IXr-ph-GBr">
+                            <rect key="frame" x="87.5" y="0.0" width="200" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="jgM-f7-htu">
+                                    <rect key="frame" x="64.5" y="10" width="71" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="2xa-XB-Yah"/>
+                                        <constraint firstAttribute="width" secondItem="jgM-f7-htu" secondAttribute="height" multiplier="625:211" id="Qwf-KD-O7b"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="jgM-f7-htu" firstAttribute="centerX" secondItem="IXr-ph-GBr" secondAttribute="centerX" id="9Uf-XH-Zqv"/>
+                                <constraint firstItem="jgM-f7-htu" firstAttribute="centerY" secondItem="IXr-ph-GBr" secondAttribute="centerY" id="lfT-gv-jUd"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="38c-1x-AMt" id="JMB-xj-zTn"/>
+                        <outlet property="loginButton" destination="FKG-nE-Rxd" id="Pia-WX-t6p"/>
+                        <outlet property="loginField" destination="Imd-28-7hG" id="E1w-Ee-tXs"/>
+                        <outlet property="passwordField" destination="HmO-q9-Y0m" id="bcy-sl-A0j"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mht-12-tMD" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-10.4" y="13.943028485757123"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="okta-logo" width="5000" height="1688"/>
+    </resources>
 </document>
