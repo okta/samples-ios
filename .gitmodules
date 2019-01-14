@@ -1,0 +1,3 @@
+[submodule "OktaNativeLogin/Submodules/okta-auth-swift"]
+	path = OktaNativeLogin/Submodules/okta-auth-swift
+	url = git@github.com-okta:okta/okta-auth-swift.git
