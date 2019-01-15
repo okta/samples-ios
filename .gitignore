@@ -4,6 +4,7 @@
 
 .DS_Store
 Submodules/
+Pods/
 
 ## Build generated
 build/
