@@ -8,61 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		24A56E4E9FF839102D645DAA /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 146B70542B6202775A88F1B1 /* Pods_OktaNativeLogin.framework */; };
+		2F9B84A921EFA30C003E6F17 /* NativeSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B84A821EFA30C003E6F17 /* NativeSignInViewController.swift */; };
+		2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */; };
 		F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = F57B5ED821ECCD0700895A26 /* Okta.plist */; };
 		FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549821E5FB2C00B89097 /* AppDelegate.swift */; };
-		FAE1549B21E5FB2C00B89097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549A21E5FB2C00B89097 /* ViewController.swift */; };
+		FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549A21E5FB2C00B89097 /* LoginFormViewController.swift */; };
 		FAE1549E21E5FB2C00B89097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE1549C21E5FB2C00B89097 /* Main.storyboard */; };
 		FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1549F21E5FB2D00B89097 /* Assets.xcassets */; };
 		FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F571238521EE1C5D00E589AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA4ED99B21C1499200A065A1;
-			remoteInfo = "OktaAuthNative iOS";
-		};
-		F571238721EE1C5D00E589AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FAC5ADC021C7B89600C3DC91;
-			remoteInfo = "OktaAuthNative macOS";
-		};
-		F571238921EE1C5D00E589AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA500E4521C7FCD800444B1D;
-			remoteInfo = "OktaAuthNative iOS Tests";
-		};
-		F571238B21EE1C5D00E589AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2FF5C86421D3BA1900EECA75;
-			remoteInfo = "OktaAuthNative iOS Integration Tests";
-		};
-		F571238D21EE1C6E00E589AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FA4ED99A21C1499200A065A1;
-			remoteInfo = "OktaAuthNative iOS";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0C501429E07F97CE0D88C993 /* Pods-OktaNativeLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.debug.xcconfig"; sourceTree = "<group>"; };
 		146B70542B6202775A88F1B1 /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F9B84A821EFA30C003E6F17 /* NativeSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSignInViewController.swift; sourceTree = "<group>"; };
+		2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
-		F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OktaAuthNative.xcodeproj; path = "OktaNativeLogin/Submodules/okta-auth-swift/OktaAuthNative.xcodeproj"; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		FAE1549521E5FB2C00B89097 /* OktaNativeLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaNativeLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE1549821E5FB2C00B89097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAE1549A21E5FB2C00B89097 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAE1549A21E5FB2C00B89097 /* LoginFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormViewController.swift; sourceTree = "<group>"; };
 		FAE1549D21E5FB2C00B89097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE1549F21E5FB2D00B89097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE154A221E5FB2D00B89097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,29 +63,9 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F54B90E521EC9EFC009081DF /* Submodules */ = {
-			isa = PBXGroup;
-			children = (
-				F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */,
-			);
-			name = Submodules;
-			sourceTree = "<group>";
-		};
-		F571237F21EE1C5D00E589AB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F571238621EE1C5D00E589AB /* OktaAuthNative.framework */,
-				F571238821EE1C5D00E589AB /* OktaAuthNative.framework */,
-				F571238A21EE1C5D00E589AB /* OktaAuthNative iOS Tests.xctest */,
-				F571238C21EE1C5D00E589AB /* OktaAuthNative iOS Integration Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		FAE1548C21E5FB2C00B89097 = {
 			isa = PBXGroup;
 			children = (
-				F54B90E521EC9EFC009081DF /* Submodules */,
 				FAE1549721E5FB2C00B89097 /* OktaNativeLogin */,
 				FAE1549621E5FB2C00B89097 /* Products */,
 				6E3CAF0A7784EF15C75860B5 /* Pods */,
@@ -140,7 +85,9 @@
 			isa = PBXGroup;
 			children = (
 				FAE1549821E5FB2C00B89097 /* AppDelegate.swift */,
-				FAE1549A21E5FB2C00B89097 /* ViewController.swift */,
+				2F9B84A821EFA30C003E6F17 /* NativeSignInViewController.swift */,
+				FAE1549A21E5FB2C00B89097 /* LoginFormViewController.swift */,
+				2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */,
 				FAE1549C21E5FB2C00B89097 /* Main.storyboard */,
 				FAE1549F21E5FB2D00B89097 /* Assets.xcassets */,
 				FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */,
@@ -166,7 +113,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F571238E21EE1C6E00E589AB /* PBXTargetDependency */,
 			);
 			name = OktaNativeLogin;
 			productName = OktaNativeLogin;
@@ -199,49 +145,12 @@
 			mainGroup = FAE1548C21E5FB2C00B89097;
 			productRefGroup = FAE1549621E5FB2C00B89097 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F571237F21EE1C5D00E589AB /* Products */;
-					ProjectRef = F571237E21EE1C5D00E589AB /* OktaAuthNative.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				FAE1549421E5FB2C00B89097 /* OktaNativeLogin */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F571238621EE1C5D00E589AB /* OktaAuthNative.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OktaAuthNative.framework;
-			remoteRef = F571238521EE1C5D00E589AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F571238821EE1C5D00E589AB /* OktaAuthNative.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OktaAuthNative.framework;
-			remoteRef = F571238721EE1C5D00E589AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F571238A21EE1C5D00E589AB /* OktaAuthNative iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "OktaAuthNative iOS Tests.xctest";
-			remoteRef = F571238921EE1C5D00E589AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F571238C21EE1C5D00E589AB /* OktaAuthNative iOS Integration Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "OktaAuthNative iOS Integration Tests.xctest";
-			remoteRef = F571238B21EE1C5D00E589AB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FAE1549321E5FB2C00B89097 /* Resources */ = {
@@ -292,6 +201,7 @@
 				"${BUILT_PRODUCTS_DIR}/HydraAsync/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/OktaAppAuth/OktaAppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/OktaAuth/OktaAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/OktaAuthNative/OktaAuthNative.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -300,6 +210,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthNative.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -313,20 +224,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE1549B21E5FB2C00B89097 /* ViewController.swift in Sources */,
+				FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */,
+				2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */,
+				2F9B84A921EFA30C003E6F17 /* NativeSignInViewController.swift in Sources */,
 				FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F571238E21EE1C6E00E589AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "OktaAuthNative iOS";
-			targetProxy = F571238D21EE1C6E00E589AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FAE1549C21E5FB2C00B89097 /* Main.storyboard */ = {

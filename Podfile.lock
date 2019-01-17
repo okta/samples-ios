@@ -8,9 +8,11 @@ PODS:
   - OktaAuth (1.0.1):
     - HydraAsync (~> 1.2.1)
     - OktaAppAuth (= 1.1.0.beta-okta)
+  - OktaAuthNative (1.0.0)
 
 DEPENDENCIES:
   - "OktaAuth (from `git@github.com:okta/okta-sdk-appauth-ios.git`, branch `session-token-to-auth-tocken-exchange`)"
+  - OktaAuthNative (from `https://github.com/okta/okta-auth-swift.git`, branch `cocoapod-support`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -21,17 +23,24 @@ EXTERNAL SOURCES:
   OktaAuth:
     :branch: session-token-to-auth-tocken-exchange
     :git: "git@github.com:okta/okta-sdk-appauth-ios.git"
+  OktaAuthNative:
+    :branch: cocoapod-support
+    :git: https://github.com/okta/okta-auth-swift.git
 
 CHECKOUT OPTIONS:
   OktaAuth:
-    :commit: 61369892de4a0d33147d07e820b0a23bebb78421
+    :commit: 1d1fe310842cfd9b91798bf68a5ae314b512f192
     :git: "git@github.com:okta/okta-sdk-appauth-ios.git"
+  OktaAuthNative:
+    :commit: c5380c347a022c6e90da0f127c072375c60c93f6
+    :git: https://github.com/okta/okta-auth-swift.git
 
 SPEC CHECKSUMS:
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   OktaAppAuth: 73adafde8072610ecddf21844409b2e6c421f8cc
   OktaAuth: 284a5b1041357802ca868f5d3aaa314354afb9fb
+  OktaAuthNative: 4681d34771d23890700cc8414656e036d2580f60
 
-PODFILE CHECKSUM: c1b27b079c2b05ef9b29e57e0677be07c81d89eb
+PODFILE CHECKSUM: 900bcb060c65dd917870748d1d5126d05601a214
 
 COCOAPODS: 1.6.0.beta.2
