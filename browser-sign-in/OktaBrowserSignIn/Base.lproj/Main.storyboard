@@ -46,7 +46,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TVE-Me-yBa">
-                                <rect key="frame" x="20" y="94" width="335" height="355.5"/>
+                                <rect key="frame" x="20" y="94" width="335" height="288.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browser Sign In Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp4-Z0-lar">
                                         <rect key="frame" x="84.5" y="0.0" width="166.5" height="20.5"/>
@@ -60,11 +60,20 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1fV-vo-dp2">
-                                        <rect key="frame" x="127.5" y="98.5" width="80" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="firstBaseline" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1fV-vo-dp2">
+                                        <rect key="frame" x="93" y="98.5" width="149" height="30"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32x-DW-LpJ" userLabel="Tokens">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
+                                                <state key="normal" title="Tokens">
+                                                    <color key="titleColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="1Jt-gd-28x" kind="show" id="sed-3b-0lY"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQY-av-FIf">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                <rect key="frame" x="69" y="0.0" width="80" height="30"/>
                                                 <state key="normal" title="User Profile">
                                                     <color key="titleColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -112,15 +121,17 @@
                                             <action selector="signOutTapped" destination="7xG-zU-9ge" eventType="touchUpInside" id="AJC-Al-odo"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="C3i-Qn-nih">
-                                        <rect key="frame" x="149" y="318.5" width="37" height="37"/>
-                                        <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="C3i-Qn-nih">
+                                <rect key="frame" x="169" y="139" width="37" height="37"/>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="C3i-Qn-nih" firstAttribute="centerX" secondItem="Lke-IO-LDS" secondAttribute="centerX" id="Dm6-ft-gwk"/>
+                            <constraint firstItem="C3i-Qn-nih" firstAttribute="top" secondItem="rv2-4x-nQ0" secondAttribute="top" constant="75" id="FDT-qY-S6s"/>
                             <constraint firstItem="TVE-Me-yBa" firstAttribute="leading" secondItem="rv2-4x-nQ0" secondAttribute="leading" constant="20" id="Rik-JF-Wy5"/>
                             <constraint firstItem="rv2-4x-nQ0" firstAttribute="trailing" secondItem="TVE-Me-yBa" secondAttribute="trailing" constant="20" id="uxf-3b-v6R"/>
                             <constraint firstItem="TVE-Me-yBa" firstAttribute="top" secondItem="rv2-4x-nQ0" secondAttribute="top" constant="30" id="xcW-lz-2bs"/>
@@ -171,7 +182,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sNd-G3-AiK">
                                 <rect key="frame" x="20" y="50" width="335" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -192,7 +203,99 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdJ-Qk-Ia3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="-822"/>
+            <point key="canvasLocation" x="740" y="-1100"/>
+        </scene>
+        <!--Tokens View Controller-->
+        <scene sceneID="i60-U2-Dzn">
+            <objects>
+                <viewController id="1Jt-gd-28x" customClass="TokensViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dRP-sl-Jvq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="73o-W2-s8q">
+                                <rect key="frame" x="20" y="94" width="335" height="403"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-li-SOr">
+                                <rect key="frame" x="20" y="527" width="335" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9E-Bo-Ejc">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <state key="normal" title="Introspect"/>
+                                        <connections>
+                                            <action selector="introspectTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="UAM-V4-wiF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgB-zf-1Xi">
+                                        <rect key="frame" x="0.0" y="40" width="335" height="30"/>
+                                        <state key="normal" title="Refresh"/>
+                                        <connections>
+                                            <action selector="refreshTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="Fa0-LF-JqA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L9-nU-Etu">
+                                        <rect key="frame" x="0.0" y="80" width="335" height="30"/>
+                                        <state key="normal" title="Revoke"/>
+                                        <connections>
+                                            <action selector="revokeTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="r7h-6v-dHV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-nT-3sG">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gSs-li-SOr" firstAttribute="top" secondItem="73o-W2-s8q" secondAttribute="bottom" constant="30" id="3Kt-74-2Mg"/>
+                            <constraint firstItem="73o-W2-s8q" firstAttribute="top" secondItem="PAP-el-3Sg" secondAttribute="top" constant="30" id="4mr-LX-jIR"/>
+                            <constraint firstItem="PAP-el-3Sg" firstAttribute="bottom" secondItem="gSs-li-SOr" secondAttribute="bottom" constant="30" id="EQO-HK-DBJ"/>
+                            <constraint firstItem="PAP-el-3Sg" firstAttribute="trailing" secondItem="gSs-li-SOr" secondAttribute="trailing" constant="20" id="cJu-1v-xkY"/>
+                            <constraint firstItem="PAP-el-3Sg" firstAttribute="trailing" secondItem="73o-W2-s8q" secondAttribute="trailing" constant="20" id="lq6-jH-Yav"/>
+                            <constraint firstItem="wu9-nT-3sG" firstAttribute="centerY" secondItem="dRP-sl-Jvq" secondAttribute="centerY" id="q3p-P5-oao"/>
+                            <constraint firstItem="wu9-nT-3sG" firstAttribute="centerX" secondItem="dRP-sl-Jvq" secondAttribute="centerX" id="sNC-uU-ng7"/>
+                            <constraint firstItem="gSs-li-SOr" firstAttribute="leading" secondItem="PAP-el-3Sg" secondAttribute="leading" constant="20" id="uB1-aR-LeY"/>
+                            <constraint firstItem="73o-W2-s8q" firstAttribute="leading" secondItem="PAP-el-3Sg" secondAttribute="leading" constant="20" id="zmV-hH-SHF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PAP-el-3Sg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6nX-0x-dCE">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="uB4-Cs-4Xy">
+                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-9Y-4sP">
+                                    <rect key="frame" x="-35.5" y="-12" width="71" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="MMV-9Y-4sP" secondAttribute="height" multiplier="625:211" id="Ud2-3B-SdK"/>
+                                        <constraint firstAttribute="height" constant="24" id="kfR-g3-5Mv"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="MMV-9Y-4sP" firstAttribute="centerY" secondItem="uB4-Cs-4Xy" secondAttribute="centerY" id="Qaf-UR-xwA"/>
+                                <constraint firstItem="MMV-9Y-4sP" firstAttribute="centerX" secondItem="uB4-Cs-4Xy" secondAttribute="centerX" id="dwa-iY-lUu"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="wu9-nT-3sG" id="6oo-9C-qcD"/>
+                        <outlet property="introspectButton" destination="G9E-Bo-Ejc" id="3cA-4a-Qeg"/>
+                        <outlet property="refreshButton" destination="pgB-zf-1Xi" id="v3V-Ev-CCG"/>
+                        <outlet property="revokeButton" destination="5L9-nU-Etu" id="9j9-sh-zjZ"/>
+                        <outlet property="tokensView" destination="73o-W2-s8q" id="XzJ-iJ-kbg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GKn-fF-UJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="740" y="-284.70764617691157"/>
         </scene>
     </scenes>
     <resources>

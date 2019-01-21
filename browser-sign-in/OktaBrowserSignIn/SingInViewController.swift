@@ -36,7 +36,7 @@ class SingInViewController: UIViewController {
         OktaAuth.signInWithBrowser().start(self)
         . then { _ in
             self.hideProgress()
-            self.showSignInSucceeded()
+            self.showAlert(title: "Signed In!")
             self.updateUI()
         }.catch { error in
             self.hideProgress()
@@ -52,7 +52,7 @@ class SingInViewController: UIViewController {
             self.authState?.clear()
             
             self.hideProgress()
-            self.showSignOutSucceeded()
+            self.showAlert(title: "Signed Out!")
             self.updateUI()
         }.catch { error in
             self.hideProgress()
@@ -99,25 +99,14 @@ private extension SingInViewController {
         signOutButton.isHidden = false
     }
     
-    func showSignInSucceeded() {
-        let alert = UIAlertController(title: "Signed In!", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "User Profile", style: .default, handler: { _ in
-            self.userProfileTapped()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func showSignOutSucceeded() {
-        let alert = UIAlertController(title: "Signed Out!", message: nil, preferredStyle: .alert)
+    func showAlert(title: String, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func showError(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        showAlert(title: "Error", message: message)
     }
     
     func showProgress() {
