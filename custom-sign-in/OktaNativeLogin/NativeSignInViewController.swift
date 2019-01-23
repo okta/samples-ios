@@ -82,7 +82,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         }.catch { error in
             print("Error: \(error)")
             self.showError(message: error.localizedDescription)
-            self.activityIndicator.stopAnimating()
+            self.hideProgress()
         }
     }
     
