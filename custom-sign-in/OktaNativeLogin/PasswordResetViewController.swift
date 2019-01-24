@@ -14,22 +14,35 @@ class PasswordResetViewController: UIViewController {
     @IBOutlet private var newPasswordField: UITextField!
     @IBOutlet private var confirmPasswordField: UITextField!
     
-    typealias PasswordResetCompletionHandler = (_ oldPassword: String, _ newPassword: String) -> Void
+    @IBOutlet private var cancelButton: UIButton!
+    
+    typealias PasswordResetCompletionHandler = (_ oldPassword: String?, _ newPassword: String?, _ skip: Bool) -> Void
     
     private var completionHandler: PasswordResetCompletionHandler?
+    private var canSkip = false {
+        didSet {
+            configure()
+        }
+    }
    
     @discardableResult
-    static func loadAndPresent(from presentingController: UIViewController, completion: @escaping PasswordResetCompletionHandler) -> PasswordResetViewController {
+    static func loadAndPresent(from presentingController: UIViewController, canSkip: Bool, completion: @escaping PasswordResetCompletionHandler) -> PasswordResetViewController {
         let navigation = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "ResetNavigationController")
             as! UINavigationController
         
         let controller = navigation.topViewController as! PasswordResetViewController
         controller.completionHandler = completion
+        controller.canSkip = canSkip
         
         presentingController.present(navigation, animated: true)
         
         return controller
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure()
     }
     
     @IBAction private func resetTapped() {
@@ -40,11 +53,20 @@ class PasswordResetViewController: UIViewController {
         }
         
         self.dismiss(animated: true) {
-            self.completionHandler?(oldPassword, newPassword)
+            self.completionHandler?(oldPassword, newPassword, false)
         }
     }
     
     @IBAction private func cancelTapped() {
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            if self.canSkip {
+                self.completionHandler?(nil, nil, true)
+            }
+        }
+    }
+    
+    private func configure() {
+        guard isViewLoaded else { return }
+        cancelButton.setTitle(canSkip ? "Skip" : "Cancel", for: .normal)
     }
 }

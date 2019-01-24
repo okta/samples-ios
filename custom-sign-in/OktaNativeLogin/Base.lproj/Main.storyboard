@@ -108,7 +108,7 @@
                     <navigationItem key="navigationItem" id="VIK-fA-yzP">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="EY2-2s-e0Y">
-                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <rect key="frame" x="188" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="WDQ-wf-cwd">
@@ -553,6 +553,7 @@ Please, reset the password.</string>
                     </navigationItem>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="iCj-3X-bmD" id="JE8-uo-WeO"/>
                         <outlet property="confirmPasswordField" destination="Sl1-4e-6oz" id="dXb-tP-AJl"/>
                         <outlet property="newPasswordField" destination="afv-29-yM3" id="EkM-Xw-TwG"/>
                         <outlet property="oldPasswordField" destination="9bW-ey-Dyv" id="TmS-rg-SdV"/>

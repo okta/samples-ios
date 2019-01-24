@@ -92,8 +92,8 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
     
     func handleChangePassword(canSkip: Bool, callback: @escaping (_ old: String?, _ new: String?, _ skip: Bool) -> Void) {
-        PasswordResetViewController.loadAndPresent(from: self) { (old, new) in
-            callback(old, new, false)
+        PasswordResetViewController.loadAndPresent(from: self, canSkip: canSkip) { (old, new, isSkipped) in
+            callback(old, new, isSkipped)
         }
     }
     
