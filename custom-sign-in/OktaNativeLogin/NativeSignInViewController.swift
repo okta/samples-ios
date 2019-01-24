@@ -72,7 +72,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         
         print("Session token: \(sessionToken)")
         
-        OktaAuth.authoize(withSessionToken: sessionToken).start().then { manager in
+        OktaAuth.authenticate(withSessionToken: sessionToken).start().then { manager in
             // Cash auth state
             self.authState = manager
             
