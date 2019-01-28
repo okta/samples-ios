@@ -22,7 +22,7 @@ class LoginFormViewController: UIViewController {
    
     @discardableResult
     static func loadAndPresent(from presentingController: UIViewController, completion: @escaping LoginCompletionHandler) -> LoginFormViewController {
-        let navigation = UIStoryboard(name: "Main", bundle: nil)
+        let navigation = UIStoryboard(name: "LoginForm", bundle: nil)
             .instantiateViewController(withIdentifier: "LoginNavigationController")
             as! UINavigationController
         

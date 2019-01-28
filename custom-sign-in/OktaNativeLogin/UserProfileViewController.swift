@@ -24,7 +24,7 @@ class UserProfileViewController: UIViewController {
     }
     
     static func fromStoryboard() -> UserProfileViewController {
-        return UIStoryboard(name: "Main", bundle: nil)
+        return UIStoryboard(name: "UserProfile", bundle: nil)
             .instantiateViewController(withIdentifier: "UserProfileViewController")
             as! UserProfileViewController
     }

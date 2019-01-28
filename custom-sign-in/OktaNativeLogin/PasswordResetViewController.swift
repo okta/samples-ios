@@ -27,7 +27,7 @@ class PasswordResetViewController: UIViewController {
    
     @discardableResult
     static func loadAndPresent(from presentingController: UIViewController, canSkip: Bool, completion: @escaping PasswordResetCompletionHandler) -> PasswordResetViewController {
-        let navigation = UIStoryboard(name: "Main", bundle: nil)
+        let navigation = UIStoryboard(name: "PasswordReset", bundle: nil)
             .instantiateViewController(withIdentifier: "ResetNavigationController")
             as! UINavigationController
         
