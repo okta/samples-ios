@@ -43,7 +43,7 @@ class NativeSignInViewController: UIViewController {
             self.showProgress()
         
             // Perfrom login
-            self.client.logIn(username: username, password: password)
+            self.client.authenticate(username: username, password: password)
         }
     }
     
@@ -67,9 +67,8 @@ class NativeSignInViewController: UIViewController {
 }
 
 extension NativeSignInViewController: AuthenticationClientDelegate {
-    func handleSuccess() {
-        guard let sessionToken = client.sessionToken else { return }
-        
+    
+    func handleSuccess(sessionToken: String) {
         print("Session token: \(sessionToken)")
         
         OktaAuth.authenticate(withSessionToken: sessionToken).start().then { manager in
@@ -93,6 +92,27 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
     
     func handleChangePassword(canSkip: Bool, callback: @escaping (_ old: String?, _ new: String?, _ skip: Bool) -> Void) {
+    }
+    
+    func handleAccountLockedOut(callback: @escaping (String, FactorType) -> Void) {
+        self.hideProgress()
+        self.showAccountLockedAlert { username in
+            callback(username, .email)
+            self.showProgress()
+        }
+    }
+    
+    func handleRecoveryChallenge(factorType: FactorType?, factorResult: FactorResult?) {
+        self.hideProgress()
+        guard factorType == .email, factorResult == .waiting else {
+            self.showError(message: "Unexpected recovery challange response!")
+            return
+        }
+
+        // Allow to sign in after unlocking user's account
+        self.client.resetStatus()
+
+        self.showUnlockEmailIsSentAlert()
     }
     
     func handleMultifactorAuthenication(callback: @escaping (_ code: String) -> Void) {
@@ -162,5 +182,22 @@ private extension NativeSignInViewController {
     func hideProgress() {
         activityIndicator.stopAnimating()
         self.loginButton.isEnabled = true
+    }
+    
+    func showAccountLockedAlert(and callback: @escaping (_ username: String) -> Void) {
+        let alert = UIAlertController(title: "Account Locked", message: "To unlock account enter email or username.", preferredStyle: .alert)
+        alert.addTextField { $0.placeholder = "Email or Username"}
+        alert.addAction(UIAlertAction(title: "Send Email", style: .default, handler: { _ in
+            guard let username = alert.textFields?[0].text else { return }
+            callback(username)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showUnlockEmailIsSentAlert() {
+        let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email address with instructions on unlocking your account.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
     }
 }
