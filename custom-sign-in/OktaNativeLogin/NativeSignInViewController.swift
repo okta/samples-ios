@@ -112,7 +112,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         // Allow to sign in after unlocking user's account
         self.client.resetStatus()
 
-        self.showUnlockEmailIsSendAlert()
+        self.showUnlockEmailIsSentAlert()
     }
     
     func handleMultifactorAuthenication(callback: @escaping (_ code: String) -> Void) {
