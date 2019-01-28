@@ -195,8 +195,8 @@ private extension NativeSignInViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func showUnlockEmailIsSendAlert() {
-         let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email with instructions on unlocking your account.", preferredStyle: .alert)
+    func showUnlockEmailIsSentAlert() {
+        let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email address with instructions on unlocking your account.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true, completion: nil)
     }
