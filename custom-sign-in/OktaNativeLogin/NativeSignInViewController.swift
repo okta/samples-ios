@@ -37,7 +37,7 @@ class NativeSignInViewController: UIViewController {
         super.viewWillAppear(animated)
         self.updateUI()
     }
-    
+
     @IBAction func loginTapped() {
         LoginFormViewController.loadAndPresent(from: self) { (username, password) in
             self.showProgress()
@@ -92,6 +92,9 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
     
     func handleChangePassword(canSkip: Bool, callback: @escaping (_ old: String?, _ new: String?, _ skip: Bool) -> Void) {
+        PasswordResetViewController.loadAndPresent(from: self, canSkip: canSkip) { (old, new, isSkipped) in
+            callback(old, new, isSkipped)
+        }
     }
     
     func handleAccountLockedOut(callback: @escaping (String, FactorType) -> Void) {
