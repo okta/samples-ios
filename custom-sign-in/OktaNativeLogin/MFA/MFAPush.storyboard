@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Push View Controller-->
+        <scene sceneID="dMM-yy-8yD">
+            <objects>
+                <viewController storyboardIdentifier="MFAPushViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y3z-UV-qxQ" customClass="MFAPushViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qRa-Vj-50i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3HX-cd-8OG">
+                                <rect key="frame" x="20" y="50" width="335" height="92"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cP-Sm-h4t">
+                                        <rect key="frame" x="145.5" y="0.0" width="44.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elL-BL-lP8">
+                                        <rect key="frame" x="67.5" y="59" width="200" height="33"/>
+                                        <color key="backgroundColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="bV3-b3-Bec"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Send Push">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pushTapped" destination="y3z-UV-qxQ" eventType="touchUpInside" id="KYI-W6-lEm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3HX-cd-8OG" firstAttribute="leading" secondItem="tDc-hk-gZ9" secondAttribute="leading" constant="20" id="K0O-mj-YbP"/>
+                            <constraint firstItem="3HX-cd-8OG" firstAttribute="top" secondItem="qRa-Vj-50i" secondAttribute="topMargin" constant="30" id="Ly6-Ba-lbt"/>
+                            <constraint firstItem="tDc-hk-gZ9" firstAttribute="trailing" secondItem="3HX-cd-8OG" secondAttribute="trailing" constant="20" id="qjB-JC-hFz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tDc-hk-gZ9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oBe-ZG-3MM">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="J4e-Gn-Mhq">
+                            <rect key="frame" x="188" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="L6l-2S-UEC">
+                                    <rect key="frame" x="-35.5" y="-12" width="71" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="L6l-2S-UEC" secondAttribute="height" multiplier="625:211" id="EWe-Wq-ZOQ"/>
+                                        <constraint firstAttribute="height" constant="24" id="uew-tw-8r2"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="L6l-2S-UEC" firstAttribute="centerY" secondItem="J4e-Gn-Mhq" secondAttribute="centerY" id="sH2-VI-eYb"/>
+                                <constraint firstItem="L6l-2S-UEC" firstAttribute="centerX" secondItem="J4e-Gn-Mhq" secondAttribute="centerX" id="uzp-uO-ME9"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleLabel" destination="5cP-Sm-h4t" id="P6H-ad-PoP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="09q-Aa-qAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="-553"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="okta-logo" width="5000" height="1688"/>
+    </resources>
+</document>

@@ -31,6 +31,7 @@ class NativeSignInViewController: UIViewController {
         // Setup Okta Auth Client
         let url = URL(string: "{your Okta domain}")!
         client = AuthenticationClient(oktaDomain: url, delegate: self)
+        client.mfaHandler = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,10 +119,52 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         self.showUnlockEmailIsSentAlert()
     }
     
-    func handleMultifactorAuthenication(callback: @escaping (_ code: String) -> Void) {
+    func transactionCancelled() {
+    }
+}
+
+extension NativeSignInViewController: AuthenticationClientMFAHandler {
+    func mfaSelecFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (Int) -> Void) {
+        MFAViewController.loadAndPresent(
+            from: self,
+            factors: factors,
+            completion: {type, code in
+                guard let index = factors.firstIndex(where: { $0.factorType == type }) else {
+                    return
+                }
+                
+                switch type {
+                case .push:
+                    self.showMessage("Push sent!")
+                    callback(index)
+                default:
+                    break
+                }
+            },
+            cancel: {
+                self.hideProgress()
+                self.client.cancel()
+            }
+        )
     }
     
-    func transactionCancelled() {
+    func mfaPushStateUpdated(_ state: FactorResult) {
+        switch state {
+        case .waiting:
+            return
+        case .cancelled:
+            showError(message: "Factor authorization cancelled!")
+        case .rejected:
+            showError(message: "Factor authorization rejected!")
+        case .timeout, .timeWindowExceeded:
+            showError(message: "Factor authorization timed out!")
+        default:
+            showError(message: "Factor authorization failed!")
+        }
+        hideProgress()
+    }
+    
+    func mfaRequestCode(factor: EmbeddedResponse.Factor, callback: @escaping (String) -> Void) {
     }
 }
 
@@ -129,6 +172,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
 private extension NativeSignInViewController {
     
     var userProfile: EmbeddedResponse.User.Profile? {
+        guard client.status == .success else { return nil }
         return client.embedded?.user?.profile
     }
     
@@ -173,6 +217,12 @@ private extension NativeSignInViewController {
 
     func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showMessage(_ message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
