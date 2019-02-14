@@ -11,7 +11,7 @@ import OktaAuthNative
 
 class MFAViewController: UIViewController {
     
-    typealias MFAViewControllerCompletion = (_ factor: FactorType, _ code: String?) -> Void
+    typealias MFAViewControllerCompletion = (_ factor: EmbeddedResponse.Factor, _ code: String?) -> Void
     
     @IBOutlet private var table: UITableView!
 
@@ -69,11 +69,9 @@ extension MFAViewController : UITableViewDelegate {
         let factor = self.factors[indexPath.row]
         switch factor.factorType! {
         case .push:
-            let controller = MFAPushViewController.fromStoryboard()
-            controller.factor = factor
-            controller.onPushTapped = {
+            let controller = MFAPushViewController.create(with: factor) {
                 self.dismiss(animated: true, completion: {
-                    self.completion?(.push, nil)
+                    self.completion?(factor, nil)
                 })
             }
 

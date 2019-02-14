@@ -30,8 +30,7 @@ class NativeSignInViewController: UIViewController {
         
         // Setup Okta Auth Client
         let url = URL(string: "{your Okta domain}")!
-        client = AuthenticationClient(oktaDomain: url, delegate: self)
-        client.mfaHandler = self
+        client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +60,7 @@ class NativeSignInViewController: UIViewController {
             return
         }
 
-        let controller = UserProfileViewController.fromStoryboard()
+        let controller = UserProfileViewController.create()
         controller.profile = profile
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -106,7 +105,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         }
     }
     
-    func handleRecoveryChallenge(factorType: FactorType?, factorResult: FactorResult?) {
+    func handleRecoveryChallenge(factorType: FactorType?, factorResult: OktaAPISuccessResponse.FactorResult?) {
         self.hideProgress()
         guard factorType == .email, factorResult == .waiting else {
             self.showError(message: "Unexpected recovery challange response!")
@@ -124,19 +123,17 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
 }
 
 extension NativeSignInViewController: AuthenticationClientMFAHandler {
-    func mfaSelecFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (Int) -> Void) {
+    
+    func selectFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (EmbeddedResponse.Factor) -> Void) {
         MFAViewController.loadAndPresent(
             from: self,
             factors: factors,
-            completion: {type, code in
-                guard let index = factors.firstIndex(where: { $0.factorType == type }) else {
-                    return
-                }
-                
-                switch type {
+            completion: {factor, code in
+                guard let factorType = factor.factorType else { return }
+                switch factorType {
                 case .push:
                     self.showMessage("Push sent!")
-                    callback(index)
+                    callback(factor)
                 default:
                     break
                 }
@@ -148,7 +145,7 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
         )
     }
     
-    func mfaPushStateUpdated(_ state: FactorResult) {
+    func pushStateUpdated(_ state: OktaAPISuccessResponse.FactorResult) {
         switch state {
         case .waiting:
             return
@@ -165,6 +162,18 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
     }
     
     func mfaRequestCode(factor: EmbeddedResponse.Factor, callback: @escaping (String) -> Void) {
+    }
+    
+    func requestTOTP(callback: @escaping (String) -> Void) {
+        // tbd
+    }
+    
+    func requestSMSCode(phoneNumber: String?, callback: @escaping (String) -> Void) {
+        // tbd
+    }
+    
+    func securityQuestion(question: String, callback: @escaping (String) -> Void) {
+        // tbd
     }
 }
 

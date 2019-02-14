@@ -13,18 +13,22 @@ class MFAPushViewController : UIViewController {
 
     @IBOutlet private var titleLabel: UILabel!
 
-    var factor: EmbeddedResponse.Factor? {
+    private var factor: EmbeddedResponse.Factor? {
         didSet {
             configure()
         }
     }
     
-    var onPushTapped: (() -> Void)?
+    private var onPushTapped: (() -> Void)?
 
-    static func fromStoryboard() -> MFAPushViewController {
-        return UIStoryboard(name: "MFAPush", bundle: nil)
+    static func create(with factor: EmbeddedResponse.Factor, pushHandler: (() -> Void)?) -> MFAPushViewController {
+        let controller = UIStoryboard(name: "MFAPush", bundle: nil)
             .instantiateViewController(withIdentifier: "MFAPushViewController")
             as! MFAPushViewController
+        controller.factor = factor
+        controller.onPushTapped = pushHandler
+        
+        return controller
     }
     
     override func viewDidLoad() {

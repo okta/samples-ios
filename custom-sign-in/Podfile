@@ -1,7 +1,7 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'OktaNativeLogin' do
-  pod 'OktaAuth', :git => 'git@github.com:okta/okta-sdk-appauth-ios.git', :branch => 'session-token-to-auth-tocken-exchange'
-  pod 'OktaAuthNative', :git => 'https://github.com/okta/okta-auth-swift.git', :branch => 'pre-dev-2'
+  pod 'OktaAuth', :git => 'git@github.com:okta/okta-sdk-appauth-ios.git', :branch => 'dev'
+  pod 'OktaAuthNative', :git => 'https://github.com/okta/okta-auth-swift.git', :branch => 'mfa+pods'
 end
