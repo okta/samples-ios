@@ -132,7 +132,6 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
                 guard let factorType = factor.factorType else { return }
                 switch factorType {
                 case .push:
-                    self.showMessage("Push sent!")
                     callback(factor)
                 default:
                     break
@@ -159,9 +158,6 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
             showError(message: "Factor authorization failed!")
         }
         hideProgress()
-    }
-    
-    func mfaRequestCode(factor: EmbeddedResponse.Factor, callback: @escaping (String) -> Void) {
     }
     
     func requestTOTP(callback: @escaping (String) -> Void) {
