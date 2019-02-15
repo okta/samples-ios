@@ -30,7 +30,7 @@ class NativeSignInViewController: UIViewController {
         
         // Setup Okta Auth Client
         let url = URL(string: "{your Okta domain}")!
-        client = AuthenticationClient(oktaDomain: url, delegate: self)
+        client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +60,7 @@ class NativeSignInViewController: UIViewController {
             return
         }
 
-        let controller = UserProfileViewController.fromStoryboard()
+        let controller = UserProfileViewController.create()
         controller.profile = profile
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -105,7 +105,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         }
     }
     
-    func handleRecoveryChallenge(factorType: FactorType?, factorResult: FactorResult?) {
+    func handleRecoveryChallenge(factorType: FactorType?, factorResult: OktaAPISuccessResponse.FactorResult?) {
         self.hideProgress()
         guard factorType == .email, factorResult == .waiting else {
             self.showError(message: "Unexpected recovery challange response!")
@@ -118,10 +118,58 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         self.showUnlockEmailIsSentAlert()
     }
     
-    func handleMultifactorAuthenication(callback: @escaping (_ code: String) -> Void) {
+    func transactionCancelled() {
+    }
+}
+
+extension NativeSignInViewController: AuthenticationClientMFAHandler {
+    
+    func selectFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (EmbeddedResponse.Factor) -> Void) {
+        MFAViewController.loadAndPresent(
+            from: self,
+            factors: factors,
+            completion: {factor, code in
+                guard let factorType = factor.factorType else { return }
+                switch factorType {
+                case .push:
+                    callback(factor)
+                default:
+                    break
+                }
+            },
+            cancel: {
+                self.hideProgress()
+                self.client.cancel()
+            }
+        )
     }
     
-    func transactionCancelled() {
+    func pushStateUpdated(_ state: OktaAPISuccessResponse.FactorResult) {
+        switch state {
+        case .waiting:
+            return
+        case .cancelled:
+            showError(message: "Factor authorization cancelled!")
+        case .rejected:
+            showError(message: "Factor authorization rejected!")
+        case .timeout, .timeWindowExceeded:
+            showError(message: "Factor authorization timed out!")
+        default:
+            showError(message: "Factor authorization failed!")
+        }
+        hideProgress()
+    }
+    
+    func requestTOTP(callback: @escaping (String) -> Void) {
+        // tbd
+    }
+    
+    func requestSMSCode(phoneNumber: String?, callback: @escaping (String) -> Void) {
+        // tbd
+    }
+    
+    func securityQuestion(question: String, callback: @escaping (String) -> Void) {
+        // tbd
     }
 }
 
@@ -129,6 +177,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
 private extension NativeSignInViewController {
     
     var userProfile: EmbeddedResponse.User.Profile? {
+        guard client.status == .success else { return nil }
         return client.embedded?.user?.profile
     }
     
@@ -173,6 +222,12 @@ private extension NativeSignInViewController {
 
     func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showMessage(_ message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
