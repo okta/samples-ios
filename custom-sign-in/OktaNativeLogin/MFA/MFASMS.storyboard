@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="7vn-l9-11n">
+            <objects>
+                <viewController storyboardIdentifier="MFASMSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="quk-M6-l97" customClass="MFASMSViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w4R-aZ-Cxh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="z8P-SD-1eU">
+                                <rect key="frame" x="20" y="50" width="335" height="269.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMS Authentication" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGy-Fo-3kN">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPk-H5-N7J">
+                                        <rect key="frame" x="0.0" y="59" width="335" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Aq-TU-6O7">
+                                        <rect key="frame" x="0.0" y="109.5" width="335" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TW6-Hm-3ou" userLabel="Send Code">
+                                                <rect key="frame" x="0.0" y="0.0" width="162.5" height="30"/>
+                                                <color key="backgroundColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Send Code">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendSMSTapped" destination="quk-M6-l97" eventType="touchUpInside" id="a6G-ZG-c4d"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K8X-rc-fG3">
+                                                <rect key="frame" x="172.5" y="0.0" width="162.5" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-ZK-k05">
+                                        <rect key="frame" x="0.0" y="169.5" width="335" height="33"/>
+                                        <color key="backgroundColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Verify">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="verifyButtonTapped" destination="quk-M6-l97" eventType="touchUpInside" id="kr3-77-47d"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="AI2-ub-X8T">
+                                        <rect key="frame" x="0.0" y="232.5" width="335" height="37"/>
+                                        <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LM8-ck-o3l" firstAttribute="trailing" secondItem="z8P-SD-1eU" secondAttribute="trailing" constant="20" id="Qff-OV-aSU"/>
+                            <constraint firstItem="z8P-SD-1eU" firstAttribute="leading" secondItem="LM8-ck-o3l" secondAttribute="leading" constant="20" id="e6v-KB-yOM"/>
+                            <constraint firstItem="z8P-SD-1eU" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="30" id="fjx-AB-htx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LM8-ck-o3l"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="AI2-ub-X8T" id="MMB-gR-KJb"/>
+                        <outlet property="codeTextField" destination="K8X-rc-fG3" id="AUB-Cg-rmA"/>
+                        <outlet property="phoneNumberLabel" destination="qPk-H5-N7J" id="6ty-TF-SRw"/>
+                        <outlet property="verifyButton" destination="o4Y-ZK-k05" id="AMw-cb-Hx5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jhX-WL-QUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="-319"/>
+        </scene>
+    </scenes>
+</document>

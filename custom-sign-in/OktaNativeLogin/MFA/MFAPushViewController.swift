@@ -12,6 +12,7 @@ import OktaAuthNative
 class MFAPushViewController : UIViewController {
 
     @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
 
     private var factor: EmbeddedResponse.Factor? {
         didSet {
@@ -35,8 +36,14 @@ class MFAPushViewController : UIViewController {
         configure()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        activityIndicator.stopAnimating()
+    }
+    
     @IBAction private func pushTapped() {
         onPushTapped?()
+        activityIndicator.startAnimating()
     }
     
     private func configure() {

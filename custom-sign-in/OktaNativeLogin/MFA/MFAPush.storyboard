@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3HX-cd-8OG">
-                                <rect key="frame" x="20" y="50" width="335" height="92"/>
+                                <rect key="frame" x="20" y="50" width="335" height="159"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cP-Sm-h4t">
                                         <rect key="frame" x="145.5" y="0.0" width="44.5" height="29"/>
@@ -41,6 +41,10 @@
                                             <action selector="pushTapped" destination="y3z-UV-qxQ" eventType="touchUpInside" id="KYI-W6-lEm"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kbg-1q-gBj">
+                                        <rect key="frame" x="149" y="122" width="37" height="37"/>
+                                        <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -73,6 +77,7 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Kbg-1q-gBj" id="LtN-a7-JYB"/>
                         <outlet property="titleLabel" destination="5cP-Sm-h4t" id="P6H-ad-PoP"/>
                     </connections>
                 </viewController>
