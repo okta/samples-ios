@@ -61,7 +61,6 @@ class MFASMSViewController: UIViewController {
     @IBAction func verifyButtonTapped() {
         guard let code = codeTextField.text else { return }
         onVerify?(code)
-        activityIndicator.startAnimating()
     }
     
     private func configure() {

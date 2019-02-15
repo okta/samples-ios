@@ -53,7 +53,11 @@ class MFAViewController: UIViewController {
             return
         }
         
-        smsController.verifySMS(completion: callback)
+        smsController.verifySMS { code in
+            self.navigationController?.dismiss(animated: true) {
+                callback(code)
+            }
+        }
     }
     
     func requestSecurityQuestionAnswer(callback: @escaping (String) -> Void)  {
@@ -61,7 +65,11 @@ class MFAViewController: UIViewController {
             return
         }
         
-        questionController.verifySecurityQuestion(callback: callback)
+        questionController.verifySecurityQuestion { answer in
+            self.navigationController?.dismiss(animated: true) {
+                callback(answer)
+            }
+        }
     }
     
     func requestTOTP(callback: @escaping (String) -> Void) {
@@ -69,11 +77,17 @@ class MFAViewController: UIViewController {
             return
         }
         
-        totpController.requestTOTP(callback: callback)
+        totpController.requestTOTP { code in
+            self.navigationController?.dismiss(animated: true) {
+                callback(code)
+            }
+        }
     }
     
     @IBAction private func cancelTapped() {
-        self.cancel?()
+        self.navigationController?.dismiss(animated: true) {
+            self.cancel?()
+        }
     }
     
     private func factor(ofType type: FactorType) -> EmbeddedResponse.Factor? {
@@ -105,7 +119,9 @@ extension MFAViewController : UITableViewDelegate {
         switch factor.factorType! {
         case .push:
             controller = MFAPushViewController.create(with: factor, pushHandler: { [weak self] in
-                self?.selectionHandler?(factor)
+                self?.navigationController?.dismiss(animated: true) {
+                    self?.selectionHandler?(factor)
+                }
             })
             
         case .sms:

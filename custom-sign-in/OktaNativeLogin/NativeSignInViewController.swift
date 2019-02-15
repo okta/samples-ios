@@ -25,7 +25,7 @@ class NativeSignInViewController: UIViewController {
     private var client: AuthenticationClient!
     private var authState: OktaTokenManager?
     
-    private var mfaController: MFAViewController?
+    private weak var mfaController: MFAViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +73,6 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     func handleSuccess(sessionToken: String) {
         print("Session token: \(sessionToken)")
         
-        dismissMFA()
-        
         OktaAuth.authenticate(withSessionToken: sessionToken).start().then { manager in
             // Cash auth state
             self.authState = manager
@@ -91,23 +89,20 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     
     func handleError(_ error: OktaAuthNative.OktaError) {
         print("Error: \(error)")
-        dismissMFA()
-        hideProgress()
-
-        showError(message: error.localizedDescription)
         
-        client?.resetStatus()
+        client.resetStatus()
+
+        hideProgress()
+        showError(message: error.description)
     }
     
     func handleChangePassword(canSkip: Bool, callback: @escaping (_ old: String?, _ new: String?, _ skip: Bool) -> Void) {
-        dismissMFA()
         PasswordResetViewController.loadAndPresent(from: self, canSkip: canSkip) { (old, new, isSkipped) in
             callback(old, new, isSkipped)
         }
     }
     
     func handleAccountLockedOut(callback: @escaping (String, FactorType) -> Void) {
-        dismissMFA()
         hideProgress()
         showAccountLockedAlert { username in
             callback(username, .email)
@@ -116,7 +111,6 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
     
     func handleRecoveryChallenge(factorType: FactorType?, factorResult: OktaAPISuccessResponse.FactorResult?) {
-        dismissMFA()
         hideProgress()
         guard factorType == .email, factorResult == .waiting else {
             showError(message: "Unexpected recovery challange response!")
@@ -130,7 +124,6 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
     
     func transactionCancelled() {
-        dismissMFA()
         hideProgress()
         showMessage("Authorization cancelled!")
     }
@@ -139,10 +132,6 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
 extension NativeSignInViewController: AuthenticationClientMFAHandler {
     
     func selectFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (EmbeddedResponse.Factor) -> Void) {
-        guard nil == mfaController else {
-            return
-        }
-
         mfaController = MFAViewController.loadAndPresent(
             from: self,
             factors: factors,
@@ -150,7 +139,6 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
                 callback(factor)
             },
             cancel: { [weak self] in
-                self?.dismissMFA()
                 self?.hideProgress()
                 self?.client.cancel()
             }
@@ -170,7 +158,6 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
         default:
             showError(message: "Factor authorization failed!")
         }
-        dismissMFA()
         hideProgress()
     }
     
@@ -271,10 +258,5 @@ private extension NativeSignInViewController {
         let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email address with instructions on unlocking your account.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true, completion: nil)
-    }
-    
-    private func dismissMFA() {
-        mfaController?.dismiss(animated: true)
-        mfaController = nil
     }
 }

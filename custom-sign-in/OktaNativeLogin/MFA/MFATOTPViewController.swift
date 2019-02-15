@@ -55,6 +55,6 @@ class MFATOTPViewController: UIViewController {
     
     private func configure() {
         guard isViewLoaded else { return }
-        titleLabel.text = factor?.provider?.description
+        titleLabel.text = factor?.vendorName ?? "Unknown Vendor"
     }
 }
