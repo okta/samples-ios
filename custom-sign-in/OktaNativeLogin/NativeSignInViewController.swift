@@ -170,7 +170,7 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
     }
     
     func securityQuestion(question: String, callback: @escaping (String) -> Void) {
-        mfaController?.requestSecurityQuestionAnswer(callback: callback)
+        // to be removed
     }
 }
 

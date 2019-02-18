@@ -11,18 +11,18 @@ import OktaAuthNative
 
 class MFAViewController: UIViewController {
     
-    typealias MFAFactorSlectionHandler = (_ factor: EmbeddedResponse.Factor) -> Void
+    typealias MFAFactorSelectionHandler = (_ factor: EmbeddedResponse.Factor) -> Void
     
     @IBOutlet private var table: UITableView!
 
     private var factors = [EmbeddedResponse.Factor]()
-    private var selectionHandler: MFAFactorSlectionHandler?
+    private var selectionHandler: MFAFactorSelectionHandler?
     private var cancel: (() -> Void)?
     
     private var currentController: UIViewController?
 
     @discardableResult
-    static func loadAndPresent(from presentingController: UIViewController, factors: [EmbeddedResponse.Factor], selectionHandler: MFAFactorSlectionHandler?, cancel: (() -> Void)?) -> MFAViewController {
+    static func loadAndPresent(from presentingController: UIViewController, factors: [EmbeddedResponse.Factor], selectionHandler: MFAFactorSelectionHandler?, cancel: (() -> Void)?) -> MFAViewController {
         let navigation = UIStoryboard(name: "MFA", bundle: nil)
             .instantiateViewController(withIdentifier: "MFANavigationController")
             as! UINavigationController
@@ -56,18 +56,6 @@ class MFAViewController: UIViewController {
         smsController.verifySMS { code in
             self.navigationController?.dismiss(animated: true) {
                 callback(code)
-            }
-        }
-    }
-    
-    func requestSecurityQuestionAnswer(callback: @escaping (String) -> Void)  {
-        guard let questionController = currentController as? MFASecurityQuestionViewController else {
-            return
-        }
-        
-        questionController.verifySecurityQuestion { answer in
-            self.navigationController?.dismiss(animated: true) {
-                callback(answer)
             }
         }
     }
@@ -126,11 +114,6 @@ extension MFAViewController : UITableViewDelegate {
             
         case .sms:
             controller = MFASMSViewController.create(with: factor) { [weak self] in
-                self?.selectionHandler?(factor)
-            }
-            
-        case .question:
-            controller = MFASecurityQuestionViewController.create(with: factor) { [weak self] in
                 self?.selectionHandler?(factor)
             }
             
