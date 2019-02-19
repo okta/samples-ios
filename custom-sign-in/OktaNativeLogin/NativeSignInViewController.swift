@@ -29,7 +29,7 @@ class NativeSignInViewController: UIViewController {
         super.viewDidLoad()
         
         // Setup Okta Auth Client
-        let url = URL(string: "{your Okta domain}")!
+        let url = URL(string: "https://{yourOktaDomain}")!
         client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
     }
     

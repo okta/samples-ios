@@ -5,12 +5,12 @@
 	<key>scopes</key>
 	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>{redirect uri}</string>
+	<string>{redirectUri}</string>
 	<key>clientId</key>
-	<string>{client id}</string>
+	<string>{clientId}</string>
 	<key>issuer</key>
 	<string>{issuer}</string>
 	<key>logoutRedirectUri</key>
-	<string>{logout redirect uri}</string>
+	<string>{logoutRedirectUri}</string>
 </dict>
 </plist>
