@@ -68,7 +68,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="lFH-po-ZAq">
-                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <rect key="frame" x="188" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="VeT-PR-BSC">

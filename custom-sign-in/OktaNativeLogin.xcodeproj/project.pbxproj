@@ -18,6 +18,10 @@
 		2FC37CDA21FEF5B0008DB806 /* PasswordReset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CDC21FEF5B0008DB806 /* PasswordReset.storyboard */; };
 		2FC37CDD21FEF5B5008DB806 /* LoginForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CDF21FEF5B5008DB806 /* LoginForm.storyboard */; };
 		2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CE221FEF5B9008DB806 /* UserProfile.storyboard */; };
+		2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34182215DF630098AB63 /* MFASMSViewController.swift */; };
+		2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */; };
+		2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */; };
+		2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF34222216CC170098AB63 /* MFATOTP.storyboard */; };
 		F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = F57B5ED821ECCD0700895A26 /* Okta.plist */; };
 		FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549821E5FB2C00B89097 /* AppDelegate.swift */; };
 		FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549A21E5FB2C00B89097 /* LoginFormViewController.swift */; };
@@ -39,6 +43,10 @@
 		2FC37CDB21FEF5B0008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PasswordReset.storyboard; sourceTree = "<group>"; };
 		2FC37CDE21FEF5B5008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginForm.storyboard; sourceTree = "<group>"; };
 		2FC37CE121FEF5B9008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
+		2FFF34182215DF630098AB63 /* MFASMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFASMSViewController.swift; sourceTree = "<group>"; };
+		2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFASMS.storyboard; sourceTree = "<group>"; };
+		2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFATOTPViewController.swift; sourceTree = "<group>"; };
+		2FFF34222216CC170098AB63 /* MFATOTP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFATOTP.storyboard; sourceTree = "<group>"; };
 		61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		FAE1549521E5FB2C00B89097 /* OktaNativeLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaNativeLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +77,10 @@
 				2F74358A2204789300B47967 /* MFA.storyboard */,
 				2F743590220486E000B47967 /* MFAPushViewController.swift */,
 				2F74358E220486A800B47967 /* MFAPush.storyboard */,
+				2FFF34182215DF630098AB63 /* MFASMSViewController.swift */,
+				2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */,
+				2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */,
+				2FFF34222216CC170098AB63 /* MFATOTP.storyboard */,
 			);
 			path = MFA;
 			sourceTree = "<group>";
@@ -192,10 +204,12 @@
 				2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
+				2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */,
 				FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */,
 				FAE1549E21E5FB2C00B89097 /* Main.storyboard in Resources */,
 				2FC37CDA21FEF5B0008DB806 /* PasswordReset.storyboard in Resources */,
 				2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */,
+				2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */,
 				2FC37CDD21FEF5B5008DB806 /* LoginForm.storyboard in Resources */,
 				F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */,
 			);
@@ -262,6 +276,8 @@
 				FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */,
 				2F74358D220478B000B47967 /* MFAViewController.swift in Sources */,
 				2F743591220486E000B47967 /* MFAPushViewController.swift in Sources */,
+				2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */,
+				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
 				2FA4566321F740D0000ACBE2 /* PasswordResetViewController.swift in Sources */,
 				2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* NativeSignInViewController.swift in Sources */,

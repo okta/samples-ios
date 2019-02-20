@@ -11,16 +11,18 @@ import OktaAuthNative
 
 class MFAViewController: UIViewController {
     
-    typealias MFAViewControllerCompletion = (_ factor: EmbeddedResponse.Factor, _ code: String?) -> Void
+    typealias MFAFactorSelectionHandler = (_ factor: EmbeddedResponse.Factor) -> Void
     
     @IBOutlet private var table: UITableView!
 
     private var factors = [EmbeddedResponse.Factor]()
-    private var completion: MFAViewControllerCompletion?
+    private var selectionHandler: MFAFactorSelectionHandler?
     private var cancel: (() -> Void)?
     
+    private var currentController: UIViewController?
+
     @discardableResult
-    static func loadAndPresent(from presentingController: UIViewController, factors: [EmbeddedResponse.Factor], completion: MFAViewControllerCompletion?, cancel: (() -> Void)?) -> MFAViewController {
+    static func loadAndPresent(from presentingController: UIViewController, factors: [EmbeddedResponse.Factor], selectionHandler: MFAFactorSelectionHandler?, cancel: (() -> Void)?) -> MFAViewController {
         let navigation = UIStoryboard(name: "MFA", bundle: nil)
             .instantiateViewController(withIdentifier: "MFANavigationController")
             as! UINavigationController
@@ -28,7 +30,7 @@ class MFAViewController: UIViewController {
         let controller = navigation.topViewController as! MFAViewController
 
         controller.factors = factors
-        controller.completion = completion
+        controller.selectionHandler = selectionHandler
         controller.cancel = cancel
         
         presentingController.present(navigation, animated: true)
@@ -41,10 +43,43 @@ class MFAViewController: UIViewController {
         table.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        currentController = nil
+    }
+    
+    func requestSMSCode(callback: @escaping (String) -> Void) {
+        guard let smsController = currentController as? MFASMSViewController else {
+            return
+        }
+        
+        smsController.verifySMS { code in
+            self.navigationController?.dismiss(animated: true) {
+                callback(code)
+            }
+        }
+    }
+    
+    func requestTOTP(callback: @escaping (String) -> Void) {
+        guard let totpController = currentController as? MFATOTPViewController else {
+            return
+        }
+        
+        totpController.requestTOTP { code in
+            self.navigationController?.dismiss(animated: true) {
+                callback(code)
+            }
+        }
+    }
+    
     @IBAction private func cancelTapped() {
-        dismiss(animated: true) {
+        self.navigationController?.dismiss(animated: true) {
             self.cancel?()
         }
+    }
+    
+    private func factor(ofType type: FactorType) -> EmbeddedResponse.Factor? {
+        return self.factors.first(where: { $0.factorType == type })
     }
 }
 
@@ -66,19 +101,34 @@ extension MFAViewController : UITableViewDataSource {
 
 extension MFAViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var controller: UIViewController?
+        
         let factor = self.factors[indexPath.row]
         switch factor.factorType! {
         case .push:
-            let controller = MFAPushViewController.create(with: factor) {
-                self.dismiss(animated: true, completion: {
-                    self.completion?(factor, nil)
-                })
+            controller = MFAPushViewController.create(with: factor, pushHandler: { [weak self] in
+                self?.navigationController?.dismiss(animated: true) {
+                    self?.selectionHandler?(factor)
+                }
+            })
+            
+        case .sms:
+            controller = MFASMSViewController.create(with: factor) { [weak self] in
+                self?.selectionHandler?(factor)
             }
-
-            self.navigationController?.pushViewController(controller, animated: true)
+            
+        case .TOTP:
+            controller = MFATOTPViewController.create(with: factor) { [weak self] in
+                self?.selectionHandler?(factor)
+            }
             
         default:
             break
+        }
+        
+        if let controller = controller {
+            self.currentController = controller
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
