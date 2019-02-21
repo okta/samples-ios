@@ -140,7 +140,7 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
             },
             cancel: { [weak self] in
                 self?.hideProgress()
-                self?.client.cancel()
+                self?.client.cancelTransaction()
             }
         )
     }

@@ -3,5 +3,5 @@ use_frameworks!
 
 target 'OktaNativeLogin' do
   pod 'OktaAuth', :git => 'git@github.com:okta/okta-sdk-appauth-ios.git', :branch => 'dev'
-  pod 'OktaAuthNative', :git => 'https://github.com/okta/okta-auth-swift.git', :branch => 'mfa+pods'
+  pod 'OktaAuthNative', :git => 'git@github.com:okta/okta-auth-swift.git', :branch => 'dev'
 end
