@@ -72,6 +72,18 @@ class MFAViewController: UIViewController {
         }
     }
     
+    func requestSecurityQuestion(callback: @escaping (String) -> Void) {
+        guard let controller = currentController as? MFASecurityQuestionViewController else {
+            return
+        }
+        
+        controller.verifySecurityQuestion { answer in
+            self.navigationController?.dismiss(animated: true) {
+                callback(answer)
+            }
+        }
+    }
+    
     @IBAction private func cancelTapped() {
         self.navigationController?.dismiss(animated: true) {
             self.cancel?()
@@ -119,6 +131,11 @@ extension MFAViewController : UITableViewDelegate {
             
         case .TOTP:
             controller = MFATOTPViewController.create(with: factor) { [weak self] in
+                self?.selectionHandler?(factor)
+            }
+            
+        case .question:
+            controller = MFASecurityQuestionViewController.create(with: factor) { [weak self] in
                 self?.selectionHandler?(factor)
             }
             

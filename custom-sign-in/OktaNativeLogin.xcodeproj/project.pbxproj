@@ -22,6 +22,8 @@
 		2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */; };
 		2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */; };
 		2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF34222216CC170098AB63 /* MFATOTP.storyboard */; };
+		2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */; };
+		2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */; };
 		F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = F57B5ED821ECCD0700895A26 /* Okta.plist */; };
 		FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549821E5FB2C00B89097 /* AppDelegate.swift */; };
 		FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549A21E5FB2C00B89097 /* LoginFormViewController.swift */; };
@@ -47,6 +49,8 @@
 		2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFASMS.storyboard; sourceTree = "<group>"; };
 		2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFATOTPViewController.swift; sourceTree = "<group>"; };
 		2FFF34222216CC170098AB63 /* MFATOTP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFATOTP.storyboard; sourceTree = "<group>"; };
+		2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFASecurityQuestion.storyboard; sourceTree = "<group>"; };
+		2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFASecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		FAE1549521E5FB2C00B89097 /* OktaNativeLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaNativeLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,8 @@
 				2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */,
 				2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */,
 				2FFF34222216CC170098AB63 /* MFATOTP.storyboard */,
+				2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */,
+				2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */,
 			);
 			path = MFA;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */,
+				2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
 				2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */,
@@ -276,6 +283,7 @@
 				FAE1549B21E5FB2C00B89097 /* LoginFormViewController.swift in Sources */,
 				2F74358D220478B000B47967 /* MFAViewController.swift in Sources */,
 				2F743591220486E000B47967 /* MFAPushViewController.swift in Sources */,
+				2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */,
 				2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */,
 				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
 				2FA4566321F740D0000ACBE2 /* PasswordResetViewController.swift in Sources */,
