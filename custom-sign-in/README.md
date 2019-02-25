@@ -8,7 +8,7 @@ This example shows you how to use the [Okta Auth Swift](https://github.com/okta/
 Before running this sample, you will need the following:
 
 * An Okta Developer Account, you can sign up for one at https://developer.okta.com/signup/.
-* An Okta Application, configured for Web mode. This is done from the Okta Developer Console and you can find instructions [here][OIDC Web Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
+* An Okta Application, configured for Web mode. This is done from the Okta Developer Console and you can find instructions [here][OIDC Native iOS Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
 
 
 ## Running This Example
@@ -58,7 +58,7 @@ Now specify your Org URL in the place where `AuthenticationClient` is created (s
 client = AuthenticationClient(oktaDomain: URL(string: "{yourOktaDomain}")!, delegate: self, mfaHandler: self)
 ```
 
-No you can build and run the application.
+Now you can build and run the application.
 
 If you see a home page that prompts you to login, then things are working!  Clicking the **Log in** button will prompt you to enter you credential. App will guide you through Okta Authentication flow. If it is configured on your Developer Org, you will be prompted to perfrom  Multi Factor Authentication.
 
@@ -66,4 +66,4 @@ You can login with the same account that you created when signing up for your De
 
 After you complete the login flow, you will be able to see details of user's account.
 
-[OIDC Web Application Setup Instructions]: https://developer.okta.com/authentication-guide/implementing-authentication/auth-code#1-setting-up-your-application
+[OIDC Native iOS Application Setup Instructions]: https://developer.okta.com/quickstart/#/ios/nodejs/express

@@ -8,7 +8,7 @@ This example shows you how to use the [Okta Auth](https://github.com/okta/okta-s
 Before running this sample, you will need the following:
 
 * An Okta Developer Account, you can sign up for one at https://developer.okta.com/signup/.
-* An Okta Application, configured for Web mode. This is done from the Okta Developer Console and you can find instructions [here][OIDC Web Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
+* An Okta Application, configured for Web mode. This is done from the Okta Developer Console and you can find instructions [here][OIDC Native iOS Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
 
 
 ## Running This Example
@@ -58,10 +58,10 @@ In order to redirect back to your application from a web browser, you must speci
 
 For example, if your **Redirect URI** is `com.okta.example:/callback`, the **URL Scheme** will be `com.okta.example`.
 
-No you can build and run the application.
+Now you can build and run the application.
 
 If you see a home page that prompts you to login, then things are working!  Clicking the **Log in** button will redirect you to the Okta hosted sign-in page. You will be guided through Okta Authentication flow. After completion you will be redirected back to the app.
 
 You can login with the same account that you created when signing up for your Developer Org, or you can use a known username and password from your Okta Directory.
 
-[OIDC Web Application Setup Instructions]: https://developer.okta.com/authentication-guide/implementing-authentication/auth-code#1-setting-up-your-application
+[OIDC Native iOS Application Setup Instructions]: https://developer.okta.com/quickstart/#/ios/nodejs/express
