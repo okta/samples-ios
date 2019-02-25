@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24A56E4E9FF839102D645DAA /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 146B70542B6202775A88F1B1 /* Pods_OktaNativeLogin.framework */; };
 		2F74358B2204789300B47967 /* MFA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358A2204789300B47967 /* MFA.storyboard */; };
 		2F74358D220478B000B47967 /* MFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74358C220478B000B47967 /* MFAViewController.swift */; };
 		2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358E220486A800B47967 /* MFAPush.storyboard */; };
@@ -33,8 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C501429E07F97CE0D88C993 /* Pods-OktaNativeLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.debug.xcconfig"; sourceTree = "<group>"; };
-		146B70542B6202775A88F1B1 /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74358A2204789300B47967 /* MFA.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFA.storyboard; sourceTree = "<group>"; };
 		2F74358C220478B000B47967 /* MFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewController.swift; sourceTree = "<group>"; };
 		2F74358E220486A800B47967 /* MFAPush.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFAPush.storyboard; sourceTree = "<group>"; };
@@ -51,7 +48,6 @@
 		2FFF34222216CC170098AB63 /* MFATOTP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFATOTP.storyboard; sourceTree = "<group>"; };
 		2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFASecurityQuestion.storyboard; sourceTree = "<group>"; };
 		2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFASecurityQuestionViewController.swift; sourceTree = "<group>"; };
-		61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		FAE1549521E5FB2C00B89097 /* OktaNativeLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaNativeLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE1549821E5FB2C00B89097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A56E4E9FF839102D645DAA /* Pods_OktaNativeLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,19 +86,9 @@
 			path = MFA;
 			sourceTree = "<group>";
 		};
-		3DAA88BD66C96BA237078DA2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				146B70542B6202775A88F1B1 /* Pods_OktaNativeLogin.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6E3CAF0A7784EF15C75860B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C501429E07F97CE0D88C993 /* Pods-OktaNativeLogin.debug.xcconfig */,
-				61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -114,7 +99,6 @@
 				FAE1549721E5FB2C00B89097 /* OktaNativeLogin */,
 				FAE1549621E5FB2C00B89097 /* Products */,
 				6E3CAF0A7784EF15C75860B5 /* Pods */,
-				3DAA88BD66C96BA237078DA2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,11 +138,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE154A721E5FB2D00B89097 /* Build configuration list for PBXNativeTarget "OktaNativeLogin" */;
 			buildPhases = (
-				498EF73FDB1F0492D06F5C46 /* [CP] Check Pods Manifest.lock */,
 				FAE1549121E5FB2C00B89097 /* Sources */,
 				FAE1549221E5FB2C00B89097 /* Frameworks */,
 				FAE1549321E5FB2C00B89097 /* Resources */,
-				59B0BCDF33D994B23E07A1B7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,57 +205,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		498EF73FDB1F0492D06F5C46 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OktaNativeLogin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59B0BCDF33D994B23E07A1B7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/HydraAsync/Hydra.framework",
-				"${BUILT_PRODUCTS_DIR}/OktaAuth/OktaAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/OktaAuthNative/OktaAuthNative.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthNative.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FAE1549121E5FB2C00B89097 /* Sources */ = {
@@ -458,7 +389,6 @@
 		};
 		FAE154A821E5FB2D00B89097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C501429E07F97CE0D88C993 /* Pods-OktaNativeLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -477,7 +407,6 @@
 		};
 		FAE154A921E5FB2D00B89097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61C5BE0968753B787FBF4559 /* Pods-OktaNativeLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -71,3 +71,5 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 Podfile.lock
+custom-sign-in/OktaNativeLogin.xcworkspace
+browser-sign-in/OktaBrowserSignIn.xcworkspace
