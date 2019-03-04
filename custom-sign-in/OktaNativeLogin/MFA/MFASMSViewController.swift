@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OktaAuthNative
+import OktaAuthSdk
 
 class MFASMSViewController: UIViewController {
     @IBOutlet private var phoneNumberLabel: UILabel!

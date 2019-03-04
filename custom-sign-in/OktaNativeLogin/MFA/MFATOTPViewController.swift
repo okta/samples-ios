@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OktaAuthNative
+import OktaAuthSdk
 
 class MFATOTPViewController: UIViewController {
     @IBOutlet private var titleLabel: UILabel!

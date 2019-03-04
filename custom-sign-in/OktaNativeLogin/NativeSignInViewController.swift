@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OktaAuthNative
+import OktaAuthSdk
 import OktaAuth
 
 class NativeSignInViewController: UIViewController {
@@ -87,7 +87,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         }
     }
     
-    func handleError(_ error: OktaAuthNative.OktaError) {
+    func handleError(_ error: OktaAuthSdk.OktaError) {
         print("Error: \(error)")
         
         client.resetStatus()
