@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OktaAuthNative
+import OktaAuthSdk
 
 class MFAPushViewController : UIViewController {
 
