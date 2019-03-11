@@ -41,30 +41,26 @@ class SingInViewController: UIViewController {
     @IBAction func signInTapped() {
         self.showProgress()
 
-        OktaAuth.signInWithBrowser().start(self)
-        . then { _ in
-            self.hideProgress()
-            self.showAlert(title: "Signed In!")
-            self.updateUI()
+        // This line needed for setting up AuthenticationClient when running UI tests
+        guard signInTappedForUITests() else { return }
+        
+        OktaAuth.signInWithBrowser().start(self).then { _ in
+            self.handleOktaAuthSuccess()
         }.catch { error in
-            self.hideProgress()
-            self.showError(message: error.localizedDescription)
+            self.handleOktaAuthFailure(error: error)
         }
     }
     
     @IBAction func signOutTapped() {
         self.showProgress()
         
-        OktaAuth.signOutOfOkta().start(self)
-        .then {
-            self.authState?.clear()
-            
-            self.hideProgress()
-            self.showAlert(title: "Signed Out!")
-            self.updateUI()
+        // This line needed for setting up AuthenticationClient when running UI tests
+        guard signOutTappedForUITests() else { return }
+        
+        OktaAuth.signOutOfOkta().start(self).then {
+            self.handleOktaAuthLogoutSuccess()
         }.catch { error in
-            self.hideProgress()
-            self.showError(message: error.localizedDescription)
+            self.handleOktaAuthFailure(error: error)
         }
     }
     
@@ -144,6 +140,64 @@ private extension SingInViewController {
         controller.content = content
         controller.title = title
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func handleOktaAuthSuccess() {
+        self.hideProgress()
+        self.showAlert(title: "Signed In!")
+        self.updateUI()
+    }
+    
+    func handleOktaAuthLogoutSuccess() {
+        self.authState?.clear()
+        self.hideProgress()
+        self.showAlert(title: "Signed Out!")
+        self.updateUI()
+    }
+    
+    func handleOktaAuthFailure(error: Error) {
+        self.hideProgress()
+        self.showError(message: error.localizedDescription)
+    }
+}
+
+// UI Tests
+private extension SingInViewController {
+    
+    func signInTappedForUITests() -> Bool {
+        guard let config = configForUITests else { return true }
+        OktaAuth.signInWithBrowser().start(withDictConfig: config, view: self).then { _ in
+            self.handleOktaAuthSuccess()
+        }.catch { error in
+            self.handleOktaAuthFailure(error: error)
+        }
+        return false
+    }
+    
+    func signOutTappedForUITests() -> Bool {
+        guard let config = configForUITests else { return true }
+        OktaAuth.signOutOfOkta().start(withDictConfig: config, view: self).then {
+            self.handleOktaAuthLogoutSuccess()
+        }.catch { error in
+            self.handleOktaAuthFailure(error: error)
+        }
+        return false
+    }
+    
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"],
+            let clientID = env["CLIENT_ID"],
+            let redirectURI = env["REDIRECT_URI"],
+            let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+                return nil
+        }
+        return ["issuer": "\(oktaURL)/oauth2/default",
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
+        ]
     }
 }
 

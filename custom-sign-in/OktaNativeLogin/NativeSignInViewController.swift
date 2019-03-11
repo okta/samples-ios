@@ -38,7 +38,11 @@ class NativeSignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // This line needed for setting up AuthenticationClient when running UI tests
+        guard setupForUITests() else { return }
+        
         // Setup Okta Auth Client
+        #warning ("Enter your Okta organization domain here")
         let url = URL(string: "https://{yourOktaDomain}")!
         client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
     }
@@ -81,17 +85,13 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     func handleSuccess(sessionToken: String) {
         print("Session token: \(sessionToken)")
         
+        // This line needed for setting up AuthenticationClient when running UI tests
+        guard handleAuthClientSuccessForUITests(sessionToken: sessionToken) else { return }
+        
         OktaAuth.authenticate(withSessionToken: sessionToken).start().then { manager in
-            // Cash auth state
-            self.authState = manager
-            
-            self.showAuthSucceeded()
-            self.hideProgress()
-            self.updateUI()
+            self.handleOktaAuthSuccess(manager: manager)
         }.catch { error in
-            print("Error: \(error)")
-            self.showError(message: error.localizedDescription)
-            self.hideProgress()
+            self.handleOktaAuthFailure(error: error)
         }
     }
     
@@ -266,5 +266,55 @@ private extension NativeSignInViewController {
         let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email address with instructions on unlocking your account.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func handleOktaAuthSuccess(manager: OktaTokenManager) {
+        // Cash auth state
+        authState = manager
+        
+        showAuthSucceeded()
+        hideProgress()
+        updateUI()
+    }
+    
+    func handleOktaAuthFailure(error: Error) {
+        print("Error: \(error)")
+        showError(message: error.localizedDescription)
+        hideProgress()
+    }
+}
+
+private extension NativeSignInViewController {
+    
+    func setupForUITests() -> Bool {
+        guard let testURL = ProcessInfo.processInfo.environment["OKTA_URL"] else { return true }
+        client = AuthenticationClient(oktaDomain: URL(string: testURL)!, delegate: self, mfaHandler: self)
+        return false
+    }
+    
+    func handleAuthClientSuccessForUITests(sessionToken: String) -> Bool {
+        guard let config = configForUITests else { return true }
+        OktaAuth.authenticate(withSessionToken: sessionToken).start(withDictConfig: config).then { manager in
+            self.handleOktaAuthSuccess(manager: manager)
+        }.catch { error in
+            self.handleOktaAuthFailure(error: error)
+        }
+        return false
+    }
+    
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"],
+            let clientID = env["CLIENT_ID"],
+            let redirectURI = env["REDIRECT_URI"],
+            let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+                return nil
+        }
+        return ["issuer": "\(oktaURL)/oauth2/default",
+                "clientId": clientID,
+                "redirectUri": redirectURI,
+                "logoutRedirectUri": logoutRedirectURI,
+                "scopes": "openid profile offline_access"
+        ]
     }
 }
