@@ -86,19 +86,11 @@
 			path = MFA;
 			sourceTree = "<group>";
 		};
-		6E3CAF0A7784EF15C75860B5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FAE1548C21E5FB2C00B89097 = {
 			isa = PBXGroup;
 			children = (
 				FAE1549721E5FB2C00B89097 /* OktaNativeLogin */,
 				FAE1549621E5FB2C00B89097 /* Products */,
-				6E3CAF0A7784EF15C75860B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
