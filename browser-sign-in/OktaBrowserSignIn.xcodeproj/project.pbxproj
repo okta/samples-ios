@@ -46,7 +46,6 @@
 			children = (
 				2FA4564921F2031C000ACBE2 /* OktaBrowserSignIn */,
 				2FA4564821F2031C000ACBE2 /* Products */,
-				91AEEC28497D29A15BA03C4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,13 +71,6 @@
 				2FA4565E21F5C819000ACBE2 /* Okta.plist */,
 			);
 			path = OktaBrowserSignIn;
-			sourceTree = "<group>";
-		};
-		91AEEC28497D29A15BA03C4A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
