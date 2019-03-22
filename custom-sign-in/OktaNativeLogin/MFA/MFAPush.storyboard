@@ -73,6 +73,7 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="pushButton" destination="elL-BL-lP8" id="3gx-PA-Oq2"/>
                         <outlet property="titleLabel" destination="5cP-Sm-h4t" id="P6H-ad-PoP"/>
                     </connections>
                 </viewController>

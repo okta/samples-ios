@@ -14,8 +14,11 @@ class MFASMSViewController: UIViewController {
     @IBOutlet private var codeTextField: UITextField!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private var verifyButton: UIButton!
+    @IBOutlet private var sendButton: UIButton!
     
     private var onSendTapped: (() -> Void)?
+    private var onResendTapped: (() -> Void)?
+
     private var factor: EmbeddedResponse.Factor? {
         didSet {
             configure()
@@ -24,13 +27,21 @@ class MFASMSViewController: UIViewController {
     
     private var onVerify: ((String) -> Void)?
     
+    private var isSentTapped: Bool = false {
+        didSet {
+            configureSendButton()
+        }
+    }
+    
     static func create(with factor: EmbeddedResponse.Factor,
-                       sendSMSHandler: @escaping (() -> Void)) -> MFASMSViewController {
+                       sendSMSHandler: @escaping (() -> Void),
+                       resendSMSHandler: @escaping (() -> Void)) -> MFASMSViewController {
         let controller = UIStoryboard(name: "MFASMS", bundle: nil)
             .instantiateViewController(withIdentifier: "MFASMSViewController")
             as! MFASMSViewController
         
         controller.onSendTapped = sendSMSHandler
+        controller.onResendTapped = resendSMSHandler
         controller.factor = factor
         
         return controller
@@ -45,6 +56,7 @@ class MFASMSViewController: UIViewController {
         super.viewWillAppear(animated)
         activityIndicator.stopAnimating()
         verifyButton.isEnabled = false
+        isSentTapped = false
     }
     
     func verifySMS(completion: @escaping (String) -> Void) {
@@ -54,7 +66,13 @@ class MFASMSViewController: UIViewController {
     }
     
     @IBAction func sendSMSTapped() {
-        onSendTapped?()
+        if isSentTapped {
+            onResendTapped?()
+        } else {
+            isSentTapped = true
+            onSendTapped?()
+        }
+
         activityIndicator.startAnimating()
     }
     
@@ -72,5 +90,11 @@ class MFASMSViewController: UIViewController {
         } else {
             phoneNumberLabel.isHidden = true
         }
+        
+        configureSendButton()
+    }
+    
+    private func configureSendButton() {
+        sendButton.setTitle(isSentTapped ? "Resend" : "Send", for: .normal)
     }
 }

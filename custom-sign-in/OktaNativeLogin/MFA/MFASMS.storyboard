@@ -84,6 +84,7 @@
                         <outlet property="activityIndicator" destination="AI2-ub-X8T" id="MMB-gR-KJb"/>
                         <outlet property="codeTextField" destination="K8X-rc-fG3" id="AUB-Cg-rmA"/>
                         <outlet property="phoneNumberLabel" destination="qPk-H5-N7J" id="6ty-TF-SRw"/>
+                        <outlet property="sendButton" destination="TW6-Hm-3ou" id="dKh-BA-u4C"/>
                         <outlet property="verifyButton" destination="o4Y-ZK-k05" id="AMw-cb-Hx5"/>
                     </connections>
                 </viewController>
