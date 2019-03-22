@@ -53,13 +53,15 @@ class SingInViewController: UIViewController {
         self.showProgress()
 
         OktaAuth.signInWithBrowser().start(self)
-        .then { _ in
+        .then { tokenManager in
+            self.tokenManager = tokenManager
             self.hideProgress()
             self.showAlert(title: "Signed In!")
             self.updateUI()
 
-            self.tokenManager = OktaAuth.tokens!
-            let authStateData = NSKeyedArchiver.archivedData(withRootObject: self.tokenManager)
+            guard let authStateData = try? NSKeyedArchiver.archivedData(withRootObject: self.tokenManager!, requiringSecureCoding: false) else {
+                return
+            }
             do {
                 try self.secureStorage.set(data: authStateData,
                                            forKey: "okta_user",
@@ -82,6 +84,7 @@ class SingInViewController: UIViewController {
         OktaAuth.signOutOfOkta().start(self)
         .then {
             self.authState?.clear()
+            try? self.secureStorage.clear()
             self.tokenManager = nil
             self.hideProgress()
             self.showAlert(title: "Signed Out!")
@@ -191,22 +194,28 @@ private extension SingInViewController {
         DispatchQueue.global().async {
             do {
                 let authStateData = try self.secureStorage.getData(key: "okta_user")
-                guard let tokenManager = NSKeyedUnarchiver.unarchiveObject(with: authStateData) as? OktaTokenManager else {
+                guard let tokenManager = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(authStateData) as? OktaTokenManager else {
                     return
                 }
-                
+
                 self.tokenManager = tokenManager
-                
+
                 DispatchQueue.main.async {
                     self.updateUI()
                     completion(true)
                 }
             } catch let error as NSError {
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Storage Error", message: "Error with error code: \(error.code)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    completion(false)
+                    if error.code == errSecItemNotFound {
+                        return
+                    } else if error.code == errSecUserCanceled {
+                        self .readTokenManagerFromKeychain(completion: completion)
+                    } else {
+                        let alert = UIAlertController(title: "Storage Error", message: "Error with error code: \(error.code)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        completion(false)
+                    }
                 }
             }
         }
