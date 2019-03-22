@@ -146,6 +146,16 @@ open class OktaSecureStorage: NSObject {
 
     @objc open func get(key: String, biometricPrompt prompt: String? = nil) throws -> String {
         
+        let data = try getData(key: key, biometricPrompt: prompt)
+        guard let string = String(data: data, encoding: .utf8) else {
+            throw NSError(domain: OktaSecureStorage.keychainErrorDomain, code: Int(errSecInvalidData), userInfo: nil)
+        }
+        
+        return string
+    }
+
+    @objc open func getData(key: String, biometricPrompt prompt: String? = nil) throws -> Data {
+        
         var query = findQuery(for: key)
         query[kSecReturnData as String] = kCFBooleanTrue
         query[kSecMatchLimit as String] = kSecMatchLimitOne
@@ -160,11 +170,8 @@ open class OktaSecureStorage: NSObject {
         guard errorCode == noErr, let data = ref as? Data else {
             throw NSError(domain: OktaSecureStorage.keychainErrorDomain, code: Int(errorCode), userInfo: nil)
         }
-        guard let string = String(data: data, encoding: .utf8) else {
-            throw NSError(domain: OktaSecureStorage.keychainErrorDomain, code: Int(errSecInvalidData), userInfo: nil)
-        }
-        
-        return string
+
+        return data
     }
 
     @objc open func delete(key: String) throws {
