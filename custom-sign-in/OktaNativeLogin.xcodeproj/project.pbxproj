@@ -14,7 +14,7 @@
 		2F9B84A921EFA30C003E6F17 /* NativeSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B84A821EFA30C003E6F17 /* NativeSignInViewController.swift */; };
 		2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */; };
 		2FA4566321F740D0000ACBE2 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */; };
-		2FC37CDA21FEF5B0008DB806 /* PasswordReset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CDC21FEF5B0008DB806 /* PasswordReset.storyboard */; };
+		2FA643232243CA810008DC97 /* PasswordReset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA643212243CA810008DC97 /* PasswordReset.storyboard */; };
 		2FC37CDD21FEF5B5008DB806 /* LoginForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CDF21FEF5B5008DB806 /* LoginForm.storyboard */; };
 		2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC37CE221FEF5B9008DB806 /* UserProfile.storyboard */; };
 		2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34182215DF630098AB63 /* MFASMSViewController.swift */; };
@@ -39,7 +39,7 @@
 		2F9B84A821EFA30C003E6F17 /* NativeSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSignInViewController.swift; sourceTree = "<group>"; };
 		2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
-		2FC37CDB21FEF5B0008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PasswordReset.storyboard; sourceTree = "<group>"; };
+		2FA643222243CA810008DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PasswordReset.storyboard; sourceTree = "<group>"; };
 		2FC37CDE21FEF5B5008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginForm.storyboard; sourceTree = "<group>"; };
 		2FC37CE121FEF5B9008DB806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
 		2FFF34182215DF630098AB63 /* MFASMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFASMSViewController.swift; sourceTree = "<group>"; };
@@ -86,19 +86,11 @@
 			path = MFA;
 			sourceTree = "<group>";
 		};
-		6E3CAF0A7784EF15C75860B5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FAE1548C21E5FB2C00B89097 = {
 			isa = PBXGroup;
 			children = (
 				FAE1549721E5FB2C00B89097 /* OktaNativeLogin */,
 				FAE1549621E5FB2C00B89097 /* Products */,
-				6E3CAF0A7784EF15C75860B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,8 +111,8 @@
 				2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */,
 				2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */,
 				2F7435892204789300B47967 /* MFA */,
+				2FA643212243CA810008DC97 /* PasswordReset.storyboard */,
 				FAE1549C21E5FB2C00B89097 /* Main.storyboard */,
-				2FC37CDC21FEF5B0008DB806 /* PasswordReset.storyboard */,
 				2FC37CDF21FEF5B5008DB806 /* LoginForm.storyboard */,
 				2FC37CE221FEF5B9008DB806 /* UserProfile.storyboard */,
 				FAE1549F21E5FB2D00B89097 /* Assets.xcassets */,
@@ -190,13 +182,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */,
+				2FA643232243CA810008DC97 /* PasswordReset.storyboard in Resources */,
 				2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
 				2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */,
 				FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */,
 				FAE1549E21E5FB2C00B89097 /* Main.storyboard in Resources */,
-				2FC37CDA21FEF5B0008DB806 /* PasswordReset.storyboard in Resources */,
 				2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */,
 				2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */,
 				2FC37CDD21FEF5B5008DB806 /* LoginForm.storyboard in Resources */,
@@ -227,14 +219,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2FC37CDC21FEF5B0008DB806 /* PasswordReset.storyboard */ = {
+		2FA643212243CA810008DC97 /* PasswordReset.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2FC37CDB21FEF5B0008DB806 /* Base */,
+				2FA643222243CA810008DC97 /* Base */,
 			);
 			name = PasswordReset.storyboard;
-			path = "/Users/ayurok/Documents/Work/Okta/samples-ios/custom-sign-in/OktaNativeLogin";
-			sourceTree = "<absolute>";
+			sourceTree = "<group>";
 		};
 		2FC37CDF21FEF5B5008DB806 /* LoginForm.storyboard */ = {
 			isa = PBXVariantGroup;
