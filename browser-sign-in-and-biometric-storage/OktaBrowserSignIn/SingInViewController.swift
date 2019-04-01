@@ -29,7 +29,7 @@ class SingInViewController: UIViewController {
     
     @IBOutlet private var statusLabel: UILabel!
 
-    let secureStorage = OktaSecureStorage()
+    let secureStorage = OktaSecureStorage(applicationPassword: "password")
     
     var tokenManager: OktaTokenManager?
     
