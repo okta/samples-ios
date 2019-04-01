@@ -11,7 +11,11 @@ install:
   - pushd custom-sign-in
   - pod install --repo-update
   - popd
+  - pushd browser-sign-in-and-biometric-storage
+  - pod install --repo-update
+  - popd
 
 script:
-  - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=12.1,name\=iPhone\ 5s build | xcpretty
-  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=12.1,name\=iPhone\ 5s build | xcpretty
+  - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 8 build | xcpretty
+  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 8 build | xcpretty
+  - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 8 build | xcpretty
