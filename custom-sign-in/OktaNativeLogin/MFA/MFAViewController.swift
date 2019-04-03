@@ -18,11 +18,16 @@ class MFAViewController: UIViewController {
     private var factors = [EmbeddedResponse.Factor]()
     private var selectionHandler: MFAFactorSelectionHandler?
     private var cancel: (() -> Void)?
+    private var resend: ((EmbeddedResponse.Factor) -> Void)?
     
     private var currentController: UIViewController?
 
     @discardableResult
-    static func loadAndPresent(from presentingController: UIViewController, factors: [EmbeddedResponse.Factor], selectionHandler: MFAFactorSelectionHandler?, cancel: (() -> Void)?) -> MFAViewController {
+    static func loadAndPresent(from presentingController: UIViewController,
+                               factors: [EmbeddedResponse.Factor],
+                               selectionHandler: MFAFactorSelectionHandler?,
+                               cancel: (() -> Void)?,
+                               resend: ((EmbeddedResponse.Factor) -> Void)?) -> MFAViewController {
         let navigation = UIStoryboard(name: "MFA", bundle: nil)
             .instantiateViewController(withIdentifier: "MFANavigationController")
             as! UINavigationController
@@ -32,6 +37,7 @@ class MFAViewController: UIViewController {
         controller.factors = factors
         controller.selectionHandler = selectionHandler
         controller.cancel = cancel
+        controller.resend = resend
         
         presentingController.present(navigation, animated: true)
         
@@ -118,16 +124,23 @@ extension MFAViewController : UITableViewDelegate {
         let factor = self.factors[indexPath.row]
         switch factor.factorType! {
         case .push:
-            controller = MFAPushViewController.create(with: factor, pushHandler: { [weak self] in
-                self?.navigationController?.dismiss(animated: true) {
+            controller = MFAPushViewController.create(with: factor,
+                pushHandler: { [weak self] in
                     self?.selectionHandler?(factor)
+                },
+                resendHander: { [weak self] in
+                    self?.resend?(factor)
                 }
-            })
+            )
             
         case .sms:
-            controller = MFASMSViewController.create(with: factor) { [weak self] in
-                self?.selectionHandler?(factor)
-            }
+            controller = MFASMSViewController.create(with: factor,
+                sendSMSHandler: { [weak self] in
+                    self?.selectionHandler?(factor)
+                },
+                resendSMSHandler: { [weak self] in
+                    self?.resend?(factor)
+                })
             
         case .TOTP:
             controller = MFATOTPViewController.create(with: factor) { [weak self] in

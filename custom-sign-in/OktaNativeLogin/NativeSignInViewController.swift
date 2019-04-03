@@ -149,6 +149,13 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
             cancel: { [weak self] in
                 self?.hideProgress()
                 self?.client.cancelTransaction()
+            },
+            resend: { [weak self] factor in
+                guard let link = self?.client?.links?.resend?.first else {
+                    return
+                }
+                
+                self?.client?.perform(link: link)
             }
         )
     }
@@ -226,19 +233,19 @@ private extension NativeSignInViewController {
         alert.addAction(UIAlertAction(title: "User Profile", style: .default, handler: { _ in
             self.usernameTapped()
         }))
-        self.present(alert, animated: true, completion: nil)
+        presentAlert(alert)
     }
 
     func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        presentAlert(alert)
     }
     
     func showMessage(_ message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        presentAlert(alert)
     }
     
     func showProgress() {
@@ -259,13 +266,23 @@ private extension NativeSignInViewController {
             callback(username)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(alert, animated: true, completion: nil)
+        presentAlert(alert)
     }
     
     func showUnlockEmailIsSentAlert() {
         let alert = UIAlertController(title: "Email sent!", message: "Email has been sent to your email address with instructions on unlocking your account.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true, completion: nil)
+        presentAlert(alert)
+    }
+    
+    func presentAlert(_ alert: UIAlertController, animated: Bool = true, completion: (() -> Void)? = nil) {
+        if let controller = presentedViewController {
+            controller.dismiss(animated: true) {
+                self.present(alert, animated: animated, completion: completion)
+            }
+        } else {
+            present(alert, animated: animated, completion: completion)
+        }
     }
     
     func handleOktaAuthSuccess(manager: OktaTokenManager) {
