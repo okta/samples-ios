@@ -8,7 +8,7 @@ This example shows you how to use the [Okta Auth](https://github.com/okta/okta-s
 Before running this sample, you will need the following:
 
 * An Okta Developer Account, you can sign up for one at https://developer.okta.com/signup/.
-* An Okta Application, configured for Web mode. This is done from the Okta Developer Console and you can find instructions [here][OIDC Native iOS Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
+* An Okta Application, configured for iOS client. This is done from the Okta Developer Console and you can find instructions [here][OIDC Native iOS Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
 
 
 ## Running This Example
