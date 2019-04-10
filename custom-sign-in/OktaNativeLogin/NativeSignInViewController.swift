@@ -16,7 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
-import OktaAuth
+import OktaOidc
 
 class NativeSignInViewController: UIViewController {
     
@@ -31,7 +31,8 @@ class NativeSignInViewController: UIViewController {
     @IBOutlet private var unathenticatedNotice: UILabel!
     
     private var client: AuthenticationClient!
-    private var authState: OktaTokenManager?
+    private var oktaOidc: OktaOidc?
+    private var authState: OktaOidcStateManager?
     
     private weak var mfaController: MFAViewController?
     
@@ -45,6 +46,7 @@ class NativeSignInViewController: UIViewController {
         #warning ("Enter your Okta organization domain here")
         let url = URL(string: "https://{yourOktaDomain}")!
         client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
+        oktaOidc = try? OktaOidc()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,14 +87,14 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     func handleSuccess(sessionToken: String) {
         print("Session token: \(sessionToken)")
         
-        // This line needed for setting up AuthenticationClient when running UI tests
-        guard handleAuthClientSuccessForUITests(sessionToken: sessionToken) else { return }
-        
-        OktaAuth.authenticate(withSessionToken: sessionToken).start().then { manager in
+        oktaOidc?.authenticate(withSessionToken: sessionToken, callback: { manager, error in
+            guard let manager = manager else {
+                self.handleOktaAuthFailure(error: error!)
+                return
+            }
+            
             self.handleOktaAuthSuccess(manager: manager)
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
+        })
     }
     
     func handleError(_ error: OktaAuthSdk.OktaError) {
@@ -285,7 +287,7 @@ private extension NativeSignInViewController {
         }
     }
     
-    func handleOktaAuthSuccess(manager: OktaTokenManager) {
+    func handleOktaAuthSuccess(manager: OktaOidcStateManager) {
         // Cash auth state
         authState = manager
         
@@ -304,18 +306,11 @@ private extension NativeSignInViewController {
 private extension NativeSignInViewController {
     
     func setupForUITests() -> Bool {
-        guard let testURL = ProcessInfo.processInfo.environment["OKTA_URL"] else { return true }
+        guard let testURL = ProcessInfo.processInfo.environment["OKTA_URL"],
+              let testConfig = configForUITests
+              else { return true }
         client = AuthenticationClient(oktaDomain: URL(string: testURL)!, delegate: self, mfaHandler: self)
-        return false
-    }
-    
-    func handleAuthClientSuccessForUITests(sessionToken: String) -> Bool {
-        guard let config = configForUITests else { return true }
-        OktaAuth.authenticate(withSessionToken: sessionToken).start(withDictConfig: config).then { manager in
-            self.handleOktaAuthSuccess(manager: manager)
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
+        oktaOidc = try? OktaOidc(configuration: OktaOidcConfig(with: testConfig))
         return false
     }
     

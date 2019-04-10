@@ -2,5 +2,5 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'OktaBrowserSignIn' do
-  pod 'OktaAuth'
+  pod 'OktaOidc', :git => 'git@github.com:okta/okta-sdk-appauth-ios.git', :branch => 'dev'
 end
