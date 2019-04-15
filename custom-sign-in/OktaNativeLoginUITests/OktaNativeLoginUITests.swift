@@ -55,7 +55,7 @@ class OktaNativeLoginUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts[firstName].waitForExistence(timeout: 1))
         XCTAssertTrue(app.staticTexts[lastName].exists)
         
-        app.navigationBars["User Profile"].buttons["Back"].tap()
+        app.navigationBars["User Profile"].buttons["Back"].firstMatch.tap()
         app.buttons["Logout"].tap()
         
         XCTAssertTrue(app.staticTexts["Unathenticated"].exists)

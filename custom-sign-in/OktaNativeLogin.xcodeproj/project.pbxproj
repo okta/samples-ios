@@ -165,7 +165,6 @@
 				2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */,
 				2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */,
 				2F7435892204789300B47967 /* MFA */,
-				2FA643212243CA810008DC97 /* PasswordReset.storyboard */,
 				FAE1549C21E5FB2C00B89097 /* Main.storyboard */,
 				2FC37CDF21FEF5B5008DB806 /* LoginForm.storyboard */,
 				2FC37CE221FEF5B9008DB806 /* UserProfile.storyboard */,
@@ -268,7 +267,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC37CE021FEF5B9008DB806 /* UserProfile.storyboard in Resources */,
-				2FA643232243CA810008DC97 /* PasswordReset.storyboard in Resources */,
 				2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
@@ -412,6 +410,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OktaNativeLoginUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,6 +429,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OktaNativeLoginUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,6 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JTATZGJR5N;
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,6 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JTATZGJR5N;
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
