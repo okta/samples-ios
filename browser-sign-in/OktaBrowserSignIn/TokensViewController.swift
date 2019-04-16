@@ -15,7 +15,7 @@
  */
 
 import UIKit
-import OktaAuth
+import OktaOidc
 
 class TokensViewController: UIViewController {
 
@@ -27,46 +27,54 @@ class TokensViewController: UIViewController {
     
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
+    var stateManager: OktaOidcStateManager?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configure()
     }
     
     @IBAction func introspectTapped() {
-        guard let accessToken = OktaAuth.tokens?.accessToken else { return }
-        
-        OktaAuth.introspect().validate(accessToken)
-        .then { isValid in
-            self.showAlert(title: "Access token is \(isValid ? "valid" : "invalid")!")
-        }
-        .catch { error in
-            self.showError(error.localizedDescription)
-        }
+        guard let accessToken = stateManager?.accessToken else { return }
+       
+        stateManager?.introspect(token: accessToken, callback: { payload, error in
+            DispatchQueue.main.async {
+                guard let isValid = payload?["active"] as? Bool else {
+                    self.showError(error?.localizedDescription ?? "Unexpected payload!")
+                    return
+                }
+
+                self.showAlert(title: "Access token is \(isValid ? "valid" : "invalid")!")
+            }
+        })
     }
     
     @IBAction func refreshTapped() {
-        OktaAuth.refresh()
-        .then { _ in
-            self.configure()
-            self.showAlert(title: "Token refreshed!")
-        }
-        .catch { error in
-            self.showError(error.localizedDescription)
-        }
-    }
-    
-    @IBAction func revokeTapped() {
-        guard let accessToken = OktaAuth.tokens?.accessToken else { return }
-        
-        OktaAuth.revoke(accessToken) { response, error in
-            guard let _ = response else {
-                self.showError( error?.localizedDescription ?? "Failed to revoked access token!")
+        stateManager?.renew(callback: { stateManager, error in
+            if let error = error {
+                self.showError(error.localizedDescription)
                 return
             }
             
-            self.showAlert(title: "Access token revoked!")
             self.configure()
-        }
+            self.showAlert(title: "Token refreshed!")
+        })
+    }
+    
+    @IBAction func revokeTapped() {
+        guard let accessToken = stateManager?.accessToken else { return }
+        
+        stateManager?.revoke(accessToken, callback: { isRevoked, error in
+            DispatchQueue.main.async {
+                guard isRevoked else {
+                    self.showError( error?.localizedDescription ?? "Failed to revoked access token!")
+                    return
+                }
+            
+                self.showAlert(title: "Access token revoked!")
+                self.configure()
+            }
+        })
     }
 }
 
@@ -76,15 +84,15 @@ private extension TokensViewController {
         guard isViewLoaded else { return }
         
         var tokens = ""
-        if let accessToken = OktaAuth.tokens?.accessToken {
+        if let accessToken = stateManager?.accessToken {
             tokens += "Access token: \(accessToken)\n\n"
         }
         
-        if let refreshToken = OktaAuth.tokens?.refreshToken {
+        if let refreshToken = stateManager?.refreshToken {
             tokens += "Refresh token: \(refreshToken)\n\n"
         }
         
-        if let idToken = OktaAuth.tokens?.idToken {
+        if let idToken = stateManager?.idToken {
             tokens += "ID token: \(idToken)"
         }
         

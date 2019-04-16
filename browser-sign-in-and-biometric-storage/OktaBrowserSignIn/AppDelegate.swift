@@ -15,7 +15,6 @@
  */
 
 import UIKit
-import OktaAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return OktaAuth.resume(url, options: options)
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {}

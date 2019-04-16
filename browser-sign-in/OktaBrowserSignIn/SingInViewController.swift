@@ -15,7 +15,7 @@
  */
 
 import UIKit
-import OktaAuth
+import OktaOidc
 
 class SingInViewController: UIViewController {
     @IBOutlet private var signInButton: UIButton!
@@ -29,8 +29,27 @@ class SingInViewController: UIViewController {
     
     @IBOutlet private var statusLabel: UILabel!
     
-    private var authState: OktaTokenManager? {
-        return OktaAuth.tokens
+    private var oktaOidc: OktaOidc?
+    
+    private var stateManager: OktaOidcStateManager? {
+        didSet {
+            oldValue?.clear()
+            stateManager?.writeToSecureStorage()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let configForUITests = self.configForUITests {
+            oktaOidc = try? OktaOidc(configuration: OktaOidcConfig(with: configForUITests))
+        } else {
+            oktaOidc = try? OktaOidc()
+        }
+        
+        if let config = oktaOidc?.configuration {
+            stateManager = OktaOidcStateManager.readFromSecureStorage(for: config)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,46 +57,64 @@ class SingInViewController: UIViewController {
         updateUI()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        if segue.identifier == "ShowTokens" {
+            guard let tokensController = segue.destination as? TokensViewController else {
+                return
+            }
+            
+            tokensController.stateManager = stateManager
+        }
+    }
+    
     @IBAction func signInTapped() {
         self.showProgress()
 
-        // This line needed for setting up AuthenticationClient when running UI tests
-        guard signInTappedForUITests() else { return }
-        
-        OktaAuth.signInWithBrowser().start(self).then { _ in
-            self.handleOktaAuthSuccess()
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
+        oktaOidc?.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
+            if let error = error {
+                self?.handleOktaOidcFailure(error: error)
+                return
+            }
+            
+            self?.stateManager = stateManager
+            self?.handleOktaOidcSuccess()
+        })
     }
     
     @IBAction func signOutTapped() {
         self.showProgress()
+
+        guard let stateManager = stateManager else { return }
         
-        // This line needed for setting up AuthenticationClient when running UI tests
-        guard signOutTappedForUITests() else { return }
-        
-        OktaAuth.signOutOfOkta().start(self).then {
-            self.handleOktaAuthLogoutSuccess()
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
-    }
-    
-    @IBAction func userProfileTapped() {
-        guard OktaAuth.isAuthenticated() else { return }
-        
-        self.showProgress()
-        
-        OktaAuth.getUser { response, error in
-            self.hideProgress()
-            
-            guard let response = response else {
-                self.showError(message: error?.localizedDescription ?? "Unable to get user info. Try re-authorize.")
+        oktaOidc?.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
+            if let error = error {
+                self?.handleOktaOidcFailure(error: error)
                 return
             }
             
-            self.presentUserInfo(response)
+            self?.stateManager = nil
+            self?.handleOktaOidcLogoutSuccess()
+        })
+    }
+    
+    @IBAction func userProfileTapped() {
+        guard let stateManager = stateManager else { return }
+        
+        self.showProgress()
+        
+        stateManager.getUser { [weak self] response, error in
+            DispatchQueue.main.async {
+                self?.hideProgress()
+            
+                guard let response = response else {
+                    self?.showError(message: error?.localizedDescription ?? "Unable to get user info. Try re-authorize.")
+                    return
+                }
+                
+                self?.presentUserInfo(response)
+            }
         }
     }
 }
@@ -87,7 +124,7 @@ private extension SingInViewController {
     func updateUI() {
         guard isViewLoaded else { return }
     
-        guard OktaAuth.isAuthenticated() else {
+        guard let _ = stateManager else {
             loggedInUserInfoContainer.isHidden = true
             statusLabel.text = "Unathenticated ✗"
             
@@ -142,20 +179,20 @@ private extension SingInViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func handleOktaAuthSuccess() {
+    func handleOktaOidcSuccess() {
         self.hideProgress()
         self.showAlert(title: "Signed In!")
         self.updateUI()
     }
     
-    func handleOktaAuthLogoutSuccess() {
-        self.authState?.clear()
+    func handleOktaOidcLogoutSuccess() {
+        self.stateManager?.clear()
         self.hideProgress()
         self.showAlert(title: "Signed Out!")
         self.updateUI()
     }
     
-    func handleOktaAuthFailure(error: Error) {
+    func handleOktaOidcFailure(error: Error) {
         self.hideProgress()
         self.showError(message: error.localizedDescription)
     }
@@ -163,27 +200,6 @@ private extension SingInViewController {
 
 // UI Tests
 private extension SingInViewController {
-    
-    func signInTappedForUITests() -> Bool {
-        guard let config = configForUITests else { return true }
-        OktaAuth.signInWithBrowser().start(withDictConfig: config, view: self).then { _ in
-            self.handleOktaAuthSuccess()
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
-        return false
-    }
-    
-    func signOutTappedForUITests() -> Bool {
-        guard let config = configForUITests else { return true }
-        OktaAuth.signOutOfOkta().start(withDictConfig: config, view: self).then {
-            self.handleOktaAuthLogoutSuccess()
-        }.catch { error in
-            self.handleOktaAuthFailure(error: error)
-        }
-        return false
-    }
-    
     var configForUITests: [String: String]? {
         let env = ProcessInfo.processInfo.environment
         guard let oktaURL = env["OKTA_URL"],
@@ -200,4 +216,3 @@ private extension SingInViewController {
         ]
     }
 }
-

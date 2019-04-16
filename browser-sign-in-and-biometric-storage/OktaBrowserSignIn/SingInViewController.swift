@@ -15,7 +15,7 @@
  */
 
 import UIKit
-import OktaAuth
+import OktaOidc
 
 class SingInViewController: UIViewController {
     @IBOutlet private var signInButton: UIButton!
@@ -31,14 +31,14 @@ class SingInViewController: UIViewController {
 
     let secureStorage = OktaSecureStorage(applicationPassword: "password")
     
-    var tokenManager: OktaTokenManager?
-    
-    private var authState: OktaTokenManager? {
-        return OktaAuth.tokens
-    }
+    var stateManager: OktaOidcStateManager?
+    var oktaOidc: OktaOidc?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.oktaOidc = try? OktaOidc()
+        
         self.readTokenManagerFromKeychain(completion: { success in
             self.updateUI()
         })
@@ -52,14 +52,20 @@ class SingInViewController: UIViewController {
     @IBAction func signInTapped() {
         self.showProgress()
 
-        OktaAuth.signInWithBrowser().start(self)
-        .then { tokenManager in
-            self.tokenManager = tokenManager
+        self.oktaOidc?.signInWithBrowser(from: self, callback: { stateManager, error in
             self.hideProgress()
+            
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+
+            self.stateManager = stateManager
+            
             self.showAlert(title: "Signed In!")
             self.updateUI()
-
-            guard let authStateData = try? NSKeyedArchiver.archivedData(withRootObject: self.tokenManager!, requiringSecureCoding: false) else {
+          
+            guard let authStateData = try? NSKeyedArchiver.archivedData(withRootObject: self.stateManager!, requiringSecureCoding: false) else {
                 return
             }
             do {
@@ -72,48 +78,49 @@ class SingInViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-        }.catch { error in
-            self.hideProgress()
-            self.showError(message: error.localizedDescription)
-        }
+        })
     }
     
     @IBAction func signOutTapped() {
+        guard let stateManager = self.stateManager else { return }
         self.showProgress()
         
-        OktaAuth.signOutOfOkta().start(self)
-        .then {
-            self.authState?.clear()
-            try? self.secureStorage.clear()
-            self.tokenManager = nil
+        self.oktaOidc?.signOutOfOkta(stateManager, from: self, callback: { error in
             self.hideProgress()
-            self.showAlert(title: "Signed Out!")
-            self.updateUI()
-        }.catch { error in
-            self.hideProgress()
-            self.showError(message: error.localizedDescription)
-        }
-    }
-    
-    @IBAction func userProfileTapped() {
-        guard OktaAuth.isAuthenticated() else { return }
-        
-        self.showProgress()
-        
-        OktaAuth.getUser { response, error in
-            self.hideProgress()
-            
-            guard let response = response else {
-                self.showError(message: error?.localizedDescription ?? "Unable to get user info. Try re-authorize.")
+            if let error = error {
+                self.showError(message: error.localizedDescription)
                 return
             }
             
-            self.presentUserInfo(response)
-        }
+            stateManager.clear()
+            try? self.secureStorage.clear()
+            self.stateManager = nil
+            
+            self.showAlert(title: "Signed Out!")
+            self.updateUI()
+        })
+    }
+    
+    @IBAction func userProfileTapped() {
+        guard let stateManager = self.stateManager else { return }
+        
+        self.showProgress()
+        
+        stateManager.getUser({ response, error in
+            DispatchQueue.main.async {
+                self.hideProgress()
+                guard let response = response else {
+                    self.showError(message: error?.localizedDescription ?? "Unable to get user info. Try re-authorize.")
+                    return
+                }
+                
+                self.presentUserInfo(response)
+            }
+        })
     }
 
     @IBAction func tokensTapped() {
-        guard let _ = self.tokenManager?.accessToken else {
+        guard let _ = self.stateManager?.accessToken else {
             return
         }
 
@@ -130,7 +137,7 @@ private extension SingInViewController {
     func updateUI() {
         guard isViewLoaded else { return }
     
-        guard let _ = self.tokenManager?.accessToken else {
+        guard let _ = self.stateManager?.accessToken else {
             loggedInUserInfoContainer.isHidden = true
             statusLabel.text = "Unathenticated ✗"
             
@@ -187,6 +194,7 @@ private extension SingInViewController {
 
     func presentTokenDetails() {
         let controller = TokensViewController.fromStoryboard()
+        controller.stateManager = self.stateManager
         self.navigationController?.pushViewController(controller, animated: true)
     }
 
@@ -194,11 +202,11 @@ private extension SingInViewController {
         DispatchQueue.global().async {
             do {
                 let authStateData = try self.secureStorage.getData(key: "okta_user")
-                guard let tokenManager = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(authStateData) as? OktaTokenManager else {
+                guard let stateManager = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(authStateData) as? OktaOidcStateManager else {
                     return
                 }
 
-                self.tokenManager = tokenManager
+                self.stateManager = stateManager
 
                 DispatchQueue.main.async {
                     self.updateUI()

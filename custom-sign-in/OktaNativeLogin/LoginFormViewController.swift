@@ -16,7 +16,6 @@
 
 import UIKit
 import OktaAuthSdk
-import OktaAuth
 
 class LoginFormViewController: UIViewController {
 
