@@ -2,6 +2,6 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'OktaNativeLogin' do
-  pod 'OktaOidc', :git => 'git@github.com:okta/okta-sdk-appauth-ios.git', :branch => 'dev'
+  pod 'OktaOidc'
   pod 'OktaAuthSdk'
 end
