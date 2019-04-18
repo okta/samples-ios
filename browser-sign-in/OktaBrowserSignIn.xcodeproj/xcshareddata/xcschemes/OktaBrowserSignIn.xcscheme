@@ -55,6 +55,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "FIRST_NAME"
+            value = "$(FIRST_NAME)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "LOGOUT_REDIRECT_URI"
             value = "$(LOGOUT_REDIRECT_URI)"
             isEnabled = "YES">

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2FA4564B21F2031C000ACBE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */; };
 		2FA4564D21F2031C000ACBE2 /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564C21F2031C000ACBE2 /* SingInViewController.swift */; };
-		2FA4564F21F2031C000ACBE2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564E21F2031C000ACBE2 /* DetailViewController.swift */; };
 		2FA4565221F2031C000ACBE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565021F2031C000ACBE2 /* Main.storyboard */; };
 		2FA4565421F2031D000ACBE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565321F2031D000ACBE2 /* Assets.xcassets */; };
 		2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */; };
@@ -17,6 +16,7 @@
 		2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4566021F61E80000ACBE2 /* TokensViewController.swift */; };
 		A3EE787F35D5BA70D95769F1 /* Pods_OktaBrowserSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C05216AF84FC30C909BE6C /* Pods_OktaBrowserSignIn.framework */; };
 		F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */; };
+		FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E2B862268B07600321DEB /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +33,6 @@
 		2FA4564721F2031C000ACBE2 /* OktaBrowserSignIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaBrowserSignIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA4564C21F2031C000ACBE2 /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
-		2FA4564E21F2031C000ACBE2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2FA4565121F2031C000ACBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FA4565321F2031D000ACBE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FA4565621F2031D000ACBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		F53D4222223FA7C0000320D6 /* OktaBrowserSignInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaBrowserSignInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaBrowserSignInUITests.swift; sourceTree = "<group>"; };
 		F53D4226223FA7C0000320D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0E2B862268B07600321DEB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */,
+				FA0E2B862268B07600321DEB /* WelcomeViewController.swift */,
 				2FA4564C21F2031C000ACBE2 /* SingInViewController.swift */,
-				2FA4564E21F2031C000ACBE2 /* DetailViewController.swift */,
 				2FA4566021F61E80000ACBE2 /* TokensViewController.swift */,
 				2FA4565021F2031C000ACBE2 /* Main.storyboard */,
-				2FA4565321F2031D000ACBE2 /* Assets.xcassets */,
 				2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */,
+				2FA4565321F2031D000ACBE2 /* Assets.xcassets */,
 				2FA4565821F2031D000ACBE2 /* Info.plist */,
 				2FA4565E21F5C819000ACBE2 /* Okta.plist */,
 			);
@@ -281,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */,
-				2FA4564F21F2031C000ACBE2 /* DetailViewController.swift in Sources */,
+				FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */,
 				2FA4564D21F2031C000ACBE2 /* SingInViewController.swift in Sources */,
 				2FA4564B21F2031C000ACBE2 /* AppDelegate.swift in Sources */,
 			);

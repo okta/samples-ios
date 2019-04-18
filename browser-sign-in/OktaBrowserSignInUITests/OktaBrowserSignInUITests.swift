@@ -33,9 +33,9 @@ class OktaBrowserSignInUITests: XCTestCase {
     func testLoginSuccess() {
         let app = XCUIApplication()
         let env = ProcessInfo.processInfo.environment
-        guard let login = env["LOGIN"], let pass = env["PASS"] else {
-                XCTFail("Environment variables LOGIN, PASS not set")
-                return
+        guard let login = env["LOGIN"], let pass = env["PASS"], let firstName = env["FIRST_NAME"] else {
+            XCTFail("Environment variables LOGIN, PASS, FIRST_NAME not set")
+            return
         }
         
         app.buttons["Sign In"].tap()
@@ -49,14 +49,13 @@ class OktaBrowserSignInUITests: XCTestCase {
         webViewsQuery.secureTextFields["Password"].typeText(pass)
         webViewsQuery.buttons["Sign In"].tap()
 
-        XCTAssertTrue(app.alerts["Signed In!"].waitForExistence(timeout: 60))
-        app.alerts["Signed In!"].buttons["OK"].tap()
+        XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
         
         app.buttons["Sign Out"].tap()
         
         passSystemAlert(button: "Continue")
         
-        XCTAssertTrue(app.alerts["Signed Out!"].waitForExistence(timeout: 60))
+        XCTAssertTrue(XCUIApplication().staticTexts["Have an account?"].waitForExistence(timeout: 30))
     }
     
     func testLoginFailure() {
