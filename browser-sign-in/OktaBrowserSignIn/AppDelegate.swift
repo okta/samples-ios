@@ -20,6 +20,22 @@ import OktaOidc
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    lazy var oktaOidc: OktaOidc = {
+        if let configForUITests = AppDelegate.shared.configForUITests {
+            return try! OktaOidc(configuration: OktaOidcConfig(with: configForUITests))
+        } else {
+            return try! OktaOidc()
+        }
+    }()
+    
+    lazy var stateManager: OktaOidcStateManager? = {
+        return OktaOidcStateManager.readFromSecureStorage(for: AppDelegate.shared.oktaOidc.configuration)
+    }()
+    
+    static var shared: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -30,14 +46,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {}
+    func applicationWillResignActive(_ application: UIApplication) { }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {}
+    func applicationDidEnterBackground(_ application: UIApplication) { }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {}
+    func applicationWillEnterForeground(_ application: UIApplication) { }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {}
+    func applicationDidBecomeActive(_ application: UIApplication) { }
 
-    func applicationWillTerminate(_ application: UIApplication) {}
+    func applicationWillTerminate(_ application: UIApplication) { }
 }
 
+// UI Tests
+private extension AppDelegate {
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
+            let clientID = env["CLIENT_ID"],
+            let redirectURI = env["REDIRECT_URI"],
+            let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+                return nil
+        }
+        return ["issuer": "\(oktaURL)/oauth2/default",
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
+        ]
+    }
+}
