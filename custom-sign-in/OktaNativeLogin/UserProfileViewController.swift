@@ -18,52 +18,32 @@ import UIKit
 import OktaAuthSdk
 
 class UserProfileViewController: UIViewController {
-
-    @IBOutlet private var usernameLabel: UILabel!
-    @IBOutlet private var firstnameLabel: UILabel!
-    @IBOutlet private var lastnameLabel: UILabel!
-    @IBOutlet private var localeLabel: UILabel!
-    @IBOutlet private var timezoneLabel: UILabel!
-
-    var profile: EmbeddedResponse.User.Profile? {
-        didSet {
-            updateUI()
-        }
-    }
     
-    static func create() -> UserProfileViewController {
-        return UIStoryboard(name: "UserProfile", bundle: nil)
-            .instantiateViewController(withIdentifier: "UserProfileViewController")
-            as! UserProfileViewController
-    }
+    var profile: EmbeddedResponse.User.Profile?
+    var logoutTappedCallback: (() -> Void)?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationItem.title = "User Profile"
-        
         updateUI()
     }
     
+    // MARK: - Private
+    
     private func updateUI() {
-        guard isViewLoaded else { return }
-
-        updateLabel(usernameLabel, with: profile?.login)
-        updateLabel(firstnameLabel, with: profile?.firstName)
-        updateLabel(lastnameLabel, with: profile?.lastName)
-        updateLabel(localeLabel, with: profile?.locale)
-        updateLabel(timezoneLabel, with: profile?.timeZone)
+        titleLabel.text = "Welcome, \(profile?.firstName ?? "-")"
+        subtitleLabel.text = profile?.login
+        timezoneLabel.text = profile?.timeZone
+        localeLabel.text = profile?.locale
     }
     
-    private func updateLabel(_ label: UILabel, with value: String?) {
-        guard let value = value else {
-            label.text = "Unknown"
-            label.textColor = UIColor.lightGray
-            return
-        }
-        
-        label.text = value
-        label.textColor = UIColor.darkGray
+    // MARK: - IB
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var timezoneLabel: UILabel!
+    @IBOutlet weak var localeLabel: UILabel!
+    
+    @IBAction private func logoutTapped() {
+        logoutTappedCallback?()
     }
 }

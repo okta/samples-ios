@@ -13,8 +13,6 @@ class MFASMSViewController: UIViewController {
     @IBOutlet private var phoneNumberLabel: UILabel!
     @IBOutlet private var codeTextField: UITextField!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private var verifyButton: UIButton!
-    @IBOutlet private var sendButton: UIButton!
     
     private var onSendTapped: (() -> Void)?
     private var onResendTapped: (() -> Void)?
@@ -27,11 +25,7 @@ class MFASMSViewController: UIViewController {
     
     private var onVerify: ((String) -> Void)?
     
-    private var isSentTapped: Bool = false {
-        didSet {
-            configureSendButton()
-        }
-    }
+    private var isSentTapped: Bool = false
     
     static func create(with factor: EmbeddedResponse.Factor,
                        sendSMSHandler: @escaping (() -> Void),
@@ -55,13 +49,11 @@ class MFASMSViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.stopAnimating()
-        verifyButton.isEnabled = false
         isSentTapped = false
     }
     
     func verifySMS(completion: @escaping (String) -> Void) {
         activityIndicator.stopAnimating()
-        verifyButton.isEnabled = true
         onVerify = completion
     }
     
@@ -90,11 +82,5 @@ class MFASMSViewController: UIViewController {
         } else {
             phoneNumberLabel.isHidden = true
         }
-        
-        configureSendButton()
-    }
-    
-    private func configureSendButton() {
-        sendButton.setTitle(isSentTapped ? "Resend" : "Send", for: .normal)
     }
 }
