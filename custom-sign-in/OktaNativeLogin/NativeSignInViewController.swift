@@ -88,12 +88,14 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         print("Session token: \(sessionToken)")
         
         oktaOidc?.authenticate(withSessionToken: sessionToken, callback: { manager, error in
-            guard let manager = manager else {
-                self.handleOktaAuthFailure(error: error!)
-                return
+            DispatchQueue.main.async {
+                guard let manager = manager else {
+                    self.handleOktaAuthFailure(error: error!)
+                    return
+                }
+                
+                self.handleOktaAuthSuccess(manager: manager)
             }
-            
-            self.handleOktaAuthSuccess(manager: manager)
         })
     }
     
