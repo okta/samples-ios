@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.oktapreview.lohika-demo</string>
+				<string>com.okta.example</string>
 			</array>
 		</dict>
 	</array>
