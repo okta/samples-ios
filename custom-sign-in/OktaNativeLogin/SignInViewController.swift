@@ -18,23 +18,7 @@ import UIKit
 import OktaAuthSdk
 import OktaOidc
 
-class NativeSignInViewController: UIViewController {
-    
-    @IBOutlet private var loginButton: UIButton!
-    @IBOutlet private var logoutButton: UIButton!
-    
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet private var loggedInUserInfoContainer: UIStackView!
-    @IBOutlet private var usernameButton: UIButton!
-    
-    @IBOutlet private var unathenticatedNotice: UILabel!
-    
-    private var client: AuthenticationClient!
-    private var oktaOidc: OktaOidc?
-    private var authState: OktaOidcStateManager?
-    
-    private weak var mfaController: MFAViewController?
+class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,57 +27,64 @@ class NativeSignInViewController: UIViewController {
         guard setupForUITests() else { return }
         
         // Setup Okta Auth Client
-        #warning ("Enter your Okta organization domain here")
+//        #warning ("Enter your Okta organization domain here")
         let url = URL(string: "https://{yourOktaDomain}")!
         client = AuthenticationClient(oktaDomain: url, delegate: self, mfaHandler: self)
-        oktaOidc = try? OktaOidc()
+        oktaOidc = try! OktaOidc()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.updateUI()
-    }
-
-    @IBAction func loginTapped() {
-        LoginFormViewController.loadAndPresent(from: self) { (username, password) in
-            self.showProgress()
-        
-            // Perfrom login
-            self.client.authenticate(username: username, password: password)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? UserProfileViewController {
+            controller.profile = client.embedded?.user?.profile
+            controller.logoutTappedCallback = performLogout
         }
     }
     
-    @IBAction func logoutTapped() {
-        // Perfrom logout
+    // MARK: - Private
+    
+    private var client: AuthenticationClient!
+    private var oktaOidc: OktaOidc!
+    private var authState: OktaOidcStateManager?
+    private weak var mfaController: MFAViewController?
+    
+    private var userProfile: EmbeddedResponse.User.Profile? {
+        guard client.status == .success else { return nil }
+        return client.embedded?.user?.profile
+    }
+    
+    private func performLogout() {
         self.client.resetStatus()
         self.authState = nil
-        
-        self.updateUI()
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func usernameTapped() {
-        guard let profile = client.embedded?.user?.profile else {
-            return
-        }
-
-        let controller = UserProfileViewController.create()
-        controller.profile = profile
-        self.navigationController?.pushViewController(controller, animated: true)
+    // MARK: - IB
+    
+    @IBOutlet private var usernameField: UITextField!
+    @IBOutlet private var passwordField: UITextField!
+    @IBOutlet private var signInButton: UIButton!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    
+    @IBAction private func signInTapped() {
+        guard let username = usernameField.text, !username.isEmpty,
+            let password = passwordField.text, !password.isEmpty else { return }
+        
+        client.authenticate(username: username, password: password)
+        showProgress()
     }
 }
 
-extension NativeSignInViewController: AuthenticationClientDelegate {
+extension SignInViewController: AuthenticationClientDelegate {
     
     func handleSuccess(sessionToken: String) {
         print("Session token: \(sessionToken)")
         
-        oktaOidc?.authenticate(withSessionToken: sessionToken, callback: { manager, error in
+        oktaOidc.authenticate(withSessionToken: sessionToken, callback: { manager, error in
             DispatchQueue.main.async {
                 guard let manager = manager else {
                     self.handleOktaAuthFailure(error: error!)
                     return
                 }
-                
                 self.handleOktaAuthSuccess(manager: manager)
             }
         })
@@ -103,7 +94,6 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
         print("Error: \(error)")
         
         client.resetStatus()
-
         hideProgress()
         showError(message: error.description)
     }
@@ -141,7 +131,7 @@ extension NativeSignInViewController: AuthenticationClientDelegate {
     }
 }
 
-extension NativeSignInViewController: AuthenticationClientMFAHandler {
+extension SignInViewController: AuthenticationClientMFAHandler {
     
     func selectFactor(factors: [EmbeddedResponse.Factor], callback: @escaping (EmbeddedResponse.Factor) -> Void) {
         mfaController = MFAViewController.loadAndPresent(
@@ -194,52 +184,8 @@ extension NativeSignInViewController: AuthenticationClientMFAHandler {
 }
 
 // UI Utils
-private extension NativeSignInViewController {
+private extension SignInViewController {
     
-    var userProfile: EmbeddedResponse.User.Profile? {
-        guard client.status == .success else { return nil }
-        return client.embedded?.user?.profile
-    }
-    
-    func updateUI() {
-        guard isViewLoaded else { return }
-        
-        if let userProfile = userProfile {
-            presentAuthenticatedUser(userProfile)
-        } else {
-            presentUnauthenticated()
-        }
-    }
-    
-    func presentAuthenticatedUser(_ profile: EmbeddedResponse.User.Profile) {
-        logoutButton.isHidden = false
-        loginButton.isHidden = true
-        
-        loggedInUserInfoContainer.isHidden = false
-        usernameButton.setTitle(profile.login, for: .normal)
-        
-        unathenticatedNotice.isHidden = true
-    }
-    
-    func presentUnauthenticated() {
-        logoutButton.isHidden = true
-        loginButton.isHidden = false
-        
-        loggedInUserInfoContainer.isHidden = true
-        usernameButton.setTitle(nil, for: .normal)
-        
-        unathenticatedNotice.isHidden = false
-    }
-    
-    func showAuthSucceeded() {
-        let alert = UIAlertController(title: "Logged In!", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "User Profile", style: .default, handler: { _ in
-            self.usernameTapped()
-        }))
-        presentAlert(alert)
-    }
-
     func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -254,12 +200,12 @@ private extension NativeSignInViewController {
     
     func showProgress() {
         activityIndicator.startAnimating()
-        self.loginButton.isEnabled = false
+        signInButton.isEnabled = false
     }
     
     func hideProgress() {
         activityIndicator.stopAnimating()
-        self.loginButton.isEnabled = true
+        signInButton.isEnabled = true
     }
     
     func showAccountLockedAlert(and callback: @escaping (_ username: String) -> Void) {
@@ -290,12 +236,9 @@ private extension NativeSignInViewController {
     }
     
     func handleOktaAuthSuccess(manager: OktaOidcStateManager) {
-        // Cash auth state
         authState = manager
-        
-        showAuthSucceeded()
         hideProgress()
-        updateUI()
+        performSegue(withIdentifier: "user-profile", sender: self)
     }
     
     func handleOktaAuthFailure(error: Error) {
@@ -305,14 +248,13 @@ private extension NativeSignInViewController {
     }
 }
 
-private extension NativeSignInViewController {
-    
+private extension SignInViewController {
     func setupForUITests() -> Bool {
         guard let testURL = ProcessInfo.processInfo.environment["OKTA_URL"],
               let testConfig = configForUITests
               else { return true }
         client = AuthenticationClient(oktaDomain: URL(string: testURL)!, delegate: self, mfaHandler: self)
-        oktaOidc = try? OktaOidc(configuration: OktaOidcConfig(with: testConfig))
+        oktaOidc = try! OktaOidc(configuration: OktaOidcConfig(with: testConfig))
         return false
     }
     

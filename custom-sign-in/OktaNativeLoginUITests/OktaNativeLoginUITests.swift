@@ -35,30 +35,22 @@ class OktaNativeLoginUITests: XCTestCase {
         let env = ProcessInfo.processInfo.environment
         guard let login = env["LOGIN"],
             let pass = env["PASS"],
-            let firstName = env["FIRST_NAME"],
-            let lastName = env["LAST_NAME"] else {
+            let firstName = env["FIRST_NAME"] else {
                 XCTFail("Environment variables LOGIN, PASS, FIRST_NAME, LAST_NAME not set")
                 return
         }
         
-        app.buttons["Login"].tap()
-        
-        app.textFields["Login"].tap()
-        app.textFields["Login"].typeText(login)
+        app.textFields["Username"].tap()
+        app.textFields["Username"].typeText(login)
         app.secureTextFields["Password"].tap()
         app.secureTextFields["Password"].typeText(pass)
-        app.buttons["Login"].tap()
+        app.buttons["Sign In"].tap()
         
-        XCTAssertTrue(app.alerts["Logged In!"].waitForExistence(timeout: 30))
-        app.alerts["Logged In!"].buttons["User Profile"].tap()
+        XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
         
-        XCTAssertTrue(app.staticTexts[firstName].waitForExistence(timeout: 1))
-        XCTAssertTrue(app.staticTexts[lastName].exists)
+        app.buttons["Sign Out"].tap()
         
-        app.navigationBars["User Profile"].buttons["Back"].firstMatch.tap()
-        app.buttons["Logout"].tap()
-        
-        XCTAssertTrue(app.staticTexts["Unathenticated"].exists)
+        XCTAssertTrue(app.buttons["Sign In"].waitForExistence(timeout: 30))
     }
     
     func testLoginFailure() {
@@ -66,13 +58,11 @@ class OktaNativeLoginUITests: XCTestCase {
         let login = UUID().uuidString
         let pass = UUID().uuidString
         
-        app.buttons["Login"].tap()
-        
-        app.textFields["Login"].tap()
-        app.textFields["Login"].typeText(login)
+        app.textFields["Username"].tap()
+        app.textFields["Username"].typeText(login)
         app.secureTextFields["Password"].tap()
         app.secureTextFields["Password"].typeText(pass)
-        app.buttons["Login"].tap()
+        app.buttons["Sign In"].tap()
         
         XCTAssertTrue(app.alerts["Error"].waitForExistence(timeout: 30))
     }

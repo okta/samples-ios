@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Security Question View Controller-->
+        <!--Security Question-->
         <scene sceneID="eTE-WL-9LJ">
             <objects>
                 <viewController storyboardIdentifier="MFASecurityQuestionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dGY-Zo-nXM" customClass="MFASecurityQuestionViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,56 +18,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="I5C-cr-IbK">
-                                <rect key="frame" x="20" y="50" width="335" height="202.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-8X-tJT">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9L-Uv-yIS">
-                                        <rect key="frame" x="0.0" y="59" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HVQ-Xl-71Z">
-                                        <rect key="frame" x="0.0" y="109.5" width="335" height="30"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E9N-AU-eRX">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKu-C1-XoY">
-                                        <rect key="frame" x="0.0" y="169.5" width="335" height="33"/>
-                                        <color key="backgroundColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Verify">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="verifyTapped" destination="dGY-Zo-nXM" eventType="touchUpInside" id="8uy-Sq-75J"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viB-Sb-5Na">
+                                <rect key="frame" x="109" y="143.5" width="157" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="D8v-0v-Ze7"/>
+                                    <constraint firstAttribute="width" constant="157" id="bV5-X0-wah"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alk-rD-xkz">
+                                <rect key="frame" x="109" y="209.5" width="157" height="46"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="8Gg-nJ-BEd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="VBZ-V5-MhD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Verify"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="verifyTapped" destination="dGY-Zo-nXM" eventType="touchUpInside" id="IWa-nE-89U"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9L-Uv-yIS">
+                                <rect key="frame" x="153.5" y="104" width="68.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZFT-XW-bvI" firstAttribute="trailing" secondItem="I5C-cr-IbK" secondAttribute="trailing" constant="20" id="UFI-RQ-52F"/>
-                            <constraint firstItem="I5C-cr-IbK" firstAttribute="leading" secondItem="ZFT-XW-bvI" secondAttribute="leading" constant="20" id="e8E-T3-9WW"/>
-                            <constraint firstItem="I5C-cr-IbK" firstAttribute="top" secondItem="ZFT-XW-bvI" secondAttribute="top" constant="30" id="fBq-fC-Jhi"/>
+                            <constraint firstItem="viB-Sb-5Na" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="5Nl-id-6II"/>
+                            <constraint firstItem="Alk-rD-xkz" firstAttribute="top" secondItem="viB-Sb-5Na" secondAttribute="bottom" constant="20" id="8sM-fX-gmH"/>
+                            <constraint firstItem="V9L-Uv-yIS" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="C4T-JK-xAv"/>
+                            <constraint firstItem="Alk-rD-xkz" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="FUS-Aa-Kuy"/>
+                            <constraint firstItem="V9L-Uv-yIS" firstAttribute="top" secondItem="ZFT-XW-bvI" secondAttribute="top" constant="40" id="K5S-qU-m26"/>
+                            <constraint firstItem="ZFT-XW-bvI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V9L-Uv-yIS" secondAttribute="trailing" constant="40" id="Taf-WR-ZgL"/>
+                            <constraint firstItem="viB-Sb-5Na" firstAttribute="top" secondItem="V9L-Uv-yIS" secondAttribute="bottom" constant="20" id="g7U-vb-CyW"/>
+                            <constraint firstItem="V9L-Uv-yIS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZFT-XW-bvI" secondAttribute="leading" constant="40" id="sbC-jj-88U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZFT-XW-bvI"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Security Question" id="yOp-QG-1Ac"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="answerField" destination="E9N-AU-eRX" id="1zI-34-56I"/>
+                        <outlet property="answerField" destination="viB-Sb-5Na" id="P4f-hz-Bxq"/>
                         <outlet property="questionLabel" destination="V9L-Uv-yIS" id="thr-Cm-z6h"/>
                     </connections>
                 </viewController>
