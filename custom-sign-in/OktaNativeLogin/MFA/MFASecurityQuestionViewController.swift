@@ -9,7 +9,7 @@
 import UIKit
 import OktaAuthSdk
 
-class MFASecurityQuestionViewController: UIViewController {
+class MFASecurityQuestionViewController: UIViewController { /*
     @IBOutlet private var questionLabel: UILabel!
     @IBOutlet private var answerField: UITextField!
     
@@ -57,5 +57,5 @@ class MFASecurityQuestionViewController: UIViewController {
         guard isViewLoaded else { return }
         
         questionLabel.text = factor?.profile?.questionText
-    }
+    }*/
 }

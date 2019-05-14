@@ -9,7 +9,7 @@
 import UIKit
 import OktaAuthSdk
 
-class MFATOTPViewController: UIViewController {
+class MFATOTPViewController: UIViewController { /*
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var codeField: UITextField!
     
@@ -56,5 +56,5 @@ class MFATOTPViewController: UIViewController {
     private func configure() {
         guard isViewLoaded else { return }
         titleLabel.text = factor?.vendorName ?? "Unknown Vendor"
-    }
+    }*/
 }

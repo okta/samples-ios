@@ -9,7 +9,7 @@
 import UIKit
 import OktaAuthSdk
 
-class MFASMSViewController: UIViewController {
+class MFASMSViewController: UIViewController { /*
     @IBOutlet private var phoneNumberLabel: UILabel!
     @IBOutlet private var codeTextField: UITextField!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
@@ -82,5 +82,5 @@ class MFASMSViewController: UIViewController {
         } else {
             phoneNumberLabel.isHidden = true
         }
-    }
+    }*/
 }

@@ -10,7 +10,7 @@ import UIKit
 import OktaAuthSdk
 
 class MFAPushViewController : UIViewController {
-
+/*
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var pushButton: UIButton!
 
@@ -62,5 +62,5 @@ class MFAPushViewController : UIViewController {
     
     private func configurePushButton() {
         pushButton.setTitle(isPushTapped ? "Resend Push" : "Send Push", for: .normal)
-    }
+    }*/
 }

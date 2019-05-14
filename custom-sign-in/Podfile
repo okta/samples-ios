@@ -3,5 +3,5 @@ use_frameworks!
 
 target 'OktaNativeLogin' do
   pod 'OktaOidc'
-  pod 'OktaAuthSdk', '0.2.0'
+  pod 'OktaAuthSdk', '1.1.0'
 end

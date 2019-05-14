@@ -14,18 +14,11 @@
  * limitations under the License.
  */
 
-import UIKit
+import Foundation
+import OktaAuthSdk
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-    var authFlowCoordinator: AuthFlowCoordinator?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        authFlowCoordinator = AuthFlowCoordinator.instantiate()
-        window?.rootViewController = authFlowCoordinator?.rootViewController
-
-        return true
-    }
+protocol AuthFlowCoordinatorProtocol: class {
+    func onStatusChanged(status: OktaAuthStatus)
+    func onCancel()
+    func onPrevious()
 }
