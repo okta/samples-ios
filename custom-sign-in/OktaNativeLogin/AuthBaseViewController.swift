@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
 class AuthBaseViewController: UIViewController {
     
@@ -36,6 +37,7 @@ class AuthBaseViewController: UIViewController {
 
     override func viewDidLoad() {
          self.navigationItem.setHidesBackButton(true, animated: false)
+        SVProgressHUD.setDefaultStyle(.dark)
     }
 
     func showError(message: String) {

@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
 class MFAViewController: AuthBaseViewController {
     
@@ -32,12 +33,12 @@ class MFAViewController: AuthBaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
+    @IBOutlet private var table: UITableView!
+
     @IBAction private func cancelTapped() {
         self.processCancel()
     }
-
-    @IBOutlet private var table: UITableView!
 }
 
 extension MFAViewController : UITableViewDataSource {
@@ -60,9 +61,12 @@ extension MFAViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let factor = self.factors[indexPath.row]
+        SVProgressHUD.show()
         factor.select(onStatusChange: { status in
+            SVProgressHUD.dismiss()
             self.flowCoordinatorDelegate?.onStatusChanged(status: status)
         }) { error in
+            SVProgressHUD.dismiss()
             self.showError(message: error.description)
         }
     }

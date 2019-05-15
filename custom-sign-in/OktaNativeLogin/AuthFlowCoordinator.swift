@@ -17,7 +17,6 @@
 import Foundation
 import UIKit
 import OktaAuthSdk
-import OktaOidc
 
 class AuthFlowCoordinator {
     
@@ -52,36 +51,26 @@ class AuthFlowCoordinator {
             
         case .passwordExpired:
             handlePasswordExpired(status: status)
-            
-        case .MFAEnroll:
-            let mfaEnroll: OktaAuthStatusFactorEnroll = status as! OktaAuthStatusFactorEnroll
-            //self.handleEnrollment(enrollmentStatus: mfaEnroll)
-            
-        case .MFAEnrollActivate:
-            let mfaEnrollActivate: OktaAuthStatusFactorEnrollActivate = status as! OktaAuthStatusFactorEnrollActivate
-            //self.handleActivateEnrollment(status: mfaEnrollActivate)
-            
+
         case .MFARequired:
             self.handleFactorRequired(status: status)
             
         case .MFAChallenge:
             handleFactorChallenge(status: status)
             
-        case .recovery,
+        case .MFAEnroll,
+             .MFAEnrollActivate,
+             .recovery,
              .recoveryChallenge,
              .passwordReset,
              .lockedOut,
              .unauthenticated:
-            let alert = UIAlertController(title: "Error", message: "No handler for \(status.statusType.description)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            //present(alert, animated: true, completion: nil)
-            //self.cancelTransaction()
+            let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+            authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
             
         case .unknown(_):
-            let alert = UIAlertController(title: "Error", message: "Recieved unknown status", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            //present(alert, animated: true, completion: nil)
-            //self.cancelTransaction()
+            let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+            authBaseViewController.showError(message: "Recieved unknown status")
         }
     }
 
@@ -150,9 +139,10 @@ class AuthFlowCoordinator {
                                                                 flowCoordinatorDelegate: self,
                                                                 storyBoardName: "MFAPush",
                                                                 viewControllerIdentifier: "MFAPushViewController")
-            
+
         default:
-            viewController = nil
+            let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+            authBaseViewController.showError(message: "Not implemented!\nNo factor handler for \(factor.type.description)")
         }
 
         if let viewController = viewController {

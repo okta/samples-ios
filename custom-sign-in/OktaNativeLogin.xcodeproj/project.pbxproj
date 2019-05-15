@@ -18,8 +18,6 @@
 		2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF34222216CC170098AB63 /* MFATOTP.storyboard */; };
 		2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */; };
 		2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */; };
-		A14269E52289EDB500DC8973 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E42289EDB500DC8973 /* UserProfile.storyboard */; };
-		A14269E62289EDB500DC8973 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E42289EDB500DC8973 /* UserProfile.storyboard */; };
 		A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
@@ -33,6 +31,9 @@
 		A14269F9228A199E00DC8973 /* PasswordManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */; };
 		A14269FB228A35D000DC8973 /* AuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */; };
 		A14269FC228A35D000DC8973 /* AuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */; };
+		A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */; };
+		A1A92851228CD8D600AC8987 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A92850228CD8D600AC8987 /* UserProfile.storyboard */; };
+		A1A92852228CD8D600AC8987 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A92850228CD8D600AC8987 /* UserProfile.storyboard */; };
 		A1E746A42289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */; };
 		A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */; };
 		C284DADCAB8CDB0543ABD831 /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F450962097D7F9F55DE11BD /* Pods_OktaNativeLogin.framework */; };
@@ -66,7 +67,6 @@
 		2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFASecurityQuestion.storyboard; sourceTree = "<group>"; };
 		2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFASecurityQuestionViewController.swift; sourceTree = "<group>"; };
 		6F450962097D7F9F55DE11BD /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A14269E42289EDB500DC8973 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		A14269E72289EEA600DC8973 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 		A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManagementViewController.swift; sourceTree = "<group>"; };
 		A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordManagement.storyboard; sourceTree = "<group>"; };
 		A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBaseViewController.swift; sourceTree = "<group>"; };
+		A1A92850228CD8D600AC8987 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinator.swift; sourceTree = "<group>"; };
 		AC364BFFA96D49C115BBA876 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
@@ -142,6 +143,24 @@
 			path = PasswordManagement;
 			sourceTree = "<group>";
 		};
+		A1A9284A228CB2FD00AC8987 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */,
+				A14269E72289EEA600DC8973 /* SignIn.storyboard */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		A1A9284C228CB32C00AC8987 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A1A92850228CD8D600AC8987 /* UserProfile.storyboard */,
+				A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		D1D6F4D61172BA8D647311BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,18 +201,16 @@
 		FAE1549721E5FB2C00B89097 /* OktaNativeLogin */ = {
 			isa = PBXGroup;
 			children = (
-				A14269F0228A162500DC8973 /* Main.storyboard */,
 				FAE1549821E5FB2C00B89097 /* AppDelegate.swift */,
 				A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */,
-				A14269E42289EDB500DC8973 /* UserProfile.storyboard */,
-				A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */,
 				A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */,
 				A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */,
-				A14269E72289EEA600DC8973 /* SignIn.storyboard */,
-				2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */,
+				A1A9284C228CB32C00AC8987 /* UserProfile */,
+				A1A9284A228CB2FD00AC8987 /* SignIn */,
 				A14269F3228A17ED00DC8973 /* PasswordManagement */,
 				2F7435892204789300B47967 /* MFA */,
 				FAE1549F21E5FB2D00B89097 /* Assets.xcassets */,
+				A14269F0228A162500DC8973 /* Main.storyboard */,
 				FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */,
 				F57B5ED821ECCD0700895A26 /* Okta.plist */,
 				FAE154A421E5FB2D00B89097 /* Info.plist */,
@@ -284,9 +301,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A92852228CD8D600AC8987 /* UserProfile.storyboard in Resources */,
 				A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */,
 				A14269F9228A199E00DC8973 /* PasswordManagement.storyboard in Resources */,
-				A14269E62289EDB500DC8973 /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +311,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A14269E52289EDB500DC8973 /* UserProfile.storyboard in Resources */,
 				2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
@@ -304,6 +320,7 @@
 				FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */,
 				A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */,
 				2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */,
+				A1A92851228CD8D600AC8987 /* UserProfile.storyboard in Resources */,
 				2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */,
 				F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */,
 			);
@@ -367,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
 				A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 				A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
@@ -585,7 +603,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JTATZGJR5N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -605,7 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JTATZGJR5N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

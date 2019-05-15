@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
 class MFASMSViewController: AuthBaseViewController {
 
@@ -40,33 +41,29 @@ class MFASMSViewController: AuthBaseViewController {
     }
 
     @IBAction func resendButtonTapped() {
-        activityIndicator.startAnimating()
-        buttonsStack.isUserInteractionEnabled = false
+        SVProgressHUD.show(withStatus: "Resend factor...")
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
         mfaChallengeStatus.resendFactor(onStatusChange: { status in
-            self.buttonsStack.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
         }) { error in
-            self.buttonsStack.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
             self.showError(message: error.description)
         }
     }
     
     @IBAction func verifyButtonTapped() {
         guard let code = codeTextField.text else { return }
-        activityIndicator.startAnimating()
-        buttonsStack.isUserInteractionEnabled = false
+        SVProgressHUD.show()
         factor.verify(passCode: code,
                       answerToSecurityQuestion: nil,
                       onStatusChange:
             { status in
-                self.buttonsStack.isUserInteractionEnabled = true
-                self.activityIndicator.stopAnimating()
+                SVProgressHUD.dismiss()
                 self.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
                       onError:
             { error in
-                self.buttonsStack.isUserInteractionEnabled = true
-                self.activityIndicator.stopAnimating()
+                SVProgressHUD.dismiss()
                 self.showError(message: error.description)
         })
     }

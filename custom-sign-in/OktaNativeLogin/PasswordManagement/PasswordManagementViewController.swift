@@ -16,6 +16,7 @@
 
 import Foundation
 import OktaAuthSdk
+import SVProgressHUD
 
 class PasswordManagementViewController: AuthBaseViewController {
 
@@ -86,20 +87,17 @@ class PasswordManagementViewController: AuthBaseViewController {
     }
 
     func startProgress() {
-        self.progressIndicatorView.startAnimating()
-        self.buttonsStackView.isUserInteractionEnabled = false
+        SVProgressHUD.show()
     }
     
     func stopProgress() {
-        self.buttonsStackView.isUserInteractionEnabled = true
-        self.progressIndicatorView.stopAnimating()
+        SVProgressHUD.dismiss()
     }
 
     // MARK: - IB
     
     @IBOutlet weak var oldPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
-    @IBOutlet weak var progressIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!

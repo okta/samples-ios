@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
 class MFASecurityQuestionViewController: AuthBaseViewController {
 
@@ -26,27 +27,28 @@ class MFASecurityQuestionViewController: AuthBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //sendQuestionHandler?()
-    }
-    
-    func verifySecurityQuestion(callback: @escaping (String) -> Void) {
-        //onVerify = callback
-    }
-    
-    @IBAction func verifyTapped() {
-        guard let answer = answerField.text else { return }
-        //onVerify?(answer)
-    }
-    
-    private func configure() {
-        guard isViewLoaded else { return }
-        
         questionLabel.text = factor.factor.profile?.questionText
+    }
+    
+    @IBAction func verifyButtonTapped() {
+        guard let answer = answerField.text else { return }
+        SVProgressHUD.show()
+        factor.verify(passCode: nil,
+                      answerToSecurityQuestion: answer,
+                      onStatusChange:
+            { status in
+                SVProgressHUD.dismiss()
+                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        },
+                      onError:
+            { error in
+                SVProgressHUD.dismiss()
+                self.showError(message: error.description)
+        })
+    }
+
+    @IBAction func cancelButtonTapped() {
+        self.processCancel()
     }
 
     @IBOutlet private var questionLabel: UILabel!
