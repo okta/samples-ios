@@ -1,39 +1,29 @@
-//
-//  MFASecurityQuestion.swift
-//  OktaNativeLogin
-//
-//  Created by Anastasia Yurok on 2/15/19.
-//  Copyright © 2019 Okta. All rights reserved.
-//
+/*
+ * Copyright 2019 Okta, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import UIKit
 import OktaAuthSdk
 
-class MFASecurityQuestionViewController: UIViewController { /*
-    @IBOutlet private var questionLabel: UILabel!
-    @IBOutlet private var answerField: UITextField!
-    
-    private var factor: EmbeddedResponse.Factor? {
-        didSet {
-            configure()
-        }
-    }
-    
-    private var onVerify: ((String) -> Void)?
-    private var sendQuestionHandler: (() -> Void)?
-    
-    static func create(with factor: EmbeddedResponse.Factor,
-                       sendQuestionHandler: @escaping (() -> Void)) -> MFASecurityQuestionViewController {
-        let controller = UIStoryboard(name: "MFASecurityQuestion", bundle: nil)
-            .instantiateViewController(withIdentifier: "MFASecurityQuestionViewController")
-            as! MFASecurityQuestionViewController
-        
-        controller.factor = factor
-        controller.sendQuestionHandler = sendQuestionHandler
+class MFASecurityQuestionViewController: AuthBaseViewController {
 
-        return controller
-    }
-    
+    lazy var factor: OktaFactor = {
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        return mfaChallengeStatus.factor
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -41,21 +31,24 @@ class MFASecurityQuestionViewController: UIViewController { /*
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        sendQuestionHandler?()
+        //sendQuestionHandler?()
     }
     
     func verifySecurityQuestion(callback: @escaping (String) -> Void) {
-        onVerify = callback
+        //onVerify = callback
     }
     
     @IBAction func verifyTapped() {
         guard let answer = answerField.text else { return }
-        onVerify?(answer)
+        //onVerify?(answer)
     }
     
     private func configure() {
         guard isViewLoaded else { return }
         
-        questionLabel.text = factor?.profile?.questionText
-    }*/
+        questionLabel.text = factor.factor.profile?.questionText
+    }
+
+    @IBOutlet private var questionLabel: UILabel!
+    @IBOutlet private var answerField: UITextField!
 }

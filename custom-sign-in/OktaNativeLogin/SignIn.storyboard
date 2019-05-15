@@ -54,9 +54,6 @@
                                     <action selector="signInTapped" destination="MYZ-aV-kni" eventType="touchUpInside" id="NDx-1G-JTH"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vHC-ge-Xat">
-                                <rect key="frame" x="79" y="213" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -64,11 +61,9 @@
                             <constraint firstItem="HBa-AW-ijs" firstAttribute="leading" secondItem="Hbp-ZB-hLB" secondAttribute="leading" constant="60" id="9XN-GS-KBR"/>
                             <constraint firstItem="Hbp-ZB-hLB" firstAttribute="trailing" secondItem="HBa-AW-ijs" secondAttribute="trailing" constant="60" id="MPJ-bD-lts"/>
                             <constraint firstItem="HBa-AW-ijs" firstAttribute="top" secondItem="HDW-U9-dtO" secondAttribute="bottom" constant="20" id="ORe-Tq-JKw"/>
-                            <constraint firstItem="vHC-ge-Xat" firstAttribute="centerY" secondItem="knd-58-kzf" secondAttribute="centerY" id="Oxg-La-mhD"/>
                             <constraint firstItem="knd-58-kzf" firstAttribute="centerX" secondItem="vgy-6T-yEq" secondAttribute="centerX" id="Paa-53-XQh"/>
                             <constraint firstItem="HDW-U9-dtO" firstAttribute="leading" secondItem="Hbp-ZB-hLB" secondAttribute="leading" constant="60" id="l2A-7M-6Z1"/>
                             <constraint firstItem="Hbp-ZB-hLB" firstAttribute="trailing" secondItem="HDW-U9-dtO" secondAttribute="trailing" constant="60" id="nPh-Ca-Tpm"/>
-                            <constraint firstItem="knd-58-kzf" firstAttribute="leading" secondItem="vHC-ge-Xat" secondAttribute="trailing" constant="10" id="sCI-yd-O74"/>
                             <constraint firstItem="HDW-U9-dtO" firstAttribute="top" secondItem="Hbp-ZB-hLB" secondAttribute="top" constant="40" id="xmY-iZ-SkR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hbp-ZB-hLB"/>
@@ -79,7 +74,6 @@
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="vHC-ge-Xat" id="vbU-gb-JSg"/>
                         <outlet property="passwordField" destination="HBa-AW-ijs" id="PGR-aT-zxw"/>
                         <outlet property="signInButton" destination="knd-58-kzf" id="pol-Nl-cCT"/>
                         <outlet property="usernameField" destination="HDW-U9-dtO" id="178-CN-Dta"/>

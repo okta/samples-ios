@@ -10,79 +10,82 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Push View Controller-->
-        <scene sceneID="dMM-yy-8yD">
+        <!--PUSH-->
+        <scene sceneID="75r-WU-ZgE">
             <objects>
-                <viewController storyboardIdentifier="MFAPushViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y3z-UV-qxQ" customClass="MFAPushViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qRa-Vj-50i">
+                <viewController storyboardIdentifier="MFAPushViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e0Q-yp-WeD" customClass="MFAPushViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h0a-jL-R6f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="3HX-cd-8OG">
-                                <rect key="frame" x="20" y="50" width="335" height="92"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="vpb-M9-ULf">
+                                <rect key="frame" x="109" y="155.5" width="157" height="101"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cP-Sm-h4t">
-                                        <rect key="frame" x="145.5" y="0.0" width="44.5" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elL-BL-lP8">
-                                        <rect key="frame" x="67.5" y="59" width="200" height="33"/>
-                                        <color key="backgroundColor" red="0.002117999597" green="0.48863452670000002" blue="0.75864893200000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-rg-gDy">
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="bV3-b3-Bec"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="bZL-2p-AW7"/>
+                                            <constraint firstAttribute="height" constant="46" id="sOE-l1-QxA"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Send Push">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Resend"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="pushTapped" destination="y3z-UV-qxQ" eventType="touchUpInside" id="KYI-W6-lEm"/>
+                                            <action selector="resendTapped" destination="e0Q-yp-WeD" eventType="touchUpInside" id="A6V-eP-NIe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrG-G5-hNB">
+                                        <rect key="frame" x="0.0" y="55" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="BsY-mD-5Xl"/>
+                                            <constraint firstAttribute="height" constant="46" id="ZPo-rI-hqC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonTapped" destination="e0Q-yp-WeD" eventType="touchUpInside" id="wwQ-Y4-99z"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Factor result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrE-Cq-HLX">
+                                <rect key="frame" x="138.5" y="99" width="96" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3HX-cd-8OG" firstAttribute="leading" secondItem="tDc-hk-gZ9" secondAttribute="leading" constant="20" id="K0O-mj-YbP"/>
-                            <constraint firstItem="3HX-cd-8OG" firstAttribute="top" secondItem="qRa-Vj-50i" secondAttribute="topMargin" constant="30" id="Ly6-Ba-lbt"/>
-                            <constraint firstItem="tDc-hk-gZ9" firstAttribute="trailing" secondItem="3HX-cd-8OG" secondAttribute="trailing" constant="20" id="qjB-JC-hFz"/>
+                            <constraint firstItem="vpb-M9-ULf" firstAttribute="centerX" secondItem="0Q4-Lp-lE7" secondAttribute="centerX" id="16s-M5-5u5"/>
+                            <constraint firstItem="lrE-Cq-HLX" firstAttribute="top" secondItem="0Q4-Lp-lE7" secondAttribute="top" constant="35" id="4Nh-AL-uzB"/>
+                            <constraint firstItem="vpb-M9-ULf" firstAttribute="top" secondItem="lrE-Cq-HLX" secondAttribute="bottom" constant="37" id="A5d-KZ-rdA"/>
+                            <constraint firstItem="lrE-Cq-HLX" firstAttribute="centerX" secondItem="h0a-jL-R6f" secondAttribute="centerX" constant="-1" id="FIQ-qp-eeg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="tDc-hk-gZ9"/>
+                        <viewLayoutGuide key="safeArea" id="0Q4-Lp-lE7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oBe-ZG-3MM">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="J4e-Gn-Mhq">
-                            <rect key="frame" x="188" y="22" width="0.0" height="0.0"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="okta-logo" translatesAutoresizingMaskIntoConstraints="NO" id="L6l-2S-UEC">
-                                    <rect key="frame" x="-35.5" y="-12" width="71" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="L6l-2S-UEC" secondAttribute="height" multiplier="625:211" id="EWe-Wq-ZOQ"/>
-                                        <constraint firstAttribute="height" constant="24" id="uew-tw-8r2"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="L6l-2S-UEC" firstAttribute="centerY" secondItem="J4e-Gn-Mhq" secondAttribute="centerY" id="sH2-VI-eYb"/>
-                                <constraint firstItem="L6l-2S-UEC" firstAttribute="centerX" secondItem="J4e-Gn-Mhq" secondAttribute="centerX" id="uzp-uO-ME9"/>
-                            </constraints>
-                        </view>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="PUSH" id="oP0-EW-ZEW"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="pushButton" destination="elL-BL-lP8" id="3gx-PA-Oq2"/>
-                        <outlet property="titleLabel" destination="5cP-Sm-h4t" id="P6H-ad-PoP"/>
+                        <outlet property="cancelButton" destination="vrG-G5-hNB" id="yF2-Uv-sfB"/>
+                        <outlet property="factorResultLabel" destination="lrE-Cq-HLX" id="U0p-f8-oqc"/>
+                        <outlet property="resendButton" destination="HWs-rg-gDy" id="33L-XY-51i"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="09q-Aa-qAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7E-4f-gET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="-553"/>
+            <point key="canvasLocation" x="733.60000000000002" y="-319.79010494752629"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="okta-logo" width="5000" height="1688"/>
-    </resources>
 </document>

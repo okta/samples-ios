@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
 class SignInViewController: AuthBaseViewController {
 
@@ -37,7 +38,6 @@ class SignInViewController: AuthBaseViewController {
     @IBOutlet private var usernameField: UITextField!
     @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var signInButton: UIButton!
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
     @IBAction private func signInTapped() {
         guard let username = usernameField.text, !username.isEmpty,
@@ -45,7 +45,7 @@ class SignInViewController: AuthBaseViewController {
         
         #warning ("Enter your Okta organization domain here")
         //let url = URL(string: "https://{yourOktaDomain}")!
-        let url = URL(string: "https://sdk-test.trexcloud.com")!
+        let url = URL(string: "https://dev-949814.okta.com")!
         OktaAuthSdk.authenticate(with: url,
                                  username: username,
                                  password: password,
@@ -65,12 +65,12 @@ class SignInViewController: AuthBaseViewController {
 private extension SignInViewController {
 
     func showProgress() {
-        activityIndicator.startAnimating()
+        SVProgressHUD.show()
         signInButton.isEnabled = false
     }
     
     func hideProgress() {
-        activityIndicator.stopAnimating()
+        SVProgressHUD.dismiss()
         signInButton.isEnabled = true
     }
     /*

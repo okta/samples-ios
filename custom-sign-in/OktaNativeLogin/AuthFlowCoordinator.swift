@@ -40,14 +40,12 @@ class AuthFlowCoordinator {
     }
 
     func handleStatus(status: OktaAuthStatus) {
-        
         currentStatus = status
         
         switch status.statusType {
             
         case .success:
-            let successState: OktaAuthStatusSuccess = status as! OktaAuthStatusSuccess
-            handleSuccessStatus(status: successState)
+            handleSuccessStatus(status: status)
             
         case .passwordWarning:
             handlePasswordWarning(status: status)
@@ -64,31 +62,10 @@ class AuthFlowCoordinator {
             //self.handleActivateEnrollment(status: mfaEnrollActivate)
             
         case .MFARequired:
-            let mfaRequired: OktaAuthStatusFactorRequired = status as! OktaAuthStatusFactorRequired
-            //self.handleFactorRequired(factorRequiredStatus: mfaRequired)
+            self.handleFactorRequired(status: status)
             
         case .MFAChallenge:
-            let mfaChallenge: OktaAuthStatusFactorChallenge = status as! OktaAuthStatusFactorChallenge
-            let factor = mfaChallenge.factor
-            /*switch factor.type {
-             case .sms:
-             let smsFactor = factor as! OktaFactorSms
-             self.handleSmsChallenge(factor: smsFactor)
-             case .TOTP:
-             let totpFactor = factor as! OktaFactorTotp
-             self.handleTotpChallenge(factor: totpFactor)
-             case .question:
-             let questionFactor = factor as! OktaFactorQuestion
-             self.handleQuestionChallenge(factor: questionFactor)
-             case .push:
-             let pushFactor = factor as! OktaFactorPush
-             self.handlePushChallenge(factor: pushFactor)
-             default:
-             let alert = UIAlertController(title: "Error", message: "Recieved challenge for unsupported factor", preferredStyle: .alert)
-             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-             present(alert, animated: true, completion: nil)
-             self.cancelTransaction()
-             }*/
+            handleFactorChallenge(status: status)
             
         case .recovery,
              .recoveryChallenge,
@@ -108,7 +85,7 @@ class AuthFlowCoordinator {
         }
     }
 
-    func handleSuccessStatus(status: OktaAuthStatusSuccess) {
+    func handleSuccessStatus(status: OktaAuthStatus) {
         let userProfileViewController = AuthBaseViewController.instantiate(with: status,
                                                                            flowCoordinatorDelegate: self,
                                                                            storyBoardName: "UserProfile",
@@ -130,6 +107,57 @@ class AuthFlowCoordinator {
                                                                                   storyBoardName: "PasswordManagement",
                                                                                   viewControllerIdentifier: "PasswordManagement")
         rootViewController.pushViewController(passwordManagementViewController, animated: true)
+    }
+
+    func handleFactorRequired(status: OktaAuthStatus) {
+        let factorRequiredViewController = AuthBaseViewController.instantiate(with: status,
+                                                                              flowCoordinatorDelegate: self,
+                                                                              storyBoardName: "MFA",
+                                                                              viewControllerIdentifier: "MFAViewController")
+        rootViewController.pushViewController(factorRequiredViewController, animated: true)
+    }
+
+    func handleFactorChallenge(status: OktaAuthStatus) {
+        let factorChallenge: OktaAuthStatusFactorChallenge = status as! OktaAuthStatusFactorChallenge
+        handleChallengeForFactor(factor: factorChallenge.factor, status: status)
+    }
+
+    func handleChallengeForFactor(factor: OktaFactor, status: OktaAuthStatus) {
+        
+        var viewController: UIViewController?
+        
+        switch factor.type {
+        case .sms, .call:
+            viewController = AuthBaseViewController.instantiate(with: status,
+                                                                flowCoordinatorDelegate: self,
+                                                                storyBoardName: "MFASMS",
+                                                                viewControllerIdentifier: "MFASMSViewController")
+            
+        case .TOTP:
+            viewController = AuthBaseViewController.instantiate(with: status,
+                                                                flowCoordinatorDelegate: self,
+                                                                storyBoardName: "MFATOTP",
+                                                                viewControllerIdentifier: "MFATOTPViewController")
+            
+        case .question:
+            viewController = AuthBaseViewController.instantiate(with: status,
+                                                                flowCoordinatorDelegate: self,
+                                                                storyBoardName: "MFASecurityQuestion",
+                                                                viewControllerIdentifier: "MFASecurityQuestionViewController")
+            
+        case .push:
+            viewController = AuthBaseViewController.instantiate(with: status,
+                                                                flowCoordinatorDelegate: self,
+                                                                storyBoardName: "MFAPush",
+                                                                viewControllerIdentifier: "MFAPushViewController")
+            
+        default:
+            viewController = nil
+        }
+
+        if let viewController = viewController {
+            rootViewController.pushViewController(viewController, animated: true)
+        }
     }
 }
 

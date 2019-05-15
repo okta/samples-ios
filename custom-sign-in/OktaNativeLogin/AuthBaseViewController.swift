@@ -34,6 +34,10 @@ class AuthBaseViewController: UIViewController {
         return viewController
     }
 
+    override func viewDidLoad() {
+         self.navigationItem.setHidesBackButton(true, animated: false)
+    }
+
     func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

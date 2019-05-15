@@ -20,10 +20,8 @@ import OktaAuthSdk
 class PasswordManagementViewController: AuthBaseViewController {
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        self.navigationItem.setHidesBackButton(true, animated: false)
+
         skipButton.isHidden = true
 
         if let warningStatus = status as? OktaAuthStatusPasswordWarning {

@@ -345,6 +345,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OktaAuthSdk/OktaAuthSdk.framework",
 				"${BUILT_PRODUCTS_DIR}/OktaOidc/OktaOidc.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -352,6 +353,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthSdk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaOidc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
