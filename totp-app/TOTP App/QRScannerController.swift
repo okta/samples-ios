@@ -20,6 +20,11 @@ class QRScannerController: UIViewController {
     
     var completion: ((Token) -> Void)?
     
+    static func create() -> QRScannerController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRScannerController")
+            as! QRScannerController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

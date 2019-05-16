@@ -24,16 +24,6 @@ class ViewController: UIViewController {
         loadTokens()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        if segue.identifier == "presentQRScanner" {
-            let controller = segue.destination as? QRScannerController
-            controller?.completion = { token in
-                self.addToken(token)
-            }
-        }
-    }
-    
     // MARK: - Tokens
     
     private func loadTokens() {
@@ -63,6 +53,36 @@ class ViewController: UIViewController {
         } catch {
             print("Failed to remove token: \(error)")
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func add() {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let scanAction = UIAlertAction(title: "Scan QR Code", style: .default) { _ in
+            self.presentQRScannerController()
+        }
+        controller.addAction(scanAction)
+        
+        let manualAction = UIAlertAction(title: "Input Manually", style: .default) { _ in
+            self.presentManualInputController()
+        }
+        controller.addAction(manualAction)
+        
+        present(controller, animated: true)
+    }
+    
+    private func presentQRScannerController() {
+        let controller = QRScannerController.create()
+        controller.completion = addToken(_:)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func presentManualInputController() {
+        let controller = ManualCodeEntryController.create()
+        controller.completion = addToken(_:)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

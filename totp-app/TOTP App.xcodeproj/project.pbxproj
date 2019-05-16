@@ -14,6 +14,7 @@
 		2F09E909228981D800018D75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F09E907228981D800018D75 /* LaunchScreen.storyboard */; };
 		2F09E9112289A4CC00018D75 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F09E9102289A4CC00018D75 /* QRScannerController.swift */; };
 		2F09E913228C68AC00018D75 /* TokenCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F09E912228C68AC00018D75 /* TokenCellView.swift */; };
+		2F09E915228D8F9600018D75 /* ManualCodeEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F09E914228D8F9600018D75 /* ManualCodeEntryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2F09E90A228981D800018D75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F09E9102289A4CC00018D75 /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		2F09E912228C68AC00018D75 /* TokenCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCellView.swift; sourceTree = "<group>"; };
+		2F09E914228D8F9600018D75 /* ManualCodeEntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCodeEntryController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				2F09E8FE228981D700018D75 /* AppDelegate.swift */,
 				2F09E900228981D700018D75 /* ViewController.swift */,
 				2F09E9102289A4CC00018D75 /* QRScannerController.swift */,
+				2F09E914228D8F9600018D75 /* ManualCodeEntryController.swift */,
 				2F09E912228C68AC00018D75 /* TokenCellView.swift */,
 				2F09E902228981D700018D75 /* Main.storyboard */,
 				2F09E905228981D800018D75 /* Assets.xcassets */,
@@ -152,6 +155,7 @@
 				2F09E901228981D700018D75 /* ViewController.swift in Sources */,
 				2F09E8FF228981D700018D75 /* AppDelegate.swift in Sources */,
 				2F09E913228C68AC00018D75 /* TokenCellView.swift in Sources */,
+				2F09E915228D8F9600018D75 /* ManualCodeEntryController.swift in Sources */,
 				2F09E9112289A4CC00018D75 /* QRScannerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
