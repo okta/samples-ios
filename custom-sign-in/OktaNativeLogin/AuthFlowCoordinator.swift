@@ -43,34 +43,34 @@ class AuthFlowCoordinator {
         
         switch status.statusType {
             
-        case .success:
-            handleSuccessStatus(status: status)
+            case .success:
+                handleSuccessStatus(status: status)
             
-        case .passwordWarning:
-            handlePasswordWarning(status: status)
+            case .passwordWarning:
+                handlePasswordWarning(status: status)
             
-        case .passwordExpired:
-            handlePasswordExpired(status: status)
+            case .passwordExpired:
+                handlePasswordExpired(status: status)
 
-        case .MFARequired:
-            self.handleFactorRequired(status: status)
+            case .MFARequired:
+                self.handleFactorRequired(status: status)
             
-        case .MFAChallenge:
-            handleFactorChallenge(status: status)
+            case .MFAChallenge:
+                handleFactorChallenge(status: status)
             
-        case .MFAEnroll,
-             .MFAEnrollActivate,
-             .recovery,
-             .recoveryChallenge,
-             .passwordReset,
-             .lockedOut,
-             .unauthenticated:
-            let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
-            authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
+            case .MFAEnroll,
+                 .MFAEnrollActivate,
+                 .recovery,
+                 .recoveryChallenge,
+                 .passwordReset,
+                 .lockedOut,
+                 .unauthenticated:
+                let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+                authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
             
-        case .unknown(_):
-            let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
-            authBaseViewController.showError(message: "Recieved unknown status")
+            case .unknown(_):
+                let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+                authBaseViewController.showError(message: "Recieved unknown status")
         }
     }
 
@@ -158,9 +158,5 @@ extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
     
     func onCancel() {
         rootViewController.popToRootViewController(animated: true)
-    }
-    
-    func onPrevious() {
-        
     }
 }

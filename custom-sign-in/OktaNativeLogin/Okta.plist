@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>scopes</key>
-	<string>openid offline_access</string>
+	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>com.okta.example:/callback</string>
+	<string>{callbackUriScheme}:/callback</string>
 	<key>clientId</key>
-	<string>0oa2p7eq7uDmZY4sJ0g7</string>
+	<string>{clientId}</string>
 	<key>issuer</key>
-	<string>https://sdk-test-admin.trexcloud.com/oauth2/default</string>
+	<string>{issuer}</string>
 </dict>
 </plist>

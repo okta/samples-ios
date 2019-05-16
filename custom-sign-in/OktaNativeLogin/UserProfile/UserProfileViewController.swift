@@ -33,7 +33,7 @@ class UserProfileViewController: AuthBaseViewController {
         localeLabel.text = successStatus?.model.embedded?.user?.profile?.locale
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             SVProgressHUD.show(withStatus: "Asking OIDC client for access token...")
-            if let oidcClient = try? OktaOidc() {
+            if let oidcClient = self.createOidcClient() {
                 oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { stateManager, error in
                     SVProgressHUD.dismiss()
                     if let _ = stateManager?.accessToken {
@@ -51,20 +51,23 @@ class UserProfileViewController: AuthBaseViewController {
             }
         }
     }
+    
+    func createOidcClient() -> OktaOidc? {
+        var oidcClient: OktaOidc?
+        if let config = self.readTestConfig() {
+            oidcClient = try? OktaOidc(configuration: config)
+        } else {
+            oidcClient = try? OktaOidc()
+        }
+
+        return oidcClient
+    }
 
     // MARK: - IB
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var timezoneLabel: UILabel!
-    @IBOutlet weak var localeLabel: UILabel!
-    @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var accessTokenLabel: UILabel!
-    @IBOutlet weak var refreshTokenLabel: UILabel!
-    
+
     @IBAction private func logoutTapped() {
         if let oidcStateManager = self.oidcStateManager {
-            let oidcClient = try? OktaOidc()
+            let oidcClient = self.createOidcClient()
             oidcClient?.signOutOfOkta(oidcStateManager, from: self, callback: { error in
                 if let error = error {
                     self.showError(message: error.localizedDescription)
@@ -73,5 +76,41 @@ class UserProfileViewController: AuthBaseViewController {
                 }
             })
         }
+    }
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var timezoneLabel: UILabel!
+    @IBOutlet weak var localeLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var accessTokenLabel: UILabel!
+    @IBOutlet weak var refreshTokenLabel: UILabel!
+}
+
+private extension UserProfileViewController {
+    func readTestConfig() -> OktaOidcConfig? {
+        guard let _ = ProcessInfo.processInfo.environment["OKTA_URL"],
+              let testConfig = configForUITests else {
+                return nil
+                
+        }
+
+        return try? OktaOidcConfig(with: testConfig)
+    }
+    
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"],
+              let clientID = env["CLIENT_ID"],
+              let redirectURI = env["REDIRECT_URI"],
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+                return nil
+        }
+        return ["issuer": "\(oktaURL)/oauth2/default",
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
+        ]
     }
 }
