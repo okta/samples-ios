@@ -5,12 +5,12 @@
 	<key>scopes</key>
 	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>{redirectUri}</string>
+	<string>com.ios-okta-sdk-redirect-test-app:/callback</string>
 	<key>clientId</key>
-	<string>{clientId}</string>
+	<string>0oahng9nv4VQeNpvn0h7</string>
 	<key>issuer</key>
-	<string>{issuer}</string>
+	<string>https://lohika-um-admin.oktapreview.com/oauth2/default</string>
 	<key>logoutRedirectUri</key>
-	<string>{logoutRedirectUri}</string>
+	<string>com.ios-okta-sdk-redirect-test-app:/logout</string>
 </dict>
 </plist>
