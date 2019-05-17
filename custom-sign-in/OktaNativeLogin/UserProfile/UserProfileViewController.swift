@@ -32,23 +32,22 @@ class UserProfileViewController: AuthBaseViewController {
         timezoneLabel.text = successStatus?.model.embedded?.user?.profile?.timeZone
         localeLabel.text = successStatus?.model.embedded?.user?.profile?.locale
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            SVProgressHUD.show(withStatus: "Asking OIDC client for access token...")
-            if let oidcClient = self.createOidcClient() {
-                oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { stateManager, error in
-                    SVProgressHUD.dismiss()
-                    if let _ = stateManager?.accessToken {
-                        self.accessTokenLabel.text = "YES"
-                        self.accessTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
-                    }
-                    if let _ = stateManager?.refreshToken {
-                        self.refreshTokenLabel.text = "YES"
-                        self.refreshTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
-                    }
-                    self.oidcStateManager = stateManager
-                })
-            } else {
-                SVProgressHUD.dismiss()
+            guard let oidcClient = self.createOidcClient() else {
+                return
             }
+            SVProgressHUD.show(withStatus: "Asking OIDC client for access token...")
+            oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { stateManager, error in
+                SVProgressHUD.dismiss()
+                if let _ = stateManager?.accessToken {
+                    self.accessTokenLabel.text = "YES"
+                    self.accessTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+                }
+                if let _ = stateManager?.refreshToken {
+                    self.refreshTokenLabel.text = "YES"
+                    self.refreshTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+                }
+                self.oidcStateManager = stateManager
+            })
         }
     }
     
