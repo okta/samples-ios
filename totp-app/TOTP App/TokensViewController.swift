@@ -13,7 +13,7 @@
 import UIKit
 import OneTimePassword
 
-class ViewController: UIViewController {
+class TokensViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension TokensViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return persistentTokens.count
     }
@@ -98,7 +98,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension TokensViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

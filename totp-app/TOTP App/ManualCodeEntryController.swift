@@ -27,8 +27,8 @@ class ManualCodeEntryController: UIViewController {
             as! ManualCodeEntryController
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.viewDidAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(create))
         navigationItem.setRightBarButton(item, animated: false)

@@ -29,7 +29,7 @@
         <!--TOTP Generator-->
         <scene sceneID="wX5-fG-fZ4">
             <objects>
-                <viewController id="jE7-9s-pPU" customClass="ViewController" customModule="TOTP_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jE7-9s-pPU" customClass="TokensViewController" customModule="TOTP_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4MW-To-U0n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,6 +99,7 @@
                         <viewLayoutGuide key="safeArea" id="e4z-ix-Jdi"/>
                     </view>
                     <navigationItem key="navigationItem" title="TOTP Generator" id="9la-vC-vH2">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="z0u-CV-7eS"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="Sq1-RG-r5t">
                             <connections>
                                 <action selector="add" destination="jE7-9s-pPU" id="Akd-Pf-Rll"/>

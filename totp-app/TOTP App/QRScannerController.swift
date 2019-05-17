@@ -44,6 +44,7 @@ class QRScannerController: UIViewController {
         )
         
         guard let captureDevice = session.devices.first else {
+            presentAlert("Unable to find capture device!")
             return
         }
         
@@ -51,7 +52,7 @@ class QRScannerController: UIViewController {
             let input = try AVCaptureDeviceInput(device: captureDevice)
             captureSession.addInput(input)
         } catch {
-            print(error)
+            presentAlert(error.localizedDescription)
             return
         }
     }
@@ -69,6 +70,12 @@ class QRScannerController: UIViewController {
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
+    }
+    
+    private func presentAlert(_ message: String) {
+        let controller = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "OK", style: .default))
+        present(controller, animated: true)
     }
 }
 
