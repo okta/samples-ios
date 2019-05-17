@@ -1,60 +1,62 @@
-//
-//  MFATOTPViewController.swift
-//  OktaNativeLogin
-//
-//  Created by Anastasia Yurok on 2/15/19.
-//  Copyright © 2019 Okta. All rights reserved.
-//
+/*
+ * Copyright 2019 Okta, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
-class MFATOTPViewController: UIViewController {
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var codeField: UITextField!
-    
-    private var factor: EmbeddedResponse.Factor? {
-        didSet {
-            configure()
-        }
-    }
-    
-    private var activateHandler: (() -> Void)?
-    private var onVerify: ((String) -> Void)?
-    
-    static func create(with factor: EmbeddedResponse.Factor,
-                       activationHandler: @escaping (() -> Void)) -> MFATOTPViewController {
-        let controller = UIStoryboard(name: "MFATOTP", bundle: nil)
-            .instantiateViewController(withIdentifier: "MFATOTPViewController")
-            as! MFATOTPViewController
-        
-        controller.factor = factor
-        controller.activateHandler = activationHandler
-        
-        return controller
-    }
-    
+class MFATOTPViewController: AuthBaseViewController {
+
+    lazy var factor: OktaFactor = {
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        return mfaChallengeStatus.factor
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        titleLabel.text = factor.factor.vendorName ?? "Unknown Vendor"
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        verifyButton.isHidden = !mfaChallengeStatus.canVerify()
+        cancelButton.isHidden = !mfaChallengeStatus.canCancel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        activateHandler?()
+    @IBAction func verifyButtonTapped() {
+        guard let code = codeTextField.text, !code.isEmpty else { return }
+        SVProgressHUD.show()
+        factor.verify(passCode: code,
+                      answerToSecurityQuestion: nil,
+                      onStatusChange:
+            { status in
+                SVProgressHUD.dismiss()
+                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        },
+                      onError:
+            { error in
+                SVProgressHUD.dismiss()
+                self.showError(message: error.description)
+        })
     }
     
-    func requestTOTP(callback: @escaping ((String) -> Void)) {
-        onVerify = callback
+    @IBAction func cancelButtonTapped() {
+        self.processCancel()
     }
-    
-    @IBAction func verifyTapped() {
-        guard let code = codeField.text else { return }
-        onVerify?(code)
-    }
-    
-    private func configure() {
-        guard isViewLoaded else { return }
-        titleLabel.text = factor?.vendorName ?? "Unknown Vendor"
-    }
+
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var codeTextField: UITextField!
+    @IBOutlet private var verifyButton: UIButton!
+    @IBOutlet private var cancelButton: UIButton!
+    @IBOutlet private var buttonsStack: UIStackView!
 }

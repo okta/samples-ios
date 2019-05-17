@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SMS Authentication-->
+        <!--Verify SMS/CALL factor-->
         <scene sceneID="7vn-l9-11n">
             <objects>
                 <viewController storyboardIdentifier="MFASMSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="quk-M6-l97" customClass="MFASMSViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,84 +18,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfV-eb-AIw">
-                                <rect key="frame" x="109" y="143.5" width="157" height="46"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="Uby-0N-crZ"/>
-                                    <constraint firstAttribute="height" constant="46" id="iXj-j8-iWa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Send Code"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="sendSMSTapped" destination="quk-M6-l97" eventType="touchUpInside" id="vgV-PK-bgj"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="h6A-0N-EBo">
+                                <rect key="frame" x="109" y="178.5" width="157" height="156"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZQ-6T-3cm">
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="CVl-rA-EL8"/>
+                                            <constraint firstAttribute="height" constant="46" id="qay-jE-SVn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Verify"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="verifyButtonTapped" destination="quk-M6-l97" eventType="touchUpInside" id="ldD-iP-uHM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfV-eb-AIw">
+                                        <rect key="frame" x="0.0" y="55" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="Uby-0N-crZ"/>
+                                            <constraint firstAttribute="height" constant="46" id="iXj-j8-iWa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Resend"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="resendButtonTapped" destination="quk-M6-l97" eventType="touchUpInside" id="piY-o9-rJU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb7-2F-gxH">
+                                        <rect key="frame" x="0.0" y="110" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="Cal-8f-atC"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="OKT-Qt-FrB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonTapped" destination="quk-M6-l97" eventType="touchUpInside" id="Ha2-Di-QIb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPk-H5-N7J">
-                                <rect key="frame" x="132.5" y="104" width="110.5" height="19.5"/>
+                                <rect key="frame" x="132.5" y="84" width="110.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AI2-ub-X8T">
+                                <rect key="frame" x="81" y="124" width="20" height="20"/>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K8X-rc-fG3">
-                                <rect key="frame" x="109" y="229.5" width="157" height="46"/>
+                                <rect key="frame" x="109" y="109.5" width="157" height="46"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="2i3-kT-CWw"/>
-                                    <constraint firstAttribute="width" constant="157" id="grN-Wo-y7h"/>
+                                    <constraint firstAttribute="height" constant="46" id="nbS-3w-ii7"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZQ-6T-3cm">
-                                <rect key="frame" x="109" y="295.5" width="157" height="46"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="CVl-rA-EL8"/>
-                                    <constraint firstAttribute="height" constant="46" id="qay-jE-SVn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Verify"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="verifyButtonTapped" destination="quk-M6-l97" eventType="touchUpInside" id="ldD-iP-uHM"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AI2-ub-X8T">
-                                <rect key="frame" x="81" y="308.5" width="20" height="20"/>
-                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FfV-eb-AIw" firstAttribute="top" secondItem="qPk-H5-N7J" secondAttribute="bottom" constant="20" id="QdW-q4-eeV"/>
-                            <constraint firstItem="5ZQ-6T-3cm" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="RIc-wu-rsT"/>
-                            <constraint firstItem="K8X-rc-fG3" firstAttribute="top" secondItem="FfV-eb-AIw" secondAttribute="bottom" constant="40" id="VDB-sM-xfy"/>
-                            <constraint firstItem="5ZQ-6T-3cm" firstAttribute="top" secondItem="K8X-rc-fG3" secondAttribute="bottom" constant="20" id="Wkh-fH-ggf"/>
-                            <constraint firstItem="qPk-H5-N7J" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="40" id="bZt-dF-Ta3"/>
-                            <constraint firstItem="5ZQ-6T-3cm" firstAttribute="leading" secondItem="AI2-ub-X8T" secondAttribute="trailing" constant="8" id="pdr-Uo-XJq"/>
+                            <constraint firstItem="AI2-ub-X8T" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="60" id="3z1-U1-cLU"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="trailing" secondItem="h6A-0N-EBo" secondAttribute="trailing" id="M0E-T1-c7w"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="top" secondItem="qPk-H5-N7J" secondAttribute="bottom" constant="6" id="Oeq-y0-ZfU"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="leading" secondItem="AI2-ub-X8T" secondAttribute="trailing" constant="8" symbolic="YES" id="TEO-2m-pf6"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="leading" secondItem="h6A-0N-EBo" secondAttribute="leading" id="UNs-5L-5bN"/>
+                            <constraint firstItem="qPk-H5-N7J" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="20" id="bZt-dF-Ta3"/>
+                            <constraint firstItem="h6A-0N-EBo" firstAttribute="top" secondItem="K8X-rc-fG3" secondAttribute="bottom" constant="23" id="emU-36-b2P"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="iad-UA-fHm"/>
                             <constraint firstItem="qPk-H5-N7J" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="q1J-lu-uDv"/>
-                            <constraint firstItem="K8X-rc-fG3" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="vJk-OO-WmB"/>
-                            <constraint firstItem="AI2-ub-X8T" firstAttribute="centerY" secondItem="5ZQ-6T-3cm" secondAttribute="centerY" id="vuV-QE-fZE"/>
-                            <constraint firstItem="FfV-eb-AIw" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="zbB-po-WMT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LM8-ck-o3l"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SMS Authentication" id="e7Y-Xq-VR6"/>
+                    <navigationItem key="navigationItem" title="Verify SMS/CALL factor" id="e7Y-Xq-VR6"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="activityIndicator" destination="AI2-ub-X8T" id="MMB-gR-KJb"/>
+                        <outlet property="buttonsStack" destination="h6A-0N-EBo" id="ZuN-bN-h2t"/>
+                        <outlet property="cancelButton" destination="qb7-2F-gxH" id="oeT-aK-knB"/>
                         <outlet property="codeTextField" destination="K8X-rc-fG3" id="AUB-Cg-rmA"/>
                         <outlet property="phoneNumberLabel" destination="qPk-H5-N7J" id="6ty-TF-SRw"/>
+                        <outlet property="resendButton" destination="FfV-eb-AIw" id="SGD-rt-rH6"/>
+                        <outlet property="verifyButton" destination="5ZQ-6T-3cm" id="FYl-bj-lAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhX-WL-QUk" userLabel="First Responder" sceneMemberID="firstResponder"/>

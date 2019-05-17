@@ -1,86 +1,82 @@
-//
-//  MFASMSViewController.swift
-//  OktaNativeLogin
-//
-//  Created by Anastasia Yurok on 2/14/19.
-//  Copyright © 2019 Okta. All rights reserved.
-//
+/*
+ * Copyright 2019 Okta, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import UIKit
 import OktaAuthSdk
+import SVProgressHUD
 
-class MFASMSViewController: UIViewController {
-    @IBOutlet private var phoneNumberLabel: UILabel!
-    @IBOutlet private var codeTextField: UITextField!
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
-    private var onSendTapped: (() -> Void)?
-    private var onResendTapped: (() -> Void)?
+class MFASMSViewController: AuthBaseViewController {
 
-    private var factor: EmbeddedResponse.Factor? {
-        didSet {
-            configure()
-        }
-    }
-    
-    private var onVerify: ((String) -> Void)?
-    
-    private var isSentTapped: Bool = false
-    
-    static func create(with factor: EmbeddedResponse.Factor,
-                       sendSMSHandler: @escaping (() -> Void),
-                       resendSMSHandler: @escaping (() -> Void)) -> MFASMSViewController {
-        let controller = UIStoryboard(name: "MFASMS", bundle: nil)
-            .instantiateViewController(withIdentifier: "MFASMSViewController")
-            as! MFASMSViewController
-        
-        controller.onSendTapped = sendSMSHandler
-        controller.onResendTapped = resendSMSHandler
-        controller.factor = factor
-        
-        return controller
-    }
-    
+    lazy var factor: OktaFactor = {
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        return mfaChallengeStatus.factor
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        activityIndicator.stopAnimating()
-        isSentTapped = false
-    }
-    
-    func verifySMS(completion: @escaping (String) -> Void) {
-        activityIndicator.stopAnimating()
-        onVerify = completion
-    }
-    
-    @IBAction func sendSMSTapped() {
-        if isSentTapped {
-            onResendTapped?()
-        } else {
-            isSentTapped = true
-            onSendTapped?()
-        }
-
-        activityIndicator.startAnimating()
-    }
-    
-    @IBAction func verifyButtonTapped() {
-        guard let code = codeTextField.text else { return }
-        onVerify?(code)
-    }
-    
-    private func configure() {
-        guard isViewLoaded else { return }
-        
-        if let phoneNumber = factor?.profile?.phoneNumber {
+        if let phoneNumber = factor.factor.profile?.phoneNumber {
             phoneNumberLabel.isHidden = false
             phoneNumberLabel.text = phoneNumber
         } else {
             phoneNumberLabel.isHidden = true
         }
+
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        resendButton.isHidden = !mfaChallengeStatus.canResend()
+        verifyButton.isHidden = !mfaChallengeStatus.canVerify()
+        cancelButton.isHidden = !mfaChallengeStatus.canCancel()
     }
+
+    @IBAction func resendButtonTapped() {
+        SVProgressHUD.show(withStatus: "Resend factor...")
+        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
+        mfaChallengeStatus.resendFactor(onStatusChange: { status in
+            SVProgressHUD.dismiss()
+        }) { error in
+            SVProgressHUD.dismiss()
+            self.showError(message: error.description)
+        }
+    }
+    
+    @IBAction func verifyButtonTapped() {
+        guard let code = codeTextField.text else { return }
+        SVProgressHUD.show()
+        factor.verify(passCode: code,
+                      answerToSecurityQuestion: nil,
+                      onStatusChange:
+            { status in
+                SVProgressHUD.dismiss()
+                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            },
+                      onError:
+            { error in
+                SVProgressHUD.dismiss()
+                self.showError(message: error.description)
+        })
+    }
+
+    @IBAction func cancelButtonTapped() {
+        self.processCancel()
+    }
+
+    @IBOutlet private var phoneNumberLabel: UILabel!
+    @IBOutlet private var codeTextField: UITextField!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private var verifyButton: UIButton!
+    @IBOutlet private var resendButton: UIButton!
+    @IBOutlet private var cancelButton: UIButton!
+    @IBOutlet private var buttonsStack: UIStackView!
 }

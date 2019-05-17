@@ -24,6 +24,13 @@ class OktaNativeLoginUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchEnvironment = ProcessInfo.processInfo.environment
         app.launch()
+        addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
+            let continueButton = alert.buttons["Continue"]
+            if continueButton.exists {
+                continueButton.tap()
+            }
+            return true
+        }
     }
 
     override func tearDown() {
@@ -47,10 +54,13 @@ class OktaNativeLoginUITests: XCTestCase {
         app.buttons["Sign In"].tap()
         
         XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.staticTexts["YES"].waitForExistence(timeout: 30))
         
-        app.buttons["Sign Out"].tap()
-        
-        XCTAssertTrue(app.buttons["Sign In"].waitForExistence(timeout: 30))
+        if #available(iOS 11.0, *) {
+            app.buttons["Sign Out"].tap()
+            app.tap()
+            XCTAssertTrue(app.buttons["Sign In"].waitForExistence(timeout: 30))
+        }
     }
     
     func testLoginFailure() {

@@ -12,19 +12,33 @@
 		2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358E220486A800B47967 /* MFAPush.storyboard */; };
 		2F743591220486E000B47967 /* MFAPushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F743590220486E000B47967 /* MFAPushViewController.swift */; };
 		2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */; };
-		2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */; };
-		2FA4566321F740D0000ACBE2 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */; };
 		2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34182215DF630098AB63 /* MFASMSViewController.swift */; };
 		2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */; };
 		2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */; };
 		2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF34222216CC170098AB63 /* MFATOTP.storyboard */; };
 		2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */; };
 		2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */; };
-		C284DADCAB8CDB0543ABD831 /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F450962097D7F9F55DE11BD /* Pods_OktaNativeLogin.framework */; };
+		A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
+		A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
+		A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
+		A14269EC2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
+		A14269EE228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */; };
+		A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */; };
+		A14269F2228A162500DC8973 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269F0228A162500DC8973 /* Main.storyboard */; };
+		A14269F5228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */; };
+		A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */; };
+		A14269F8228A199E00DC8973 /* PasswordManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */; };
+		A14269F9228A199E00DC8973 /* PasswordManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */; };
+		A14269FB228A35D000DC8973 /* AuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */; };
+		A14269FC228A35D000DC8973 /* AuthBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */; };
+		A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */; };
+		A1A92851228CD8D600AC8987 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A92850228CD8D600AC8987 /* UserProfile.storyboard */; };
+		A1A92852228CD8D600AC8987 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A92850228CD8D600AC8987 /* UserProfile.storyboard */; };
+		A1E746A42289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */; };
+		A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */; };
 		F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = F57B5ED821ECCD0700895A26 /* Okta.plist */; };
 		F5F039C822368B5800BEE7D4 /* OktaNativeLoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F039C722368B5800BEE7D4 /* OktaNativeLoginUITests.swift */; };
 		FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549821E5FB2C00B89097 /* AppDelegate.swift */; };
-		FAE1549E21E5FB2C00B89097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE1549C21E5FB2C00B89097 /* Main.storyboard */; };
 		FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE1549F21E5FB2D00B89097 /* Assets.xcassets */; };
 		FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -45,27 +59,30 @@
 		2F74358E220486A800B47967 /* MFAPush.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFAPush.storyboard; sourceTree = "<group>"; };
 		2F743590220486E000B47967 /* MFAPushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAPushViewController.swift; sourceTree = "<group>"; };
 		2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		2FFF34182215DF630098AB63 /* MFASMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFASMSViewController.swift; sourceTree = "<group>"; };
 		2FFF341A2215DF7C0098AB63 /* MFASMS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFASMS.storyboard; sourceTree = "<group>"; };
 		2FFF34202216CC020098AB63 /* MFATOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFATOTPViewController.swift; sourceTree = "<group>"; };
 		2FFF34222216CC170098AB63 /* MFATOTP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFATOTP.storyboard; sourceTree = "<group>"; };
 		2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFASecurityQuestion.storyboard; sourceTree = "<group>"; };
 		2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFASecurityQuestionViewController.swift; sourceTree = "<group>"; };
-		6F450962097D7F9F55DE11BD /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC364BFFA96D49C115BBA876 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
+		A14269E72289EEA600DC8973 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		A14269F1228A162500DC8973 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManagementViewController.swift; sourceTree = "<group>"; };
+		A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordManagement.storyboard; sourceTree = "<group>"; };
+		A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBaseViewController.swift; sourceTree = "<group>"; };
+		A1A92850228CD8D600AC8987 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinator.swift; sourceTree = "<group>"; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		F5F039C522368B5700BEE7D4 /* OktaNativeLoginUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaNativeLoginUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F039C722368B5800BEE7D4 /* OktaNativeLoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaNativeLoginUITests.swift; sourceTree = "<group>"; };
 		F5F039C922368B5800BEE7D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAE1549521E5FB2C00B89097 /* OktaNativeLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaNativeLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE1549821E5FB2C00B89097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAE1549D21E5FB2C00B89097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE1549F21E5FB2D00B89097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE154A221E5FB2D00B89097 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAE154A421E5FB2D00B89097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF9F8C3C6EE0FDE04A33D954 /* Pods-OktaNativeLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C284DADCAB8CDB0543ABD831 /* Pods_OktaNativeLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,18 +123,35 @@
 		6E3CAF0A7784EF15C75860B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FF9F8C3C6EE0FDE04A33D954 /* Pods-OktaNativeLogin.debug.xcconfig */,
-				AC364BFFA96D49C115BBA876 /* Pods-OktaNativeLogin.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		D1D6F4D61172BA8D647311BE /* Frameworks */ = {
+		A14269F3228A17ED00DC8973 /* PasswordManagement */ = {
 			isa = PBXGroup;
 			children = (
-				6F450962097D7F9F55DE11BD /* Pods_OktaNativeLogin.framework */,
+				A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */,
+				A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */,
 			);
-			name = Frameworks;
+			path = PasswordManagement;
+			sourceTree = "<group>";
+		};
+		A1A9284A228CB2FD00AC8987 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */,
+				A14269E72289EEA600DC8973 /* SignIn.storyboard */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		A1A9284C228CB32C00AC8987 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A1A92850228CD8D600AC8987 /* UserProfile.storyboard */,
+				A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		F5F039C622368B5800BEE7D4 /* OktaNativeLoginUITests */ = {
@@ -137,7 +170,6 @@
 				F5F039C622368B5800BEE7D4 /* OktaNativeLoginUITests */,
 				FAE1549621E5FB2C00B89097 /* Products */,
 				6E3CAF0A7784EF15C75860B5 /* Pods */,
-				D1D6F4D61172BA8D647311BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,12 +186,15 @@
 			isa = PBXGroup;
 			children = (
 				FAE1549821E5FB2C00B89097 /* AppDelegate.swift */,
-				2F9B84A821EFA30C003E6F17 /* SignInViewController.swift */,
-				2FA4563C21F0BB0B000ACBE2 /* UserProfileViewController.swift */,
-				2FA4566221F740D0000ACBE2 /* PasswordResetViewController.swift */,
+				A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */,
+				A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */,
+				A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */,
+				A1A9284C228CB32C00AC8987 /* UserProfile */,
+				A1A9284A228CB2FD00AC8987 /* SignIn */,
+				A14269F3228A17ED00DC8973 /* PasswordManagement */,
 				2F7435892204789300B47967 /* MFA */,
-				FAE1549C21E5FB2C00B89097 /* Main.storyboard */,
 				FAE1549F21E5FB2D00B89097 /* Assets.xcassets */,
+				A14269F0228A162500DC8973 /* Main.storyboard */,
 				FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */,
 				F57B5ED821ECCD0700895A26 /* Okta.plist */,
 				FAE154A421E5FB2D00B89097 /* Info.plist */,
@@ -192,11 +227,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE154A721E5FB2D00B89097 /* Build configuration list for PBXNativeTarget "OktaNativeLogin" */;
 			buildPhases = (
-				4427369E5EBFD8CB28004E8D /* [CP] Check Pods Manifest.lock */,
 				FAE1549121E5FB2C00B89097 /* Sources */,
 				FAE1549221E5FB2C00B89097 /* Frameworks */,
 				FAE1549321E5FB2C00B89097 /* Resources */,
-				DF9DC3B490A2762929E702B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +283,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A92852228CD8D600AC8987 /* UserProfile.storyboard in Resources */,
+				A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */,
+				A14269F9228A199E00DC8973 /* PasswordManagement.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,10 +296,13 @@
 				2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */,
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
+				A14269F8228A199E00DC8973 /* PasswordManagement.storyboard in Resources */,
 				2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */,
+				A14269F2228A162500DC8973 /* Main.storyboard in Resources */,
 				FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */,
-				FAE1549E21E5FB2C00B89097 /* Main.storyboard in Resources */,
+				A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */,
 				2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */,
+				A1A92851228CD8D600AC8987 /* UserProfile.storyboard in Resources */,
 				2FFF341B2215DF7C0098AB63 /* MFASMS.storyboard in Resources */,
 				F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */,
 			);
@@ -271,61 +310,18 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4427369E5EBFD8CB28004E8D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OktaNativeLogin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF9DC3B490A2762929E702B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OktaAuthSdk/OktaAuthSdk.framework",
-				"${BUILT_PRODUCTS_DIR}/OktaOidc/OktaOidc.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthSdk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaOidc.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F5F039C122368B5700BEE7D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
+				A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
+				A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
+				A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
+				A14269EC2289EEE100DC8973 /* UserProfileViewController.swift in Sources */,
 				F5F039C822368B5800BEE7D4 /* OktaNativeLoginUITests.swift in Sources */,
+				A14269FC228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,15 +329,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14269F5228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				2F74358D220478B000B47967 /* MFAViewController.swift in Sources */,
+				A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */,
 				2F743591220486E000B47967 /* MFAPushViewController.swift in Sources */,
 				2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */,
+				A14269FB228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
 				2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */,
+				A1E746A42289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
 				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
-				2FA4566321F740D0000ACBE2 /* PasswordResetViewController.swift in Sources */,
-				2FA4563D21F0BB0B000ACBE2 /* UserProfileViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */,
 				FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */,
+				A14269EE228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,10 +355,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FAE1549C21E5FB2C00B89097 /* Main.storyboard */ = {
+		A14269F0228A162500DC8973 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FAE1549D21E5FB2C00B89097 /* Base */,
+				A14269F1228A162500DC8973 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -531,11 +530,10 @@
 		};
 		FAE154A821E5FB2D00B89097 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF9F8C3C6EE0FDE04A33D954 /* Pods-OktaNativeLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JTATZGJR5N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -551,11 +549,10 @@
 		};
 		FAE154A921E5FB2D00B89097 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC364BFFA96D49C115BBA876 /* Pods-OktaNativeLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JTATZGJR5N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaNativeLogin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

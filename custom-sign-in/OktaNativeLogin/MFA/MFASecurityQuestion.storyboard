@@ -28,40 +28,64 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Alk-rD-xkz">
-                                <rect key="frame" x="109" y="209.5" width="157" height="46"/>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="8Gg-nJ-BEd"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="VBZ-V5-MhD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Verify"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="verifyTapped" destination="dGY-Zo-nXM" eventType="touchUpInside" id="IWa-nE-89U"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9L-Uv-yIS">
                                 <rect key="frame" x="153.5" y="104" width="68.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="k8c-Ia-pj3">
+                                <rect key="frame" x="109" y="223.5" width="157" height="101"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-E8-aQe">
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="BWC-9w-M1k"/>
+                                            <constraint firstAttribute="height" constant="46" id="NXm-Eh-Gh8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Verify"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="verifyButtonTapped" destination="dGY-Zo-nXM" eventType="touchUpInside" id="CKr-gn-P1w"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Px-eT-P88">
+                                        <rect key="frame" x="0.0" y="55" width="157" height="46"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="GoG-t6-DfV"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="idK-b5-D4j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonTapped" destination="dGY-Zo-nXM" eventType="touchUpInside" id="F2A-hG-Urc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="viB-Sb-5Na" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="5Nl-id-6II"/>
-                            <constraint firstItem="Alk-rD-xkz" firstAttribute="top" secondItem="viB-Sb-5Na" secondAttribute="bottom" constant="20" id="8sM-fX-gmH"/>
+                            <constraint firstItem="k8c-Ia-pj3" firstAttribute="leading" secondItem="viB-Sb-5Na" secondAttribute="leading" id="0hc-b3-8I0"/>
+                            <constraint firstItem="viB-Sb-5Na" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="9OB-SX-q7E"/>
                             <constraint firstItem="V9L-Uv-yIS" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="C4T-JK-xAv"/>
-                            <constraint firstItem="Alk-rD-xkz" firstAttribute="centerX" secondItem="ujy-1H-G1N" secondAttribute="centerX" id="FUS-Aa-Kuy"/>
                             <constraint firstItem="V9L-Uv-yIS" firstAttribute="top" secondItem="ZFT-XW-bvI" secondAttribute="top" constant="40" id="K5S-qU-m26"/>
                             <constraint firstItem="ZFT-XW-bvI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V9L-Uv-yIS" secondAttribute="trailing" constant="40" id="Taf-WR-ZgL"/>
                             <constraint firstItem="viB-Sb-5Na" firstAttribute="top" secondItem="V9L-Uv-yIS" secondAttribute="bottom" constant="20" id="g7U-vb-CyW"/>
+                            <constraint firstItem="k8c-Ia-pj3" firstAttribute="firstBaseline" secondItem="viB-Sb-5Na" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="liT-lr-mRj"/>
+                            <constraint firstItem="k8c-Ia-pj3" firstAttribute="top" secondItem="viB-Sb-5Na" secondAttribute="bottom" constant="34" id="pVn-TF-nnR"/>
                             <constraint firstItem="V9L-Uv-yIS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZFT-XW-bvI" secondAttribute="leading" constant="40" id="sbC-jj-88U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZFT-XW-bvI"/>
