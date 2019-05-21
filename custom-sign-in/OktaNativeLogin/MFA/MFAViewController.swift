@@ -20,18 +20,18 @@ import SVProgressHUD
 
 class MFAViewController: AuthBaseViewController {
     
-    lazy var factors: [OktaFactor] = {
+    var factors: [OktaFactor] {
         let mfaRequiredStatus = status as! OktaAuthStatusFactorRequired
         return mfaRequiredStatus.availableFactors
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationItem.setHidesBackButton(false, animated: false)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
+    override func viewWillAppear(_ animated: Bool) {
+        table.reloadData()
     }
 
     @IBOutlet private var table: UITableView!

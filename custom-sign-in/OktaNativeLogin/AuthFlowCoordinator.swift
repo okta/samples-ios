@@ -58,9 +58,13 @@ class AuthFlowCoordinator {
             case .MFAChallenge:
                 handleFactorChallenge(status: status)
             
-            case .MFAEnroll,
-                 .MFAEnrollActivate,
-                 .recovery,
+            case .MFAEnroll:
+                handleFactorEnrollment(status: status)
+                 
+            case .MFAEnrollActivate:
+                handleFactorEnrollActivate(status: status)
+            
+            case .recovery,
                  .recoveryChallenge,
                  .passwordReset,
                  .lockedOut,
@@ -149,6 +153,47 @@ class AuthFlowCoordinator {
             rootViewController.pushViewController(viewController, animated: true)
         }
     }
+
+    func handleFactorEnrollment(status: OktaAuthStatus) {
+        let mfaEnrollmentViewController = AuthBaseViewController.instantiate(with: status,
+                                                                             flowCoordinatorDelegate: self,
+                                                                             storyBoardName: "MFAEnrollment",
+                                                                             viewControllerIdentifier: "MFAEnrollment")
+        rootViewController.pushViewController(mfaEnrollmentViewController, animated: true)
+    }
+
+    func handleFactorEnrollActivate(status: OktaAuthStatus) {
+        let factorActivate: OktaAuthStatusFactorEnrollActivate = status as! OktaAuthStatusFactorEnrollActivate
+        handleActivateForFactor(factor: factorActivate.factor, status: status)
+    }
+
+    func handleActivateForFactor(factor: OktaFactor, status: OktaAuthStatus) {
+        var viewController: UIViewController?
+        switch factor.type {
+            case .sms, .call:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFASMS",
+                                                                    viewControllerIdentifier: "MFASMSViewController")
+            case .push:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFActivatePushTotp",
+                                                                    viewControllerIdentifier: "MFActivatePushTotpViewController")
+            case .TOTP:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFActivatePushTotp",
+                                                                    viewControllerIdentifier: "MFActivatePushTotpViewController")
+            default:
+                let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+                authBaseViewController.showError(message: "Not implemented!\nNo factor handler for \(factor.type.description)")
+        }
+
+        if let viewController = viewController {
+            rootViewController.pushViewController(viewController, animated: true)
+        }
+    }
 }
 
 extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
@@ -158,5 +203,20 @@ extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
     
     func onCancel() {
         rootViewController.popToRootViewController(animated: true)
+    }
+
+    func onReturn(prevStatus: OktaAuthStatus) {
+        let authViewController = rootViewController.viewControllers.first { viewController in
+            let authViewController = viewController as! AuthBaseViewController
+            if authViewController.status?.statusType == prevStatus.statusType {
+                return true
+            }
+            return false
+        }
+        
+        if let authViewController = authViewController as? AuthBaseViewController {
+            authViewController.status = prevStatus
+            rootViewController.popViewController(animated: true)
+        }
     }
 }

@@ -36,8 +36,17 @@ class AuthBaseViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-         self.navigationItem.setHidesBackButton(true, animated: false)
+        if let status = status, status.canReturn() {
+            let backButton = UIBarButtonItem(title: "Back",
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(backButtonTapped))
+            self.navigationItem.setLeftBarButton(backButton, animated: true)
+        } else {
+            self.navigationItem.setHidesBackButton(true, animated: false)
+        }
         SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.black)
     }
 
     func showError(message: String) {
@@ -49,5 +58,30 @@ class AuthBaseViewController: UIViewController {
     func processCancel() {
         status?.cancel()
         self.flowCoordinatorDelegate?.onCancel()
+    }
+
+    @objc func backButtonTapped() {
+        SVProgressHUD.show()
+        status?.returnToPreviousStatus(onStatusChange: { status in
+            SVProgressHUD.dismiss()
+            self.flowCoordinatorDelegate?.onReturn(prevStatus: status)
+        }, onError: { error in
+            SVProgressHUD.dismiss()
+            self.showError(message: error.description)
+        })
+    }
+}
+
+internal extension UIView{
+    func flash() {
+        self.alpha = 0.1
+        UIView.animate(withDuration: 1,
+                       delay: 0.0,
+                       options: [.curveLinear, .repeat, .autoreverse],
+                       animations: {
+                        self.alpha = 1.0
+                        
+        },
+                       completion: nil)
     }
 }

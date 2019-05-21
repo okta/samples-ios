@@ -20,37 +20,40 @@ import SVProgressHUD
 
 class MFAPushViewController : AuthBaseViewController {
     
-    lazy var factor: OktaFactorPush = {
+    var factor: OktaFactorPush {
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
         return mfaChallengeStatus.factor as! OktaFactorPush
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
         resendButton.isHidden = !mfaChallengeStatus.canResend()
+        resendButton.isEnabled = false
         cancelButton.isHidden = !mfaChallengeStatus.canCancel()
         factorResultLabel.text = mfaChallengeStatus.factorResult?.rawValue ?? "Unknown factor result"
+        factorResultLabel.flash()
+        
         if let factorStatus = mfaChallengeStatus.factorResult?.rawValue {
-            if mfaChallengeStatus.factorResult! == .waiting {
-                SVProgressHUD.show(withStatus: factorStatus)
-                SVProgressHUD.dismiss(withDelay: 15)
-            }
             factorResultLabel.text = factorStatus
         } else {
             factorResultLabel.text = "Unknown factor result"
         }
-        factor.verify(onStatusChange: { status in
-            SVProgressHUD.dismiss()
-            if status.statusType == self.status?.statusType {
+
+        factor.verify(onStatusChange: { [weak self] status in
+            if status.statusType == self?.status?.statusType {
                 return
             }
-            self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        }, onError: { error in
-            SVProgressHUD.dismiss()
-            self.showError(message: error.description)
-        }) { factorResult in
-            self.factorResultLabel.text = factorResult.rawValue
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }, onError: { [weak self] error in
+            self?.showError(message: error.description)
+        }) { [weak self] factorResult in
+            if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
+                self?.factorResultLabel.layer.removeAllAnimations()
+                self?.resendButton.isEnabled = false
+            }
+            self?.factorResultLabel.text = factorResult.rawValue
         }
     }
     
@@ -58,20 +61,19 @@ class MFAPushViewController : AuthBaseViewController {
         SVProgressHUD.show(withStatus: "Requesting resend...")
         SVProgressHUD.dismiss(withDelay: 15)
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
-        mfaChallengeStatus.resendFactor(onStatusChange: { status in
+        mfaChallengeStatus.resendFactor(onStatusChange: { [weak self] status in
             SVProgressHUD.dismiss()
-            if status.statusType == self.status?.statusType {
+            if status.statusType == self?.status?.statusType {
                 return
             }
-            self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        }) { error in
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }) { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 
     @IBAction func cancelButtonTapped() {
-        SVProgressHUD.dismiss()
         self.processCancel()
     }
 

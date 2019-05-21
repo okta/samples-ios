@@ -20,10 +20,10 @@ import SVProgressHUD
 
 class MFATOTPViewController: AuthBaseViewController {
 
-    lazy var factor: OktaFactor = {
+    var factor: OktaFactor {
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
         return mfaChallengeStatus.factor
-    }()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

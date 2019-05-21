@@ -13,13 +13,13 @@
         <!--Verify SMS/CALL factor-->
         <scene sceneID="7vn-l9-11n">
             <objects>
-                <viewController storyboardIdentifier="MFASMSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="quk-M6-l97" customClass="MFASMSViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MFASMSViewController" title="Verify SMS/CALL factor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="quk-M6-l97" customClass="MFASMSViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w4R-aZ-Cxh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="h6A-0N-EBo">
-                                <rect key="frame" x="109" y="178.5" width="157" height="156"/>
+                                <rect key="frame" x="109" y="217.5" width="157" height="156"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZQ-6T-3cm">
                                         <rect key="frame" x="0.0" y="0.0" width="157" height="46"/>
@@ -78,17 +78,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPk-H5-N7J">
-                                <rect key="frame" x="132.5" y="84" width="110.5" height="19.5"/>
+                                <rect key="frame" x="132.5" y="97" width="110.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AI2-ub-X8T">
-                                <rect key="frame" x="81" y="124" width="20" height="20"/>
-                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K8X-rc-fG3">
-                                <rect key="frame" x="109" y="109.5" width="157" height="46"/>
+                                <rect key="frame" x="109" y="135.5" width="157" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="nbS-3w-ii7"/>
                                 </constraints>
@@ -99,22 +95,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AI2-ub-X8T" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="60" id="3z1-U1-cLU"/>
                             <constraint firstItem="K8X-rc-fG3" firstAttribute="trailing" secondItem="h6A-0N-EBo" secondAttribute="trailing" id="M0E-T1-c7w"/>
-                            <constraint firstItem="K8X-rc-fG3" firstAttribute="top" secondItem="qPk-H5-N7J" secondAttribute="bottom" constant="6" id="Oeq-y0-ZfU"/>
-                            <constraint firstItem="K8X-rc-fG3" firstAttribute="leading" secondItem="AI2-ub-X8T" secondAttribute="trailing" constant="8" symbolic="YES" id="TEO-2m-pf6"/>
+                            <constraint firstItem="K8X-rc-fG3" firstAttribute="top" secondItem="qPk-H5-N7J" secondAttribute="bottom" constant="19" id="Oeq-y0-ZfU"/>
                             <constraint firstItem="K8X-rc-fG3" firstAttribute="leading" secondItem="h6A-0N-EBo" secondAttribute="leading" id="UNs-5L-5bN"/>
-                            <constraint firstItem="qPk-H5-N7J" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="20" id="bZt-dF-Ta3"/>
-                            <constraint firstItem="h6A-0N-EBo" firstAttribute="top" secondItem="K8X-rc-fG3" secondAttribute="bottom" constant="23" id="emU-36-b2P"/>
+                            <constraint firstItem="qPk-H5-N7J" firstAttribute="top" secondItem="LM8-ck-o3l" secondAttribute="top" constant="33" id="bZt-dF-Ta3"/>
+                            <constraint firstItem="h6A-0N-EBo" firstAttribute="top" secondItem="K8X-rc-fG3" secondAttribute="bottom" constant="36" id="emU-36-b2P"/>
                             <constraint firstItem="K8X-rc-fG3" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="iad-UA-fHm"/>
                             <constraint firstItem="qPk-H5-N7J" firstAttribute="centerX" secondItem="w4R-aZ-Cxh" secondAttribute="centerX" id="q1J-lu-uDv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LM8-ck-o3l"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Verify SMS/CALL factor" id="e7Y-Xq-VR6"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="AI2-ub-X8T" id="MMB-gR-KJb"/>
                         <outlet property="buttonsStack" destination="h6A-0N-EBo" id="ZuN-bN-h2t"/>
                         <outlet property="cancelButton" destination="qb7-2F-gxH" id="oeT-aK-knB"/>
                         <outlet property="codeTextField" destination="K8X-rc-fG3" id="AUB-Cg-rmA"/>
