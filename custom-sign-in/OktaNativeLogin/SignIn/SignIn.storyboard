@@ -57,6 +57,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9P-wd-d7k">
                                 <rect key="frame" x="126" y="264" width="123" height="30"/>
                                 <state key="normal" title="Forgot password?"/>
+                                <connections>
+                                    <action selector="forgotPasswordTapped" destination="MYZ-aV-kni" eventType="touchUpInside" id="DVc-q9-keE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

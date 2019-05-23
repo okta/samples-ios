@@ -46,6 +46,18 @@
 		A1F9E57B22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E57922945FBB00924F7A /* MFActivatePushTotpViewController.swift */; };
 		A1F9E57D2294609600924F7A /* MFActivatePushTotp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E57C2294609600924F7A /* MFActivatePushTotp.storyboard */; };
 		A1F9E57E2294609600924F7A /* MFActivatePushTotp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E57C2294609600924F7A /* MFActivatePushTotp.storyboard */; };
+		A1F9E5802295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E57F2295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard */; };
+		A1F9E5812295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E57F2295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard */; };
+		A1F9E5832295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E5822295C86700924F7A /* PasswordRecoveryChallengeViewController.swift */; };
+		A1F9E5842295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E5822295C86700924F7A /* PasswordRecoveryChallengeViewController.swift */; };
+		A1F9E5862295F72C00924F7A /* PasswordRecovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E5852295F72C00924F7A /* PasswordRecovery.storyboard */; };
+		A1F9E5872295F72C00924F7A /* PasswordRecovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E5852295F72C00924F7A /* PasswordRecovery.storyboard */; };
+		A1F9E5892295F9A900924F7A /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E5882295F9A900924F7A /* PasswordRecoveryViewController.swift */; };
+		A1F9E58A2295F9A900924F7A /* PasswordRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E5882295F9A900924F7A /* PasswordRecoveryViewController.swift */; };
+		A1F9E58C2295FB7B00924F7A /* PasswordReset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E58B2295FB7B00924F7A /* PasswordReset.storyboard */; };
+		A1F9E58D2295FB7B00924F7A /* PasswordReset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F9E58B2295FB7B00924F7A /* PasswordReset.storyboard */; };
+		A1F9E58F2295FDE000924F7A /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E58E2295FDE000924F7A /* PasswordResetViewController.swift */; };
+		A1F9E5902295FDE000924F7A /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F9E58E2295FDE000924F7A /* PasswordResetViewController.swift */; };
 		F57B5EDC21ECCD0700895A26 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = F57B5ED821ECCD0700895A26 /* Okta.plist */; };
 		F5F039C822368B5800BEE7D4 /* OktaNativeLoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F039C722368B5800BEE7D4 /* OktaNativeLoginUITests.swift */; };
 		FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1549821E5FB2C00B89097 /* AppDelegate.swift */; };
@@ -91,6 +103,12 @@
 		A1F9E57622930DDE00924F7A /* MFAEnrollment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFAEnrollment.storyboard; sourceTree = "<group>"; };
 		A1F9E57922945FBB00924F7A /* MFActivatePushTotpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFActivatePushTotpViewController.swift; sourceTree = "<group>"; };
 		A1F9E57C2294609600924F7A /* MFActivatePushTotp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFActivatePushTotp.storyboard; sourceTree = "<group>"; };
+		A1F9E57F2295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordRecoveryChallenge.storyboard; sourceTree = "<group>"; };
+		A1F9E5822295C86700924F7A /* PasswordRecoveryChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryChallengeViewController.swift; sourceTree = "<group>"; };
+		A1F9E5852295F72C00924F7A /* PasswordRecovery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordRecovery.storyboard; sourceTree = "<group>"; };
+		A1F9E5882295F9A900924F7A /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
+		A1F9E58B2295FB7B00924F7A /* PasswordReset.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordReset.storyboard; sourceTree = "<group>"; };
+		A1F9E58E2295FDE000924F7A /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		A3F35CD647D43163D3AC1762 /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98682266B009ED9C743B3F3 /* Pods-OktaNativeLoginUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLoginUITests.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F360420CD53AD3D63D9D635E /* Pods_OktaNativeLoginUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLoginUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +177,12 @@
 			children = (
 				A14269F4228A186C00DC8973 /* PasswordManagementViewController.swift */,
 				A14269F7228A199E00DC8973 /* PasswordManagement.storyboard */,
+				A1F9E5822295C86700924F7A /* PasswordRecoveryChallengeViewController.swift */,
+				A1F9E57F2295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard */,
+				A1F9E5882295F9A900924F7A /* PasswordRecoveryViewController.swift */,
+				A1F9E5852295F72C00924F7A /* PasswordRecovery.storyboard */,
+				A1F9E58E2295FDE000924F7A /* PasswordResetViewController.swift */,
+				A1F9E58B2295FB7B00924F7A /* PasswordReset.storyboard */,
 			);
 			path = PasswordManagement;
 			sourceTree = "<group>";
@@ -339,6 +363,9 @@
 				A1F9E57E2294609600924F7A /* MFActivatePushTotp.storyboard in Resources */,
 				A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */,
 				A14269F9228A199E00DC8973 /* PasswordManagement.storyboard in Resources */,
+				A1F9E5872295F72C00924F7A /* PasswordRecovery.storyboard in Resources */,
+				A1F9E58D2295FB7B00924F7A /* PasswordReset.storyboard in Resources */,
+				A1F9E5812295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard in Resources */,
 				A1F9E57822930DDE00924F7A /* MFAEnrollment.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,9 +378,12 @@
 				2F74358B2204789300B47967 /* MFA.storyboard in Resources */,
 				FAE154A321E5FB2D00B89097 /* LaunchScreen.storyboard in Resources */,
 				A14269F8228A199E00DC8973 /* PasswordManagement.storyboard in Resources */,
+				A1F9E5862295F72C00924F7A /* PasswordRecovery.storyboard in Resources */,
 				2FFF34232216CC170098AB63 /* MFATOTP.storyboard in Resources */,
 				A14269F2228A162500DC8973 /* Main.storyboard in Resources */,
 				A1F9E57D2294609600924F7A /* MFActivatePushTotp.storyboard in Resources */,
+				A1F9E5802295C4AF00924F7A /* PasswordRecoveryChallenge.storyboard in Resources */,
+				A1F9E58C2295FB7B00924F7A /* PasswordReset.storyboard in Resources */,
 				FAE154A021E5FB2D00B89097 /* Assets.xcassets in Resources */,
 				A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */,
 				2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */,
@@ -470,12 +500,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1F9E5842295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */,
 				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
 				A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 				A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
 				A14269EC2289EEE100DC8973 /* UserProfileViewController.swift in Sources */,
 				A1F9E57522930DAD00924F7A /* MFAEnrollmentViewController.swift in Sources */,
+				A1F9E5902295FDE000924F7A /* PasswordResetViewController.swift in Sources */,
+				A1F9E58A2295F9A900924F7A /* PasswordRecoveryViewController.swift in Sources */,
 				A1F9E57B22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				F5F039C822368B5800BEE7D4 /* OktaNativeLoginUITests.swift in Sources */,
 				A14269FC228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
@@ -486,6 +519,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1F9E5892295F9A900924F7A /* PasswordRecoveryViewController.swift in Sources */,
+				A1F9E5832295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */,
 				A1F9E57422930DAD00924F7A /* MFAEnrollmentViewController.swift in Sources */,
 				A14269F5228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				2F74358D220478B000B47967 /* MFAViewController.swift in Sources */,
@@ -499,6 +534,7 @@
 				A1F9E57A22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */,
 				FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */,
+				A1F9E58F2295FDE000924F7A /* PasswordResetViewController.swift in Sources */,
 				A14269EE228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,7 +738,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = OktaNativeLogin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okta.OktaNativeLogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -722,7 +758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = OktaNativeLogin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okta.OktaNativeLogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

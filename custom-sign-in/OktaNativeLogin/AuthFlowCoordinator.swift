@@ -64,10 +64,16 @@ class AuthFlowCoordinator {
             case .MFAEnrollActivate:
                 handleFactorEnrollActivate(status: status)
             
-            case .recovery,
-                 .recoveryChallenge,
-                 .passwordReset,
-                 .lockedOut,
+            case .recoveryChallenge:
+                handlePasswordRecoveryChallenge(status: status)
+            
+            case .recovery:
+                handlePasswordRecovery(status: status)
+
+            case     .passwordReset:
+                handlePasswordReset(status: status)
+            
+            case .lockedOut,
                  .unauthenticated:
                 let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
                 authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
@@ -193,6 +199,30 @@ class AuthFlowCoordinator {
         if let viewController = viewController {
             rootViewController.pushViewController(viewController, animated: true)
         }
+    }
+
+    func handlePasswordRecoveryChallenge(status: OktaAuthStatus) {
+        let passwordRecoveryViewController = AuthBaseViewController.instantiate(with: status,
+                                                                                flowCoordinatorDelegate: self,
+                                                                                storyBoardName: "PasswordRecoveryChallenge",
+                                                                                viewControllerIdentifier: "PasswordRecoveryChallengeViewController")
+        rootViewController.pushViewController(passwordRecoveryViewController, animated: true)
+    }
+
+    func handlePasswordRecovery(status: OktaAuthStatus) {
+        let passwordRecoveryViewController = AuthBaseViewController.instantiate(with: status,
+                                                                                flowCoordinatorDelegate: self,
+                                                                                storyBoardName: "PasswordRecovery",
+                                                                                viewControllerIdentifier: "PasswordRecoveryViewController")
+        rootViewController.pushViewController(passwordRecoveryViewController, animated: true)
+    }
+
+    func handlePasswordReset(status: OktaAuthStatus) {
+        let passwordResetViewController = AuthBaseViewController.instantiate(with: status,
+                                                                             flowCoordinatorDelegate: self,
+                                                                             storyBoardName: "PasswordReset",
+                                                                             viewControllerIdentifier: "PasswordResetViewController")
+        rootViewController.pushViewController(passwordResetViewController, animated: true)
     }
 }
 

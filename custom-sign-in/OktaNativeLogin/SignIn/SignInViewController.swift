@@ -35,6 +35,25 @@ class SignInViewController: AuthBaseViewController {
         setupForUITests()
     }
 
+    private func startForgotPasswordFlowWithFactor(_ factor: OktaRecoveryFactors) {
+        guard let username = usernameField.text, !username.isEmpty else {
+            showError(message: "Pleas enter username")
+            return
+        }
+        SVProgressHUD.show()
+        OktaAuthSdk.recoverPassword(with: URL(string: urlString)!,
+                                    username: username,
+                                    factorType: factor,
+                                    onStatusChange:
+            { status in
+                SVProgressHUD.dismiss()
+                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        })  { error in
+            SVProgressHUD.dismiss()
+            self.showError(message: error.description)
+        }
+    }
+
     // MARK: - IB
     
     @IBOutlet private var usernameField: UITextField!
@@ -45,32 +64,33 @@ class SignInViewController: AuthBaseViewController {
         guard let username = usernameField.text, !username.isEmpty,
               let password = passwordField.text, !password.isEmpty else { return }
 
+        SVProgressHUD.show()
         OktaAuthSdk.authenticate(with: URL(string: urlString)!,
                                  username: username,
                                  password: password,
                                  onStatusChange:
             { status in
-                self.hideProgress()
+                SVProgressHUD.dismiss()
                 self.flowCoordinatorDelegate?.onStatusChanged(status: status)
         })  { error in
-                self.hideProgress()
+                SVProgressHUD.dismiss()
                 self.showError(message: error.description)
         }
-        showProgress()
     }
-}
 
-// UI Utils
-private extension SignInViewController {
-
-    func showProgress() {
-        SVProgressHUD.show()
-        signInButton.isEnabled = false
-    }
-    
-    func hideProgress() {
-        SVProgressHUD.dismiss()
-        signInButton.isEnabled = true
+    @IBAction private func forgotPasswordTapped() {
+        let alert = UIAlertController(title: "Select recovery factor", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "EMAIL", style: .default, handler: { _ in
+            self.startForgotPasswordFlowWithFactor(.email)
+        }))
+        alert.addAction(UIAlertAction(title: "SMS", style: .default, handler: { _ in
+            self.startForgotPasswordFlowWithFactor(.sms)
+        }))
+        alert.addAction(UIAlertAction(title: "CALL", style: .default, handler: { _ in
+            self.startForgotPasswordFlowWithFactor(.call)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

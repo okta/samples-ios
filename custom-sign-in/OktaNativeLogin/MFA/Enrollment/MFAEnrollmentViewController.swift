@@ -46,7 +46,7 @@ class MFAEnrollmentViewController: AuthBaseViewController {
             self.showError(message: error.description)
         }
     }
-    
+
     @IBAction private func cancelTapped() {
         self.processCancel()
     }
