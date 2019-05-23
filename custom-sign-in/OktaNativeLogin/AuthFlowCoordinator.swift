@@ -70,13 +70,15 @@ class AuthFlowCoordinator {
             case .recovery:
                 handlePasswordRecovery(status: status)
 
-            case     .passwordReset:
+            case .passwordReset:
                 handlePasswordReset(status: status)
             
-            case .lockedOut,
-                 .unauthenticated:
+            case .lockedOut:
+                handleLockedOut(status: status)
+            
+            case     .unauthenticated:
                 let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
-                authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
+                authBaseViewController.showError(message: "Unexpected status")
             
             case .unknown(_):
                 let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
@@ -223,6 +225,12 @@ class AuthFlowCoordinator {
                                                                              storyBoardName: "PasswordReset",
                                                                              viewControllerIdentifier: "PasswordResetViewController")
         rootViewController.pushViewController(passwordResetViewController, animated: true)
+    }
+
+    func handleLockedOut(status: OktaAuthStatus) {
+        rootViewController.popToRootViewController(animated: true)
+        let signInViewController = rootViewController.topViewController as! SignInViewController
+        signInViewController.handleLockedOutStatus(status: status as! OktaAuthStatusLockedOut)
     }
 }
 

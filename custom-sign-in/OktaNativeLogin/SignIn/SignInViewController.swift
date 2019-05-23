@@ -35,22 +35,47 @@ class SignInViewController: AuthBaseViewController {
         setupForUITests()
     }
 
-    private func startForgotPasswordFlowWithFactor(_ factor: OktaRecoveryFactors) {
+    public func handleLockedOutStatus(status: OktaAuthStatusLockedOut) {
+        let alert = UIAlertController(title: "Account Locked", message: "You account is locked.\nWould you like to unlock account?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Unlock", style: .default, handler: { _ in
+            self.showAlertWithRecoverOptions(isPasswordRecoverFlow: false)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func startRecoverFlowWithFactor(_ factor: OktaRecoveryFactors, isPasswordRecoverFlow: Bool) {
         guard let username = usernameField.text, !username.isEmpty else {
             showError(message: "Pleas enter username")
             return
         }
+
         SVProgressHUD.show()
-        OktaAuthSdk.recoverPassword(with: URL(string: urlString)!,
-                                    username: username,
-                                    factorType: factor,
-                                    onStatusChange:
-            { status in
+        
+        if isPasswordRecoverFlow {
+            OktaAuthSdk.recoverPassword(with: URL(string: urlString)!,
+                                        username: username,
+                                        factorType: factor,
+                                        onStatusChange:
+                { status in
+                    SVProgressHUD.dismiss()
+                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            })  { error in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { error in
-            SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+                self.showError(message: error.description)
+            }
+        } else {
+            OktaAuthSdk.unlockAccount(with: URL(string: urlString)!,
+                                      username: username,
+                                      factorType: factor,
+                                      onStatusChange:
+                { status in
+                    SVProgressHUD.dismiss()
+                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            })  { error in
+                SVProgressHUD.dismiss()
+                self.showError(message: error.description)
+            }
         }
     }
 
@@ -78,19 +103,23 @@ class SignInViewController: AuthBaseViewController {
         }
     }
 
-    @IBAction private func forgotPasswordTapped() {
+    func showAlertWithRecoverOptions(isPasswordRecoverFlow: Bool) {
         let alert = UIAlertController(title: "Select recovery factor", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "EMAIL", style: .default, handler: { _ in
-            self.startForgotPasswordFlowWithFactor(.email)
+            self.startRecoverFlowWithFactor(.email, isPasswordRecoverFlow: isPasswordRecoverFlow)
         }))
         alert.addAction(UIAlertAction(title: "SMS", style: .default, handler: { _ in
-            self.startForgotPasswordFlowWithFactor(.sms)
+            self.startRecoverFlowWithFactor(.sms, isPasswordRecoverFlow: isPasswordRecoverFlow)
         }))
         alert.addAction(UIAlertAction(title: "CALL", style: .default, handler: { _ in
-            self.startForgotPasswordFlowWithFactor(.call)
+            self.startRecoverFlowWithFactor(.call, isPasswordRecoverFlow: isPasswordRecoverFlow)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    @IBAction private func forgotPasswordTapped() {
+        self.showAlertWithRecoverOptions(isPasswordRecoverFlow: true)
     }
 }
 
