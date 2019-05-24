@@ -46,19 +46,19 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
         if let factor = factor as? OktaFactorPush {
             codeTextField.removeFromSuperview()
             factor.activate(onStatusChange:
-                { status in
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                { [weak self] status in
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
                             onError:
-                { error in
-                    self.showError(message: error.description)
+                { [weak self] error in
+                    self?.showError(message: error.description)
             },
                             onFactorStatusUpdate:
-                { factorResult in
+                { [weak self] factorResult in
                     if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
-                        self.factorResultLabel.layer.removeAllAnimations()
+                        self?.factorResultLabel.layer.removeAllAnimations()
                     }
-                    self.factorResultLabel.text = factorResult.rawValue
+                    self?.factorResultLabel.text = factorResult.rawValue
             })
         } else {
             factorResultLabel.removeFromSuperview()
@@ -74,19 +74,19 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
         guard let code = codeTextField.text, !code.isEmpty else { return }
         factor.activate(passCode: code,
                         onStatusChange:
-            { status in
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            { [weak self] status in
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
         },
                         onError:
-            { error in
-                self.showError(message: error.description)
+            { [weak self] error in
+                self?.showError(message: error.description)
         },
                         onFactorStatusUpdate:
-            { factorResult in
+            { [weak self] factorResult in
                 if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
-                    self.factorResultLabel.layer.removeAllAnimations()
+                    self?.factorResultLabel.layer.removeAllAnimations()
                 }
-                self.factorResultLabel.text = factorResult.rawValue
+                self?.factorResultLabel.text = factorResult.rawValue
         })
     }
     

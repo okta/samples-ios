@@ -62,12 +62,12 @@ class AuthBaseViewController: UIViewController {
 
     @objc func backButtonTapped() {
         SVProgressHUD.show()
-        status?.returnToPreviousStatus(onStatusChange: { status in
+        status?.returnToPreviousStatus(onStatusChange: { [weak self] status in
             SVProgressHUD.dismiss()
-            self.flowCoordinatorDelegate?.onReturn(prevStatus: status)
-        }, onError: { error in
+            self?.flowCoordinatorDelegate?.onReturn(prevStatus: status)
+        }, onError: { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         })
     }
 }

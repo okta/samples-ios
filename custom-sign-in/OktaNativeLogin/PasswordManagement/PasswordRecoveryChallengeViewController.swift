@@ -21,7 +21,6 @@ import SVProgressHUD
 class PasswordRecoveryChallengeViewController: AuthBaseViewController {
     
     lazy var recoveryChallengeStatus: OktaAuthStatusRecoveryChallenge = {
-        
         return status as! OktaAuthStatusRecoveryChallenge
     }()
     
@@ -55,12 +54,12 @@ class PasswordRecoveryChallengeViewController: AuthBaseViewController {
         SVProgressHUD.show()
         recoveryChallengeStatus.verifyFactor(passCode: code,
                                              onStatusChange:
-            { status in
+            { [weak self]status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { error in
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        })  { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
         }
     }
 
@@ -69,9 +68,9 @@ class PasswordRecoveryChallengeViewController: AuthBaseViewController {
         recoveryChallengeStatus.resendFactor(onStatusChange:
             { status in
                 SVProgressHUD.dismiss()
-        })  { error in
+        })  { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 

@@ -62,12 +62,12 @@ extension MFAViewController : UITableViewDelegate {
 
         let factor = self.factors[indexPath.row]
         SVProgressHUD.show()
-        factor.select(onStatusChange: { status in
+        factor.select(onStatusChange: { [weak self] status in
             SVProgressHUD.dismiss()
-            self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        }) { error in
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }) { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 }

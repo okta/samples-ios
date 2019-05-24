@@ -49,17 +49,17 @@ class MFASMSViewController: AuthBaseViewController {
         if let mfaChallengeStatus = status as? OktaAuthStatusFactorChallenge {
             mfaChallengeStatus.resendFactor(onStatusChange: { status in
                 SVProgressHUD.dismiss()
-            }) { error in
+            }) { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
             }
         }
         if let mfaActivateStatus = status as? OktaAuthStatusFactorEnrollActivate {
             mfaActivateStatus.resendFactor(onStatusChange: { status in
                 SVProgressHUD.dismiss()
-            }) { error in
+            }) { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
             }
         }
     }
@@ -73,28 +73,28 @@ class MFASMSViewController: AuthBaseViewController {
             factor.verify(passCode: code,
                           answerToSecurityQuestion: nil,
                           onStatusChange:
-                { status in
+                { [weak self] status in
                     SVProgressHUD.dismiss()
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
                           onError:
-                { error in
+                { [weak self] error in
                     SVProgressHUD.dismiss()
-                    self.showError(message: error.description)
+                    self?.showError(message: error.description)
             })
         }
         if let mfaActivateStatus = status as? OktaAuthStatusFactorEnrollActivate {
             let factor = mfaActivateStatus.factor
             factor.activate(passCode: code,
                             onStatusChange:
-                { status in
+                { [weak self] status in
                     SVProgressHUD.dismiss()
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
                             onError:
-                { error in
+                { [weak self] error in
                     SVProgressHUD.dismiss()
-                    self.showError(message: error.description)
+                    self?.showError(message: error.description)
             })
         }
     }

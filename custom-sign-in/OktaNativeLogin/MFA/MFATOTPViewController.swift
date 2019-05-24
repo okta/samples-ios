@@ -39,14 +39,14 @@ class MFATOTPViewController: AuthBaseViewController {
         factor.verify(passCode: code,
                       answerToSecurityQuestion: nil,
                       onStatusChange:
-            { status in
+            { [weak self] status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
         },
                       onError:
-            { error in
+            { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
         })
     }
     

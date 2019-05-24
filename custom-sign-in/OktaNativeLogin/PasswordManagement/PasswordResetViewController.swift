@@ -37,12 +37,12 @@ class PasswordResetViewController: AuthBaseViewController {
         SVProgressHUD.show()
         resetStatus.resetPassword(newPassword: password,
                                   onStatusChange:
-            { status in
+            { [weak self] status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { error in
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        })  { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
     

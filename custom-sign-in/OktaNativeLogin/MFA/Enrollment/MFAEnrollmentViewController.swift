@@ -38,12 +38,12 @@ class MFAEnrollmentViewController: AuthBaseViewController {
 
     @objc func skip() {
         let enrollStatus = status as! OktaAuthStatusFactorEnroll
-        enrollStatus.skipEnrollment(onStatusChange: { status in
+        enrollStatus.skipEnrollment(onStatusChange: { [weak self] status in
             SVProgressHUD.dismiss()
-            self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        }) { error in
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }) { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 
@@ -106,14 +106,14 @@ extension MFAEnrollmentViewController {
                           passCode: nil,
                           phoneNumber: phone,
                           onStatusChange:
-                { status in
+                { [weak self] status in
                     SVProgressHUD.dismiss()
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
                           onError:
-                { error in
+                { [weak self] error in
                     SVProgressHUD.dismiss()
-                    self.showError(message: error.description)
+                    self?.showError(message: error.description)
             })
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -123,47 +123,47 @@ extension MFAEnrollmentViewController {
     private func handlePushFactor(factor: OktaFactorPush) {
         SVProgressHUD.show()
         factor.enroll(onStatusChange:
-            { status in
+            { [weak self] status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
         },
                       onError:
-            { error in
+            { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
         })
     }
 
     private func handleTotpFactor(factor: OktaFactorTotp) {
         SVProgressHUD.show()
         factor.enroll(onStatusChange:
-            { status in
+            { [weak self] status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
         },
                       onError:
-            { error in
+            { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
         })
     }
 
     private func handleQuestionFactor(factor: OktaFactorQuestion) {
         
         SVProgressHUD.show(withStatus: "Downloading questions...")
-        factor.downloadSecurityQuestions(onDownloadComplete: { questions in
+        factor.downloadSecurityQuestions(onDownloadComplete: { [weak self] questions in
             SVProgressHUD.dismiss()
             let alert = UIAlertController(title: "Select question", message: nil, preferredStyle: .actionSheet)
             questions.forEach({ question in
                     alert.addAction(UIAlertAction(title: question.questionText, style: .default, handler: { _ in
-                        self.handleChosenQuestion(question: question, for: factor)
+                        self?.handleChosenQuestion(question: question, for: factor)
                 }))
             })
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }) { error in
+            self?.present(alert, animated: true, completion: nil)
+        }) { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 
@@ -178,14 +178,14 @@ extension MFAEnrollmentViewController {
             factor.enroll(questionId: question.question!,
                           answer: answer,
                           onStatusChange:
-                    { status in
+                    { [weak self] status in
                         SVProgressHUD.dismiss()
-                        self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                        self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
                     },
                           onError:
-                    { error in
+                    { [weak self] error in
                         SVProgressHUD.dismiss()
-                        self.showError(message: error.description)
+                        self?.showError(message: error.description)
                     }
             )
         }))

@@ -257,4 +257,8 @@ extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
             rootViewController.popViewController(animated: true)
         }
     }
+    
+    func onLoggedOut() {
+        rootViewController.popToRootViewController(animated: true)
+    }
 }

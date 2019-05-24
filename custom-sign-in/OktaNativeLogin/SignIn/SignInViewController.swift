@@ -57,24 +57,24 @@ class SignInViewController: AuthBaseViewController {
                                         username: username,
                                         factorType: factor,
                                         onStatusChange:
-                { status in
+                { [weak self] status in
                     SVProgressHUD.dismiss()
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-            })  { error in
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            })  { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
             }
         } else {
             OktaAuthSdk.unlockAccount(with: URL(string: urlString)!,
                                       username: username,
                                       factorType: factor,
                                       onStatusChange:
-                { status in
+                { [weak self] status in
                     SVProgressHUD.dismiss()
-                    self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-            })  { error in
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            })  { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
             }
         }
     }
@@ -94,12 +94,12 @@ class SignInViewController: AuthBaseViewController {
                                  username: username,
                                  password: password,
                                  onStatusChange:
-            { status in
+            { [weak self] status in
                 SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { error in
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        })  { [weak self] error in
                 SVProgressHUD.dismiss()
-                self.showError(message: error.description)
+                self?.showError(message: error.description)
         }
     }
 
