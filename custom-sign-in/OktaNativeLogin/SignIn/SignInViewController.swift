@@ -21,7 +21,7 @@ import SVProgressHUD
 class SignInViewController: AuthBaseViewController {
 
     #warning ("Enter your Okta organization domain here")
-    var urlString = "https://sdk-test-admin.trexcloud.com"
+    var urlString = "https://{yourOktaDomain}"
 
     class func instantiate() -> SignInViewController {
         let signInStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
@@ -51,7 +51,6 @@ class SignInViewController: AuthBaseViewController {
         }
 
         SVProgressHUD.show()
-        
         if isPasswordRecoverFlow {
             OktaAuthSdk.recoverPassword(with: URL(string: urlString)!,
                                         username: username,
