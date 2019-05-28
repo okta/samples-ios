@@ -45,7 +45,12 @@ class OktaBrowserSignInUITests: XCTestCase {
         XCTAssertTrue(webViewsQuery.textFields["Username"].waitForExistence(timeout: 60))
         webViewsQuery.textFields["Username"].tap()
         webViewsQuery.textFields["Username"].typeText(login)
+        if webViewsQuery.buttons["Next"].exists {
+            webViewsQuery.buttons["Next"].tap()
+            XCTAssertTrue(webViewsQuery.secureTextFields["Password"].waitForExistence(timeout: 60))
+        }
         webViewsQuery.secureTextFields["Password"].tap()
+        sleep(1)
         webViewsQuery.secureTextFields["Password"].typeText(pass)
         webViewsQuery.buttons["Sign In"].tap()
 
@@ -70,6 +75,10 @@ class OktaBrowserSignInUITests: XCTestCase {
         XCTAssertTrue(webViewsQuery.textFields["Username"].waitForExistence(timeout: 60))
         webViewsQuery.textFields["Username"].tap()
         webViewsQuery.textFields["Username"].typeText(login)
+        if webViewsQuery.buttons["Next"].exists {
+            webViewsQuery.buttons["Next"].tap()
+            XCTAssertTrue(webViewsQuery.secureTextFields["Password"].waitForExistence(timeout: 60))
+        }
         webViewsQuery.secureTextFields["Password"].tap()
         webViewsQuery.secureTextFields["Password"].typeText(pass)
         webViewsQuery.buttons["Sign In"].tap()
