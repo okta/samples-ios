@@ -3,12 +3,12 @@ use_frameworks!
 
 target 'OktaNativeLogin' do
   pod 'OktaOidc'
-  pod 'OktaAuthSdk', '1.1.0'
+  pod 'OktaAuthSdk', '1.2.0'
   pod 'SVProgressHUD'
 end
 
 target 'OktaNativeLoginUITests' do
   pod 'OktaOidc'
-  pod 'OktaAuthSdk', '1.1.0'
+  pod 'OktaAuthSdk', '1.2.0'
   pod 'SVProgressHUD'
 end

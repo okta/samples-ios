@@ -42,20 +42,20 @@ class PasswordManagementViewController: AuthBaseViewController {
             expiredStatus.changePassword(oldPassword: oldPassword,
                                          newPassword: newPassword,
                                          onStatusChange:
-                { status in
-                    self.handleSdkUpdate(status: status, error: nil)
-            })  { error in
-                    self.handleSdkUpdate(status: nil, error: error)
+                { [weak self] status in
+                    self?.handleSdkUpdate(status: status, error: nil)
+            })  { [weak self] error in
+                    self?.handleSdkUpdate(status: nil, error: error)
             }
         }
         if let warningStatus = status as? OktaAuthStatusPasswordWarning {
             warningStatus.changePassword(oldPassword: oldPassword,
                                          newPassword: newPassword,
                                          onStatusChange:
-                { status in
-                    self.handleSdkUpdate(status: status, error: nil)
-            })  { error in
-                    self.handleSdkUpdate(status: nil, error: error)
+                { [weak self] status in
+                    self?.handleSdkUpdate(status: status, error: nil)
+            })  { [weak self] error in
+                    self?.handleSdkUpdate(status: nil, error: error)
             }
         }
     }
@@ -63,10 +63,10 @@ class PasswordManagementViewController: AuthBaseViewController {
     @IBAction private func skipTapped() {
         startProgress()
         if let warningStatus = status as? OktaAuthStatusPasswordWarning {
-            warningStatus.skipPasswordChange(onStatusChange: { status in
-                self.handleSdkUpdate(status: status, error: nil)
-            }) { error in
-                self.handleSdkUpdate(status: nil, error: error)
+            warningStatus.skipPasswordChange(onStatusChange: { [weak self] status in
+                self?.handleSdkUpdate(status: status, error: nil)
+            }) { [weak self] error in
+                self?.handleSdkUpdate(status: nil, error: error)
             }
         }
     }

@@ -20,4 +20,6 @@ import OktaAuthSdk
 protocol AuthFlowCoordinatorProtocol: class {
     func onStatusChanged(status: OktaAuthStatus)
     func onCancel()
+    func onReturn(prevStatus: OktaAuthStatus)
+    func onLoggedOut()
 }

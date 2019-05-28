@@ -58,15 +58,27 @@ class AuthFlowCoordinator {
             case .MFAChallenge:
                 handleFactorChallenge(status: status)
             
-            case .MFAEnroll,
-                 .MFAEnrollActivate,
-                 .recovery,
-                 .recoveryChallenge,
-                 .passwordReset,
-                 .lockedOut,
-                 .unauthenticated:
+            case .MFAEnroll:
+                handleFactorEnrollment(status: status)
+                 
+            case .MFAEnrollActivate:
+                handleFactorEnrollActivate(status: status)
+            
+            case .recoveryChallenge:
+                handlePasswordRecoveryChallenge(status: status)
+            
+            case .recovery:
+                handlePasswordRecovery(status: status)
+
+            case .passwordReset:
+                handlePasswordReset(status: status)
+            
+            case .lockedOut:
+                handleLockedOut(status: status)
+            
+            case     .unauthenticated:
                 let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
-                authBaseViewController.showError(message: "Not implemented!\nNo status handler for \(status.statusType.description)")
+                authBaseViewController.showError(message: "Unexpected status")
             
             case .unknown(_):
                 let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
@@ -149,6 +161,77 @@ class AuthFlowCoordinator {
             rootViewController.pushViewController(viewController, animated: true)
         }
     }
+
+    func handleFactorEnrollment(status: OktaAuthStatus) {
+        let mfaEnrollmentViewController = AuthBaseViewController.instantiate(with: status,
+                                                                             flowCoordinatorDelegate: self,
+                                                                             storyBoardName: "MFAEnrollment",
+                                                                             viewControllerIdentifier: "MFAEnrollment")
+        rootViewController.pushViewController(mfaEnrollmentViewController, animated: true)
+    }
+
+    func handleFactorEnrollActivate(status: OktaAuthStatus) {
+        let factorActivate: OktaAuthStatusFactorEnrollActivate = status as! OktaAuthStatusFactorEnrollActivate
+        handleActivateForFactor(factor: factorActivate.factor, status: status)
+    }
+
+    func handleActivateForFactor(factor: OktaFactor, status: OktaAuthStatus) {
+        var viewController: UIViewController?
+        switch factor.type {
+            case .sms, .call:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFASMS",
+                                                                    viewControllerIdentifier: "MFASMSViewController")
+            case .push:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFActivatePushTotp",
+                                                                    viewControllerIdentifier: "MFActivatePushTotpViewController")
+            case .TOTP:
+                viewController = AuthBaseViewController.instantiate(with: status,
+                                                                    flowCoordinatorDelegate: self,
+                                                                    storyBoardName: "MFActivatePushTotp",
+                                                                    viewControllerIdentifier: "MFActivatePushTotpViewController")
+            default:
+                let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
+                authBaseViewController.showError(message: "Not implemented!\nNo factor handler for \(factor.type.description)")
+        }
+
+        if let viewController = viewController {
+            rootViewController.pushViewController(viewController, animated: true)
+        }
+    }
+
+    func handlePasswordRecoveryChallenge(status: OktaAuthStatus) {
+        let passwordRecoveryViewController = AuthBaseViewController.instantiate(with: status,
+                                                                                flowCoordinatorDelegate: self,
+                                                                                storyBoardName: "PasswordRecoveryChallenge",
+                                                                                viewControllerIdentifier: "PasswordRecoveryChallengeViewController")
+        rootViewController.pushViewController(passwordRecoveryViewController, animated: true)
+    }
+
+    func handlePasswordRecovery(status: OktaAuthStatus) {
+        let passwordRecoveryViewController = AuthBaseViewController.instantiate(with: status,
+                                                                                flowCoordinatorDelegate: self,
+                                                                                storyBoardName: "PasswordRecovery",
+                                                                                viewControllerIdentifier: "PasswordRecoveryViewController")
+        rootViewController.pushViewController(passwordRecoveryViewController, animated: true)
+    }
+
+    func handlePasswordReset(status: OktaAuthStatus) {
+        let passwordResetViewController = AuthBaseViewController.instantiate(with: status,
+                                                                             flowCoordinatorDelegate: self,
+                                                                             storyBoardName: "PasswordReset",
+                                                                             viewControllerIdentifier: "PasswordResetViewController")
+        rootViewController.pushViewController(passwordResetViewController, animated: true)
+    }
+
+    func handleLockedOut(status: OktaAuthStatus) {
+        rootViewController.popToRootViewController(animated: true)
+        let signInViewController = rootViewController.topViewController as! SignInViewController
+        signInViewController.handleLockedOutStatus(status: status as! OktaAuthStatusLockedOut)
+    }
 }
 
 extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
@@ -157,6 +240,25 @@ extension AuthFlowCoordinator: AuthFlowCoordinatorProtocol {
     }
     
     func onCancel() {
+        rootViewController.popToRootViewController(animated: true)
+    }
+
+    func onReturn(prevStatus: OktaAuthStatus) {
+        let authViewController = rootViewController.viewControllers.first { viewController in
+            let authViewController = viewController as! AuthBaseViewController
+            if authViewController.status?.statusType == prevStatus.statusType {
+                return true
+            }
+            return false
+        }
+        
+        if let authViewController = authViewController as? AuthBaseViewController {
+            authViewController.status = prevStatus
+            rootViewController.popViewController(animated: true)
+        }
+    }
+    
+    func onLoggedOut() {
         rootViewController.popToRootViewController(animated: true)
     }
 }

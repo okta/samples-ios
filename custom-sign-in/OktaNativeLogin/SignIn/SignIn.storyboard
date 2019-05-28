@@ -54,12 +54,21 @@
                                     <action selector="signInTapped" destination="MYZ-aV-kni" eventType="touchUpInside" id="NDx-1G-JTH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9P-wd-d7k">
+                                <rect key="frame" x="126" y="264" width="123" height="30"/>
+                                <state key="normal" title="Forgot password?"/>
+                                <connections>
+                                    <action selector="forgotPasswordTapped" destination="MYZ-aV-kni" eventType="touchUpInside" id="DVc-q9-keE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="knd-58-kzf" firstAttribute="top" secondItem="HBa-AW-ijs" secondAttribute="bottom" constant="40" id="6Cz-hc-C9A"/>
+                            <constraint firstItem="a9P-wd-d7k" firstAttribute="centerX" secondItem="knd-58-kzf" secondAttribute="centerX" id="7X9-UV-2mp"/>
                             <constraint firstItem="HBa-AW-ijs" firstAttribute="leading" secondItem="Hbp-ZB-hLB" secondAttribute="leading" constant="60" id="9XN-GS-KBR"/>
                             <constraint firstItem="Hbp-ZB-hLB" firstAttribute="trailing" secondItem="HBa-AW-ijs" secondAttribute="trailing" constant="60" id="MPJ-bD-lts"/>
+                            <constraint firstItem="a9P-wd-d7k" firstAttribute="top" secondItem="knd-58-kzf" secondAttribute="bottom" constant="18" id="OOn-6f-Pkb"/>
                             <constraint firstItem="HBa-AW-ijs" firstAttribute="top" secondItem="HDW-U9-dtO" secondAttribute="bottom" constant="20" id="ORe-Tq-JKw"/>
                             <constraint firstItem="knd-58-kzf" firstAttribute="centerX" secondItem="vgy-6T-yEq" secondAttribute="centerX" id="Paa-53-XQh"/>
                             <constraint firstItem="HDW-U9-dtO" firstAttribute="leading" secondItem="Hbp-ZB-hLB" secondAttribute="leading" constant="60" id="l2A-7M-6Z1"/>

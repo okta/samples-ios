@@ -20,52 +20,83 @@ import SVProgressHUD
 
 class MFASMSViewController: AuthBaseViewController {
 
-    lazy var factor: OktaFactor = {
-        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
-        return mfaChallengeStatus.factor
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let phoneNumber = factor.factor.profile?.phoneNumber {
+
+        var factor: OktaFactor?
+        if let mfaChallengeStatus = status as? OktaAuthStatusFactorChallenge {
+            factor = mfaChallengeStatus.factor
+            resendButton.isHidden = !mfaChallengeStatus.canResend()
+            verifyButton.isHidden = !mfaChallengeStatus.canVerify()
+            cancelButton.isHidden = !mfaChallengeStatus.canCancel()
+        }
+        if let mfaActivateStatus = status as? OktaAuthStatusFactorEnrollActivate {
+            factor = mfaActivateStatus.factor
+            resendButton.isHidden = !mfaActivateStatus.canResend()
+            cancelButton.isHidden = !mfaActivateStatus.canCancel()
+            verifyButton.isHidden = factor != nil ? !factor!.canActivate() : true
+        }
+        if let phoneNumber = factor?.factor.profile?.phoneNumber {
             phoneNumberLabel.isHidden = false
             phoneNumberLabel.text = phoneNumber
         } else {
             phoneNumberLabel.isHidden = true
         }
-
-        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
-        resendButton.isHidden = !mfaChallengeStatus.canResend()
-        verifyButton.isHidden = !mfaChallengeStatus.canVerify()
-        cancelButton.isHidden = !mfaChallengeStatus.canCancel()
     }
 
     @IBAction func resendButtonTapped() {
-        SVProgressHUD.show(withStatus: "Resend factor...")
-        let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
-        mfaChallengeStatus.resendFactor(onStatusChange: { status in
-            SVProgressHUD.dismiss()
-        }) { error in
-            SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+        SVProgressHUD.show(withStatus: "Resending factor...")
+        if let mfaChallengeStatus = status as? OktaAuthStatusFactorChallenge {
+            mfaChallengeStatus.resendFactor(onStatusChange: { status in
+                SVProgressHUD.dismiss()
+            }) { [weak self] error in
+                SVProgressHUD.dismiss()
+                self?.showError(message: error.description)
+            }
+        }
+        if let mfaActivateStatus = status as? OktaAuthStatusFactorEnrollActivate {
+            mfaActivateStatus.resendFactor(onStatusChange: { status in
+                SVProgressHUD.dismiss()
+            }) { [weak self] error in
+                SVProgressHUD.dismiss()
+                self?.showError(message: error.description)
+            }
         }
     }
     
     @IBAction func verifyButtonTapped() {
         guard let code = codeTextField.text else { return }
+        
         SVProgressHUD.show()
-        factor.verify(passCode: code,
-                      answerToSecurityQuestion: nil,
-                      onStatusChange:
-            { status in
-                SVProgressHUD.dismiss()
-                self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        if let mfaChallengeStatus = status as? OktaAuthStatusFactorChallenge {
+            let factor = mfaChallengeStatus.factor
+            factor.verify(passCode: code,
+                          answerToSecurityQuestion: nil,
+                          onStatusChange:
+                { [weak self] status in
+                    SVProgressHUD.dismiss()
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             },
-                      onError:
-            { error in
-                SVProgressHUD.dismiss()
-                self.showError(message: error.description)
-        })
+                          onError:
+                { [weak self] error in
+                    SVProgressHUD.dismiss()
+                    self?.showError(message: error.description)
+            })
+        }
+        if let mfaActivateStatus = status as? OktaAuthStatusFactorEnrollActivate {
+            let factor = mfaActivateStatus.factor
+            factor.activate(passCode: code,
+                            onStatusChange:
+                { [weak self] status in
+                    SVProgressHUD.dismiss()
+                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            },
+                            onError:
+                { [weak self] error in
+                    SVProgressHUD.dismiss()
+                    self?.showError(message: error.description)
+            })
+        }
     }
 
     @IBAction func cancelButtonTapped() {

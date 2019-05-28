@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Activate Push Totp View Controller-->
+        <scene sceneID="vcG-4W-Dyb">
+            <objects>
+                <viewController storyboardIdentifier="MFActivatePushTotpViewController" id="pLJ-kc-W0D" customClass="MFActivatePushTotpViewController" customModule="OktaNativeLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9LW-AQ-Y7l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zoi-M4-liY">
+                                <rect key="frame" x="16" y="168" width="343" height="333"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="333" id="0c1-4Y-RnF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code with Okta Verify application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGd-yG-nG3">
+                                <rect key="frame" x="26" y="42" width="323" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="WAITING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTZ-wn-enK">
+                                <rect key="frame" x="148.5" y="78" width="78" height="23"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAp-Ny-9jR">
+                                <rect key="frame" x="109" y="537" width="157" height="46"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Hmy-ed-FPm"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="157" id="vm5-6r-PwC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelTapped" destination="pLJ-kc-W0D" eventType="touchUpInside" id="DHf-Rh-qBJ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter TOTP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y1n-bj-x4i">
+                                <rect key="frame" x="119" y="117" width="140" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jGd-yG-nG3" firstAttribute="centerX" secondItem="9LW-AQ-Y7l" secondAttribute="centerX" id="0HJ-8T-oHo"/>
+                            <constraint firstItem="zoi-M4-liY" firstAttribute="top" secondItem="dTZ-wn-enK" secondAttribute="bottom" priority="500" constant="16" id="3yL-uz-0Hd"/>
+                            <constraint firstItem="jGd-yG-nG3" firstAttribute="top" secondItem="3pH-lC-JTA" secondAttribute="top" constant="22" id="BOd-9U-fCn"/>
+                            <constraint firstItem="zoi-M4-liY" firstAttribute="leading" secondItem="9LW-AQ-Y7l" secondAttribute="leadingMargin" id="BVH-aI-mx2"/>
+                            <constraint firstItem="Y1n-bj-x4i" firstAttribute="leading" secondItem="3pH-lC-JTA" secondAttribute="leading" constant="119" id="GCT-T9-nXM"/>
+                            <constraint firstItem="3pH-lC-JTA" firstAttribute="trailing" secondItem="Y1n-bj-x4i" secondAttribute="trailing" constant="116" id="Q8s-fL-eOV"/>
+                            <constraint firstItem="zoi-M4-liY" firstAttribute="top" secondItem="Y1n-bj-x4i" secondAttribute="bottom" constant="21" id="Y7a-kZ-4v9"/>
+                            <constraint firstItem="dTZ-wn-enK" firstAttribute="centerX" secondItem="3pH-lC-JTA" secondAttribute="centerX" id="aHP-XQ-tMx"/>
+                            <constraint firstItem="Y1n-bj-x4i" firstAttribute="top" secondItem="jGd-yG-nG3" secondAttribute="bottom" priority="500" constant="16" id="e6Y-tR-Eo8"/>
+                            <constraint firstItem="dTZ-wn-enK" firstAttribute="top" secondItem="jGd-yG-nG3" secondAttribute="bottom" constant="15" id="kml-Pn-uKe"/>
+                            <constraint firstItem="dTZ-wn-enK" firstAttribute="centerX" secondItem="jGd-yG-nG3" secondAttribute="centerX" id="mbc-GJ-ahp"/>
+                            <constraint firstItem="Y1n-bj-x4i" firstAttribute="top" secondItem="dTZ-wn-enK" secondAttribute="bottom" constant="16" id="oj3-pa-ZCh"/>
+                            <constraint firstItem="zoi-M4-liY" firstAttribute="centerX" secondItem="3pH-lC-JTA" secondAttribute="centerX" id="p4C-Wc-BwR"/>
+                            <constraint firstItem="KAp-Ny-9jR" firstAttribute="top" secondItem="zoi-M4-liY" secondAttribute="bottom" constant="36" id="vVq-la-Sq1"/>
+                            <constraint firstItem="KAp-Ny-9jR" firstAttribute="centerX" secondItem="3pH-lC-JTA" secondAttribute="centerX" id="xus-6f-I70"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3pH-lC-JTA"/>
+                    </view>
+                    <connections>
+                        <outlet property="codeTextField" destination="Y1n-bj-x4i" id="ZB0-el-QBd"/>
+                        <outlet property="factorResultLabel" destination="dTZ-wn-enK" id="YKr-lT-wII"/>
+                        <outlet property="qrCodeImageView" destination="zoi-M4-liY" id="f4H-yx-eOa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPj-wH-Ec1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-266.39999999999998" y="-49.025487256371818"/>
+        </scene>
+    </scenes>
+</document>

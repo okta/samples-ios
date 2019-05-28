@@ -36,17 +36,17 @@ class UserProfileViewController: AuthBaseViewController {
                 return
             }
             SVProgressHUD.show(withStatus: "Asking OIDC client for access token...")
-            oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { stateManager, error in
+            oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { [weak self] stateManager, error in
                 SVProgressHUD.dismiss()
                 if let _ = stateManager?.accessToken {
-                    self.accessTokenLabel.text = "YES"
-                    self.accessTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+                    self?.accessTokenLabel.text = "YES"
+                    self?.accessTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
                 }
                 if let _ = stateManager?.refreshToken {
-                    self.refreshTokenLabel.text = "YES"
-                    self.refreshTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+                    self?.refreshTokenLabel.text = "YES"
+                    self?.refreshTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
                 }
-                self.oidcStateManager = stateManager
+                self?.oidcStateManager = stateManager
             })
         }
     }
@@ -67,11 +67,11 @@ class UserProfileViewController: AuthBaseViewController {
     @IBAction private func logoutTapped() {
         if let oidcStateManager = self.oidcStateManager {
             let oidcClient = self.createOidcClient()
-            oidcClient?.signOutOfOkta(oidcStateManager, from: self, callback: { error in
+            oidcClient?.signOutOfOkta(oidcStateManager, from: self, callback: { [weak self] error in
                 if let error = error {
-                    self.showError(message: error.localizedDescription)
+                    self?.showError(message: error.localizedDescription)
                 } else {
-                    self.processCancel()
+                    self?.flowCoordinatorDelegate?.onLoggedOut()
                 }
             })
         }

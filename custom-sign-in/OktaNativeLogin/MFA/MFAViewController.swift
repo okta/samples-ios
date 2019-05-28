@@ -20,18 +20,18 @@ import SVProgressHUD
 
 class MFAViewController: AuthBaseViewController {
     
-    lazy var factors: [OktaFactor] = {
+    var factors: [OktaFactor] {
         let mfaRequiredStatus = status as! OktaAuthStatusFactorRequired
         return mfaRequiredStatus.availableFactors
-    }()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationItem.setHidesBackButton(false, animated: false)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
+    override func viewWillAppear(_ animated: Bool) {
+        table.reloadData()
     }
 
     @IBOutlet private var table: UITableView!
@@ -62,12 +62,12 @@ extension MFAViewController : UITableViewDelegate {
 
         let factor = self.factors[indexPath.row]
         SVProgressHUD.show()
-        factor.select(onStatusChange: { status in
+        factor.select(onStatusChange: { [weak self] status in
             SVProgressHUD.dismiss()
-            self.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        }) { error in
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }) { [weak self] error in
             SVProgressHUD.dismiss()
-            self.showError(message: error.description)
+            self?.showError(message: error.description)
         }
     }
 }
