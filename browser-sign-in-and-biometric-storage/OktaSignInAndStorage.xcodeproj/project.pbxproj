@@ -15,7 +15,6 @@
 		2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */; };
 		2FA4565F21F5C819000ACBE2 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565E21F5C819000ACBE2 /* Okta.plist */; };
 		2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4566021F61E80000ACBE2 /* TokensViewController.swift */; };
-		A18335D7224447C9007C6175 /* OktaSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18335D6224447C9007C6175 /* OktaSecureStorage.swift */; };
 		E754EB6840D2D6E91CC9D1D7 /* Pods_OktaBrowserSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9032FD27223BDE562D95BA53 /* Pods_OktaBrowserSignIn.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		2FA4566021F61E80000ACBE2 /* TokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		5677A13CF5377630BADBF64A /* Pods-OktaBrowserSignIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaBrowserSignIn.debug.xcconfig"; path = "Target Support Files/Pods-OktaBrowserSignIn/Pods-OktaBrowserSignIn.debug.xcconfig"; sourceTree = "<group>"; };
 		9032FD27223BDE562D95BA53 /* Pods_OktaBrowserSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaBrowserSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A18335D6224447C9007C6175 /* OktaSecureStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OktaSecureStorage.swift; path = lib/OktaSecureStorage.swift; sourceTree = SOURCE_ROOT; };
 		F72497D02C233813669B31E7 /* Pods-OktaBrowserSignIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaBrowserSignIn.release.xcconfig"; path = "Target Support Files/Pods-OktaBrowserSignIn/Pods-OktaBrowserSignIn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +75,6 @@
 		2FA4564921F2031C000ACBE2 /* OktaBrowserSignIn */ = {
 			isa = PBXGroup;
 			children = (
-				A18335D6224447C9007C6175 /* OktaSecureStorage.swift */,
 				2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */,
 				2FA4564C21F2031C000ACBE2 /* SingInViewController.swift */,
 				2FA4564E21F2031C000ACBE2 /* DetailViewController.swift */,
@@ -202,12 +199,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OktaBrowserSignIn/Pods-OktaBrowserSignIn-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/OktaOidc/OktaOidc.framework",
+				"${BUILT_PRODUCTS_DIR}/OktaStorage/OktaStorage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaOidc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaStorage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -222,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */,
-				A18335D7224447C9007C6175 /* OktaSecureStorage.swift in Sources */,
 				2FA4564F21F2031C000ACBE2 /* DetailViewController.swift in Sources */,
 				2FA4564D21F2031C000ACBE2 /* SingInViewController.swift in Sources */,
 				2FA4564B21F2031C000ACBE2 /* AppDelegate.swift in Sources */,
