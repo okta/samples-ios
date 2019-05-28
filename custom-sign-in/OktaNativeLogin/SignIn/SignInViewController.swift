@@ -36,7 +36,7 @@ class SignInViewController: AuthBaseViewController {
     }
 
     public func handleLockedOutStatus(status: OktaAuthStatusLockedOut) {
-        let alert = UIAlertController(title: "Account Locked", message: "You account is locked.\nWould you like to unlock account?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Account Locked", message: "Your account is locked.\nWould you like to unlock account?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Unlock", style: .default, handler: { _ in
             self.showAlertWithRecoverOptions(isPasswordRecoverFlow: false)
         }))
@@ -46,7 +46,7 @@ class SignInViewController: AuthBaseViewController {
 
     private func startRecoverFlowWithFactor(_ factor: OktaRecoveryFactors, isPasswordRecoverFlow: Bool) {
         guard let username = usernameField.text, !username.isEmpty else {
-            showError(message: "Pleas enter username")
+            showError(message: "Please enter username")
             return
         }
 
@@ -70,6 +70,12 @@ class SignInViewController: AuthBaseViewController {
                                       onStatusChange:
                 { [weak self] status in
                     SVProgressHUD.dismiss()
+                    if let _ = status as? OktaAuthStatusSuccess {
+                        let alert = UIAlertController(title: "Success", message: "Your account has been successfully unlocked", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                        return
+                    }
                     self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
             })  { [weak self] error in
                 SVProgressHUD.dismiss()

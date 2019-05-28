@@ -36,7 +36,7 @@ class UserProfileViewController: AuthBaseViewController {
                 return
             }
             SVProgressHUD.show(withStatus: "Asking OIDC client for access token...")
-            oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken, callback: { [weak self] stateManager, error in
+            oidcClient.authenticate(withSessionToken: self.successStatus!.sessionToken!, callback: { [weak self] stateManager, error in
                 SVProgressHUD.dismiss()
                 if let _ = stateManager?.accessToken {
                     self?.accessTokenLabel.text = "YES"
