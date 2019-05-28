@@ -51,7 +51,7 @@ extension MFAViewController : UITableViewDataSource {
             UITableViewCell(style: .default, reuseIdentifier: "MFAFactorCell")
         
         let factor = self.factors[indexPath.row]
-        cell.textLabel?.text = factor.factor.factorType.description
+        cell.textLabel?.text = factor.factor.factorType.rawValue
         
         return cell
     }

@@ -64,7 +64,7 @@ extension MFAEnrollmentViewController : UITableViewDataSource {
             UITableViewCell(style: .default, reuseIdentifier: "MFAFactorCell")
         
         let factor = self.factors[indexPath.row]
-        cell.textLabel?.text = "\(factor.factor.factorType.description) (\(factor.factor.enrollment?.lowercased() ?? ""))"
+        cell.textLabel?.text = "\(factor.factor.factorType.rawValue) (\(factor.factor.enrollment?.lowercased() ?? ""))"
         cell.detailTextLabel?.text = "Status: \(factor.factor.status?.description ?? "Unknown status") Vendor: \(factor.factor.vendorName ?? "Unknown vendor")"
         
         return cell
@@ -85,7 +85,7 @@ extension MFAEnrollmentViewController : UITableViewDelegate {
         case .TOTP:
             handleTotpFactor(factor: factor as! OktaFactorTotp)
         default:
-            showError(message: "Not implemented!\nNo factor handler for \(factor.type.description)")
+            showError(message: "Not implemented!\nNo factor handler for \(factor.type.rawValue)")
         }
     }
 }
