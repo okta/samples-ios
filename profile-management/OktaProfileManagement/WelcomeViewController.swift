@@ -15,12 +15,30 @@
  */
 
 import UIKit
+import OktaOidc
 
 final class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        
+        do {
+            if let configForUITests = configForUITests {
+                AppDelegate.shared.oktaOidc = try OktaOidc(configuration: OktaOidcConfig(with: configForUITests))
+            } else {
+                AppDelegate.shared.oktaOidc = try OktaOidc()
+            }
+            
+            AppDelegate.shared.stateManager = OktaOidcStateManager.readFromSecureStorage(for: AppDelegate.shared.oktaOidc!.configuration)
+            
+        } catch {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                exit(1)
+            }))
+            self.present(alert, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +50,7 @@ final class WelcomeViewController: UIViewController {
     }
     
     @IBAction private func signInTapped() {   
-        AppDelegate.shared.oktaOidc.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
+        AppDelegate.shared.oktaOidc?.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -44,5 +62,25 @@ final class WelcomeViewController: UIViewController {
             stateManager?.writeToSecureStorage()
             self?.performSegue(withIdentifier: "show-details", sender: self)
         })
+    }
+}
+
+// UI Tests
+private extension WelcomeViewController {
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"],
+              oktaURL.count > 0,
+              let clientID = env["CLIENT_ID"],
+              let redirectURI = env["REDIRECT_URI"],
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+                return nil
+        }
+        return ["issuer": oktaURL,
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
+        ]
     }
 }

@@ -19,21 +19,13 @@ import OktaOidc
 
 class ProfileManager {
     private let stateManager: OktaOidcStateManager
-    private let config: OktaOidcConfig
+    private let oktaApi: OktaApi
     
     private(set) var user: User?
     
-    lazy private var decoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        decoder.dateDecodingStrategy = .formatted(formatter)
-        return decoder
-    }()
-    
     init(config: OktaOidcConfig, stateManager: OktaOidcStateManager) {
-        self.config = config
         self.stateManager = stateManager
+        self.oktaApi = OktaApi(config: config)
     }
 
     func getUser(completion: @escaping ((User?, Error?) -> Void)) {
@@ -41,33 +33,10 @@ class ProfileManager {
             completion(nil, OktaOidcError.noBearerToken)
             return
         }
-        
-        var url = URL(string: self.config.issuer)!
-        url.appendPathComponent("/api/v1/users/me")
-        
-        var request = URLRequest(url: url)
-        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
     
-        performRequest(request) { data, error in
-            guard nil == error else {
-                completion(nil, OktaOidcError.APIError(error!.localizedDescription))
-                return
-            }
-
-            guard let data = data else {
-                completion(nil, OktaOidcError.APIError("No response data"))
-                return
-            }
-
-            do {
-                let user = try self.decoder.decode(User.self, from: data)
-                
-                self.user = user
-                completion(user, nil)
-            } catch {
-                print(error)
-                completion(nil, OktaOidcError.parseFailure)
-            }
+        oktaApi.getUser(accessToken: token) { user, error in
+            self.user = user
+            completion(user, error)
         }
     }
     
@@ -78,52 +47,14 @@ class ProfileManager {
             return
         }
         
-        var url = URL(string: self.config.issuer)!
-        url.appendPathComponent("/api/v1/users/me/credentials/change_password")
-        
-        var request = URLRequest(url: url)
-        
-        request.httpMethod = "POST"
-
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-        
-        let passwordInfo = PasswordChange(old: old, new: new)
-        request.httpBody = try? JSONEncoder().encode(passwordInfo)
-    
-        performRequest(request) { data, error in
-            guard nil == error else {
-                completion(OktaOidcError.APIError(error!.localizedDescription))
+        oktaApi.changePassword(accessToken: token, old: old, new: new) { user, error in
+            guard let user = user else {
+                completion(error)
                 return
             }
-
-            guard let data = data else {
-                completion(OktaOidcError.APIError("No response data"))
-                return
-            }
-
-            do {
-                let userPatch = try self.decoder.decode(User.self, from: data)
-                self.user?.updated(with: userPatch)
-                completion(nil)
-            } catch {
-                print(error)
-                completion(OktaOidcError.parseFailure)
-            }
+            
+            self.user?.updated(with: user)
+            completion(nil)
         }
-    }
-    
-    // MARK: - Private
-    
-    func performRequest(_ request: URLRequest, completion: @escaping ((Data?, Error?) -> Void)) {
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                completion(data, error)
-            }
-        }
-        
-        task.resume()
     }
 }

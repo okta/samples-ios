@@ -16,7 +16,7 @@
 
 import Foundation
 
-struct User : Codable {
+struct User: Codable {
     struct Profile: Codable {
         let login: String
         let firstName: String?

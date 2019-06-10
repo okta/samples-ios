@@ -41,14 +41,12 @@ class UserProfileController: UIViewController {
     }
     
     private func loadUserInfo() {
-        guard let stateManager = AppDelegate.shared.stateManager else {
+        guard let stateManager = AppDelegate.shared.stateManager,
+              let config = AppDelegate.shared.oktaOidc?.configuration else {
             return
         }
     
-        profileManager = ProfileManager(
-            config: AppDelegate.shared.oktaOidc.configuration,
-            stateManager: stateManager
-        )
+        profileManager = ProfileManager(config: config, stateManager: stateManager)
     
         profileManager?.getUser(completion: { [weak self] user, error in
             guard let user = user else {
@@ -63,7 +61,7 @@ class UserProfileController: UIViewController {
     @IBAction func signOutTapped() {
         guard let stateManager = AppDelegate.shared.stateManager else { return }
         
-        AppDelegate.shared.oktaOidc.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
+        AppDelegate.shared.oktaOidc?.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
             if let error = error {
                 self?.presentAlert(title: "Error", message: error.localizedDescription)
                 return

@@ -10,6 +10,7 @@
 		2F5D0BEC22A5160900FA2739 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BEB22A5160900FA2739 /* UserProfile.swift */; };
 		2F5D0BEE22A51EC200FA2739 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BED22A51EC200FA2739 /* ProfileManager.swift */; };
 		2F5D0BF222A6AA1900FA2739 /* RequestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF122A6AA1900FA2739 /* RequestModels.swift */; };
+		2F5D0BF622AE91D200FA2739 /* OktaApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF522AE91D200FA2739 /* OktaApi.swift */; };
 		2FA013E622A15E0400BACD74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA013E522A15E0400BACD74 /* AppDelegate.swift */; };
 		2FA013EB22A15E0400BACD74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA013E922A15E0400BACD74 /* Main.storyboard */; };
 		2FA013ED22A15E0500BACD74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA013EC22A15E0500BACD74 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		2F5D0BEB22A5160900FA2739 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		2F5D0BED22A51EC200FA2739 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		2F5D0BF122A6AA1900FA2739 /* RequestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModels.swift; sourceTree = "<group>"; };
+		2F5D0BF522AE91D200FA2739 /* OktaApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaApi.swift; sourceTree = "<group>"; };
 		2FA013E222A15E0400BACD74 /* OktaProfileManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaProfileManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA013E522A15E0400BACD74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA013EA22A15E0400BACD74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 				2F5D0BED22A51EC200FA2739 /* ProfileManager.swift */,
 				2F5D0BEB22A5160900FA2739 /* UserProfile.swift */,
 				2F5D0BF122A6AA1900FA2739 /* RequestModels.swift */,
+				2F5D0BF522AE91D200FA2739 /* OktaApi.swift */,
 			);
 			path = ProfileManagement;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				2F5D0BEE22A51EC200FA2739 /* ProfileManager.swift in Sources */,
 				2FA013FE22A179E400BACD74 /* WelcomeViewController.swift in Sources */,
 				2FA013FB22A179E400BACD74 /* UserProfileController.swift in Sources */,
+				2F5D0BF622AE91D200FA2739 /* OktaApi.swift in Sources */,
 				2FA013E622A15E0400BACD74 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
