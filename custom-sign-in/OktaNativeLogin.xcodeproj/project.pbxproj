@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2950B19CA2F671CA2C0F881E /* Pods_OktaNativeLoginUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F360420CD53AD3D63D9D635E /* Pods_OktaNativeLoginUITests.framework */; };
 		2F5D0BF422AA8B6900FA2739 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF322AA8B6900FA2739 /* TokensViewController.swift */; };
+		2F5D0BF722AE9F0A00FA2739 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF322AA8B6900FA2739 /* TokensViewController.swift */; };
 		2F74358B2204789300B47967 /* MFA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358A2204789300B47967 /* MFA.storyboard */; };
 		2F74358D220478B000B47967 /* MFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74358C220478B000B47967 /* MFAViewController.swift */; };
 		2F74358F220486A800B47967 /* MFAPush.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358E220486A800B47967 /* MFAPush.storyboard */; };
@@ -505,6 +506,7 @@
 			files = (
 				A1F9E5842295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */,
 				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
+				2F5D0BF722AE9F0A00FA2739 /* TokensViewController.swift in Sources */,
 				A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 				A1E746A52289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,

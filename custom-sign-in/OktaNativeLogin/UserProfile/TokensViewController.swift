@@ -54,16 +54,20 @@ private extension TokensViewController {
         guard isViewLoaded else { return }
         
         var tokens = ""
-        if let accessToken = stateManager?.accessToken {
-            tokens += "Access token:\n\(accessToken)\n\n"
+        if let accessToken = stateManager?.accessToken,
+           let decodedToken = try? OktaOidcStateManager.decodeJWT(accessToken) {
+            tokens += "Access token:\n\(decodedToken)\n\n"
+            print("Access token:\n\(decodedToken)")
         }
         
         if let refreshToken = stateManager?.refreshToken {
             tokens += "Refresh token:\n\(refreshToken)\n\n"
         }
         
-        if let idToken = stateManager?.idToken {
-            tokens += "ID token:\n\(idToken)"
+        if let idToken = stateManager?.idToken,
+           let decodedToken = try? OktaOidcStateManager.decodeJWT(idToken) {
+            tokens += "ID token:\n\(decodedToken)"
+            print("ID token:\n\(decodedToken)")
         }
         
         tokensView.text = tokens
