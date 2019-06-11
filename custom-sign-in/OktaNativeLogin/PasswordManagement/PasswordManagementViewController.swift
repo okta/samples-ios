@@ -37,7 +37,7 @@ class PasswordManagementViewController: AuthBaseViewController {
         guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty,
               let newPassword = newPasswordField.text, !newPassword.isEmpty else { return }
         
-        startProgress()
+        SVProgressHUD.show()
         if let expiredStatus = status as? OktaAuthStatusPasswordExpired {
             expiredStatus.changePassword(oldPassword: oldPassword,
                                          newPassword: newPassword,
@@ -61,7 +61,7 @@ class PasswordManagementViewController: AuthBaseViewController {
     }
     
     @IBAction private func skipTapped() {
-        startProgress()
+        SVProgressHUD.show()
         if let warningStatus = status as? OktaAuthStatusPasswordWarning {
             warningStatus.skipPasswordChange(onStatusChange: { [weak self] status in
                 self?.handleSdkUpdate(status: status, error: nil)
@@ -77,21 +77,13 @@ class PasswordManagementViewController: AuthBaseViewController {
     }
 
     func handleSdkUpdate(status: OktaAuthStatus?, error: OktaError?) {
-        stopProgress()
+        SVProgressHUD.dismiss()
         if let status = status {
             flowCoordinatorDelegate?.onStatusChanged(status: status)
         }
         if let error = error {
             showError(message: error.description)
         }
-    }
-
-    func startProgress() {
-        SVProgressHUD.show()
-    }
-    
-    func stopProgress() {
-        SVProgressHUD.dismiss()
     }
 
     // MARK: - IB

@@ -51,6 +51,16 @@ class UserProfileViewController: AuthBaseViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTokens" {
+            guard let controller = segue.destination as? TokensViewController else {
+                return
+            }
+            
+            controller.stateManager = self.oidcStateManager
+        }
+    }
+    
     func createOidcClient() -> OktaOidc? {
         var oidcClient: OktaOidc?
         if let config = self.readTestConfig() {
