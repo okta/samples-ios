@@ -1,6 +1,6 @@
 # Okta iOS Browser Sign In and Biometric storage Example
 
-This example shows you how to use the [Okta Auth](https://github.com/okta/okta-sdk-appauth-ios) to adopt Okta Authentication flow in your app as well as saving sensetive data behind biometric factor
+This example shows you how to use the [Okta Auth](https://github.com/okta/okta-sdk-appauth-ios) to adopt Okta Authentication flow in your app as well as saving sensitive data behind biometric factor
 
 
 ## Prerequisites
