@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaOidc
+import SVProgressHUD
 
 class UserProfileController: UIViewController {
     private var profileManager: ProfileManager?
@@ -35,22 +36,29 @@ class UserProfileController: UIViewController {
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var passwordChangedLabel: UILabel!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         loadUserInfo()
     }
-    
+
     private func loadUserInfo() {
         guard let stateManager = AppDelegate.shared.stateManager,
               let config = AppDelegate.shared.oktaOidc?.configuration else {
             return
         }
     
+        SVProgressHUD.show()
         profileManager = ProfileManager(config: config, stateManager: stateManager)
     
         profileManager?.getUser(completion: { [weak self] user, error in
+            SVProgressHUD.dismiss()
             guard let user = user else {
-                self?.presentAlert(title: "Error", message: error?.localizedDescription)
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    self?.loadUserInfo()
+                }))
+                self?.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -77,6 +85,7 @@ class UserProfileController: UIViewController {
     @IBAction func changePassword() {
         guard let profileManager = profileManager,
               let user = profileManager.user else {
+                self.presentAlert(title: "Error", message: "User object is not available")
               return
         }
         

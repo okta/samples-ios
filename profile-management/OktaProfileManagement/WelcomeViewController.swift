@@ -16,12 +16,15 @@
 
 import UIKit
 import OktaOidc
+import SVProgressHUD
 
 final class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.black)
         
         do {
             if let configForUITests = configForUITests {
@@ -39,16 +42,12 @@ final class WelcomeViewController: UIViewController {
             }))
             self.present(alert, animated: true)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+
         if let _ = AppDelegate.shared.stateManager?.accessToken {
             performSegue(withIdentifier: "show-details", sender: self)
         }
     }
-    
+
     @IBAction private func signInTapped() {   
         AppDelegate.shared.oktaOidc?.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
             if let error = error {
