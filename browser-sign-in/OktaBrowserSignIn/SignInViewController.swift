@@ -17,7 +17,7 @@
 import UIKit
 import OktaOidc
 
-class SingInViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
