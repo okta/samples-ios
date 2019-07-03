@@ -22,6 +22,7 @@
 		2FFF342C221EF0E30098AB63 /* MFASecurityQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */; };
 		2FFF342D221EF0E30098AB63 /* MFASecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */; };
 		92593150E6CD6F64B815232C /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F35CD647D43163D3AC1762 /* Pods_OktaNativeLogin.framework */; };
+		A10CA01E22CAC99C008C396C /* MFAPushFactorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CA01D22CAC99C008C396C /* MFAPushFactorHandler.swift */; };
 		A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
@@ -93,6 +94,7 @@
 		47E038A31896F917E6494EDA /* Pods-OktaNativeLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.debug.xcconfig"; sourceTree = "<group>"; };
 		500AC41D0BE4E61F5AC9533B /* Pods-OktaNativeLoginUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLoginUITests.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B5FE8780ADF66F87C888087 /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
+		A10CA01D22CAC99C008C396C /* MFAPushFactorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAPushFactorHandler.swift; sourceTree = "<group>"; };
 		A14269E72289EEA600DC8973 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				2FFF34222216CC170098AB63 /* MFATOTP.storyboard */,
 				2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */,
 				2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */,
+				A10CA01D22CAC99C008C396C /* MFAPushFactorHandler.swift */,
 			);
 			path = MFA;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				A14269FB228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
 				2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */,
 				A1E746A42289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
+				A10CA01E22CAC99C008C396C /* MFAPushFactorHandler.swift in Sources */,
 				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
 				A1F9E57A22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */,

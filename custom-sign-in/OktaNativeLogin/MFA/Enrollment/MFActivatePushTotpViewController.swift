@@ -23,6 +23,8 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
         let mfaActivate = status as! OktaAuthStatusFactorEnrollActivate
         return mfaActivate.factor
     }
+
+    var pushFactorHandler: MFAPushFactorHandler = MFAPushFactorHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,24 +43,19 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
             }
         }
 
+        pushFactorHandler.delegate = self
+
         factorResultLabel.flash()
 
         if let factor = factor as? OktaFactorPush {
             codeTextField.removeFromSuperview()
             factor.activate(onStatusChange:
                 { [weak self] status in
-                    self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+                    self?.pushFactorHandler.handlePushFactorResponse(status: status)
             },
                             onError:
                 { [weak self] error in
                     self?.showError(message: error.description)
-            },
-                            onFactorStatusUpdate:
-                { [weak self] factorResult in
-                    if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
-                        self?.factorResultLabel.layer.removeAllAnimations()
-                    }
-                    self?.factorResultLabel.text = factorResult.rawValue
             })
         } else {
             factorResultLabel.removeFromSuperview()
@@ -70,23 +67,31 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
         }
     }
 
+    override func backButtonTapped() {
+        super.backButtonTapped()
+        self.pushFactorHandler.cancel()
+        self.pushFactorHandler.delegate = nil
+    }
+
     @objc func activateTotp() {
         guard let code = codeTextField.text, !code.isEmpty else { return }
         factor.activate(passCode: code,
                         onStatusChange:
             { [weak self] status in
+                if status.statusType == self?.status?.statusType {
+                    if let factorResult = status.factorResult {
+                        self?.factorResultLabel.text = factorResult.rawValue
+                        if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
+                            self?.factorResultLabel.layer.removeAllAnimations()
+                        }
+                    }
+                    return
+                }
                 self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
         },
                         onError:
             { [weak self] error in
                 self?.showError(message: error.description)
-        },
-                        onFactorStatusUpdate:
-            { [weak self] factorResult in
-                if factorResult != OktaAPISuccessResponse.FactorResult.waiting {
-                    self?.factorResultLabel.layer.removeAllAnimations()
-                }
-                self?.factorResultLabel.text = factorResult.rawValue
         })
     }
     
@@ -97,4 +102,23 @@ class MFActivatePushTotpViewController: AuthBaseViewController {
     @IBOutlet private var qrCodeImageView: UIImageView!
     @IBOutlet private var factorResultLabel: UILabel!
     @IBOutlet private var codeTextField: UITextField!
+}
+
+extension MFActivatePushTotpViewController: MFAPushFactorHandlerProtocol {
+    func onStatusChanged(status: OktaAuthStatus) {
+        self.flowCoordinatorDelegate?.onStatusChanged(status: status)
+    }
+
+    func onPollingProgress(status: OktaAuthStatus) {
+        self.status = status
+    }
+    
+    func onPollingStopped(status: OktaAuthStatus) {
+        self.factorResultLabel.layer.removeAllAnimations()
+        self.factorResultLabel.text = status.factorResult?.rawValue ?? "Unknown factor result"
+    }
+    
+    func onError(error: OktaError) {
+        self.showError(message: error.description)
+    }
 }
