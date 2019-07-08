@@ -26,7 +26,7 @@ final class WelcomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let _ = AppDelegate.shared.stateManager {
+        if let _ = AppDelegate.shared.stateManager?.accessToken {
             performSegue(withIdentifier: "show-details", sender: self)
         }
     }
