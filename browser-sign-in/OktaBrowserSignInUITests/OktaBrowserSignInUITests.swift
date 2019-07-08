@@ -20,6 +20,7 @@ class OktaBrowserSignInUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        clearKeyChain()
         continueAfterFailure = false
         let app = XCUIApplication()
         app.launchEnvironment = ProcessInfo.processInfo.environment
@@ -41,18 +42,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         app.buttons["Sign In"].tap()
         passSystemAlert(button: "Continue")
         
-        let webViewsQuery = app.webViews
-        XCTAssertTrue(webViewsQuery.textFields["Username"].waitForExistence(timeout: 60))
-        webViewsQuery.textFields["Username"].tap()
-        webViewsQuery.textFields["Username"].typeText(login)
-        if webViewsQuery.buttons["Next"].exists {
-            webViewsQuery.buttons["Next"].tap()
-            XCTAssertTrue(webViewsQuery.secureTextFields["Password"].waitForExistence(timeout: 60))
-        }
-        webViewsQuery.secureTextFields["Password"].tap()
-        sleep(1)
-        webViewsQuery.secureTextFields["Password"].typeText(pass)
-        webViewsQuery.buttons["Sign In"].tap()
+        loginWith(login: login, and: pass)
 
         XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
         
@@ -71,17 +61,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         app.buttons["Sign In"].tap()
         passSystemAlert(button: "Continue")
         
-        let webViewsQuery = app.webViews
-        XCTAssertTrue(webViewsQuery.textFields["Username"].waitForExistence(timeout: 60))
-        webViewsQuery.textFields["Username"].tap()
-        webViewsQuery.textFields["Username"].typeText(login)
-        if webViewsQuery.buttons["Next"].exists {
-            webViewsQuery.buttons["Next"].tap()
-            XCTAssertTrue(webViewsQuery.secureTextFields["Password"].waitForExistence(timeout: 60))
-        }
-        webViewsQuery.secureTextFields["Password"].tap()
-        webViewsQuery.secureTextFields["Password"].typeText(pass)
-        webViewsQuery.buttons["Sign In"].tap()
+        loginWith(login: login, and: pass)
 
         XCTAssertTrue(app.webViews.staticTexts["Sign in failed!"].waitForExistence(timeout: 60))
     }
@@ -90,5 +70,38 @@ class OktaBrowserSignInUITests: XCTestCase {
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
         XCTAssertTrue(springboard.buttons[button].waitForExistence(timeout: 30))
         springboard.buttons[button].tap()
+    }
+
+    private func clearKeyChain() {
+        let secItemClasses = [
+            kSecClassGenericPassword,
+            kSecClassInternetPassword,
+            kSecClassCertificate,
+            kSecClassKey,
+            kSecClassIdentity
+        ]
+        
+        for secItemClass in secItemClasses {
+            let dictionary = [ kSecClass as String:secItemClass ] as CFDictionary
+            SecItemDelete(dictionary)
+        }
+    }
+
+    private func loginWith(login: String, and password: String) {
+        let app = XCUIApplication()
+        let webViewsQuery = app.webViews
+        let uiElementUsername = webViewsQuery.textFields.element(boundBy: 0)
+        XCTAssertTrue(uiElementUsername.waitForExistence(timeout: 60))
+        uiElementUsername.tap()
+        uiElementUsername.typeText(login)
+        let uiElementPassword: XCUIElement = webViewsQuery.secureTextFields.element(boundBy: 0)
+        if webViewsQuery.buttons["Next"].exists {
+            webViewsQuery.buttons["Next"].tap()
+            XCTAssertTrue(uiElementPassword.waitForExistence(timeout: 60))
+        }
+        uiElementPassword.tap()
+        sleep(1)
+        uiElementPassword.typeText(password)
+        webViewsQuery.buttons["Sign In"].tap()
     }
 }
