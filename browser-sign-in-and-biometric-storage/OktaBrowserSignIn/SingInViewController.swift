@@ -18,7 +18,7 @@ import UIKit
 import OktaOidc
 import OktaStorage
 
-class SingInViewController: UIViewController {
+class SignInViewController: UIViewController {
     @IBOutlet private var signInButton: UIButton!
     @IBOutlet private var signOutButton: UIButton!
     
@@ -134,7 +134,7 @@ class SingInViewController: UIViewController {
 }
 
 // UI Utils
-private extension SingInViewController {
+private extension SignInViewController {
     func updateUI() {
         guard isViewLoaded else { return }
     

@@ -37,10 +37,10 @@
             </objects>
             <point key="canvasLocation" x="-1129" y="-836"/>
         </scene>
-        <!--Sing In View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="DLf-hz-SL6">
             <objects>
-                <viewController id="7xG-zU-9ge" customClass="SingInViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7xG-zU-9ge" userLabel="Sign In View Controller" customClass="SignInViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lke-IO-LDS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
