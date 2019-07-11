@@ -140,7 +140,7 @@ private extension SingInViewController {
     
         guard let _ = self.stateManager?.accessToken else {
             loggedInUserInfoContainer.isHidden = true
-            statusLabel.text = "Unathenticated ✗"
+            statusLabel.text = "Unauthenticated ✗"
             
             signInButton.isHidden = false
             signOutButton.isHidden = true
