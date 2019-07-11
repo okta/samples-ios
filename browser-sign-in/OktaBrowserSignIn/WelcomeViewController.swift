@@ -32,17 +32,22 @@ final class WelcomeViewController: UIViewController {
     }
     
     @IBAction private func signInTapped() {   
-        AppDelegate.shared.oktaOidc.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
+        AppDelegate.shared.oktaOidc.signInWithBrowser(from: self, callback: { stateManager, error in
             if let error = error {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+                DispatchQueue.main.async { [weak self] in
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
                 return
             }
             AppDelegate.shared.stateManager?.clear()
             AppDelegate.shared.stateManager = stateManager
             stateManager?.writeToSecureStorage()
-            self?.performSegue(withIdentifier: "show-details", sender: self)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.performSegue(withIdentifier: "show-details", sender: self)
+            }
         })
     }
 }
