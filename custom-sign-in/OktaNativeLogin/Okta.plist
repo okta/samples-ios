@@ -10,5 +10,7 @@
 	<string>{clientId}</string>
 	<key>issuer</key>
 	<string>{issuer}</string>
+	<key>logoutRedirectUri</key>
+	<string>{logoutRedirectUri}:/callback</string>
 </dict>
 </plist>
