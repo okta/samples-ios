@@ -19,6 +19,8 @@ import OktaOidc
 
 class TokensViewController: UIViewController {
 
+    var stateManager: OktaOidcStateManager?
+    
     @IBOutlet private var tokensView: UITextView!
     
     @IBOutlet private var introspectButton: UIButton!
@@ -33,9 +35,9 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func introspectTapped() {
-        guard let accessToken = AppDelegate.shared.stateManager?.accessToken else { return }
+        guard let accessToken = stateManager?.accessToken else { return }
        
-        AppDelegate.shared.stateManager?.introspect(token: accessToken, callback: { payload, error in
+        stateManager?.introspect(token: accessToken, callback: { payload, error in
             DispatchQueue.main.async {
                 guard let isValid = payload?["active"] as? Bool else {
                     self.showError(error?.localizedDescription ?? "Unexpected payload!")
@@ -48,7 +50,7 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func refreshTapped() {
-        AppDelegate.shared.stateManager?.renew(callback: { stateManager, error in
+        stateManager?.renew(callback: { stateManager, error in
             if let error = error {
                 self.showError(error.localizedDescription)
                 return
@@ -60,9 +62,9 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func revokeTapped() {
-        guard let accessToken = AppDelegate.shared.stateManager?.accessToken else { return }
+        guard let accessToken = stateManager?.accessToken else { return }
         
-        AppDelegate.shared.stateManager?.revoke(accessToken, callback: { isRevoked, error in
+        stateManager?.revoke(accessToken, callback: { isRevoked, error in
             DispatchQueue.main.async {
                 guard isRevoked else {
                     self.showError( error?.localizedDescription ?? "Failed to revoked access token!")
@@ -80,7 +82,7 @@ class TokensViewController: UIViewController {
 private extension TokensViewController {
     func configure() {
         guard isViewLoaded else { return }
-        let stateManager = AppDelegate.shared.stateManager
+        let stateManager = self.stateManager
         
         var tokens = ""
         if let accessToken = stateManager?.accessToken {
