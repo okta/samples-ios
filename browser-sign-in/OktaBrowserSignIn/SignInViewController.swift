@@ -19,13 +19,22 @@ import OktaOidc
 
 class SignInViewController: UIViewController {
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    var oktaOidc: OktaOidc?
+    var stateManager: OktaOidcStateManager?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         loadUserInfo()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? TokensViewController {
+            destinationViewController.stateManager = self.stateManager
+        }
     }
     
     private func loadUserInfo() {
-        AppDelegate.shared.stateManager?.getUser { [weak self] response, error in
+        stateManager?.getUser { [weak self] response, error in
             DispatchQueue.main.async {
                 guard let response = response else {
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -57,9 +66,10 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var updatedLabel: UILabel!
     
     @IBAction func signOutTapped() {
-        guard let stateManager = AppDelegate.shared.stateManager else { return }
+        guard let oktaOidc = self.oktaOidc,
+              let stateManager = self.stateManager else { return }
         
-        AppDelegate.shared.oktaOidc.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
+        oktaOidc.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -67,9 +77,8 @@ class SignInViewController: UIViewController {
                 return
             }
             
-            AppDelegate.shared.stateManager?.clear()
-            AppDelegate.shared.stateManager = nil
-            
+            self?.stateManager?.clear()
+
             self?.navigationController?.popViewController(animated: true)
         })
     }
