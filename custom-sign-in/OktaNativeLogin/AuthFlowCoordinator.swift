@@ -152,6 +152,12 @@ class AuthFlowCoordinator {
                                                                 storyBoardName: "MFAPush",
                                                                 viewControllerIdentifier: "MFAPushViewController")
 
+        case .tokenHardware:
+            viewController = AuthBaseViewController.instantiate(with: status,
+                                                                flowCoordinatorDelegate: self,
+                                                                storyBoardName: "MFAYubiKey",
+                                                                viewControllerIdentifier: "MFAYubiKeyViewController")
+
         default:
             let authBaseViewController = rootViewController.topViewController as! AuthBaseViewController
             authBaseViewController.showError(message: "Not implemented!\nNo factor handler for \(factor.type.rawValue)")

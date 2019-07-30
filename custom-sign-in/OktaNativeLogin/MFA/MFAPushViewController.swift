@@ -18,7 +18,7 @@ import UIKit
 import OktaAuthSdk
 import SVProgressHUD
 
-class MFAPushViewController : AuthBaseViewController {
+class MFAPushViewController: AuthBaseViewController {
     
     var factor: OktaFactorPush {
         let mfaChallengeStatus = status as! OktaAuthStatusFactorChallenge
