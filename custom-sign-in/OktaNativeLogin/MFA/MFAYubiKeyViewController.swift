@@ -43,7 +43,6 @@ class MFAYubiKeyViewController: AuthBaseViewController {
         }
 
         SVProgressHUD.show()
-        SVProgressHUD.show()
         OktaYubiKeyFactor.verifyFactor(factor,
                                        stateToken: mfaChallengeStatus.stateToken,
                                        passCode: code,
