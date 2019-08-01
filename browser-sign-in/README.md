@@ -29,8 +29,10 @@ pod install
 You need to gather the following information from the Okta Developer Console:
 
 - **Client ID**, **Redirect URI**, **Logout redirect URI** - This can be found on the "General" tab of an application, you want to get this for the Web application that you created earlier.
+Documentation overview is [here](https://developer.okta.com/docs/guides/find-your-app-credentials/overview/)
 
 - **Issuer** - This is the URL of the authorization server that will perform authentication.  All Developer Accounts have a "default" authorization server.  The issuer is a combination of your Org URL (found in the upper right of the console home page) and `/oauth2/default`. For example, `https://dev-1234.oktapreview.com/oauth2/default`.
+Documentation overview is [here](https://developer.okta.com/docs/guides/find-your-domain/overview/)
 
 Now place these values into the file `OktaBrowserSignIn/Okta.plist`:
 
