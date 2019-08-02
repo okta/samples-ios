@@ -21,7 +21,7 @@ import SVProgressHUD
 class SignInViewController: AuthBaseViewController {
 
     #warning ("Enter your Okta organization domain here")
-    var urlString = "https://{yourOktaDomain}"
+    var urlString = "https://sdk-test.trexcloud.com/"
 
     class func instantiate() -> SignInViewController {
         let signInStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
@@ -93,18 +93,32 @@ class SignInViewController: AuthBaseViewController {
     @IBAction private func signInTapped() {
         guard let username = usernameField.text, !username.isEmpty,
               let password = passwordField.text, !password.isEmpty else { return }
+        
+        let successBlock: (OktaAuthStatus) -> Void = { [weak self] status in
+            SVProgressHUD.dismiss()
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }
+
+        let errorBlock: (OktaError) -> Void = { [weak self] error in
+            SVProgressHUD.dismiss()
+            self?.showError(message: error.description)
+        }
 
         SVProgressHUD.show()
-        OktaAuthSdk.authenticate(with: URL(string: urlString)!,
-                                 username: username,
-                                 password: password,
-                                 onStatusChange:
-            { [weak self] status in
-                SVProgressHUD.dismiss()
-                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { [weak self] error in
-                SVProgressHUD.dismiss()
-                self?.showError(message: error.description)
+
+        if isTestEnvironment() {
+            let unauthenticatedStatus = UnauthenticatedStatusMock(oktaDomain: URL(string: urlString)!,
+                                                                  responseHandler: CustomAuthResponseHandler())
+            unauthenticatedStatus.authenticate(username: username,
+                                               password: password,
+                                               onStatusChange: successBlock,
+                                               onError: errorBlock)
+        } else {
+            OktaAuthSdk.authenticate(with: URL(string: urlString)!,
+                                     username: username,
+                                     password: password,
+                                     onStatusChange: successBlock,
+                                     onError: errorBlock)
         }
     }
 
@@ -135,6 +149,14 @@ private extension SignInViewController {
         }
         
         urlString = url
+    }
+
+    func isTestEnvironment() -> Bool {
+        /*guard let _ = ProcessInfo.processInfo.environment["OKTA_URL"] else {
+            return false
+        }*/
+
+        return true
     }
 }
 
