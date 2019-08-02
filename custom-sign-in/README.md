@@ -69,13 +69,16 @@ After you complete the login flow, you will be able to see the details of user's
 
 ## Features
 
-### Current functionality:
 - Primary authentication
 - Change password
 - Multi factor verification (sms, call, totp, push, question)
 - Getting access token via [Okta OIDC client](https://github.com/okta/okta-oidc-ios)
-
-### Future functionality:
 - Multi factor enrollment
 - Self-service unlock
 - Forgot password
+
+## Other
+
+Sample application shows how to implement factors that are not supported by the SDK.  Find `OktaYubiKeyFactor` class in project to check implementation. For simplicity application asks for manual `passCode` input. It is supposed that real application will use `YubiKey` SDK to automatically fetch `passCode` from device.
+
+

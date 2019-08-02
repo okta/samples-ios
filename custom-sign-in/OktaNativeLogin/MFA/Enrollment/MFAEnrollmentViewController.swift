@@ -84,6 +84,8 @@ extension MFAEnrollmentViewController : UITableViewDelegate {
             handlePushFactor(factor: factor as! OktaFactorPush)
         case .TOTP:
             handleTotpFactor(factor: factor as! OktaFactorTotp)
+        case .tokenHardware:
+            handleYubiKeyFactor(factor: factor as! OktaFactorOther)
         default:
             showError(message: "Not implemented!\nNo factor handler for \(factor.type.rawValue)")
         }
@@ -148,8 +150,29 @@ extension MFAEnrollmentViewController {
         })
     }
 
+    private func handleYubiKeyFactor(factor: OktaFactorOther) {
+        let alert = UIAlertController(title: "MFA Enroll", message: "Please enter pass code", preferredStyle: .alert)
+        alert.addTextField { $0.placeholder = "Pass code" }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            guard let passCode = alert.textFields?[0].text else { return }
+            let mfaEnrollStatus = self.status as! OktaAuthStatusFactorEnroll
+            SVProgressHUD.show()
+            OktaYubiKeyFactor.verifyFactor(factor,
+                                           stateToken: mfaEnrollStatus.stateToken,
+                                           passCode: passCode,
+                                           onStatusChange: { [weak self] status in
+                SVProgressHUD.dismiss()
+                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+            }, onError: { [weak self] error in
+                SVProgressHUD.dismiss()
+                self?.showError(message: error.description)
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     private func handleQuestionFactor(factor: OktaFactorQuestion) {
-        
         SVProgressHUD.show(withStatus: "Downloading questions...")
         factor.downloadSecurityQuestions(onDownloadComplete: { [weak self] questions in
             SVProgressHUD.dismiss()
