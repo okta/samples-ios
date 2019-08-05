@@ -29,6 +29,8 @@ class CustomAuthResponseHandler: OktaAuthStatusResponseHandler {
         
         if statusType == .passwordExpired {
             authStatus = try! PasswordExpiredStatusMock(currentState: currentStatus, model: response)
+        } else if (statusType == .passwordWarning) {
+            authStatus = try! PasswordWarningStatusMock(currentState: currentStatus, model: response)
         }
 
         return authStatus

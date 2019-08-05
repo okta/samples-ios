@@ -31,6 +31,8 @@
 		A121D1B122F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */; };
 		A121D1B322F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */; };
 		A121D1B422F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */; };
+		A121D1B622F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */; };
+		A121D1B722F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */; };
 		A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
@@ -112,6 +114,7 @@
 		A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthResponseHandler.swift; sourceTree = "<group>"; };
 		A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordExpiredStatusMock.swift; sourceTree = "<group>"; };
 		A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedStatusMock.swift; sourceTree = "<group>"; };
+		A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordWarningStatusMock.swift; sourceTree = "<group>"; };
 		A14269E72289EEA600DC8973 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 				A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */,
 				A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */,
 				A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */,
+				A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */,
 			);
 			path = MockExample;
 			sourceTree = "<group>";
@@ -548,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A121D1A922F3A7F6006C1839 /* OktaYubiKeyFactor.swift in Sources */,
+				A121D1B722F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */,
 				A171004122CC4FE500342782 /* MFAPushFactorHandler.swift in Sources */,
 				A1F9E5842295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */,
 				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
@@ -589,6 +594,7 @@
 				A121D1AD22F4B976006C1839 /* CustomAuthResponseHandler.swift in Sources */,
 				A10CA01E22CAC99C008C396C /* MFAPushFactorHandler.swift in Sources */,
 				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
+				A121D1B622F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */,
 				A1F9E57A22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */,
 				A121D1B022F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */,

@@ -21,7 +21,7 @@ import SVProgressHUD
 class SignInViewController: AuthBaseViewController {
 
     #warning ("Enter your Okta organization domain here")
-    var urlString = "https://sdk-test.trexcloud.com/"
+    var urlString = "https://{yourOktaDomain}"
 
     class func instantiate() -> SignInViewController {
         let signInStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
@@ -106,8 +106,8 @@ class SignInViewController: AuthBaseViewController {
 
         SVProgressHUD.show()
 
-        if isTestEnvironment() {
-            let unauthenticatedStatus = UnauthenticatedStatusMock(oktaDomain: URL(string: urlString)!,
+        if isMockExample() {
+            let unauthenticatedStatus = UnauthenticatedStatusMock(oktaDomain: URL(string: "https://www.dummy.com")!,
                                                                   responseHandler: CustomAuthResponseHandler())
             unauthenticatedStatus.authenticate(username: username,
                                                password: password,
@@ -145,16 +145,16 @@ class SignInViewController: AuthBaseViewController {
 private extension SignInViewController {
     func setupForUITests() {
         guard let url = ProcessInfo.processInfo.environment["OKTA_URL"] else {
-                return
+            return
         }
         
         urlString = url
     }
 
-    func isTestEnvironment() -> Bool {
-        /*guard let _ = ProcessInfo.processInfo.environment["OKTA_URL"] else {
+    func isMockExample() -> Bool {
+        guard let _ = ProcessInfo.processInfo.environment["MOCK_EXAMPLE"] else {
             return false
-        }*/
+        }
 
         return true
     }
