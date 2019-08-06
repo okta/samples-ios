@@ -46,7 +46,12 @@ class UserProfileViewController: AuthBaseViewController {
                     self?.refreshTokenLabel.text = "YES"
                     self?.refreshTokenLabel.textColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
                 }
-                self?.oidcStateManager = stateManager
+                if let stateManager = stateManager {
+                    self?.oidcStateManager = stateManager
+                    self?.viewTokensButton.isEnabled = true
+                    self?.logoutButton.isEnabled = true
+                }
+                
             })
         }
     }
@@ -92,6 +97,7 @@ class UserProfileViewController: AuthBaseViewController {
     @IBOutlet weak var timezoneLabel: UILabel!
     @IBOutlet weak var localeLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var viewTokensButton: UIButton!
     @IBOutlet weak var accessTokenLabel: UILabel!
     @IBOutlet weak var refreshTokenLabel: UILabel!
 }

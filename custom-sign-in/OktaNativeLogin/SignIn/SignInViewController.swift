@@ -93,18 +93,32 @@ class SignInViewController: AuthBaseViewController {
     @IBAction private func signInTapped() {
         guard let username = usernameField.text, !username.isEmpty,
               let password = passwordField.text, !password.isEmpty else { return }
+        
+        let successBlock: (OktaAuthStatus) -> Void = { [weak self] status in
+            SVProgressHUD.dismiss()
+            self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
+        }
+
+        let errorBlock: (OktaError) -> Void = { [weak self] error in
+            SVProgressHUD.dismiss()
+            self?.showError(message: error.description)
+        }
 
         SVProgressHUD.show()
-        OktaAuthSdk.authenticate(with: URL(string: urlString)!,
-                                 username: username,
-                                 password: password,
-                                 onStatusChange:
-            { [weak self] status in
-                SVProgressHUD.dismiss()
-                self?.flowCoordinatorDelegate?.onStatusChanged(status: status)
-        })  { [weak self] error in
-                SVProgressHUD.dismiss()
-                self?.showError(message: error.description)
+
+        if isMockExample() {
+            let unauthenticatedStatus = UnauthenticatedStatusMock(oktaDomain: URL(string: "https://www.dummy.com")!,
+                                                                  responseHandler: CustomAuthResponseHandler())
+            unauthenticatedStatus.authenticate(username: username,
+                                               password: password,
+                                               onStatusChange: successBlock,
+                                               onError: errorBlock)
+        } else {
+            OktaAuthSdk.authenticate(with: URL(string: urlString)!,
+                                     username: username,
+                                     password: password,
+                                     onStatusChange: successBlock,
+                                     onError: errorBlock)
         }
     }
 
@@ -131,10 +145,18 @@ class SignInViewController: AuthBaseViewController {
 private extension SignInViewController {
     func setupForUITests() {
         guard let url = ProcessInfo.processInfo.environment["OKTA_URL"] else {
-                return
+            return
         }
         
         urlString = url
+    }
+
+    func isMockExample() -> Bool {
+        guard let _ = ProcessInfo.processInfo.environment["MOCK_EXAMPLE"] else {
+            return false
+        }
+
+        return true
     }
 }
 
