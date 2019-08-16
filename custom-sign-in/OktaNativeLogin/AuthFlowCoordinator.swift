@@ -87,11 +87,16 @@ class AuthFlowCoordinator {
     }
 
     func handleSuccessStatus(status: OktaAuthStatus) {
-        let userProfileViewController = AuthBaseViewController.instantiate(with: status,
-                                                                           flowCoordinatorDelegate: self,
-                                                                           storyBoardName: "UserProfile",
-                                                                           viewControllerIdentifier: "UserProfile")
-        rootViewController.pushViewController(userProfileViewController, animated: true)
+        let successStatus = status as! OktaAuthStatusSuccess
+        if let _ = successStatus.sessionToken {
+            let userProfileViewController = AuthBaseViewController.instantiate(with: status,
+                                                                               flowCoordinatorDelegate: self,
+                                                                               storyBoardName: "UserProfile",
+                                                                               viewControllerIdentifier: "UserProfile")
+            rootViewController.pushViewController(userProfileViewController, animated: true)
+        } else {
+            handleLockedOutSuccess(status: successStatus)
+        }
     }
 
     func handlePasswordWarning(status: OktaAuthStatus) {
@@ -237,6 +242,12 @@ class AuthFlowCoordinator {
         rootViewController.popToRootViewController(animated: true)
         let signInViewController = rootViewController.topViewController as! SignInViewController
         signInViewController.handleLockedOutStatus(status: status as! OktaAuthStatusLockedOut)
+    }
+
+    func handleLockedOutSuccess(status: OktaAuthStatus) {
+        rootViewController.popToRootViewController(animated: true)
+        let signInViewController = rootViewController.topViewController as! SignInViewController
+        signInViewController.handleLockedOutSuccessStatus()
     }
 }
 
