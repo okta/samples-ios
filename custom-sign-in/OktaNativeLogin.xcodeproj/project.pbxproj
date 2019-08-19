@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0083E3E6E423E6A36DD5131B /* Pods_OktaNativeLoginUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452FA08C5EA69DFBB1CE3628 /* Pods_OktaNativeLoginUITests.framework */; };
+		1F4578A9DD7A837493545CEB /* Pods_OktaNativeLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E412D187D770407D5E1282FC /* Pods_OktaNativeLogin.framework */; };
 		2F5D0BF422AA8B6900FA2739 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF322AA8B6900FA2739 /* TokensViewController.swift */; };
 		2F5D0BF722AE9F0A00FA2739 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5D0BF322AA8B6900FA2739 /* TokensViewController.swift */; };
 		2F74358B2204789300B47967 /* MFA.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F74358A2204789300B47967 /* MFA.storyboard */; };
@@ -23,6 +25,14 @@
 		A10CA01E22CAC99C008C396C /* MFAPushFactorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CA01D22CAC99C008C396C /* MFAPushFactorHandler.swift */; };
 		A121D1A822F0E882006C1839 /* OktaYubiKeyFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1A722F0E882006C1839 /* OktaYubiKeyFactor.swift */; };
 		A121D1A922F3A7F6006C1839 /* OktaYubiKeyFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1A722F0E882006C1839 /* OktaYubiKeyFactor.swift */; };
+		A121D1AD22F4B976006C1839 /* CustomAuthResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */; };
+		A121D1AE22F4B976006C1839 /* CustomAuthResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */; };
+		A121D1B022F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */; };
+		A121D1B122F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */; };
+		A121D1B322F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */; };
+		A121D1B422F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */; };
+		A121D1B622F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */; };
+		A121D1B722F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */; };
 		A14269E82289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269E92289EEA600DC8973 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14269E72289EEA600DC8973 /* SignIn.storyboard */; };
 		A14269EB2289EEE100DC8973 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */; };
@@ -82,6 +92,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0576F5CABF67C514BAA366BC /* Pods-OktaNativeLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.release.xcconfig"; sourceTree = "<group>"; };
+		0B56CCE1947DB1FC0620716D /* Pods-OktaNativeLoginUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLoginUITests.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F5D0BF322AA8B6900FA2739 /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		2F74358A2204789300B47967 /* MFA.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFA.storyboard; sourceTree = "<group>"; };
 		2F74358C220478B000B47967 /* MFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewController.swift; sourceTree = "<group>"; };
@@ -94,8 +106,15 @@
 		2FFF34222216CC170098AB63 /* MFATOTP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MFATOTP.storyboard; sourceTree = "<group>"; };
 		2FFF342A221EF0E30098AB63 /* MFASecurityQuestion.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFASecurityQuestion.storyboard; sourceTree = "<group>"; };
 		2FFF342B221EF0E30098AB63 /* MFASecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFASecurityQuestionViewController.swift; sourceTree = "<group>"; };
+		3BFFE7D2210864ECDC24F2C5 /* Pods-OktaNativeLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLogin.debug.xcconfig"; path = "Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin.debug.xcconfig"; sourceTree = "<group>"; };
+		452FA08C5EA69DFBB1CE3628 /* Pods_OktaNativeLoginUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLoginUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6449C9E47C203C12D2F37D61 /* Pods-OktaNativeLoginUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OktaNativeLoginUITests.release.xcconfig"; path = "Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A10CA01D22CAC99C008C396C /* MFAPushFactorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAPushFactorHandler.swift; sourceTree = "<group>"; };
 		A121D1A722F0E882006C1839 /* OktaYubiKeyFactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaYubiKeyFactor.swift; sourceTree = "<group>"; };
+		A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthResponseHandler.swift; sourceTree = "<group>"; };
+		A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordExpiredStatusMock.swift; sourceTree = "<group>"; };
+		A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthenticatedStatusMock.swift; sourceTree = "<group>"; };
+		A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordWarningStatusMock.swift; sourceTree = "<group>"; };
 		A14269E72289EEA600DC8973 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		A14269EA2289EEE100DC8973 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -117,6 +136,7 @@
 		A1F9E5882295F9A900924F7A /* PasswordRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryViewController.swift; sourceTree = "<group>"; };
 		A1F9E58B2295FB7B00924F7A /* PasswordReset.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordReset.storyboard; sourceTree = "<group>"; };
 		A1F9E58E2295FDE000924F7A /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		E412D187D770407D5E1282FC /* Pods_OktaNativeLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaNativeLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57B5ED821ECCD0700895A26 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		F5F039C522368B5700BEE7D4 /* OktaNativeLoginUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaNativeLoginUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F039C722368B5800BEE7D4 /* OktaNativeLoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaNativeLoginUITests.swift; sourceTree = "<group>"; };
@@ -133,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0083E3E6E423E6A36DD5131B /* Pods_OktaNativeLoginUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F4578A9DD7A837493545CEB /* Pods_OktaNativeLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +192,10 @@
 		6E3CAF0A7784EF15C75860B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				3BFFE7D2210864ECDC24F2C5 /* Pods-OktaNativeLogin.debug.xcconfig */,
+				0576F5CABF67C514BAA366BC /* Pods-OktaNativeLogin.release.xcconfig */,
+				0B56CCE1947DB1FC0620716D /* Pods-OktaNativeLoginUITests.debug.xcconfig */,
+				6449C9E47C203C12D2F37D61 /* Pods-OktaNativeLoginUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -180,6 +206,17 @@
 				A121D1A722F0E882006C1839 /* OktaYubiKeyFactor.swift */,
 			);
 			path = CustomFactors;
+			sourceTree = "<group>";
+		};
+		A121D1AB22F4B927006C1839 /* MockExample */ = {
+			isa = PBXGroup;
+			children = (
+				A121D1AC22F4B976006C1839 /* CustomAuthResponseHandler.swift */,
+				A121D1AF22F4D19C006C1839 /* PasswordExpiredStatusMock.swift */,
+				A121D1B222F4E69E006C1839 /* UnauthenticatedStatusMock.swift */,
+				A121D1B522F8A101006C1839 /* PasswordWarningStatusMock.swift */,
+			);
+			path = MockExample;
 			sourceTree = "<group>";
 		};
 		A14269F3228A17ED00DC8973 /* PasswordManagement */ = {
@@ -227,6 +264,15 @@
 			path = Enrollment;
 			sourceTree = "<group>";
 		};
+		CF9A87B8E0220748FA0A2A3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E412D187D770407D5E1282FC /* Pods_OktaNativeLogin.framework */,
+				452FA08C5EA69DFBB1CE3628 /* Pods_OktaNativeLoginUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F5F039C622368B5800BEE7D4 /* OktaNativeLoginUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,11 +285,11 @@
 		FAE1548C21E5FB2C00B89097 = {
 			isa = PBXGroup;
 			children = (
-				A121D1A622F0E6D8006C1839 /* CustomFactors */,
 				FAE1549721E5FB2C00B89097 /* OktaNativeLogin */,
 				F5F039C622368B5800BEE7D4 /* OktaNativeLoginUITests */,
 				FAE1549621E5FB2C00B89097 /* Products */,
 				6E3CAF0A7784EF15C75860B5 /* Pods */,
+				CF9A87B8E0220748FA0A2A3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,14 +305,16 @@
 		FAE1549721E5FB2C00B89097 /* OktaNativeLogin */ = {
 			isa = PBXGroup;
 			children = (
+				A1A9284A228CB2FD00AC8987 /* SignIn */,
+				A1A9284C228CB32C00AC8987 /* UserProfile */,
 				FAE1549821E5FB2C00B89097 /* AppDelegate.swift */,
 				A14269FA228A35D000DC8973 /* AuthBaseViewController.swift */,
 				A1E746A32289DCBA00C48A28 /* AuthFlowCoordinator.swift */,
 				A14269ED228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift */,
-				A1A9284C228CB32C00AC8987 /* UserProfile */,
-				A1A9284A228CB2FD00AC8987 /* SignIn */,
+				A121D1A622F0E6D8006C1839 /* CustomFactors */,
 				A14269F3228A17ED00DC8973 /* PasswordManagement */,
 				2F7435892204789300B47967 /* MFA */,
+				A121D1AB22F4B927006C1839 /* MockExample */,
 				FAE1549F21E5FB2D00B89097 /* Assets.xcassets */,
 				A14269F0228A162500DC8973 /* Main.storyboard */,
 				FAE154A121E5FB2D00B89097 /* LaunchScreen.storyboard */,
@@ -283,9 +331,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5F039CE22368B5800BEE7D4 /* Build configuration list for PBXNativeTarget "OktaNativeLoginUITests" */;
 			buildPhases = (
+				8C2F52C44EC13D3C3771FD34 /* [CP] Check Pods Manifest.lock */,
 				F5F039C122368B5700BEE7D4 /* Sources */,
 				F5F039C222368B5700BEE7D4 /* Frameworks */,
 				F5F039C322368B5700BEE7D4 /* Resources */,
+				51AEF08ECBB373D6582AACC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,9 +351,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAE154A721E5FB2D00B89097 /* Build configuration list for PBXNativeTarget "OktaNativeLogin" */;
 			buildPhases = (
+				3C00749D680B59D362552B35 /* [CP] Check Pods Manifest.lock */,
 				FAE1549121E5FB2C00B89097 /* Sources */,
 				FAE1549221E5FB2C00B89097 /* Frameworks */,
 				FAE1549321E5FB2C00B89097 /* Resources */,
+				6FC39DB674851B6160BB9F1C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -395,15 +447,117 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3C00749D680B59D362552B35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OktaNativeLogin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51AEF08ECBB373D6582AACC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OktaAuthSdk/OktaAuthSdk.framework",
+				"${BUILT_PRODUCTS_DIR}/OktaOidc/OktaOidc.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthSdk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaOidc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLoginUITests/Pods-OktaNativeLoginUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FC39DB674851B6160BB9F1C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OktaAuthSdk/OktaAuthSdk.framework",
+				"${BUILT_PRODUCTS_DIR}/OktaOidc/OktaOidc.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaAuthSdk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OktaOidc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OktaNativeLogin/Pods-OktaNativeLogin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C2F52C44EC13D3C3771FD34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OktaNativeLoginUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F5F039C122368B5700BEE7D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A121D1A922F3A7F6006C1839 /* OktaYubiKeyFactor.swift in Sources */,
+				A121D1B722F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */,
 				A171004122CC4FE500342782 /* MFAPushFactorHandler.swift in Sources */,
 				A1F9E5842295C86700924F7A /* PasswordRecoveryChallengeViewController.swift in Sources */,
 				A1A9284B228CB30D00AC8987 /* SignInViewController.swift in Sources */,
+				A121D1AE22F4B976006C1839 /* CustomAuthResponseHandler.swift in Sources */,
+				A121D1B122F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */,
 				2F5D0BF722AE9F0A00FA2739 /* TokensViewController.swift in Sources */,
 				A14269F6228A186C00DC8973 /* PasswordManagementViewController.swift in Sources */,
 				A14269EF228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
@@ -414,6 +568,7 @@
 				A1F9E58A2295F9A900924F7A /* PasswordRecoveryViewController.swift in Sources */,
 				A1F9E57B22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				F5F039C822368B5800BEE7D4 /* OktaNativeLoginUITests.swift in Sources */,
+				A121D1B422F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */,
 				A14269FC228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,12 +591,16 @@
 				A14269FB228A35D000DC8973 /* AuthBaseViewController.swift in Sources */,
 				2FFF34192215DF640098AB63 /* MFASMSViewController.swift in Sources */,
 				A1E746A42289DCBA00C48A28 /* AuthFlowCoordinator.swift in Sources */,
+				A121D1AD22F4B976006C1839 /* CustomAuthResponseHandler.swift in Sources */,
 				A10CA01E22CAC99C008C396C /* MFAPushFactorHandler.swift in Sources */,
 				2FFF34212216CC020098AB63 /* MFATOTPViewController.swift in Sources */,
+				A121D1B622F8A101006C1839 /* PasswordWarningStatusMock.swift in Sources */,
 				A1F9E57A22945FBB00924F7A /* MFActivatePushTotpViewController.swift in Sources */,
 				2F9B84A921EFA30C003E6F17 /* SignInViewController.swift in Sources */,
+				A121D1B022F4D19C006C1839 /* PasswordExpiredStatusMock.swift in Sources */,
 				FAE1549921E5FB2C00B89097 /* AppDelegate.swift in Sources */,
 				A1F9E58F2295FDE000924F7A /* PasswordResetViewController.swift in Sources */,
+				A121D1B322F4E69E006C1839 /* UnauthenticatedStatusMock.swift in Sources */,
 				A14269EE228A026400DC8973 /* AuthFlowCoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +637,7 @@
 /* Begin XCBuildConfiguration section */
 		F5F039CC22368B5800BEE7D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B56CCE1947DB1FC0620716D /* Pods-OktaNativeLoginUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OktaNativeLoginUITests/Info.plist;
@@ -497,6 +657,7 @@
 		};
 		F5F039CD22368B5800BEE7D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6449C9E47C203C12D2F37D61 /* Pods-OktaNativeLoginUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OktaNativeLoginUITests/Info.plist;
@@ -632,6 +793,7 @@
 		};
 		FAE154A821E5FB2D00B89097 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BFFE7D2210864ECDC24F2C5 /* Pods-OktaNativeLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -651,6 +813,7 @@
 		};
 		FAE154A921E5FB2D00B89097 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0576F5CABF67C514BAA366BC /* Pods-OktaNativeLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

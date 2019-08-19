@@ -79,6 +79,5 @@ After you complete the login flow, you will be able to see the details of user's
 
 ## Other
 
-Sample application shows how to implement factors that are not supported by the SDK.  Find `OktaYubiKeyFactor` class in project to check implementation. For simplicity application asks for manual `passCode` input. It is supposed that real application will use `YubiKey` SDK to automatically fetch `passCode` from device.
-
-
+- Sample application shows how to implement factors that are not supported by the SDK.  Find `OktaYubiKeyFactor` class in project to check implementation. For simplicity application asks for manual `passCode` input. It is supposed that the real application will use `YubiKey` SDK to automatically fetch `passCode` from the device.
+- Sample application shows how to implement custom mocks for the status classes and custom response handler. Mock classes can be found in `MockExample` folder.
