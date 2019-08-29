@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'OktaBrowserSignIn' do
   pod 'OktaOidc'
+  pod 'OktaJWT'
 end

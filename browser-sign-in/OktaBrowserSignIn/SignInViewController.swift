@@ -16,6 +16,7 @@
 
 import UIKit
 import OktaOidc
+import OktaJWT
 
 class SignInViewController: UIViewController {
     
@@ -25,6 +26,23 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserInfo()
+        DispatchQueue.global().async {
+            let options = ["iss": self.oktaOidc!.configuration.issuer, "exp": "true"]
+            let idTokenValidator = OktaJWTValidator(options)
+            do {
+                _ = try idTokenValidator.isValid(self.stateManager!.idToken!)
+            } catch let verificationError {
+                var errorDescription = verificationError.localizedDescription
+                if let verificationError = verificationError as? OktaJWTVerificationError, let description = verificationError.errorDescription {
+                    errorDescription = description
+                }
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
