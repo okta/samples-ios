@@ -24,6 +24,7 @@ cd totp-app/
 Then install dependencies:
 
 ```bash
+pod repo update
 pod install
 ```
 
