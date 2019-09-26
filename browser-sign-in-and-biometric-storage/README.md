@@ -23,6 +23,7 @@ cd browser-sign-in-and-biometric-storage/
 Then install dependencies:
 
 ```bash
+pod repo update
 pod install
 ```
 
