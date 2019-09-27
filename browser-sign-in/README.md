@@ -23,6 +23,7 @@ cd browser-sign-in/
 Then install dependencies:
 
 ```bash
+pod repo update
 pod install
 ```
 
