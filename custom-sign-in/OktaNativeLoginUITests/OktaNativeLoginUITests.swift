@@ -56,6 +56,19 @@ class OktaNativeLoginUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
         XCTAssertTrue(app.staticTexts["YES"].waitForExistence(timeout: 30))
         
+        app.buttons["View Tokens"].tap()
+        
+        XCTAssertTrue(app.buttons["Refresh"].waitForExistence(timeout: 10))
+
+        app.buttons["Refresh"].tap()
+
+        XCTAssertTrue(app.alerts["Token refreshed!"].waitForExistence(timeout: 30))
+
+        app.alerts["Token refreshed!"].buttons["OK"].tap()
+        
+        let backButton = app.buttons.element(boundBy: 0)
+        backButton.tap()
+        
         if #available(iOS 11.0, *) {
             app.buttons["Sign Out"].tap()
             app.tap()
