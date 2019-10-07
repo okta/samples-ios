@@ -1,3 +1,5 @@
+[![CI Status](http://img.shields.io/travis/okta/okta-oidc-ios.svg?style=flat)](https://api.travis-ci.org/okta/samples-ios.svg?branch=master)
+
 # iOS Sample Applications for Okta
 
 This repository contains several sample applications that show you how to integrate various Okta use-cases into your iOS application.
