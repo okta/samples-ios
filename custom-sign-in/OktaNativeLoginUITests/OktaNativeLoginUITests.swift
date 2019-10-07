@@ -66,7 +66,8 @@ class OktaNativeLoginUITests: XCTestCase {
 
         app.alerts["Token refreshed!"].buttons["OK"].tap()
         
-        app.buttons["Back"].tap()
+        let backButton = app.buttons.element(boundBy: 0)
+        backButton.tap()
         
         if #available(iOS 11.0, *) {
             app.buttons["Sign Out"].tap()
