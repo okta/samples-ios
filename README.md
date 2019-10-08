@@ -1,4 +1,4 @@
-[![CI Status](http://img.shields.io/travis/okta/okta-oidc-ios.svg?style=flat)](https://api.travis-ci.org/okta/samples-ios.svg?branch=master)
+[![CI Status](https://img.shields.io/travis/okta/samples-ios.svg?style=flat)](https://travis-ci.org/okta/samples-ios)
 
 # iOS Sample Applications for Okta
 
