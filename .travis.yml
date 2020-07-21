@@ -17,7 +17,9 @@ install:
 
 script:
   - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 | xcpretty
-  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=11.0.0,name\=iPhone\ 8 | xcpretty
+  - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=11.4,name\=iPhone\ 6 | xcpretty
+  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 | xcpretty
+  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=11.4,name\=iPhone\ 6 | xcpretty
 
 notifications:
   slack:
