@@ -15,6 +15,9 @@ install:
   - pushd browser-sign-in-and-biometric-storage
   - pod install --repo-update
   - popd
+  - pushd build-tests/ObjcTest
+  - pod install --repo-update
+  - popd
   - pushd build-tests/CarthageTest
   - carthage update
   - popd
@@ -26,6 +29,7 @@ script:
   - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=11.4,name\=iPhone\ 6 build | xcpretty
   - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
   - set -o pipefail && xcodebuild -project build-tests/CarthageTest/CarthageTest.xcodeproj -scheme CarthageTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+  - set -o pipefail && xcodebuild -workspace build-tests/ObjcTest/ObjcTest.xcworkspace -scheme ObjcTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
 
 notifications:
   slack:
