@@ -1,0 +1,2 @@
+github "okta/okta-auth-swift" "master"
+github "okta/okta-oidc-ios" "master"

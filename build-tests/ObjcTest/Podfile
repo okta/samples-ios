@@ -1,7 +1,6 @@
 platform :ios, '11.0'
 use_frameworks!
 
-target 'OktaBrowserSignIn' do
+target 'ObjcTest' do
   pod 'OktaOidc'
-  pod 'OktaStorage'
 end
