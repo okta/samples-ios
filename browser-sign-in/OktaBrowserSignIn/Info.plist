@@ -56,7 +56,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>{callback URI scheme}</string>
+				<string>{customUriScheme}</string>
 			</array>
 		</dict>
 	</array>

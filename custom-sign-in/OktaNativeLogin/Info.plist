@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.okta.example</string>
+				<string>{customUriScheme}</string>
 			</array>
 		</dict>
 	</array>
