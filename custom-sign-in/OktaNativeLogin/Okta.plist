@@ -5,12 +5,12 @@
 	<key>scopes</key>
 	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>{callbackUriScheme}:/callback</string>
+	<string>{customUriScheme}:/loginCallback</string>
 	<key>clientId</key>
 	<string>{clientId}</string>
 	<key>issuer</key>
 	<string>{issuer}</string>
 	<key>logoutRedirectUri</key>
-	<string>{logoutRedirectUri}:/callback</string>
+	<string>{customUriScheme}:/logoutCallback</string>
 </dict>
 </plist>
