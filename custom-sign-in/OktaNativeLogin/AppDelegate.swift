@@ -16,9 +16,8 @@
 
 import UIKit
 
-
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, URLSessionTaskDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var authFlowCoordinator: AuthFlowCoordinator?

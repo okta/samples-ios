@@ -5,10 +5,10 @@
 	<key>scopes</key>
 	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>{redirectUri}</string>
+	<string>com.okta.directauth.ios://login</string>
 	<key>clientId</key>
-	<string>{clientId}</string>
+	<string>0oakwr3kfZffLpDz35d6</string>
 	<key>issuer</key>
-	<string>{issuerUrl}</string>
+	<string>https://dev-61971003.okta.com/oauth2/default</string>
 </dict>
 </plist>
