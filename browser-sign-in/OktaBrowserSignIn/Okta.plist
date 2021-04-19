@@ -5,12 +5,12 @@
 	<key>scopes</key>
 	<string>openid profile offline_access</string>
 	<key>redirectUri</key>
-	<string>{customUriScheme}:/loginCallback</string>
+	<string>com.trexcloud.idx-devex:/callback</string>
 	<key>clientId</key>
-	<string>{clientId}</string>
+	<string>0oa3kwpkybLg4AQHH0g7</string>
 	<key>issuer</key>
-	<string>{issuer}</string>
+	<string>https://idx-devex.trexcloud.com/oauth2/default</string>
 	<key>logoutRedirectUri</key>
-	<string>{customUriScheme}:/logoutCallback</string>
+	<string>com.trexcloud.idx-devex:/logoutCallback</string>
 </dict>
 </plist>
