@@ -11,6 +11,6 @@
 	<key>issuer</key>
 	<string>{issuer}</string>
 	<key>logoutRedirectUri</key>
-	<string>{customUriScheme}:/callback</string>
+	<string>{customUriScheme}:/logoutCallback</string>
 </dict>
 </plist>
