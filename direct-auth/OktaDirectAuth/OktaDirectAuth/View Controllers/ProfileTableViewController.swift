@@ -173,15 +173,20 @@ class ProfileTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let row = row(at: indexPath) else { return }
+        guard let row = row(at: indexPath),
+              let onboardingManager = OnboardingManager.shared
+        else { return }
         
         switch row.id {
         case "signout":
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alert.addAction(.init(title: "Clear tokens", style: .default) { (action) in
-                OnboardingManager.shared?.currentUser = nil
+                onboardingManager.currentUser = nil
             })
             alert.addAction(.init(title: "Revoke tokens", style: .destructive) { (action) in
+                onboardingManager.revokeTokens { (success, error) in
+                    onboardingManager.currentUser = nil
+                }
             })
             alert.addAction(.init(title: "Cancel", style: .cancel))
             

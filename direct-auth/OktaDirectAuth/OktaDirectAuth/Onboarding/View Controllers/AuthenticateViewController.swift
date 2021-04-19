@@ -50,6 +50,7 @@ class AuthenticateViewController: UIViewController, SigninController {
         case .passwordInvalid: break
         case .passwordExpired:
             showChangePassword()
+        case .tokenRevoked: break
         }
     }
     
