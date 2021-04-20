@@ -134,6 +134,25 @@ class OnboardingManager {
         }
     }
     
+    func revokeTokens(completion: @escaping(Bool, Error?) -> Void) {
+        guard let user = currentUser else {
+            completion(false, nil)
+            return
+        }
+        
+        let auth = OktaIdxAuth(issuer: configuration.issuer,
+                               clientId: configuration.clientId,
+                               clientSecret: nil,
+                               scopes: configuration.scopes,
+                               redirectUri: configuration.redirectUri,
+                               completion: { (_, _) in
+                               })
+        auth.revokeTokens(token: user.token.accessToken,
+                          type: .accessAndRefreshToken) { (response, error) in
+            completion(response?.status == .tokenRevoked, error)
+        }
+    }
+    
     func completed(with token: IDXClient.Token?, error: Error?) {
         guard let token = token else {
             let alert = UIAlertController(title: nil,

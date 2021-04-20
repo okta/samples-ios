@@ -42,6 +42,7 @@ class NewPasswordViewController: UIViewController, SigninController {
     func handle(response: OktaIdxAuth.Response) {
         switch response.status {
         case .success: break
+        case .tokenRevoked: break
         case .passwordInvalid: break
         case .passwordExpired: break
         }
