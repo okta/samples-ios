@@ -33,10 +33,10 @@ extension SigninController where Self: UIViewController {
 }
 
 class LandingViewController: UIViewController, SigninController {
-    @IBOutlet weak var signInButtonStackView: UIStackView!
-    @IBOutlet weak var registerButton: SigninButton!
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak private(set) var signInButtonStackView: UIStackView!
+    @IBOutlet weak private(set) var registerButton: SigninButton!
+    @IBOutlet weak private(set) var backgroundImageView: UIImageView!
+    @IBOutlet weak private(set) var footerView: UIView!
     var auth: OktaIdxAuth?
 
     override func viewWillAppear(_ animated: Bool) {

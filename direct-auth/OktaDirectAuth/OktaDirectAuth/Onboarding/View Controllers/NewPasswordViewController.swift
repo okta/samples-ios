@@ -14,9 +14,9 @@ import UIKit
 import OktaIdxAuth
 
 class NewPasswordViewController: UIViewController, SigninController {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak private(set) var scrollView: UIScrollView!
+    @IBOutlet weak private(set) var passwordField: UITextField!
+    @IBOutlet weak private(set) var nextButton: UIButton!
 
     var auth: OktaIdxAuth?
     
