@@ -1,0 +1,603 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9618C0FC2624C22000F5ACB3 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9618C0FB2624C22000F5ACB3 /* AuthenticateViewController.swift */; };
+		9618C0FE2624C37100F5ACB3 /* BlurredBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9618C0FD2624C37100F5ACB3 /* BlurredBackground.swift */; };
+		965C3B07261F7D7800EBD800 /* UIView+IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B06261F7D7800EBD800 /* UIView+IBExtensions.swift */; };
+		965C3B09261F7DA200EBD800 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B08261F7DA200EBD800 /* CGRect+Extensions.swift */; };
+		965C3B0B261F7DD700EBD800 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B0A261F7DD700EBD800 /* FooterView.swift */; };
+		965C3B0D261F7E8E00EBD800 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B0C261F7E8E00EBD800 /* SignInButton.swift */; };
+		965C3B34261F874500EBD800 /* OktaIdx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965C3B28261F873700EBD800 /* OktaIdx.framework */; };
+		965C3B35261F874500EBD800 /* OktaIdx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 965C3B28261F873700EBD800 /* OktaIdx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		966FDDEF26211C750054A276 /* OktaIdxAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966FDDEC26211C750054A276 /* OktaIdxAuth.framework */; };
+		966FDDF026211C750054A276 /* OktaIdxAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 966FDDEC26211C750054A276 /* OktaIdxAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96AB2C692613E12200516933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C682613E12200516933 /* AppDelegate.swift */; };
+		96AB2C6B2613E12200516933 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C6A2613E12200516933 /* SceneDelegate.swift */; };
+		96AB2C6D2613E12200516933 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C6C2613E12200516933 /* LandingViewController.swift */; };
+		96AB2C702613E12200516933 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AB2C6E2613E12200516933 /* Main.storyboard */; };
+		96AB2C722613E12400516933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AB2C712613E12400516933 /* Assets.xcassets */; };
+		96AB2C752613E12400516933 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AB2C732613E12400516933 /* LaunchScreen.storyboard */; };
+		96C3F02B2628B7E00064893F /* FieldHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F02A2628B7E00064893F /* FieldHelper.swift */; };
+		96C3F030262902EB0064893F /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F02F262902EB0064893F /* NewPasswordViewController.swift */; };
+		96C58AA92625F61F00D4BAE0 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C58AA72625F61F00D4BAE0 /* Onboarding.storyboard */; };
+		96C58AAE262604CE00D4BAE0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C58AAD262604CE00D4BAE0 /* ProfileTableViewController.swift */; };
+		96D00F34262A08DB00D4D693 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96D00F33262A08DB00D4D693 /* Okta.plist */; };
+		96D00F39262A093900D4D693 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F38262A093900D4D693 /* OnboardingManager.swift */; };
+		96D00F3E262A3CC800D4D693 /* JWTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F3D262A3CC800D4D693 /* JWTUtils.swift */; };
+		96D00F42262DDE6600D4D693 /* TokenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F41262DDE6600D4D693 /* TokenDetailViewController.swift */; };
+		96D00F47262DEAC600D4D693 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F46262DEAC600D4D693 /* OnboardingError.swift */; };
+		96D00F49262DEAE500D4D693 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F48262DEAE500D4D693 /* User.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		965C3B27261F873700EBD800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96F8F18425802FAD00DA2701;
+			remoteInfo = "okta-idx-ios";
+		};
+		965C3B29261F873700EBD800 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96F8F18D25802FAD00DA2701;
+			remoteInfo = "okta-idx-ios-tests";
+		};
+		966FDDEB26211C750054A276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C3B3B261F87B100EBD800;
+			remoteInfo = "okta-idx-auth";
+		};
+		966FDDED26211C750054A276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C3B43261F87B200EBD800;
+			remoteInfo = "okta-idx-authTests";
+		};
+		966FDDF62621217C0054A276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 965C3B3A261F87B100EBD800;
+			remoteInfo = "okta-idx-auth";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		96AB2C812613E41100516933 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				965C3B35261F874500EBD800 /* OktaIdx.framework in Embed Frameworks */,
+				966FDDF026211C750054A276 /* OktaIdxAuth.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9618C0FB2624C22000F5ACB3 /* AuthenticateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
+		9618C0FD2624C37100F5ACB3 /* BlurredBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredBackground.swift; sourceTree = "<group>"; };
+		965C3B06261F7D7800EBD800 /* UIView+IBExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBExtensions.swift"; sourceTree = "<group>"; };
+		965C3B08261F7DA200EBD800 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		965C3B0A261F7DD700EBD800 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		965C3B0C261F7E8E00EBD800 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		965C3B22261F873700EBD800 /* okta-idx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "okta-idx.xcodeproj"; path = "../../../okta-idx-swift/okta-idx.xcodeproj"; sourceTree = "<group>"; };
+		96AB2C652613E12200516933 /* OktaDirectAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaDirectAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96AB2C682613E12200516933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		96AB2C6A2613E12200516933 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		96AB2C6C2613E12200516933 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		96AB2C6F2613E12200516933 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		96AB2C712613E12400516933 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96AB2C742613E12400516933 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96AB2C762613E12400516933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96C3F02A2628B7E00064893F /* FieldHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldHelper.swift; sourceTree = "<group>"; };
+		96C3F02F262902EB0064893F /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		96C58AA82625F61F00D4BAE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OktaDirectAuth/Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		96C58AAD262604CE00D4BAE0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		96D00F33262A08DB00D4D693 /* Okta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
+		96D00F38262A093900D4D693 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		96D00F3D262A3CC800D4D693 /* JWTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTUtils.swift; sourceTree = "<group>"; };
+		96D00F41262DDE6600D4D693 /* TokenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailViewController.swift; sourceTree = "<group>"; };
+		96D00F46262DEAC600D4D693 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
+		96D00F48262DEAE500D4D693 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96AB2C622613E12200516933 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				965C3B34261F874500EBD800 /* OktaIdx.framework in Frameworks */,
+				966FDDEF26211C750054A276 /* OktaIdxAuth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96512A4326153F8700904E1C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96512A4426153F8D00904E1C /* Extensions */,
+				965C3B0A261F7DD700EBD800 /* FooterView.swift */,
+				965C3B0C261F7E8E00EBD800 /* SignInButton.swift */,
+				9618C0FD2624C37100F5ACB3 /* BlurredBackground.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96512A4426153F8D00904E1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				965C3B06261F7D7800EBD800 /* UIView+IBExtensions.swift */,
+				965C3B08261F7DA200EBD800 /* CGRect+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		965C3B0E261F80BF00EBD800 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				96C58AAD262604CE00D4BAE0 /* ProfileTableViewController.swift */,
+				96D00F41262DDE6600D4D693 /* TokenDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		965C3B1D261F871E00EBD800 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				965C3B22261F873700EBD800 /* okta-idx.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		965C3B23261F873700EBD800 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				965C3B28261F873700EBD800 /* OktaIdx.framework */,
+				965C3B2A261F873700EBD800 /* okta-idx-ios-tests.xctest */,
+				966FDDEC26211C750054A276 /* OktaIdxAuth.framework */,
+				966FDDEE26211C750054A276 /* okta-idx-authTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96AB2C5C2613E12200516933 = {
+			isa = PBXGroup;
+			children = (
+				96AB2C672613E12200516933 /* OktaDirectAuth */,
+				96AB2C662613E12200516933 /* Products */,
+				965C3B1D261F871E00EBD800 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		96AB2C662613E12200516933 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96AB2C652613E12200516933 /* OktaDirectAuth.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96AB2C672613E12200516933 /* OktaDirectAuth */ = {
+			isa = PBXGroup;
+			children = (
+				96C58AAF2626058E00D4BAE0 /* Onboarding */,
+				965C3B0E261F80BF00EBD800 /* View Controllers */,
+				96AB2C682613E12200516933 /* AppDelegate.swift */,
+				96AB2C6A2613E12200516933 /* SceneDelegate.swift */,
+				96AB2C6E2613E12200516933 /* Main.storyboard */,
+				96AB2C712613E12400516933 /* Assets.xcassets */,
+				96AB2C732613E12400516933 /* LaunchScreen.storyboard */,
+				96AB2C762613E12400516933 /* Info.plist */,
+				96D00F33262A08DB00D4D693 /* Okta.plist */,
+			);
+			path = OktaDirectAuth;
+			sourceTree = "<group>";
+		};
+		96C3F02C2628C2370064893F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				96C3F02A2628B7E00064893F /* FieldHelper.swift */,
+				96D00F3D262A3CC800D4D693 /* JWTUtils.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		96C58AAF2626058E00D4BAE0 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				96C58AA72625F61F00D4BAE0 /* Onboarding.storyboard */,
+				96D00F45262DEAB300D4D693 /* Objects */,
+				96C3F02C2628C2370064893F /* Utilities */,
+				96512A4326153F8700904E1C /* Views */,
+				96C58AB02626059300D4BAE0 /* View Controllers */,
+				96D00F38262A093900D4D693 /* OnboardingManager.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		96C58AB02626059300D4BAE0 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				96AB2C6C2613E12200516933 /* LandingViewController.swift */,
+				9618C0FB2624C22000F5ACB3 /* AuthenticateViewController.swift */,
+				96C3F02F262902EB0064893F /* NewPasswordViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		96D00F45262DEAB300D4D693 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				96D00F46262DEAC600D4D693 /* OnboardingError.swift */,
+				96D00F48262DEAE500D4D693 /* User.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96AB2C642613E12200516933 /* OktaDirectAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96AB2C792613E12400516933 /* Build configuration list for PBXNativeTarget "OktaDirectAuth" */;
+			buildPhases = (
+				96AB2C612613E12200516933 /* Sources */,
+				96AB2C622613E12200516933 /* Frameworks */,
+				96AB2C632613E12200516933 /* Resources */,
+				96AB2C812613E41100516933 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				966FDDF72621217C0054A276 /* PBXTargetDependency */,
+			);
+			name = OktaDirectAuth;
+			packageProductDependencies = (
+			);
+			productName = OktaDirectAuth;
+			productReference = 96AB2C652613E12200516933 /* OktaDirectAuth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96AB2C5D2613E12200516933 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					96AB2C642613E12200516933 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 96AB2C602613E12200516933 /* Build configuration list for PBXProject "OktaDirectAuth" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96AB2C5C2613E12200516933;
+			packageReferences = (
+			);
+			productRefGroup = 96AB2C662613E12200516933 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 965C3B23261F873700EBD800 /* Products */;
+					ProjectRef = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				96AB2C642613E12200516933 /* OktaDirectAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		965C3B28261F873700EBD800 /* OktaIdx.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OktaIdx.framework;
+			remoteRef = 965C3B27261F873700EBD800 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		965C3B2A261F873700EBD800 /* okta-idx-ios-tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "okta-idx-ios-tests.xctest";
+			remoteRef = 965C3B29261F873700EBD800 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		966FDDEC26211C750054A276 /* OktaIdxAuth.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OktaIdxAuth.framework;
+			remoteRef = 966FDDEB26211C750054A276 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		966FDDEE26211C750054A276 /* okta-idx-authTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "okta-idx-authTests.xctest";
+			remoteRef = 966FDDED26211C750054A276 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96AB2C632613E12200516933 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96D00F34262A08DB00D4D693 /* Okta.plist in Resources */,
+				96C58AA92625F61F00D4BAE0 /* Onboarding.storyboard in Resources */,
+				96AB2C752613E12400516933 /* LaunchScreen.storyboard in Resources */,
+				96AB2C722613E12400516933 /* Assets.xcassets in Resources */,
+				96AB2C702613E12200516933 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96AB2C612613E12200516933 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96C3F030262902EB0064893F /* NewPasswordViewController.swift in Sources */,
+				965C3B0D261F7E8E00EBD800 /* SignInButton.swift in Sources */,
+				96D00F39262A093900D4D693 /* OnboardingManager.swift in Sources */,
+				96AB2C6D2613E12200516933 /* LandingViewController.swift in Sources */,
+				96D00F3E262A3CC800D4D693 /* JWTUtils.swift in Sources */,
+				96AB2C692613E12200516933 /* AppDelegate.swift in Sources */,
+				9618C0FE2624C37100F5ACB3 /* BlurredBackground.swift in Sources */,
+				96D00F49262DEAE500D4D693 /* User.swift in Sources */,
+				965C3B07261F7D7800EBD800 /* UIView+IBExtensions.swift in Sources */,
+				965C3B0B261F7DD700EBD800 /* FooterView.swift in Sources */,
+				96AB2C6B2613E12200516933 /* SceneDelegate.swift in Sources */,
+				96C3F02B2628B7E00064893F /* FieldHelper.swift in Sources */,
+				9618C0FC2624C22000F5ACB3 /* AuthenticateViewController.swift in Sources */,
+				96D00F42262DDE6600D4D693 /* TokenDetailViewController.swift in Sources */,
+				96D00F47262DEAC600D4D693 /* OnboardingError.swift in Sources */,
+				96C58AAE262604CE00D4BAE0 /* ProfileTableViewController.swift in Sources */,
+				965C3B09261F7DA200EBD800 /* CGRect+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		966FDDF72621217C0054A276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "okta-idx-auth";
+			targetProxy = 966FDDF62621217C0054A276 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		96AB2C6E2613E12200516933 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96AB2C6F2613E12200516933 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96AB2C732613E12400516933 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96AB2C742613E12400516933 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		96C58AA72625F61F00D4BAE0 /* Onboarding.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96C58AA82625F61F00D4BAE0 /* Base */,
+			);
+			name = Onboarding.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96AB2C772613E12400516933 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		96AB2C782613E12400516933 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96AB2C7A2613E12400516933 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OktaDirectAuth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.okta.OktaDirectAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96AB2C7B2613E12400516933 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OktaDirectAuth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.okta.OktaDirectAuth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96AB2C602613E12200516933 /* Build configuration list for PBXProject "OktaDirectAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96AB2C772613E12400516933 /* Debug */,
+				96AB2C782613E12400516933 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96AB2C792613E12400516933 /* Build configuration list for PBXNativeTarget "OktaDirectAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96AB2C7A2613E12400516933 /* Debug */,
+				96AB2C7B2613E12400516933 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96AB2C5D2613E12200516933 /* Project object */;
+}
