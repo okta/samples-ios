@@ -10,6 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+import AuthenticationServices
 import UIKit
 import OktaIdxAuth
 
@@ -56,5 +57,20 @@ class LandingViewController: UIViewController, SigninController {
         if var signinController = targetController as? SigninController {
             signinController.auth = auth
         }
+    }
+    
+    @IBAction func socialAuth() {
+        auth?.socialAuth(with: OktaIdxAuth.SocialAuth.Options(presentationContext: self, prefersEphemeralSession: false)) { [weak self] (response, error) in
+            if let error = error {
+                self?.show(error: error)
+            }
+        }
+    }
+}
+
+extension LandingViewController: ASWebAuthenticationPresentationContextProviding {
+    
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        view.window ?? UIWindow()
     }
 }

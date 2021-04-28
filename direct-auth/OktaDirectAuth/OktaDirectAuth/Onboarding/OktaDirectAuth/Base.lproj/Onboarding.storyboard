@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jKn-Q3-qtf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jKn-Q3-qtf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,16 +34,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7X-70-4kM" customClass="FooterView" customModule="OktaDirectAuth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="687" width="414" height="249"/>
+                                <rect key="frame" x="0.0" y="566.5" width="414" height="369.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" misplaced="YES" image="signin-footer-background-image" translatesAutoresizingMaskIntoConstraints="NO" id="v9J-kv-zIX">
-                                        <rect key="frame" x="-1257.5" y="0.0" width="1671.5" height="563"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" image="signin-footer-background-image" translatesAutoresizingMaskIntoConstraints="NO" id="v9J-kv-zIX">
+                                        <rect key="frame" x="-629" y="-115" width="1672" height="563"/>
                                         <color key="tintColor" name="signin-footer-background-tintColor"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="signin-footer-background-color"/>
                                 <constraints>
-                                    <constraint firstItem="v9J-kv-zIX" firstAttribute="centerY" secondItem="c7X-70-4kM" secondAttribute="centerY" id="II0-IZ-YdC"/>
+                                    <constraint firstItem="v9J-kv-zIX" firstAttribute="centerY" secondItem="c7X-70-4kM" secondAttribute="centerY" multiplier="0.9" id="II0-IZ-YdC"/>
                                     <constraint firstItem="v9J-kv-zIX" firstAttribute="centerX" secondItem="c7X-70-4kM" secondAttribute="centerX" id="UTD-et-mLb"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -53,7 +53,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="esE-ho-sfo">
-                                <rect key="frame" x="52" y="687" width="310.5" height="130"/>
+                                <rect key="frame" x="52" y="566.5" width="310.5" height="250.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aqf-YV-m6v" customClass="SigninButton" customModule="OktaDirectAuth" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="310.5" height="53"/>
@@ -75,7 +75,7 @@
                                             <segue destination="6qK-M7-13q" kind="presentation" modalPresentationStyle="overFullScreen" id="pc2-H5-1os"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzz-iP-7k1" customClass="SigninButton" customModule="OktaDirectAuth" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzz-iP-7k1" customClass="SigninButton" customModule="OktaDirectAuth" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="77" width="310.5" height="53"/>
                                         <color key="backgroundColor" name="signin-color-secondary"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -92,9 +92,57 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdS-vD-1nQ">
+                                        <rect key="frame" x="0.0" y="154" width="310.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                                        <color key="textColor" red="0.86108089618729744" green="0.92866534670517475" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLB-tI-zYg">
+                                        <rect key="frame" x="0.0" y="197.5" width="310.5" height="53"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-VG-Me8" userLabel="SIGN IN IDP" customClass="SigninButton" customModule="OktaDirectAuth" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="310.5" height="53"/>
+                                                <color key="backgroundColor" name="signin-color-primary"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                                <state key="normal" title="Connect with Facebook">
+                                                    <color key="titleColor" name="signin-color-primary-inverted"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="signin-color-primary-inverted"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="socialAuth" destination="cxH-Fh-ys7" eventType="touchUpInside" id="wSH-R0-WJ0"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook-logo" translatesAutoresizingMaskIntoConstraints="NO" id="JcK-GZ-wu0">
+                                                <rect key="frame" x="10" y="8" width="37" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="JcK-GZ-wu0" secondAttribute="height" multiplier="1:1" id="TFH-tU-zPD"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="0BK-VG-Me8" firstAttribute="leading" secondItem="HLB-tI-zYg" secondAttribute="leading" id="Lj6-IH-D4r"/>
+                                            <constraint firstItem="JcK-GZ-wu0" firstAttribute="centerY" secondItem="0BK-VG-Me8" secondAttribute="centerY" id="UYz-RA-QNo"/>
+                                            <constraint firstItem="JcK-GZ-wu0" firstAttribute="top" secondItem="0BK-VG-Me8" secondAttribute="top" constant="8" id="WYu-P0-Nmo"/>
+                                            <constraint firstItem="JcK-GZ-wu0" firstAttribute="leading" secondItem="0BK-VG-Me8" secondAttribute="leading" constant="10" id="cKe-L8-HYw"/>
+                                            <constraint firstAttribute="trailing" secondItem="0BK-VG-Me8" secondAttribute="trailing" id="jtL-VD-7yQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="0BK-VG-Me8" secondAttribute="bottom" id="qvP-D3-L43"/>
+                                            <constraint firstItem="0BK-VG-Me8" firstAttribute="top" secondItem="HLB-tI-zYg" secondAttribute="top" id="zGn-oV-fPy"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="Z9P-LL-dSJ"/>
+                                    <constraint firstItem="HLB-tI-zYg" firstAttribute="height" secondItem="xzz-iP-7k1" secondAttribute="height" priority="999" id="aWS-HE-f9V"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Okta Direct Auth" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYM-Ol-6kx">
@@ -386,6 +434,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="0BK-VG-Me8">
+            <size key="intrinsicContentSize" width="219" height="53"/>
+        </designable>
         <designable name="2YI-jJ-HGb">
             <size key="intrinsicContentSize" width="43" height="44"/>
         </designable>
@@ -400,6 +451,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="facebook-logo" width="1365.333251953125" height="1365.333251953125"/>
         <image name="signin-footer-background-image" width="1671.8399658203125" height="563.27001953125"/>
         <namedColor name="signin-color-deepGray">
             <color red="0.25490196078431371" green="0.25490196078431371" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
