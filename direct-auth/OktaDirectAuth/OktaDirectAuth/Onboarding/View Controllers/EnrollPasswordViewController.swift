@@ -13,50 +13,50 @@
 import UIKit
 import OktaIdxAuth
 
-protocol AuthenticateViewControllerDelegate {
-    func authenticate(from: UIViewController, with username: String, password: String)
-}
-
-@IBDesignable
-class AuthenticateViewController: UIViewController, SigninController {
+class EnrollPasswordViewController: UIViewController, SigninController {
     @IBOutlet weak private(set) var scrollView: UIScrollView!
-    @IBOutlet weak private(set) var usernameField: UITextField!
     @IBOutlet weak private(set) var passwordField: UITextField!
     @IBOutlet weak private(set) var nextButton: UIButton!
 
     var auth: OktaIdxAuth?
+    var status: OktaIdxAuth.Status?
     var response: OktaIdxAuth.Response?
 
     @IBAction private func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
     
-    @IBAction private func nextAction(_ sender: Any) {
-        guard let username = usernameField.text, username.count > 0,
-              let password = passwordField.text, password.count > 0,
-              let auth = auth
-        else {
-            return
-        }
+    @IBAction func nextAction(_ sender: Any) {
+        guard let authenticator = response?.authenticator as? OktaIdxAuth.Authenticator.Password,
+              let password = passwordField.text
+        else { return }
         
-        auth.authenticate(username: username, password: password) { (response, error) in
+        authenticator.enroll(password: password) { (response, error) in
             guard let response = response else {
                 self.show(error: error ?? OnboardingError.missingResponse)
                 return
             }
-            
+
             self.handle(response: response)
         }
     }
-        
-    private func handle(response: OktaIdxAuth.Response) {
+    
+    func handle(response: OktaIdxAuth.Response) {
         switch response.status {
         case .success: break
-        case .passwordInvalid: break
-        case .passwordExpired:
-            showController(for: response, with: "ChangePassword")
         case .tokenRevoked: break
-        case .enrollAuthenticator: break
+        case .passwordInvalid: break
+        case .passwordExpired: break
+        case .enrollAuthenticator:
+            if response.availableAuthenticators.contains(.skip) {
+                response.select(authenticator: .skip) { (response, error) in
+                    guard let response = response else {
+                        self.show(error: error ?? OnboardingError.missingResponse)
+                        return
+                    }
+
+                }
+            }
         case .verifyAuthenticator: break
         case .unknown: break
         case .operationUnavailable: break

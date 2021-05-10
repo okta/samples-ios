@@ -15,7 +15,10 @@ import OktaIdxAuth
 
 protocol SigninController {
     var auth: OktaIdxAuth? { get set }
+    var response: OktaIdxAuth.Response? { get set }
+    
     func show(error: Error)
+    func showController(for response: OktaIdxAuth.Response, with storyboardId: String)
 }
 
 extension SigninController where Self: UIViewController {
@@ -30,6 +33,20 @@ extension SigninController where Self: UIViewController {
         }))
         present(alert, animated: true)
     }
+    
+    func showController(for response: OktaIdxAuth.Response, with storyboardId: String) {
+        guard let navigationController = navigationController,
+              var viewController = storyboard?.instantiateViewController(identifier: storyboardId) as? UIViewController & SigninController
+        else {
+            show(error: OnboardingError.missingViewController)
+            return
+        }
+        
+        viewController.auth = auth
+        viewController.response = response
+        
+        navigationController.setViewControllers([viewController], animated: true)
+    }
 }
 
 class LandingViewController: UIViewController, SigninController {
@@ -38,6 +55,7 @@ class LandingViewController: UIViewController, SigninController {
     @IBOutlet weak private(set) var backgroundImageView: UIImageView!
     @IBOutlet weak private(set) var footerView: UIView!
     var auth: OktaIdxAuth?
+    var response: OktaIdxAuth.Response?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

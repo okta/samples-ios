@@ -19,17 +19,18 @@ class NewPasswordViewController: UIViewController, SigninController {
     @IBOutlet weak private(set) var nextButton: UIButton!
 
     var auth: OktaIdxAuth?
-    
-    @IBAction func cancelAction(_ sender: Any) {
+    var response: OktaIdxAuth.Response?
+
+    @IBAction private func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
     
-    @IBAction func nextAction(_ sender: Any) {
+    @IBAction private func nextAction(_ sender: Any) {
         guard let password = passwordField.text,
-              let auth = auth
+              let response = response
         else { return }
         
-        auth.changePassword(password) { (response, error) in
+        response.change(password: password) { (response, error) in
             guard let response = response else {
                 self.show(error: error ?? OnboardingError.missingResponse)
                 return
@@ -39,12 +40,18 @@ class NewPasswordViewController: UIViewController, SigninController {
         }
     }
     
-    func handle(response: OktaIdxAuth.Response) {
+    private func handle(response: OktaIdxAuth.Response) {
         switch response.status {
         case .success: break
         case .tokenRevoked: break
         case .passwordInvalid: break
         case .passwordExpired: break
+        case .enrollAuthenticator: break
+        case .verifyAuthenticator: break
+        case .unknown:
+            break
+        case .operationUnavailable:
+            break
         }
     }
 }

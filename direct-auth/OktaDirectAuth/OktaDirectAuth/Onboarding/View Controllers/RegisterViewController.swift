@@ -13,15 +13,11 @@
 import UIKit
 import OktaIdxAuth
 
-protocol AuthenticateViewControllerDelegate {
-    func authenticate(from: UIViewController, with username: String, password: String)
-}
-
-@IBDesignable
-class AuthenticateViewController: UIViewController, SigninController {
+class RegisterViewController: UIViewController, SigninController {
     @IBOutlet weak private(set) var scrollView: UIScrollView!
-    @IBOutlet weak private(set) var usernameField: UITextField!
-    @IBOutlet weak private(set) var passwordField: UITextField!
+    @IBOutlet weak private(set) var firstnameField: UITextField!
+    @IBOutlet weak private(set) var lastnameField: UITextField!
+    @IBOutlet weak private(set) var emailField: UITextField!
     @IBOutlet weak private(set) var nextButton: UIButton!
 
     var auth: OktaIdxAuth?
@@ -32,14 +28,17 @@ class AuthenticateViewController: UIViewController, SigninController {
     }
     
     @IBAction private func nextAction(_ sender: Any) {
-        guard let username = usernameField.text, username.count > 0,
-              let password = passwordField.text, password.count > 0,
+        guard let firstname = firstnameField.text, firstname.count > 0,
+              let lastname = lastnameField.text, lastname.count > 0,
+              let email = emailField.text, email.count > 0,
               let auth = auth
         else {
             return
         }
         
-        auth.authenticate(username: username, password: password) { (response, error) in
+        auth.register(firstName: firstname,
+                      lastName: lastname,
+                      email: email) { (response, error) in
             guard let response = response else {
                 self.show(error: error ?? OnboardingError.missingResponse)
                 return
@@ -48,18 +47,27 @@ class AuthenticateViewController: UIViewController, SigninController {
             self.handle(response: response)
         }
     }
-        
+    
     private func handle(response: OktaIdxAuth.Response) {
         switch response.status {
         case .success: break
         case .passwordInvalid: break
-        case .passwordExpired:
-            showController(for: response, with: "ChangePassword")
+        case .passwordExpired: break
         case .tokenRevoked: break
-        case .enrollAuthenticator: break
+        case .enrollAuthenticator:
+            if response.availableAuthenticators.contains(.password) {
+                response.select(authenticator: .password) { (response, error) in
+                    guard let response = response else {
+                        self.show(error: error ?? OnboardingError.missingResponse)
+                        return
+                    }
+
+                    self.showController(for: response, with: "EnrollPassword")
+                }
+            }
         case .verifyAuthenticator: break
         case .unknown: break
         case .operationUnavailable: break
-        }
+       }
     }
 }

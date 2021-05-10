@@ -13,10 +13,10 @@
 		965C3B09261F7DA200EBD800 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B08261F7DA200EBD800 /* CGRect+Extensions.swift */; };
 		965C3B0B261F7DD700EBD800 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B0A261F7DD700EBD800 /* FooterView.swift */; };
 		965C3B0D261F7E8E00EBD800 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C3B0C261F7E8E00EBD800 /* SignInButton.swift */; };
-		965C3B34261F874500EBD800 /* OktaIdx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965C3B28261F873700EBD800 /* OktaIdx.framework */; };
-		965C3B35261F874500EBD800 /* OktaIdx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 965C3B28261F873700EBD800 /* OktaIdx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		966FDDEF26211C750054A276 /* OktaIdxAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966FDDEC26211C750054A276 /* OktaIdxAuth.framework */; };
-		966FDDF026211C750054A276 /* OktaIdxAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 966FDDEC26211C750054A276 /* OktaIdxAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9692D5E2264377C600D30404 /* OktaIdx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692D5E1264377C600D30404 /* OktaIdx.framework */; };
+		9692D5E3264377C600D30404 /* OktaIdx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9692D5E1264377C600D30404 /* OktaIdx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9692D5E5264377CA00D30404 /* OktaIdxAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9692D5E4264377CA00D30404 /* OktaIdxAuth.framework */; };
+		9692D5E6264377CA00D30404 /* OktaIdxAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9692D5E4264377CA00D30404 /* OktaIdxAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96AB2C692613E12200516933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C682613E12200516933 /* AppDelegate.swift */; };
 		96AB2C6B2613E12200516933 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C6A2613E12200516933 /* SceneDelegate.swift */; };
 		96AB2C6D2613E12200516933 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AB2C6C2613E12200516933 /* LandingViewController.swift */; };
@@ -28,50 +28,14 @@
 		96C58AA92625F61F00D4BAE0 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C58AA72625F61F00D4BAE0 /* Onboarding.storyboard */; };
 		96C58AAE262604CE00D4BAE0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C58AAD262604CE00D4BAE0 /* ProfileTableViewController.swift */; };
 		96D00F34262A08DB00D4D693 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96D00F33262A08DB00D4D693 /* Okta.plist */; };
-		96D00F39262A093900D4D693 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F38262A093900D4D693 /* OnboardingManager.swift */; };
+		96D00F39262A093900D4D693 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F38262A093900D4D693 /* OnboardingCoordinator.swift */; };
 		96D00F3E262A3CC800D4D693 /* JWTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F3D262A3CC800D4D693 /* JWTUtils.swift */; };
 		96D00F42262DDE6600D4D693 /* TokenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F41262DDE6600D4D693 /* TokenDetailViewController.swift */; };
 		96D00F47262DEAC600D4D693 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F46262DEAC600D4D693 /* OnboardingError.swift */; };
 		96D00F49262DEAE500D4D693 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F48262DEAE500D4D693 /* User.swift */; };
+		96D00F7C262F7EB100D4D693 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D00F7B262F7EB100D4D693 /* RegisterViewController.swift */; };
+		96DCF7F32630BEEC0097C3EE /* EnrollPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCF7F22630BEEC0097C3EE /* EnrollPasswordViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		965C3B27261F873700EBD800 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96F8F18425802FAD00DA2701;
-			remoteInfo = "okta-idx-ios";
-		};
-		965C3B29261F873700EBD800 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96F8F18D25802FAD00DA2701;
-			remoteInfo = "okta-idx-ios-tests";
-		};
-		966FDDEB26211C750054A276 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C3B3B261F87B100EBD800;
-			remoteInfo = "okta-idx-auth";
-		};
-		966FDDED26211C750054A276 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 965C3B43261F87B200EBD800;
-			remoteInfo = "okta-idx-authTests";
-		};
-		966FDDF62621217C0054A276 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 965C3B3A261F87B100EBD800;
-			remoteInfo = "okta-idx-auth";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		96AB2C812613E41100516933 /* Embed Frameworks */ = {
@@ -80,8 +44,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				965C3B35261F874500EBD800 /* OktaIdx.framework in Embed Frameworks */,
-				966FDDF026211C750054A276 /* OktaIdxAuth.framework in Embed Frameworks */,
+				9692D5E3264377C600D30404 /* OktaIdx.framework in Embed Frameworks */,
+				9692D5E6264377CA00D30404 /* OktaIdxAuth.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,7 +59,8 @@
 		965C3B08261F7DA200EBD800 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		965C3B0A261F7DD700EBD800 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		965C3B0C261F7E8E00EBD800 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
-		965C3B22261F873700EBD800 /* okta-idx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "okta-idx.xcodeproj"; path = "../../../okta-idx-swift/okta-idx.xcodeproj"; sourceTree = "<group>"; };
+		9692D5E1264377C600D30404 /* OktaIdx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OktaIdx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9692D5E4264377CA00D30404 /* OktaIdxAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OktaIdxAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AB2C652613E12200516933 /* OktaDirectAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaDirectAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AB2C682613E12200516933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96AB2C6A2613E12200516933 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,11 +74,13 @@
 		96C58AA82625F61F00D4BAE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OktaDirectAuth/Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
 		96C58AAD262604CE00D4BAE0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		96D00F33262A08DB00D4D693 /* Okta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
-		96D00F38262A093900D4D693 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		96D00F38262A093900D4D693 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		96D00F3D262A3CC800D4D693 /* JWTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTUtils.swift; sourceTree = "<group>"; };
 		96D00F41262DDE6600D4D693 /* TokenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailViewController.swift; sourceTree = "<group>"; };
 		96D00F46262DEAC600D4D693 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
 		96D00F48262DEAE500D4D693 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		96D00F7B262F7EB100D4D693 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		96DCF7F22630BEEC0097C3EE /* EnrollPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965C3B34261F874500EBD800 /* OktaIdx.framework in Frameworks */,
-				966FDDEF26211C750054A276 /* OktaIdxAuth.framework in Frameworks */,
+				9692D5E2264377C600D30404 /* OktaIdx.framework in Frameworks */,
+				9692D5E5264377CA00D30404 /* OktaIdxAuth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,20 +128,10 @@
 		965C3B1D261F871E00EBD800 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				965C3B22261F873700EBD800 /* okta-idx.xcodeproj */,
+				9692D5E4264377CA00D30404 /* OktaIdxAuth.framework */,
+				9692D5E1264377C600D30404 /* OktaIdx.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		965C3B23261F873700EBD800 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				965C3B28261F873700EBD800 /* OktaIdx.framework */,
-				965C3B2A261F873700EBD800 /* okta-idx-ios-tests.xctest */,
-				966FDDEC26211C750054A276 /* OktaIdxAuth.framework */,
-				966FDDEE26211C750054A276 /* okta-idx-authTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		96AB2C5C2613E12200516933 = {
@@ -227,7 +184,7 @@
 				96C3F02C2628C2370064893F /* Utilities */,
 				96512A4326153F8700904E1C /* Views */,
 				96C58AB02626059300D4BAE0 /* View Controllers */,
-				96D00F38262A093900D4D693 /* OnboardingManager.swift */,
+				96D00F38262A093900D4D693 /* OnboardingCoordinator.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -238,6 +195,8 @@
 				96AB2C6C2613E12200516933 /* LandingViewController.swift */,
 				9618C0FB2624C22000F5ACB3 /* AuthenticateViewController.swift */,
 				96C3F02F262902EB0064893F /* NewPasswordViewController.swift */,
+				96D00F7B262F7EB100D4D693 /* RegisterViewController.swift */,
+				96DCF7F22630BEEC0097C3EE /* EnrollPasswordViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -266,7 +225,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				966FDDF72621217C0054A276 /* PBXTargetDependency */,
 			);
 			name = OktaDirectAuth;
 			packageProductDependencies = (
@@ -302,49 +260,12 @@
 			);
 			productRefGroup = 96AB2C662613E12200516933 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 965C3B23261F873700EBD800 /* Products */;
-					ProjectRef = 965C3B22261F873700EBD800 /* okta-idx.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				96AB2C642613E12200516933 /* OktaDirectAuth */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		965C3B28261F873700EBD800 /* OktaIdx.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OktaIdx.framework;
-			remoteRef = 965C3B27261F873700EBD800 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		965C3B2A261F873700EBD800 /* okta-idx-ios-tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "okta-idx-ios-tests.xctest";
-			remoteRef = 965C3B29261F873700EBD800 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		966FDDEC26211C750054A276 /* OktaIdxAuth.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OktaIdxAuth.framework;
-			remoteRef = 966FDDEB26211C750054A276 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		966FDDEE26211C750054A276 /* okta-idx-authTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "okta-idx-authTests.xctest";
-			remoteRef = 966FDDED26211C750054A276 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		96AB2C632613E12200516933 /* Resources */ = {
@@ -367,14 +288,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C3F030262902EB0064893F /* NewPasswordViewController.swift in Sources */,
+				96DCF7F32630BEEC0097C3EE /* EnrollPasswordViewController.swift in Sources */,
 				965C3B0D261F7E8E00EBD800 /* SignInButton.swift in Sources */,
-				96D00F39262A093900D4D693 /* OnboardingManager.swift in Sources */,
+				96D00F39262A093900D4D693 /* OnboardingCoordinator.swift in Sources */,
 				96AB2C6D2613E12200516933 /* LandingViewController.swift in Sources */,
 				96D00F3E262A3CC800D4D693 /* JWTUtils.swift in Sources */,
 				96AB2C692613E12200516933 /* AppDelegate.swift in Sources */,
 				9618C0FE2624C37100F5ACB3 /* BlurredBackground.swift in Sources */,
 				96D00F49262DEAE500D4D693 /* User.swift in Sources */,
 				965C3B07261F7D7800EBD800 /* UIView+IBExtensions.swift in Sources */,
+				96D00F7C262F7EB100D4D693 /* RegisterViewController.swift in Sources */,
 				965C3B0B261F7DD700EBD800 /* FooterView.swift in Sources */,
 				96AB2C6B2613E12200516933 /* SceneDelegate.swift in Sources */,
 				96C3F02B2628B7E00064893F /* FieldHelper.swift in Sources */,
@@ -387,14 +310,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		966FDDF72621217C0054A276 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "okta-idx-auth";
-			targetProxy = 966FDDF62621217C0054A276 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		96AB2C6E2613E12200516933 /* Main.storyboard */ = {
