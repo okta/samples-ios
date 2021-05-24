@@ -18,6 +18,7 @@ import UIKit
 import OktaAuthSdk
 import OktaOidc
 import SVProgressHUD
+import SafariServices
 
 class UserProfileViewController: AuthBaseViewController {
     
@@ -92,6 +93,64 @@ class UserProfileViewController: AuthBaseViewController {
         }
     }
     
+    @IBAction func launchWebAppTapped(_ sender: Any) {
+        let bootstrapUrl: String = getConfig()!["bootstrap_url"] as! String
+        let refreshToken : String = (oidcStateManager?.refreshToken)!
+        getBootstrapToken(refreshToken: refreshToken) { (bootstrapToken) in
+            let finalUrl: String = bootstrapUrl + "?access_token=" + bootstrapToken
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let url = URL(string: finalUrl)
+            DispatchQueue.main.sync {
+                let vc = SFSafariViewController(url: url!, configuration: config)
+                self.present(vc, animated: true)
+            }
+        }
+    }
+    
+    func getBootstrapToken(refreshToken: String, completion: @escaping (String) -> ()) {
+        let issuer: String = getConfig()!["issuer"] as! String
+        let tokenUrl = issuer + "/v1/token"
+        let client_id: String = getConfig()!["clientId"] as! String
+        let serviceUrl: URL = URL(string: tokenUrl)!
+
+        var request = URLRequest(url: serviceUrl)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let httpBody: String = "grant_type=refresh_token&scope=web_session&refresh_token=" + refreshToken + "&client_id=" + client_id
+        
+        request.httpBody = httpBody.data(using: .utf8)
+        request.timeoutInterval = 20
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    print(json)
+                    print(json!["access_token"] as? String)
+                    completion(json!["access_token"] as! String)
+                } catch {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+
+    func getConfig() -> [String: Any]? {
+        if  let path = Bundle.main.path(forResource: "Okta", ofType: "plist"),
+            let xml = FileManager.default.contents(atPath: path)
+        {
+            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String: Any]
+        }
+
+        return nil
+    }
+    
+    @IBOutlet weak var launchWebAppButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var timezoneLabel: UILabel!
