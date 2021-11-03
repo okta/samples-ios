@@ -22,9 +22,18 @@ final class WelcomeViewController: UIViewController {
     var oktaOidc: OktaOidc?
     var stateManager: OktaOidcStateManager?
     
+    @IBOutlet weak var ephemeralSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        
+        if #available(iOS 13.0, *) {
+            // We'll allow the switch to be shown
+        } else {
+            ephemeralSwitch.superview?.isHidden = true
+        }
+        
         do {
             if let configForUITests = self.configForUITests {
                 oktaOidc = try OktaOidc(configuration: OktaOidcConfig(with: configForUITests))
@@ -47,7 +56,11 @@ final class WelcomeViewController: UIViewController {
         }
     }
 
-    @IBAction private func signInTapped() {   
+    @IBAction private func signInTapped() {
+        if #available(iOS 13.0, *) {
+            oktaOidc?.configuration.noSSO = ephemeralSwitch.isOn
+        }
+        
         oktaOidc?.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)

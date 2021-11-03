@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "OktaJWT",
+        "repositoryURL": "https://github.com/okta/okta-ios-jwt",
+        "state": {
+          "branch": "master",
+          "revision": "06b06fbab1c4acf03368747af00f31f23d2f5a9e",
+          "version": null
+        }
+      },
+      {
+        "package": "OktaOidc",
+        "repositoryURL": "https://github.com/okta/okta-oidc-ios",
+        "state": {
+          "branch": "master",
+          "revision": "71d88b46ff556d17ed5208a772ab040857e54f5a",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
