@@ -7,7 +7,7 @@ jobs:
     - stage: Build
       name: Browser Sign In
       script:
-      - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+      - set -o pipefail && xcodebuild -project browser-sign-in/OktaBrowserSignIn.xcodeproj -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
     - stage: Build
       name: Custom Sign In
       install:
@@ -17,7 +17,7 @@ jobs:
     - stage: Build
       name: Biometric Sign In
       script:
-      - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+      - set -o pipefail && xcodebuild -project browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcodeproj -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
     - stage: Build
       name: Objective-C project
       install:
