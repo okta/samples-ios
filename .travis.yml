@@ -6,8 +6,6 @@ jobs:
   include:
     - stage: Build
       name: Browser Sign In
-      install:
-      - pod install --project-directory=browser-sign-in --repo-update
       script:
       - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
     - stage: Build
@@ -18,8 +16,6 @@ jobs:
       - xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
     - stage: Build
       name: Biometric Sign In
-      install:
-      - pod install --project-directory=browser-sign-in-and-biometric-storage --repo-update
       script:
       - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
     - stage: Build
