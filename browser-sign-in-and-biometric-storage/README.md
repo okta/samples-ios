@@ -20,11 +20,7 @@ git clone https://github.com/okta/samples-ios.git
 cd browser-sign-in-and-biometric-storage/
 ```
 
-Then install dependencies:
-
-```bash
-pod install
-```
+Dependencies in this sample utilizes Swift Package Manager, so dependencies should be installed automatically.
 
 ## Scenarios
 1. Sign in with the test user credentials
