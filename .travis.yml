@@ -1,35 +1,33 @@
 language: objective-c
-osx_image: xcode11.6
+os: osx
+osx_image: xcode12.5
 
-before_install:
-  - gem install cocoapods -v '1.6.1'
-  - brew install carthage
-
-install: 
-  - pushd browser-sign-in
-  - pod install --repo-update
-  - popd
-  - pushd custom-sign-in
-  - pod install --repo-update
-  - popd
-  - pushd browser-sign-in-and-biometric-storage
-  - pod install --repo-update
-  - popd
-  - pushd build-tests/ObjcTest
-  - pod install --repo-update
-  - popd
-  - pushd build-tests/CarthageTest
-  - carthage update
-  - popd
-
-script:
-  - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
-  - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=11.4,name\=iPhone\ 6 build | xcpretty
-  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
-  - set -o pipefail && xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=11.4,name\=iPhone\ 6 build | xcpretty
-  - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
-  - set -o pipefail && xcodebuild -project build-tests/CarthageTest/CarthageTest.xcodeproj -scheme CarthageTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
-  - set -o pipefail && xcodebuild -workspace build-tests/ObjcTest/ObjcTest.xcworkspace -scheme ObjcTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+jobs:
+  include:
+    - stage: Build
+      name: Browser Sign In
+      install:
+      - pod install --project-directory=browser-sign-in --repo-update
+      script:
+      - set -o pipefail && xcodebuild -workspace browser-sign-in/OktaBrowserSignIn.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+    - stage: Build
+      name: Custom Sign In
+      install:
+      - pod install --project-directory=custom-sign-in --repo-update
+      script:
+      - xcodebuild -workspace custom-sign-in/OktaNativeLogin.xcworkspace -scheme OktaNativeLogin -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+    - stage: Build
+      name: Biometric Sign In
+      install:
+      - pod install --project-directory=browser-sign-in-and-biometric-storage --repo-update
+      script:
+      - set -o pipefail && xcodebuild -workspace browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcworkspace -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+    - stage: Build
+      name: Objective-C project
+      install:
+      - pod install --project-directory=build-tests/ObjcTest --repo-update
+      script:
+      - set -o pipefail && xcodebuild -workspace build-tests/ObjcTest/ObjcTest.xcworkspace -scheme ObjcTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
 
 notifications:
   slack:
