@@ -22,7 +22,7 @@ class CustomAuthResponseHandler: OktaAuthStatusResponseHandler {
                                    and currentStatus: OktaAuthStatus) throws -> OktaAuthStatus {
         
         guard let statusType = response.status else {
-            throw OktaError.invalidResponse
+            throw OktaError.invalidResponse("Status missing")
         }
 
         var authStatus = try super.createAuthStatus(basedOn: response, and: currentStatus)
