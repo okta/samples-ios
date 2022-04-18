@@ -20,12 +20,7 @@ git clone https://github.com/okta/samples-ios.git
 cd browser-sign-in-and-biometric-storage/
 ```
 
-Then install dependencies:
-
-```bash
-pod repo update
-pod install
-```
+Dependencies in this sample utilizes Swift Package Manager, so dependencies should be installed automatically.
 
 You need to gather the following information from the Okta Developer Console:
 

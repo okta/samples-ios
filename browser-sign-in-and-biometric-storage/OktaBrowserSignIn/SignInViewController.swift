@@ -16,7 +16,7 @@
 
 import UIKit
 import OktaOidc
-import OktaStorage
+import OktaSecureStorage
 
 class SignInViewController: UIViewController {
     @IBOutlet private var signInButton: UIButton!
