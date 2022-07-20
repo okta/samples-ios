@@ -53,10 +53,9 @@ final class WelcomeViewController: UIViewController {
                     try Credential.store(token)
                     self.performSegue(withIdentifier: "show-details", sender: self)
                 } catch {
-                    self.show(titile: "Error", error: error.localizedDescription)
+                    self.show(titile: "Error", error: error.localizedDescription, after: 3.0)
                     return
                 }
-                
             case .failure(let error):
                 self.show(titile: "Error", error: error.localizedDescription)
                 return
