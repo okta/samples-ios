@@ -18,7 +18,7 @@ import UIKit
 import WebAuthenticationUI
 
 class TokensViewController: UIViewController {
-    var token: Token? {
+    var credential: Credential? {
         didSet {
             DispatchQueue.main.async {
                 self.showTokenInfo()
@@ -35,62 +35,62 @@ class TokensViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
                                                object: nil,
                                                queue: .main) { (notification) in
-            guard let user = notification.object as? Credential else { return }
-            self.token = user.token
+            guard let credential = notification.object as? Credential else { return }
+            self.credential = credential
         }
-        self.token = Credential.default?.token
+        self.credential = Credential.default
     }
     
     @IBAction func introspectTapped() {
-        guard let credential = Credential.default else { return  }
+        guard let credential = self.credential else { return  }
         credential.introspect(.accessToken, completion: { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let tokenInfo):
-                    guard let isValid = tokenInfo.payload["active"] as? Bool else { return }
-                    self.showAlert(title: "Access token is \(isValid ? "valid" : "invalid")!")
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        self.showError(error.localizedDescription)
+                    guard let isValid = tokenInfo.active else {
+                        self.show(titile: "An unexpected error occured with the TokenInfo")
+                        return
                     }
+                    let tokenValidity = isValid ? "valid" : "inValid"
+                    self.show(titile: "Access token is \(tokenValidity)!")
+                case .failure(let error):
+                    self.show(titile: "Error", error: error.localizedDescription)
                 }
             }
         })
     }
     
     @IBAction func refreshTapped() {
-        guard let credential = Credential.default
+        guard let credential = self.credential
         else {
-            self.showAlert(title: "Unable to Refresh Token",
-                           message: "an unknown issue prevented refreshing the token. Please try again.")
+            self.show(titile: "Unable to Refresh Token",
+                      error: "an unknown issue prevented refreshing the token. Please try again.")
             return
         }
         
         credential.refreshIfNeeded { result in
             if case let .failure(error) = result {
-                DispatchQueue.main.async {
-                    self.showError(error.localizedDescription)
-                }
+                self.show(titile: "Error", error: error.localizedDescription)
             }
             self.showTokenInfo()
-            self.showAlert(title: "Token refreshed!")
+            self.show(titile: "Token refreshed!")
         }
     }
     
     @IBAction func revokeTapped() {
-        guard let credential = Credential.default else { return  }
+        guard let credential = self.credential else {
+            self.show(titile: "Unable to Revoke Token",
+                      error: "an unknown issue prevented revoking the token. Please try again.")
+            return
+        }
         credential.revoke {[weak self] result in
             switch result {
             case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Sign out failed",
-                                                  message: error.localizedDescription,
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self?.present(alert, animated: true)
-                }
+                self?.show(titile: "Sign out failed", error: error.localizedDescription)
             case .success:
-                self?.navigationController?.popToRootViewController(animated: true)
+                DispatchQueue.main.async {
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
     }
@@ -99,7 +99,7 @@ class TokensViewController: UIViewController {
 // UI Utils
 private extension TokensViewController {    
     func showTokenInfo() {
-        guard let token = token else {
+        guard let token = self.credential?.token else {
             tokensView.text = "No token was found"
             return
         }
@@ -133,15 +133,5 @@ private extension TokensViewController {
         }
         
         tokensView.attributedText = string
-    }
-    
-    func showAlert(title: String, message: String? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func showError(_ message: String) {
-        self.showAlert(title: "Error", message: message)
     }
 }

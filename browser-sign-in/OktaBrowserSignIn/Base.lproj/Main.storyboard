@@ -27,7 +27,7 @@
         <!--Browser Sample-->
         <scene sceneID="DLf-hz-SL6">
             <objects>
-                <viewController storyboardIdentifier="Profile" id="7xG-zU-9ge" customClass="SignInViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7xG-zU-9ge" customClass="ProfileViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lke-IO-LDS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,7 +230,7 @@
         <!--Browser Sample-->
         <scene sceneID="D7d-0E-YIR">
             <objects>
-                <viewController id="Nwl-ZH-Kti" customClass="WelcomeViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nwl-ZH-Kti" customClass="WelcomeViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cqj-2T-xqe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -27,22 +27,6 @@ final class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        if let configForUITests = configForUITests {
-            self.auth = WebAuthentication(
-                issuer: URL(string: configForUITests["issuer"]!)!,
-                clientId: configForUITests["clientId"]!,
-                scopes: configForUITests["scopes"]!,
-                redirectUri: URL(string: configForUITests["redirectUri"]!)!,
-                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
-                additionalParameters: nil)
-        } else {
-            self.auth = WebAuthentication.shared
-        }
-        
-        if Credential.default != nil {
-            self.performSegue(withIdentifier: "show-details", sender: self)
-        }
-        
         if let clientId = auth?.signInFlow.client.configuration.clientId {
             self.clientIdLabel.text = "clientId: \(clientId)"
         } else {
@@ -62,60 +46,38 @@ final class WelcomeViewController: UIViewController {
     }
     
     @IBAction private func signInTapped() {
-        let window = viewIfLoaded?.window
-        auth?.signIn(from: window) { result in
+        auth?.signIn(from: self.view.window) { result in
             switch result {
             case .success(let token):
                 do {
                     try Credential.store(token)
                     self.performSegue(withIdentifier: "show-details", sender: self)
                 } catch {
-                    self.show(error: error)
+                    self.show(titile: "Error", error: error.localizedDescription)
                     return
                 }
                 
             case .failure(let error):
-                let alert = UIAlertController(title: "Error",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.show(titile: "Error", error: error.localizedDescription)
                 return
             }
         }
     }
-    
-    func show(error: Error) {
+}
+
+extension UIViewController {
+    func show(titile: String? = nil, error: String? = nil, after delay: TimeInterval = 0.0) {
         // There's currently no way to know when the ASWebAuthenticationSession will be dismissed,
         // so to ensure the alert can be displayed, we must delay presenting an error until the
         // dismissal is complete.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             let alert = UIAlertController(
-                title: "Cannot sign in",
-                message: error.localizedDescription,
+                title: titile,
+                message: error,
                 preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .default))
             
             self.present(alert, animated: true)
         }
-    }
-}
-
-// UI Tests
-private extension WelcomeViewController {
-    var configForUITests: [String: String]? {
-        let env = ProcessInfo.processInfo.environment
-        guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
-              let clientID = env["CLIENT_ID"],
-              let redirectURI = env["REDIRECT_URI"],
-              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
-            return nil
-        }
-        return ["issuer": "\(oktaURL)/oauth2/default",
-                "clientId": clientID,
-                "redirectUri": redirectURI,
-                "logoutRedirectUri": logoutRedirectURI,
-                "scopes": "openid profile offline_access"
-        ]
     }
 }

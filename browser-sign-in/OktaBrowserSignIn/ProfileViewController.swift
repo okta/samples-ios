@@ -17,8 +17,7 @@
 import UIKit
 import WebAuthenticationUI
 
-class SignInViewController: UIViewController {
-    let auth = WebAuthentication.shared
+class ProfileViewController: UIViewController {
     var credential: Credential? {
         didSet {
             updateUI(info: credential?.userInfo)
@@ -54,12 +53,11 @@ class SignInViewController: UIViewController {
         self.titleLabel.text = "Welcome, \(info?.givenName ?? "")"
         self.subtitleLabel.text = info?.preferredUsername
         self.timezoneLabel.text = info?.zoneinfo
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        if (info?.updatedAt) != nil {
-            self.updatedLabel.text = dateFormatter.string(for: info?.updatedAt)
+        if let updatedAt = info?.updatedAt {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            self.updatedLabel.text = dateFormatter.string(for: updatedAt)
         } else {
             self.updatedLabel.text = "N/A"
         }
@@ -70,20 +68,19 @@ class SignInViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
             return
         }
-        auth?.signOut(token: token) { result in
+        
+        guard let auth = WebAuthentication.shared else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        auth.signOut(token: token) { result in
             switch result {
             case .success:
                 try? self.credential?.remove()
-                self.credential = nil
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Sign out failed",
-                                                  message: error.localizedDescription,
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true)
-                }
+                self.show(titile: "Sign out failed", error: error.localizedDescription)
             }
         }
     }

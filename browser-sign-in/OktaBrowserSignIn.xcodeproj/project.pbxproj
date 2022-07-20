@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2FA4564B21F2031C000ACBE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */; };
-		2FA4564D21F2031C000ACBE2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564C21F2031C000ACBE2 /* SignInViewController.swift */; };
+		2FA4564D21F2031C000ACBE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4564C21F2031C000ACBE2 /* ProfileViewController.swift */; };
 		2FA4565221F2031C000ACBE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565021F2031C000ACBE2 /* Main.storyboard */; };
 		2FA4565421F2031D000ACBE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565321F2031D000ACBE2 /* Assets.xcassets */; };
 		2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */; };
@@ -39,7 +39,7 @@
 		25E623340F06F40C949465C6 /* Pods_OktaBrowserSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaBrowserSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA4564721F2031C000ACBE2 /* OktaBrowserSignIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaBrowserSignIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2FA4564C21F2031C000ACBE2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		2FA4564C21F2031C000ACBE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2FA4565121F2031C000ACBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2FA4565321F2031D000ACBE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FA4565621F2031D000ACBE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			children = (
 				2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */,
 				FA0E2B862268B07600321DEB /* WelcomeViewController.swift */,
-				2FA4564C21F2031C000ACBE2 /* SignInViewController.swift */,
+				2FA4564C21F2031C000ACBE2 /* ProfileViewController.swift */,
 				2FA4566021F61E80000ACBE2 /* TokensViewController.swift */,
 				2FA4565021F2031C000ACBE2 /* Main.storyboard */,
 				2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */,
@@ -253,7 +253,7 @@
 			files = (
 				2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */,
 				FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */,
-				2FA4564D21F2031C000ACBE2 /* SignInViewController.swift in Sources */,
+				2FA4564D21F2031C000ACBE2 /* ProfileViewController.swift in Sources */,
 				2FA4564B21F2031C000ACBE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

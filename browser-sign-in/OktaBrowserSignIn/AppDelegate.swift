@@ -21,22 +21,62 @@ import WebAuthenticationUI
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
+              let clientID = env["CLIENT_ID"],
+              let redirectURI = env["REDIRECT_URI"],
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+            return nil
+        }
+        return ["issuer": "\(oktaURL)/oauth2/default",
+                "clientId": clientID,
+                "redirectUri": redirectURI,
+                "logoutRedirectUri": logoutRedirectURI,
+                "scopes": "openid profile offline_access"
+        ]
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         if ProcessInfo.processInfo.arguments.contains("--reset-keychain") {
             try? Keychain.Search().delete()
         }
+        window?.rootViewController = self.getRootViewController()
+        window?.makeKeyAndVisible()
         return true
     }
-
+    
+    func getRootViewController() -> UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let _ = Credential.default else {
+            let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn") as? WelcomeViewController
+            if let configForUITests = configForUITests {
+                welcomeViewController?.auth = WebAuthentication(
+                    issuer: URL(string: configForUITests["issuer"]!)!,
+                    clientId: configForUITests["clientId"]!,
+                    scopes: configForUITests["scopes"]!,
+                    redirectUri: URL(string: configForUITests["redirectUri"]!)!,
+                    logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
+                    additionalParameters: nil)
+            } else {
+                welcomeViewController?.auth = WebAuthentication.shared
+            }
+            return welcomeViewController
+        }
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: "Profile")
+        return profileViewController
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) { }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) { }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) { }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) { }
-
+    
     func applicationWillTerminate(_ application: UIApplication) { }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -48,3 +88,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
