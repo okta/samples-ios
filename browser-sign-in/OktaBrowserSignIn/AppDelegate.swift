@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let _ = Credential.default else {
             let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn") as? WelcomeViewController
+            //Setup for UI Tests
             if let configForUITests = configForUITests {
                 welcomeViewController?.auth = WebAuthentication(
                     issuer: URL(string: configForUITests["issuer"]!)!,

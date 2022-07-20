@@ -13,7 +13,7 @@
 import Foundation
 import XCTest
 
-class SignInScreen: Screen, WebLogin {
+class SignInScreen {
     let app = XCUIApplication()
     let testCase: XCTestCase
     
@@ -32,5 +32,93 @@ class SignInScreen: Screen, WebLogin {
     
     func validate(clientId: String) {
         XCTAssertEqual(clientIdLabel.label, clientId)
+    }
+    
+    func setEphemeral(_ enabled: Bool) {
+        if ephemeralSwitch.isOn != enabled {
+            ephemeralSwitch.tap()
+        }
+    }
+    
+    func login(username: String? = nil, password: String? = nil) {
+        let alertObserver = testCase.addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
+            alert.buttons["Continue"].tap()
+            return true
+        }
+        
+        defer {
+            testCase.removeUIInterruptionMonitor(alertObserver)
+        }
+
+        signInButton.tap()
+
+        let isEphemeral = ephemeralSwitch.isOn ?? false
+        if !isEphemeral {
+            app.tap()
+        }
+
+        guard app.webViews.firstMatch.waitForExistence(timeout: 5) else { return }
+        
+        if let username = username,
+           app.webViews.textFields.firstMatch.waitForExistence(timeout: 5)
+        {
+            let field = app.webViews.textFields.element(boundBy: 0)
+            if !field.hasFocus {
+                field.tap()
+            }
+            
+            if !isEphemeral,
+               let fieldValue = field.value as? String,
+               !fieldValue.isEmpty
+            {
+                field.clearText()
+            }
+            
+            field.typeText(username)
+            app.buttons["Done"].tap()
+        }
+        
+        
+        if let password = password,
+           app.webViews.secureTextFields.firstMatch.waitForExistence(timeout: 30)
+        {
+            let field = app.webViews.secureTextFields.element(boundBy: 0)
+         
+            field.tap()
+
+            field.typeText(password)
+            app.buttons["Done"].tap()
+        }
+        
+        if username != nil || password != nil {
+            app.webViews.buttons.firstMatch.tap()
+        }
+        
+        _ = app.webViews.firstMatch.waitForNonExistence(timeout: 1)
+    }
+    
+    func cancel() {
+        app.buttons["Cancel"].tap()
+        
+        XCTAssertTrue(app.alerts
+            .staticTexts["Authentication cancelled by the user."]
+            .waitForExistence(timeout: 1))
+        
+        app.alerts.buttons["OK"].tap()
+    }
+}
+
+extension XCUIElement {
+    var isOn: Bool? {
+        return (self.value as? String).map { $0 == "1" }
+    }
+
+    func clearText() {
+        guard let stringValue = self.value as? String else {
+            XCTFail("Tried to clear and enter text into a non string value")
+            return
+        }
+        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
+        self.typeText(deleteString)
     }
 }

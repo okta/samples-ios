@@ -27,7 +27,7 @@ class OktaBrowserSignInUITests: XCTestCase {
     }()
     
     lazy var signInScreen: SignInScreen = { SignInScreen(self) }()
-    lazy var profileScreen: ProfileScreen = { ProfileScreen(self) }()
+    lazy var profileScreen: ProfileScreen = { ProfileScreen() }()
 
     override func setUpWithError() throws {
         let app = XCUIApplication()
@@ -51,8 +51,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         signInScreen.setEphemeral(true)
         signInScreen.login(username: username, password: password)
         profileScreen.wait()
-        let userNameQuery = profileScreen.app.staticTexts.matching(identifier: "Username").element.label
-        XCTAssertEqual(userNameQuery, username)
+        profileScreen.verify(username: username)
         profileScreen.signOut()
         signInScreen.isVisible()
     }
@@ -66,7 +65,8 @@ class OktaBrowserSignInUITests: XCTestCase {
         signInScreen.setEphemeral(true)
         signInScreen.login(username: login, password: password)
         
-        XCTAssertTrue(app.webViews.staticTexts["Unable to sign in"].waitForExistence(timeout: .standard))
+        XCTAssertTrue(
+            app.webViews.staticTexts["Unable to sign in"].waitForExistence(timeout: 1)
+        )
     }
 }
-

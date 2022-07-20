@@ -18,8 +18,6 @@
 		B415E72D2885D82900E2DB1A /* OktaOAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72C2885D82900E2DB1A /* OktaOAuth2 */; };
 		B415E72F2885D82900E2DB1A /* WebAuthenticationUI in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72E2885D82900E2DB1A /* WebAuthenticationUI */; };
 		B415E7312887220D00E2DB1A /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7302887220D00E2DB1A /* SignInScreen.swift */; };
-		B415E7332887225400E2DB1A /* WebLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7322887225400E2DB1A /* WebLogin.swift */; };
-		B415E7352887227700E2DB1A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7342887227700E2DB1A /* Screen.swift */; };
 		B415E7372887294900E2DB1A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7362887294900E2DB1A /* ProfileScreen.swift */; };
 		F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */; };
 		FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E2B862268B07600321DEB /* WelcomeViewController.swift */; };
@@ -47,8 +45,6 @@
 		2FA4565E21F5C819000ACBE2 /* Okta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Okta.plist; sourceTree = "<group>"; };
 		2FA4566021F61E80000ACBE2 /* TokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		B415E7302887220D00E2DB1A /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
-		B415E7322887225400E2DB1A /* WebLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLogin.swift; sourceTree = "<group>"; };
-		B415E7342887227700E2DB1A /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		B415E7362887294900E2DB1A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		F53D4222223FA7C0000320D6 /* OktaBrowserSignInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaBrowserSignInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaBrowserSignInUITests.swift; sourceTree = "<group>"; };
@@ -124,8 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				B415E7302887220D00E2DB1A /* SignInScreen.swift */,
-				B415E7322887225400E2DB1A /* WebLogin.swift */,
-				B415E7342887227700E2DB1A /* Screen.swift */,
 				B415E7362887294900E2DB1A /* ProfileScreen.swift */,
 			);
 			path = Pages;
@@ -262,10 +256,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B415E7332887225400E2DB1A /* WebLogin.swift in Sources */,
 				F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */,
 				B415E7312887220D00E2DB1A /* SignInScreen.swift in Sources */,
-				B415E7352887227700E2DB1A /* Screen.swift in Sources */,
 				B415E7372887294900E2DB1A /* ProfileScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

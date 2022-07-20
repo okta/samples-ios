@@ -13,15 +13,17 @@
 import Foundation
 import XCTest
 
-class ProfileScreen: Screen {
+class ProfileScreen {
     let app: XCUIApplication
-    let testCase: XCTestCase
-
     private lazy var signOutButton = app.buttons["Sign Out"]
 
-    init(_ testCase: XCTestCase, app: XCUIApplication = XCUIApplication()) {
-        self.testCase = testCase
+    init(app: XCUIApplication = XCUIApplication()) {
         self.app = app
+    }
+    
+    func verify(username: String?) {
+        let userNameQuery = app.staticTexts.matching(identifier: "Username").element.label
+        XCTAssertEqual(userNameQuery, username)
     }
     
     func wait(timeout: TimeInterval = 3) {
@@ -29,9 +31,22 @@ class ProfileScreen: Screen {
     }
     
     func signOut() {
-        _ = signOutButton.waitForExistence(timeout: .short)
+        _ = signOutButton.waitForExistence(timeout: 1)
         signOutButton.tap()
         app.tap()
-        XCTAssertTrue(app.webViews.element.waitForNonExistence(timeout: .standard))
+        XCTAssertTrue(app.webViews.element.waitForNonExistence(timeout: 3))
+    }
+}
+
+extension XCUIElement {
+    func waitForNonExistence(timeout: TimeInterval) -> Bool {
+        let timeStart = Date().timeIntervalSince1970
+        
+        while Date().timeIntervalSince1970 <= (timeStart + timeout) {
+            if !exists {
+                return true
+            }
+        }
+        return false
     }
 }
