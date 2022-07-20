@@ -1,13 +1,13 @@
 language: objective-c
 os: osx
-osx_image: xcode12.5
+osx_image: xcode13.4
 
 jobs:
   include:
     - stage: Build
       name: Browser Sign In
       script:
-      - set -o pipefail && xcodebuild -project browser-sign-in/OktaBrowserSignIn.xcodeproj -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
+      - set -o pipefail && xcodebuild -project browser-sign-in/OktaBrowserSignIn.xcodeproj -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=15.5,name\=iPhone\ 11 build | xcpretty
     - stage: Build
       name: Custom Sign In
       install:

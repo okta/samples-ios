@@ -15,70 +15,88 @@
  */
 
 import UIKit
-import OktaOidc
+import WebAuthenticationUI
 
 final class WelcomeViewController: UIViewController {
-
-    var oktaOidc: OktaOidc?
-    var stateManager: OktaOidcStateManager?
+    var auth: WebAuthentication?
     
+    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var ephemeralSwitch: UISwitch!
+    @IBOutlet weak var clientIdLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        
-        if #available(iOS 13.0, *) {
-            // We'll allow the switch to be shown
+        if let configForUITests = configForUITests {
+            self.auth = WebAuthentication(
+                issuer: URL(string: configForUITests["issuer"]!)!,
+                clientId: configForUITests["clientId"]!,
+                scopes: configForUITests["scopes"]!,
+                redirectUri: URL(string: configForUITests["redirectUri"]!)!,
+                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
+                additionalParameters: nil)
         } else {
-            ephemeralSwitch.superview?.isHidden = true
+            self.auth = WebAuthentication.shared
         }
         
-        do {
-            if let configForUITests = self.configForUITests {
-                oktaOidc = try OktaOidc(configuration: OktaOidcConfig(with: configForUITests))
-            } else {
-                oktaOidc = try OktaOidc()
-            }
-        } catch let error {
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        if Credential.default != nil {
+            self.performSegue(withIdentifier: "show-details", sender: self)
+        }
+        
+        if let clientId = auth?.signInFlow.client.configuration.clientId {
+            self.clientIdLabel.text = "clientId: \(clientId)"
+        } else {
+            self.clientIdLabel.text = "Not configured"
+            self.signInButton.isEnabled = false
+        }
+    }
+    
+    func navigateToDetailsPage() {
+        guard Credential.default != nil else { return }
+        self.performSegue(withIdentifier: "show-details", sender: self)
+    }
+    
+    @IBAction func ephemeralSwitchChanged(_ sender: Any) {
+        guard let sender = sender as? UISwitch else { return }
+        self.auth?.ephemeralSession = sender.isOn
+    }
+    
+    @IBAction private func signInTapped() {
+        let window = viewIfLoaded?.window
+        auth?.signIn(from: window) { result in
+            switch result {
+            case .success(let token):
+                do {
+                    try Credential.store(token)
+                    self.performSegue(withIdentifier: "show-details", sender: self)
+                } catch {
+                    self.show(error: error)
+                    return
+                }
+                
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-            }
-            return
-        }
-        
-        if  let oktaOidc = oktaOidc,
-            let _ = OktaOidcStateManager.readFromSecureStorage(for: oktaOidc.configuration)?.accessToken {
-            self.stateManager = OktaOidcStateManager.readFromSecureStorage(for: oktaOidc.configuration)
-            performSegue(withIdentifier: "show-details", sender: self)
-        }
-    }
-
-    @IBAction private func signInTapped() {
-        if #available(iOS 13.0, *) {
-            oktaOidc?.configuration.noSSO = ephemeralSwitch.isOn
-        }
-        
-        oktaOidc?.signInWithBrowser(from: self, callback: { [weak self] stateManager, error in
-            if let error = error {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
                 return
             }
-            self?.stateManager?.clear()
-            self?.stateManager = stateManager
-            self?.stateManager?.writeToSecureStorage()
-            self?.performSegue(withIdentifier: "show-details", sender: self)
-        })
+        }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? SignInViewController {
-            destinationViewController.oktaOidc = self.oktaOidc
-            destinationViewController.stateManager = self.stateManager
+    
+    func show(error: Error) {
+        // There's currently no way to know when the ASWebAuthenticationSession will be dismissed,
+        // so to ensure the alert can be displayed, we must delay presenting an error until the
+        // dismissal is complete.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) {
+            let alert = UIAlertController(
+                title: "Cannot sign in",
+                message: error.localizedDescription,
+                preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
         }
     }
 }
@@ -88,16 +106,16 @@ private extension WelcomeViewController {
     var configForUITests: [String: String]? {
         let env = ProcessInfo.processInfo.environment
         guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
-            let clientID = env["CLIENT_ID"],
-            let redirectURI = env["REDIRECT_URI"],
-            let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
-                return nil
+              let clientID = env["CLIENT_ID"],
+              let redirectURI = env["REDIRECT_URI"],
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+            return nil
         }
         return ["issuer": "\(oktaURL)/oauth2/default",
-            "clientId": clientID,
-            "redirectUri": redirectURI,
-            "logoutRedirectUri": logoutRedirectURI,
-            "scopes": "openid profile offline_access"
+                "clientId": clientID,
+                "redirectUri": redirectURI,
+                "logoutRedirectUri": logoutRedirectURI,
+                "scopes": "openid profile offline_access"
         ]
     }
 }

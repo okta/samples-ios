@@ -15,66 +15,21 @@
  */
 
 import UIKit
-import OktaOidc
-import OktaJWT
+import WebAuthenticationUI
 
 class SignInViewController: UIViewController {
-    
-    var oktaOidc: OktaOidc?
-    var stateManager: OktaOidcStateManager?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadUserInfo()
-        DispatchQueue.global().async {
-            let options = ["iss": self.oktaOidc!.configuration.issuer, "exp": "true"]
-            let idTokenValidator = OktaJWTValidator(options)
-            do {
-                _ = try idTokenValidator.isValid(self.stateManager!.idToken!)
-            } catch let verificationError {
-                var errorDescription = verificationError.localizedDescription
-                if let verificationError = verificationError as? OktaJWTVerificationError, let description = verificationError.errorDescription {
-                    errorDescription = description
-                }
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+    var credential: Credential? {
+        didSet {
+            updateUI(info: credential?.userInfo)
+            credential?.automaticRefresh = true
+            credential?.refreshIfNeeded { _ in
+                self.credential?.userInfo { result in
+                    guard case let .success(userInfo) = result else { return }
+                    DispatchQueue.main.async {
+                        self.updateUI(info: userInfo)
+                    }
                 }
             }
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? TokensViewController {
-            destinationViewController.stateManager = self.stateManager
-        }
-    }
-    
-    private func loadUserInfo() {
-        stateManager?.getUser { [weak self] response, error in
-            DispatchQueue.main.async {
-                guard let response = response else {
-                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
-                    return
-                }
-                self?.updateUI(info: response)
-            }
-        }
-    }
-    
-    private func updateUI(info: [String:Any]?) {        
-        titleLabel.text = "Welcome, \(info?["given_name"] as? String ?? "")"
-        subtitleLabel.text = info?["preferred_username"] as? String
-        timezoneLabel.text = info?["zoneinfo"] as? String
-        if let updated = info?["updated_at"] as? Double {
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.day]
-            formatter.unitsStyle = .full
-            let days = formatter.string(from: Date(timeIntervalSince1970: updated), to: Date())
-            updatedLabel.text = "\(days ?? "?") ago"
         }
     }
     
@@ -83,21 +38,49 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var timezoneLabel: UILabel!
     @IBOutlet weak var updatedLabel: UILabel!
     
-    @IBAction func signOutTapped() {
-        guard let oktaOidc = self.oktaOidc,
-              let stateManager = self.stateManager else { return }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
+                                               object: nil,
+                                               queue: .main) { (notification) in
+            guard let user = notification.object as? Credential else { return }
+            self.credential = user
+        }
+        self.credential = Credential.default
+    }
+    
+    func updateUI(info: UserInfo?) {
+        self.titleLabel.text = "Welcome, \(info?.givenName ?? "")"
+        self.subtitleLabel.text = info?.preferredUsername
+        self.timezoneLabel.text = info?.zoneinfo
         
-        oktaOidc.signOutOfOkta(stateManager, from: self, callback: { [weak self] error in
-            if let error = error {
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
-                return
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        if (info?.updatedAt) != nil {
+            self.updatedLabel.text = dateFormatter.string(for: info?.updatedAt)
+        } else {
+            self.updatedLabel.text = "N/A"
+        }
+    }
+    
+    @IBAction func signOutTapped() {
+        guard let token = credential?.token else { return }
+        WebAuthentication.shared?.signOut(token: token) { result in
+            switch result {
+            case .success:
+                try? self.credential?.remove()
+                self.credential = nil
+                self.navigationController?.popViewController(animated: true)
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Sign out failed",
+                                                  message: error.localizedDescription,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                }
             }
-            
-            self?.stateManager?.clear()
-
-            self?.navigationController?.popViewController(animated: true)
-        })
+        }
     }
 }

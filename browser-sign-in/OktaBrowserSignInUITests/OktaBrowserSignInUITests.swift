@@ -15,93 +15,58 @@
  */
 
 import XCTest
+import WebAuthenticationUI
 
 class OktaBrowserSignInUITests: XCTestCase {
+    lazy var username: String? = {
+        ProcessInfo.processInfo.environment["LOGIN"]
+    }()
 
-    override func setUp() {
-        super.setUp()
-        clearKeyChain()
-        continueAfterFailure = false
+    lazy var password: String? = {
+        ProcessInfo.processInfo.environment["PASS"]
+    }()
+    
+    lazy var signInScreen: SignInScreen = { SignInScreen(self) }()
+    lazy var profileScreen: ProfileScreen = { ProfileScreen(self) }()
+
+    override func setUpWithError() throws {
         let app = XCUIApplication()
-        app.launchEnvironment = ProcessInfo.processInfo.environment
+        app.launchEnvironment = ["AutoCorrection": "Disabled"]
+        app.launchArguments = ["--reset-keychain"]
         app.launch()
+        
+        continueAfterFailure = false
+    }
+    
+    func testCancel() throws {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login()
+        signInScreen.cancel()
+        signInScreen.isVisible()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func testLoginSuccess() {
-        let app = XCUIApplication()
-        let env = ProcessInfo.processInfo.environment
-        guard let login = env["LOGIN"], let pass = env["PASS"], let firstName = env["FIRST_NAME"] else {
-            XCTFail("Environment variables LOGIN, PASS, FIRST_NAME not set")
-            return
-        }
-        
-        app.buttons["Sign In"].tap()
-        passSystemAlert(button: "Continue")
-        
-        loginWith(login: login, and: pass)
-
-        XCTAssertTrue(app.staticTexts["Welcome, \(firstName)"].waitForExistence(timeout: 30))
-        
-        app.buttons["Sign Out"].tap()
-        
-        passSystemAlert(button: "Continue")
-        
-        XCTAssertTrue(XCUIApplication().staticTexts["Have an account?"].waitForExistence(timeout: 30))
+    func testEphemeralLoginAndSignOut() throws {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        let userNameQuery = profileScreen.app.staticTexts.matching(identifier: "Username").element.label
+        XCTAssertEqual(userNameQuery, username)
+        profileScreen.signOut()
+        signInScreen.isVisible()
     }
     
     func testLoginFailure() {
         let app = XCUIApplication()
         let login = UUID().uuidString
-        let pass = UUID().uuidString
+        let password = UUID().uuidString
         
-        app.buttons["Sign In"].tap()
-        passSystemAlert(button: "Continue")
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: login, password: password)
         
-        loginWith(login: login, and: pass)
-
-        XCTAssertTrue(app.webViews.staticTexts["Sign in failed!"].waitForExistence(timeout: 60))
-    }
-
-    private func passSystemAlert(button: String) {
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        XCTAssertTrue(springboard.buttons[button].waitForExistence(timeout: 30))
-        springboard.buttons[button].tap()
-    }
-
-    private func clearKeyChain() {
-        let secItemClasses = [
-            kSecClassGenericPassword,
-            kSecClassInternetPassword,
-            kSecClassCertificate,
-            kSecClassKey,
-            kSecClassIdentity
-        ]
-        
-        for secItemClass in secItemClasses {
-            let dictionary = [ kSecClass as String:secItemClass ] as CFDictionary
-            SecItemDelete(dictionary)
-        }
-    }
-
-    private func loginWith(login: String, and password: String) {
-        let app = XCUIApplication()
-        let webViewsQuery = app.webViews
-        let uiElementUsername = webViewsQuery.textFields.element(boundBy: 0)
-        XCTAssertTrue(uiElementUsername.waitForExistence(timeout: 60))
-        uiElementUsername.tap()
-        uiElementUsername.typeText(login)
-        let uiElementPassword: XCUIElement = webViewsQuery.secureTextFields.element(boundBy: 0)
-        if webViewsQuery.buttons["Next"].exists {
-            webViewsQuery.buttons["Next"].tap()
-            XCTAssertTrue(uiElementPassword.waitForExistence(timeout: 60))
-        }
-        uiElementPassword.tap()
-        sleep(1)
-        uiElementPassword.typeText(password)
-        webViewsQuery.buttons["Sign In"].tap()
+        XCTAssertTrue(app.webViews.staticTexts["Unable to sign in"].waitForExistence(timeout: .standard))
     }
 }
+

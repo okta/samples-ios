@@ -15,7 +15,7 @@
  */
 
 import UIKit
-import OktaOidc
+import WebAuthenticationUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,11 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if ProcessInfo.processInfo.arguments.contains("--reset-keychain") {
+            try? Keychain.Search().delete()
+        }
         return true
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) { }
@@ -39,4 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) { }
 
     func applicationWillTerminate(_ application: UIApplication) { }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        do {
+            try WebAuthentication.shared?.resume(with: url)
+        } catch {
+            print(error)
+        }
+        return true
+    }
 }
