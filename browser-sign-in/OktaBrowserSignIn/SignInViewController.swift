@@ -18,6 +18,7 @@ import UIKit
 import WebAuthenticationUI
 
 class SignInViewController: UIViewController {
+    let auth = WebAuthentication.shared
     var credential: Credential? {
         didSet {
             updateUI(info: credential?.userInfo)
@@ -65,8 +66,11 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signOutTapped() {
-        guard let token = credential?.token else { return }
-        WebAuthentication.shared?.signOut(token: token) { result in
+        guard let token = credential?.token else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        auth?.signOut(token: token) { result in
             switch result {
             case .success:
                 try? self.credential?.remove()

@@ -90,9 +90,7 @@ class TokensViewController: UIViewController {
                     self?.present(alert, animated: true)
                 }
             case .success:
-                DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }
+                self?.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
