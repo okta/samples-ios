@@ -18,8 +18,6 @@ class ProfileScreen: Screen {
     let testCase: XCTestCase
 
     private lazy var signOutButton = app.buttons["Sign Out"]
-//    private lazy var removeButton = app.sheets.buttons["Remove"]
-//    private lazy var endSessionButton = app.sheets.buttons["End a session"]
 
     init(_ testCase: XCTestCase, app: XCUIApplication = XCUIApplication()) {
         self.testCase = testCase
