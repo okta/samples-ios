@@ -18,7 +18,7 @@ import UIKit
 import WebAuthenticationUI
 
 final class WelcomeViewController: UIViewController {
-    var auth: WebAuthentication?
+    lazy var auth = WebAuthentication.shared
     
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var ephemeralSwitch: UISwitch!
@@ -53,11 +53,11 @@ final class WelcomeViewController: UIViewController {
                     try Credential.store(token)
                     self.performSegue(withIdentifier: "show-details", sender: self)
                 } catch {
-                    self.show(titile: "Error", error: error.localizedDescription, after: 3.0)
+                    self.show(title: "Error", error: error.localizedDescription, after: 3.0)
                     return
                 }
             case .failure(let error):
-                self.show(titile: "Error", error: error.localizedDescription)
+                self.show(title: "Error", error: error.localizedDescription)
                 return
             }
         }
@@ -65,13 +65,13 @@ final class WelcomeViewController: UIViewController {
 }
 
 extension UIViewController {
-    func show(titile: String? = nil, error: String? = nil, after delay: TimeInterval = 0.0) {
+    func show(title: String? = nil, error: String? = nil, after delay: TimeInterval = 0.0) {
         // There's currently no way to know when the ASWebAuthenticationSession will be dismissed,
         // so to ensure the alert can be displayed, we must delay presenting an error until the
         // dismissal is complete.
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             let alert = UIAlertController(
-                title: titile,
+                title: title,
                 message: error,
                 preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .default))

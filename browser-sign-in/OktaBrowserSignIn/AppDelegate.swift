@@ -19,55 +19,65 @@ import WebAuthenticationUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
     var configForUITests: [String: String]? {
         let env = ProcessInfo.processInfo.environment
         guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
               let clientID = env["CLIENT_ID"],
               let redirectURI = env["REDIRECT_URI"],
-              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"] else {
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"]
+        else {
             return nil
         }
-        return ["issuer": "\(oktaURL)/oauth2/default",
-                "clientId": clientID,
-                "redirectUri": redirectURI,
-                "logoutRedirectUri": logoutRedirectURI,
-                "scopes": "openid profile offline_access"
+        let configuration = [
+            "issuer": "\(oktaURL)/oauth2/default",
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
         ]
+        return configuration
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        self.window = window
         
         if ProcessInfo.processInfo.arguments.contains("--reset-keychain") {
             try? Keychain.Search().delete()
         }
-        window?.rootViewController = self.getRootViewController()
-        window?.makeKeyAndVisible()
+        
+        NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
+                                               object: nil,
+                                               queue: .main) { notification in
+            self.setRootViewController()
+        }
+        
+        self.setRootViewController()
         return true
     }
     
-    func getRootViewController() -> UIViewController? {
+    func setRootViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let _ = Credential.default else {
-            let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn") as? WelcomeViewController
-            //Setup for UI Tests
-            if let configForUITests = configForUITests {
-                welcomeViewController?.auth = WebAuthentication(
-                    issuer: URL(string: configForUITests["issuer"]!)!,
-                    clientId: configForUITests["clientId"]!,
-                    scopes: configForUITests["scopes"]!,
-                    redirectUri: URL(string: configForUITests["redirectUri"]!)!,
-                    logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
-                    additionalParameters: nil)
-            } else {
-                welcomeViewController?.auth = WebAuthentication.shared
-            }
-            return welcomeViewController
+        guard Credential.default == nil else {
+            let profileViewController = storyboard.instantiateViewController(withIdentifier: "Profile")
+            self.window?.rootViewController = profileViewController
+            return
         }
-        let profileViewController = storyboard.instantiateViewController(withIdentifier: "Profile")
-        return profileViewController
+        
+        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn")
+        //Setup for UI Tests
+        if let configForUITests = configForUITests {
+            let _ =  WebAuthentication(
+                issuer: URL(string: configForUITests["issuer"]!)!,
+                clientId: configForUITests["clientId"]!,
+                scopes: configForUITests["scopes"]!,
+                redirectUri: URL(string: configForUITests["redirectUri"]!)!,
+                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
+                additionalParameters: nil)
+        }
+        self.window?.rootViewController = welcomeViewController
     }
     
     func applicationWillResignActive(_ application: UIApplication) { }

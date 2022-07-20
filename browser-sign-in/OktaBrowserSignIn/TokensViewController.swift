@@ -48,45 +48,46 @@ class TokensViewController: UIViewController {
                 switch result {
                 case .success(let tokenInfo):
                     guard let isValid = tokenInfo.active else {
-                        self.show(titile: "An unexpected error occured with the TokenInfo")
+                        self.show(title: "An unexpected error occured with the TokenInfo")
                         return
                     }
                     let tokenValidity = isValid ? "valid" : "inValid"
-                    self.show(titile: "Access token is \(tokenValidity)!")
+                    self.show(title: "Access token is \(tokenValidity)!")
                 case .failure(let error):
-                    self.show(titile: "Error", error: error.localizedDescription)
+                    self.show(title: "Error", error: error.localizedDescription)
                 }
             }
         })
     }
     
     @IBAction func refreshTapped() {
-        guard let credential = self.credential
-        else {
-            self.show(titile: "Unable to Refresh Token",
+        guard let credential = self.credential else {
+            self.show(title: "Unable to Refresh Token",
                       error: "an unknown issue prevented refreshing the token. Please try again.")
             return
         }
         
         credential.refreshIfNeeded { result in
-            if case let .failure(error) = result {
-                self.show(titile: "Error", error: error.localizedDescription)
+            switch result {
+            case .failure(let error):
+                self.show(title: "Error", error: error.localizedDescription)
+            case .success:
+                self.showTokenInfo()
+                self.show(title: "Token refreshed!")
             }
-            self.showTokenInfo()
-            self.show(titile: "Token refreshed!")
         }
     }
     
     @IBAction func revokeTapped() {
         guard let credential = self.credential else {
-            self.show(titile: "Unable to Revoke Token",
+            self.show(title: "Unable to Revoke Token",
                       error: "an unknown issue prevented revoking the token. Please try again.")
             return
         }
         credential.revoke {[weak self] result in
             switch result {
             case .failure(let error):
-                self?.show(titile: "Sign out failed", error: error.localizedDescription)
+                self?.show(title: "Sign out failed", error: error.localizedDescription)
             case .success:
                 DispatchQueue.main.async {
                     self?.navigationController?.popToRootViewController(animated: true)

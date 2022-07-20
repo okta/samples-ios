@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController {
                 try? self.credential?.remove()
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
-                self.show(titile: "Sign out failed", error: error.localizedDescription)
+                self.show(title: "Sign out failed", error: error.localizedDescription)
             }
         }
     }
