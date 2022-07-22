@@ -20,8 +20,12 @@ import WebAuthenticationUI
 class TokensViewController: UIViewController {
     var credential: Credential? {
         didSet {
-            DispatchQueue.main.async {
-                self.showTokenInfo()
+            self.updateTokenInfo()
+            credential?.automaticRefresh = true
+            credential?.refreshIfNeeded { _ in
+                DispatchQueue.main.async {
+                    self.updateTokenInfo()
+                }
             }
         }
     }
@@ -42,40 +46,40 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func introspectTapped() {
-        guard let credential = self.credential else { return  }
+        guard let credential = self.credential else {
+            self.show(title: "An unexpected error occured with the token lifecycle.")
+            return
+        }
         credential.introspect(.accessToken, completion: { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let tokenInfo):
-                    guard let isValid = tokenInfo.active else {
-                        self.show(title: "An unexpected error occured with the TokenInfo")
-                        return
-                    }
-                    let tokenValidity = isValid ? "valid" : "inValid"
-                    self.show(title: "Access token is \(tokenValidity)!")
-                case .failure(let error):
-                    self.show(title: "Error", error: error.localizedDescription)
+            switch result {
+            case .success(let tokenInfo):
+                guard let isValid = tokenInfo.active else {
+                    self.show(title: "An unexpected error occured with the TokenInfo")
+                    return
                 }
+                let tokenValidity = isValid ? "valid" : "inValid"
+                self.show(title: "Access token is \(tokenValidity)!")
+            case .failure(let error):
+                self.show(title: "Error", error: error.localizedDescription)
             }
         })
     }
     
     @IBAction func refreshTapped() {
         guard let credential = self.credential else {
-            self.show(title: "Unable to Refresh Token",
-                      error: "an unknown issue prevented refreshing the token. Please try again.")
+            self.show(title: "An unexpected error occured with the token lifecycle.")
             return
         }
         
-        credential.refreshIfNeeded { result in
+        credential.refresh(completion: { result in
             switch result {
             case .failure(let error):
-                self.show(title: "Error", error: error.localizedDescription)
+                self.show(title: "Error refreshing token", error: error.localizedDescription)
             case .success:
-                self.showTokenInfo()
                 self.show(title: "Token refreshed!")
+                self.updateTokenInfo()
             }
-        }
+        })
     }
     
     @IBAction func revokeTapped() {
@@ -84,13 +88,14 @@ class TokensViewController: UIViewController {
                       error: "an unknown issue prevented revoking the token. Please try again.")
             return
         }
-        credential.revoke {[weak self] result in
+        
+        credential.revoke { result in
             switch result {
             case .failure(let error):
-                self?.show(title: "Sign out failed", error: error.localizedDescription)
+                self.show(title: "Sign out failed", error: error.localizedDescription)
             case .success:
                 DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }
@@ -99,7 +104,7 @@ class TokensViewController: UIViewController {
 
 // UI Utils
 private extension TokensViewController {    
-    func showTokenInfo() {
+    func updateTokenInfo() {
         guard let token = self.credential?.token else {
             tokensView.text = "No token was found"
             return

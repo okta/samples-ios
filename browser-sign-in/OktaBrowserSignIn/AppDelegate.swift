@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             return nil
         }
+        
         let configuration = [
             "issuer": "\(oktaURL)/oauth2/default",
             "clientId": clientID,
@@ -74,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 clientId: configForUITests["clientId"]!,
                 scopes: configForUITests["scopes"]!,
                 redirectUri: URL(string: configForUITests["redirectUri"]!)!,
-                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"] ?? ""),
+                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"]!)!,
                 additionalParameters: nil)
         }
         self.window?.rootViewController = welcomeViewController

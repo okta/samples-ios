@@ -64,20 +64,20 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func signOutTapped() {
-        guard let token = credential?.token else {
-            self.navigationController?.popViewController(animated: true)
+        guard let credential = credential else {
+            self.show(error: "Unexpected error with the token lifecycle.")
             return
         }
         
         guard let auth = WebAuthentication.shared else {
-            self.navigationController?.popViewController(animated: true)
+            self.show(error: "Client configuration is not set.")
             return
         }
         
-        auth.signOut(token: token) { result in
+        auth.signOut(token: credential.token) { result in
             switch result {
             case .success:
-                try? self.credential?.remove()
+                try? credential.remove()
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
                 self.show(title: "Sign out failed", error: error.localizedDescription)
