@@ -30,7 +30,7 @@ final class WelcomeViewController: UIViewController {
         if let clientId = auth?.signInFlow.client.configuration.clientId {
             self.clientIdLabel.text = "clientId: \(clientId)"
         } else {
-            self.clientIdLabel.text = "Not configured"
+            self.clientIdLabel.text = "ClientId not configured"
             self.signInButton.isEnabled = false
         }
     }

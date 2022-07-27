@@ -20,13 +20,17 @@ import WebAuthenticationUI
 class ProfileViewController: UIViewController {
     var credential: Credential? {
         didSet {
-            updateUI(info: credential?.userInfo)
+            showUserInfo(userInfo: credential?.userInfo)
             credential?.automaticRefresh = true
             credential?.refreshIfNeeded { _ in
                 self.credential?.userInfo { result in
-                    guard case let .success(userInfo) = result else { return }
-                    DispatchQueue.main.async {
-                        self.updateUI(info: userInfo)
+                    switch result {
+                    case.success(let userInfo):
+                        DispatchQueue.main.async {
+                            self.showUserInfo(userInfo: userInfo)
+                        }
+                    case .failure(let error):
+                        self.show(title: "Unable to Show User Info", error: error.localizedDescription)
                     }
                 }
             }
@@ -49,11 +53,11 @@ class ProfileViewController: UIViewController {
         self.credential = Credential.default
     }
     
-    func updateUI(info: UserInfo?) {
-        self.titleLabel.text = "Welcome, \(info?.givenName ?? "")"
-        self.subtitleLabel.text = info?.preferredUsername
-        self.timezoneLabel.text = info?.zoneinfo
-        if let updatedAt = info?.updatedAt {
+    func showUserInfo(userInfo: UserInfo?) {
+        self.titleLabel.text = "Welcome, \(userInfo?.givenName ?? "")"
+        self.subtitleLabel.text = userInfo?.preferredUsername
+        self.timezoneLabel.text = userInfo?.zoneinfo
+        if let updatedAt = userInfo?.updatedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .short
@@ -65,7 +69,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func signOutTapped() {
         guard let credential = credential else {
-            self.show(error: "Unexpected error with the token lifecycle.")
+            self.show(error: "An unknown issue prevented signing out. Please try again.")
             return
         }
         
@@ -80,7 +84,7 @@ class ProfileViewController: UIViewController {
                 try? credential.remove()
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
-                self.show(title: "Sign out failed", error: error.localizedDescription)
+                self.show(title: "Unable to Sign Out", error: error.localizedDescription)
             }
         }
     }

@@ -21,14 +21,14 @@ class OktaBrowserSignInUITests: XCTestCase {
     lazy var username: String? = {
         ProcessInfo.processInfo.environment["LOGIN"]
     }()
-
+    
     lazy var password: String? = {
         ProcessInfo.processInfo.environment["PASS"]
     }()
     
     lazy var signInScreen: SignInScreen = { SignInScreen(self) }()
     lazy var profileScreen: ProfileScreen = { ProfileScreen() }()
-
+    
     override func setUpWithError() throws {
         let app = XCUIApplication()
         app.launchEnvironment = ["AutoCorrection": "Disabled"]
@@ -45,13 +45,12 @@ class OktaBrowserSignInUITests: XCTestCase {
         signInScreen.cancel()
         signInScreen.isVisible()
     }
-
+    
     func testEphemeralLoginAndSignOut() throws {
         signInScreen.isVisible()
         signInScreen.setEphemeral(true)
         signInScreen.login(username: username, password: password)
         profileScreen.wait()
-        profileScreen.verify(username: username)
         profileScreen.signOut()
         signInScreen.isVisible()
     }

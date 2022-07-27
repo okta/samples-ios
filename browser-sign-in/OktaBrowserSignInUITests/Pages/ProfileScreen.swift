@@ -21,11 +21,6 @@ class ProfileScreen {
         self.app = app
     }
     
-    func verify(username: String?) {
-        let userNameQuery = app.staticTexts.matching(identifier: "Username").element.label
-        XCTAssertEqual(userNameQuery, username)
-    }
-    
     func wait(timeout: TimeInterval = 3) {
         _ = app.staticTexts["Welcome"].waitForNonExistence(timeout: timeout)
     }

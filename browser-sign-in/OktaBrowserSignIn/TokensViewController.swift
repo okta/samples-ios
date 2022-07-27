@@ -20,11 +20,11 @@ import WebAuthenticationUI
 class TokensViewController: UIViewController {
     var credential: Credential? {
         didSet {
-            self.updateTokenInfo()
+            self.showTokenInfo()
             credential?.automaticRefresh = true
             credential?.refreshIfNeeded { _ in
                 DispatchQueue.main.async {
-                    self.updateTokenInfo()
+                    self.showTokenInfo()
                 }
             }
         }
@@ -67,17 +67,16 @@ class TokensViewController: UIViewController {
     
     @IBAction func refreshTapped() {
         guard let credential = self.credential else {
-            self.show(title: "An unexpected error occured with the token lifecycle.")
+            self.show(title: "Unable to Refresh Token", error: "An unknown issue prevented refreshing the token. Please try again.")
             return
         }
         
-        credential.refresh(completion: { result in
+        credential.refreshIfNeeded(completion: { result in
             switch result {
             case .failure(let error):
-                self.show(title: "Error refreshing token", error: error.localizedDescription)
+                self.show(title: "Unable to Refresh Tokenn", error: error.localizedDescription)
             case .success:
-                self.show(title: "Token refreshed!")
-                self.updateTokenInfo()
+                self.showTokenInfo()
             }
         })
     }
@@ -100,44 +99,30 @@ class TokensViewController: UIViewController {
             }
         }
     }
-}
-
-// UI Utils
-private extension TokensViewController {    
-    func updateTokenInfo() {
-        guard let token = self.credential?.token else {
-            tokensView.text = "No token was found"
-            return
+    
+    func showTokenInfo() {
+        self.tokensView.text = ""
+        var tokenString = "Unable to show token"
+        if let token = Credential.default?.token {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .medium
+            dateFormatter.dateStyle = .medium
+            
+            tokenString = ""
+            if let issued = token.issuedAt {
+                tokenString += "Issue Date: \(dateFormatter.string(from: issued))\n"
+            }
+            if let expiry = token.expiresAt {
+                tokenString += "Expiry Date: \(dateFormatter.string(from: expiry))\n"
+            }
+            if token.isExpired {
+                tokenString += "---EXPIRED---\n"
+            }
+            tokenString += "\nAccess Token\n\n\(token.accessToken)\n\n"
+            if let refreshToken = token.refreshToken {
+                tokenString += "\nRefresh Token\n\n\(refreshToken)"
+            }
         }
-        
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.lineBreakMode = .byCharWrapping
-        paragraph.paragraphSpacing = 15
-        
-        let bold = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
-        let normal = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body),
-                      NSAttributedString.Key.paragraphStyle: paragraph]
-        
-        func addString(to string: NSMutableAttributedString, title: String, value: String) {
-            string.append(NSAttributedString(string: "\(title):\n", attributes: bold))
-            string.append(NSAttributedString(string: "\(value)\n", attributes: normal))
-        }
-        
-        let string = NSMutableAttributedString()
-        addString(to: string, title: "Access token", value: token.accessToken)
-        
-        if let refreshToken = token.refreshToken {
-            addString(to: string, title: "Refresh token", value: refreshToken)
-        }
-        
-        addString(to: string, title: "Expires in", value: "\(token.expiresIn) seconds")
-        addString(to: string, title: "Scope", value: token.scope ?? "N/A")
-        addString(to: string, title: "Token type", value: token.tokenType)
-        
-        if let idToken = token.idToken {
-            addString(to: string, title: "ID token", value: idToken.rawValue)
-        }
-        
-        tokensView.attributedText = string
+        self.tokensView.text = tokenString
     }
 }
