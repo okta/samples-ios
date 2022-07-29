@@ -22,10 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var configForUITests: [String: String]? {
         let env = ProcessInfo.processInfo.environment
-        guard let oktaURL = env["OKTA_URL"], oktaURL.count > 0,
-              let clientID = env["CLIENT_ID"],
-              let redirectURI = env["REDIRECT_URI"],
-              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"]
+        guard let oktaURL = env["OKTA_URL"], !oktaURL.isEmpty,
+              let clientID = env["CLIENT_ID"], !clientID.isEmpty,
+              let redirectURI = env["REDIRECT_URI"], !redirectURI.isEmpty,
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"], !logoutRedirectURI.isEmpty
         else {
             return nil
         }
@@ -75,13 +75,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            let issuerURL = URL(string: issuer),
            let clientId = configForUITests["clientId"],
            let scopes = configForUITests["scopes"],
-           let redirectUri = configForUITests["redirectUri"],
-           let redirectURL = URL(string: redirectUri) {
+           let redirectURI = configForUITests["redirectUri"],
+           let redirectURL = URL(string: redirectURI),
+           let logoutRedirectURI = configForUITests["logoutRedirectUri"],
+           let logoutRedirectURL = URL(string: logoutRedirectURI) {
             let _ =  WebAuthentication(
                 issuer: issuerURL,
                 clientId: clientId,
                 scopes: scopes,
-                redirectUri: redirectURL)
+                redirectUri: redirectURL,
+                logoutRedirectUri: logoutRedirectURL)
         }
         window?.rootViewController = welcomeViewController
     }
