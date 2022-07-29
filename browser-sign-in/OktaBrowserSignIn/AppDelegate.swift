@@ -78,7 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            let redirectURI = configForUITests["redirectUri"],
            let redirectURL = URL(string: redirectURI),
            let logoutRedirectURI = configForUITests["logoutRedirectUri"],
-           let logoutRedirectURL = URL(string: logoutRedirectURI) {
+           let logoutRedirectURL = URL(string: logoutRedirectURI)
+        {
             let _ =  WebAuthentication(
                 issuer: issuerURL,
                 clientId: clientId,
