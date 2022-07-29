@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.setColor(lightMode: .white, darkMode: .clear)
         NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
                                                object: nil,
                                                queue: .main) { (notification) in
