@@ -20,7 +20,7 @@ import WebAuthenticationUI
 class TokensViewController: UIViewController {
     var credential: Credential? {
         didSet {
-            self.showTokenInfo()
+            showTokenInfo()
             credential?.automaticRefresh = true
             credential?.refreshIfNeeded { _ in
                 DispatchQueue.main.async {
@@ -42,12 +42,12 @@ class TokensViewController: UIViewController {
             guard let credential = notification.object as? Credential else { return }
             self.credential = credential
         }
-        self.credential = Credential.default
+        credential = Credential.default
     }
     
     @IBAction func introspectTapped() {
-        guard let credential = self.credential else {
-            self.show(title: "An unexpected error occured with the token lifecycle.")
+        guard let credential = credential else {
+            show(title: "An unexpected error occured with the token lifecycle.")
             return
         }
         credential.introspect(.accessToken, completion: { result in
@@ -66,8 +66,8 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func refreshTapped() {
-        guard let credential = self.credential else {
-            self.show(title: "Unable to Refresh Token", error: "An unknown issue prevented refreshing the token. Please try again.")
+        guard let credential = credential else {
+            show(title: "Unable to Refresh Token", error: "An unknown issue prevented refreshing the token. Please try again.")
             return
         }
         
@@ -82,8 +82,8 @@ class TokensViewController: UIViewController {
     }
     
     @IBAction func revokeTapped() {
-        guard let credential = self.credential else {
-            self.show(title: "Unable to Revoke Token",
+        guard let credential = credential else {
+            show(title: "Unable to Revoke Token",
                       error: "an unknown issue prevented revoking the token. Please try again.")
             return
         }
@@ -101,7 +101,7 @@ class TokensViewController: UIViewController {
     }
     
     func showTokenInfo() {
-        self.tokensView.text = ""
+        tokensView.text = ""
         var tokenString = "Unable to show token"
         if let token = Credential.default?.token {
             let dateFormatter = DateFormatter()
@@ -123,6 +123,6 @@ class TokensViewController: UIViewController {
                 tokenString += "\nRefresh Token\n\n\(refreshToken)"
             }
         }
-        self.tokensView.text = tokenString
+        tokensView.text = tokenString
     }
 }

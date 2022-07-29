@@ -266,9 +266,6 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-Aa-hSX">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ephemeral_switch"/>
-                                        <connections>
-                                            <action selector="ephemeralSwitchChanged:" destination="Nwl-ZH-Kti" eventType="valueChanged" id="Mmg-2e-0hF"/>
-                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ephemeral Session" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st9-qc-dAx">
                                         <rect key="frame" x="61" y="0.0" width="145" height="31"/>

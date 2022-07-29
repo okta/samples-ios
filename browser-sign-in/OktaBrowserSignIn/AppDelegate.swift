@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.setRootViewController()
         }
         
-        self.setRootViewController()
+        setRootViewController()
         return true
     }
     
@@ -63,22 +63,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard Credential.default == nil else {
             let profileViewController = storyboard.instantiateViewController(withIdentifier: "Profile")
-            self.window?.rootViewController = profileViewController
+            window?.rootViewController = profileViewController
             return
         }
         
         let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn")
-        //Setup for UI Tests
-        if let configForUITests = configForUITests {
+        
+        // Setup for UI Tests
+        if let configForUITests = configForUITests,
+           let issuer = configForUITests["issuer"],
+           let issuerURL = URL(string: issuer),
+           let clientId = configForUITests["clientId"],
+           let scopes = configForUITests["scopes"],
+           let redirectUri = configForUITests["redirectUri"],
+           let redirectURL = URL(string: redirectUri) {
             let _ =  WebAuthentication(
-                issuer: URL(string: configForUITests["issuer"]!)!,
-                clientId: configForUITests["clientId"]!,
-                scopes: configForUITests["scopes"]!,
-                redirectUri: URL(string: configForUITests["redirectUri"]!)!,
-                logoutRedirectUri: URL(string: configForUITests["logoutRedirectUri"]!)!,
-                additionalParameters: nil)
+                issuer: issuerURL,
+                clientId: clientId,
+                scopes: scopes,
+                redirectUri: redirectURL)
         }
-        self.window?.rootViewController = welcomeViewController
+        window?.rootViewController = welcomeViewController
     }
     
     func applicationWillResignActive(_ application: UIApplication) { }

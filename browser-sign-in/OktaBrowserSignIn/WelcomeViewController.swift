@@ -28,25 +28,21 @@ final class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         if let clientId = auth?.signInFlow.client.configuration.clientId {
-            self.clientIdLabel.text = "clientId: \(clientId)"
+            clientIdLabel.text = "Client ID: \(clientId)"
         } else {
-            self.clientIdLabel.text = "ClientId not configured"
-            self.signInButton.isEnabled = false
+            clientIdLabel.text = "Client ID is not configured"
+            signInButton.isEnabled = false
         }
     }
     
     func navigateToDetailsPage() {
         guard Credential.default != nil else { return }
-        self.performSegue(withIdentifier: "show-details", sender: self)
-    }
-    
-    @IBAction func ephemeralSwitchChanged(_ sender: Any) {
-        guard let sender = sender as? UISwitch else { return }
-        self.auth?.ephemeralSession = sender.isOn
+        performSegue(withIdentifier: "show-details", sender: self)
     }
     
     @IBAction private func signInTapped() {
-        auth?.signIn(from: self.view.window) { result in
+        auth?.ephemeralSession = ephemeralSwitch.isOn
+        auth?.signIn(from: view.window) { result in
             switch result {
             case .success(let token):
                 do {

@@ -50,31 +50,31 @@ class ProfileViewController: UIViewController {
             guard let user = notification.object as? Credential else { return }
             self.credential = user
         }
-        self.credential = Credential.default
+        credential = Credential.default
     }
     
     func showUserInfo(userInfo: UserInfo?) {
-        self.titleLabel.text = "Welcome, \(userInfo?.givenName ?? "")"
-        self.subtitleLabel.text = userInfo?.preferredUsername
-        self.timezoneLabel.text = userInfo?.zoneinfo
+        titleLabel.text = "Welcome, \(userInfo?.givenName ?? "")"
+        subtitleLabel.text = userInfo?.preferredUsername
+        timezoneLabel.text = userInfo?.zoneinfo
         if let updatedAt = userInfo?.updatedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .short
-            self.updatedLabel.text = dateFormatter.string(for: updatedAt)
+            updatedLabel.text = dateFormatter.string(for: updatedAt)
         } else {
-            self.updatedLabel.text = "N/A"
+            updatedLabel.text = "N/A"
         }
     }
     
     @IBAction func signOutTapped() {
         guard let credential = credential else {
-            self.show(error: "An unknown issue prevented signing out. Please try again.")
+            show(error: "An unknown issue prevented signing out. Please try again.")
             return
         }
         
         guard let auth = WebAuthentication.shared else {
-            self.show(error: "Client configuration is not set.")
+            show(error: "Client configuration is not set.")
             return
         }
         

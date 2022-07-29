@@ -27,7 +27,7 @@ class SignInScreen {
     
     func isVisible(timeout: TimeInterval = 3) {
         XCTAssertTrue(app.staticTexts["Have an account?"].waitForExistence(timeout: timeout))
-        XCTAssertFalse(app.staticTexts["Not configured"].exists)
+        XCTAssertFalse(app.staticTexts["Client ID is not configured"].exists)
     }
     
     func validate(clientId: String) {
@@ -110,15 +110,15 @@ class SignInScreen {
 
 extension XCUIElement {
     var isOn: Bool? {
-        return (self.value as? String).map { $0 == "1" }
+        return (value as? String).map { $0 == "1" }
     }
 
     func clearText() {
-        guard let stringValue = self.value as? String else {
+        guard let stringValue = value as? String else {
             XCTFail("Tried to clear and enter text into a non string value")
             return
         }
         let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
-        self.typeText(deleteString)
+        typeText(deleteString)
     }
 }
