@@ -27,7 +27,6 @@ final class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        view.backgroundColor = UIColor.setColor(lightMode: .white, darkMode: .clear)
         if let clientId = auth?.signInFlow.client.configuration.clientId {
             clientIdLabel.text = "Client ID: \(clientId)"
         } else {
@@ -74,17 +73,6 @@ extension UIViewController {
             alert.addAction(.init(title: "OK", style: .default))
             
             self.present(alert, animated: true)
-        }
-    }
-}
-
-public extension UIColor {
-    /// Define two colors for both light and dark mode
-    static func setColor(lightMode: UIColor, darkMode: UIColor) -> UIColor {
-        guard #available(iOS 13.0, *) else { return lightMode }
-            
-        return UIColor { (traitCollection) -> UIColor in
-            return traitCollection.userInterfaceStyle == .light ? lightMode : darkMode
         }
     }
 }
