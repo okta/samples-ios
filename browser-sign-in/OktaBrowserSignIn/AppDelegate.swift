@@ -15,28 +15,98 @@
  */
 
 import UIKit
-import OktaOidc
+import WebAuthenticationUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
-
+    var configForUITests: [String: String]? {
+        let env = ProcessInfo.processInfo.environment
+        guard let oktaURL = env["OKTA_URL"], !oktaURL.isEmpty,
+              let clientID = env["CLIENT_ID"], !clientID.isEmpty,
+              let redirectURI = env["REDIRECT_URI"], !redirectURI.isEmpty,
+              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"], !logoutRedirectURI.isEmpty
+        else {
+            return nil
+        }
+        
+        let configuration = [
+            "issuer": "\(oktaURL)/oauth2/default",
+            "clientId": clientID,
+            "redirectUri": redirectURI,
+            "logoutRedirectUri": logoutRedirectURI,
+            "scopes": "openid profile offline_access"
+        ]
+        return configuration
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        self.window = window
+        
+        if ProcessInfo.processInfo.arguments.contains("--reset-keychain") {
+            try? Keychain.Search().delete()
+        }
+        
+        NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
+                                               object: nil,
+                                               queue: .main) { notification in
+            self.setRootViewController()
+        }
+        
+        setRootViewController()
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return false
+    func setRootViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard Credential.default == nil else {
+            let profileViewController = storyboard.instantiateViewController(withIdentifier: "Profile")
+            window?.rootViewController = profileViewController
+            return
+        }
+        
+        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "SignIn")
+        
+        // Setup for UI Tests
+        if let configForUITests = configForUITests,
+           let issuer = configForUITests["issuer"],
+           let issuerURL = URL(string: issuer),
+           let clientId = configForUITests["clientId"],
+           let scopes = configForUITests["scopes"],
+           let redirectURI = configForUITests["redirectUri"],
+           let redirectURL = URL(string: redirectURI),
+           let logoutRedirectURI = configForUITests["logoutRedirectUri"],
+           let logoutRedirectURL = URL(string: logoutRedirectURI)
+        {
+            let _ =  WebAuthentication(
+                issuer: issuerURL,
+                clientId: clientId,
+                scopes: scopes,
+                redirectUri: redirectURL,
+                logoutRedirectUri: logoutRedirectURL)
+        }
+        window?.rootViewController = welcomeViewController
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) { }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) { }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) { }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) { }
-
+    
     func applicationWillTerminate(_ application: UIApplication) { }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        do {
+            try WebAuthentication.shared?.resume(with: url)
+        } catch {
+            print(error)
+        }
+        return true
+    }
 }
+

@@ -1,6 +1,6 @@
 # Okta iOS Browser Sign In Example
 
-This example shows you how to use the [Okta Auth](https://github.com/okta/okta-sdk-appauth-ios) to adopt Okta Authentication flow in your app. The login is achieved through the [Authorization Code Flow], where the user is redirected to the Okta-Hosted login page.  After the user authenticates, they are redirected back to the application.
+This example shows you how to use the [[Okta Mobile SDK]](https://github.com/okta/okta-mobile-swift) to adopt Okta Authentication flow in your app. The login is achieved through the [Web-based OIDC flows], where the user is redirected to the Okta-Hosted login page.  After the user authenticates, they are redirected back to the application.
 
 
 ## Prerequisites

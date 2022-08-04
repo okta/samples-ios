@@ -15,112 +15,114 @@
  */
 
 import UIKit
-import OktaOidc
+import WebAuthenticationUI
 
 class TokensViewController: UIViewController {
-
-    var stateManager: OktaOidcStateManager?
+    var credential: Credential? {
+        didSet {
+            showTokenInfo()
+            credential?.automaticRefresh = true
+            credential?.refreshIfNeeded { _ in
+                DispatchQueue.main.async {
+                    self.showTokenInfo()
+                }
+            }
+        }
+    }
     
     @IBOutlet private var tokensView: UITextView!
-    
     @IBOutlet private var introspectButton: UIButton!
     @IBOutlet private var refreshButton: UIButton!
     @IBOutlet private var revokeButton: UIButton!
     
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configure()
+    override func viewDidLoad() {
+        NotificationCenter.default.addObserver(forName: .defaultCredentialChanged,
+                                               object: nil,
+                                               queue: .main) { (notification) in
+            guard let credential = notification.object as? Credential else { return }
+            self.credential = credential
+        }
+        credential = Credential.default
     }
     
     @IBAction func introspectTapped() {
-        guard let accessToken = stateManager?.accessToken else { return }
-       
-        stateManager?.introspect(token: accessToken, callback: { payload, error in
-            DispatchQueue.main.async {
-                guard let isValid = payload?["active"] as? Bool else {
-                    self.showError(error?.localizedDescription ?? "Unexpected payload!")
+        guard let credential = credential else {
+            show(title: "An unexpected error occured with the token lifecycle.")
+            return
+        }
+        credential.introspect(.accessToken, completion: { result in
+            switch result {
+            case .success(let tokenInfo):
+                guard let isValid = tokenInfo.active else {
+                    self.show(title: "An unexpected error occured with the TokenInfo")
                     return
                 }
-
-                self.showAlert(title: "Access token is \(isValid ? "valid" : "invalid")!")
+                let tokenValidity = isValid ? "valid" : "inValid"
+                self.show(title: "Access token is \(tokenValidity)!")
+            case .failure(let error):
+                self.show(title: "Error", error: error.localizedDescription)
             }
         })
     }
     
     @IBAction func refreshTapped() {
-        stateManager?.renew(callback: { stateManager, error in
-            if let error = error {
-                self.showError(error.localizedDescription)
-                return
+        guard let credential = credential else {
+            show(title: "Unable to Refresh Token", error: "An unknown issue prevented refreshing the token. Please try again.")
+            return
+        }
+        
+        credential.refreshIfNeeded(completion: { result in
+            switch result {
+            case .failure(let error):
+                self.show(title: "Unable to Refresh Tokenn", error: error.localizedDescription)
+            case .success:
+                self.showTokenInfo()
             }
-            
-            self.configure()
-            self.showAlert(title: "Token refreshed!")
         })
     }
     
     @IBAction func revokeTapped() {
-        guard let accessToken = stateManager?.accessToken else { return }
+        guard let credential = credential else {
+            show(title: "Unable to Revoke Token",
+                      error: "an unknown issue prevented revoking the token. Please try again.")
+            return
+        }
         
-        stateManager?.revoke(accessToken, callback: { isRevoked, error in
-            DispatchQueue.main.async {
-                guard isRevoked else {
-                    self.showError( error?.localizedDescription ?? "Failed to revoked access token!")
-                    return
+        credential.revoke { result in
+            switch result {
+            case .failure(let error):
+                self.show(title: "Sign out failed", error: error.localizedDescription)
+            case .success:
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
-            
-                self.showAlert(title: "Access token revoked!")
-                self.configure()
             }
-        })
-    }
-}
-
-// UI Utils
-private extension TokensViewController {
-    func configure() {
-        guard isViewLoaded else { return }
-        let stateManager = self.stateManager
-        
-        var tokens = ""
-        if let accessToken = stateManager?.accessToken {
-            tokens += "Access token:\n\(accessToken)\n\n"
         }
-        
-        if let refreshToken = stateManager?.refreshToken {
-            tokens += "Refresh token:\n\(refreshToken)\n\n"
+    }
+    
+    func showTokenInfo() {
+        tokensView.text = ""
+        var tokenString = "Unable to show token"
+        if let token = Credential.default?.token {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .medium
+            dateFormatter.dateStyle = .medium
+            
+            tokenString = ""
+            if let issued = token.issuedAt {
+                tokenString += "Issue Date: \(dateFormatter.string(from: issued))\n"
+            }
+            if let expiry = token.expiresAt {
+                tokenString += "Expiry Date: \(dateFormatter.string(from: expiry))\n"
+            }
+            if token.isExpired {
+                tokenString += "---EXPIRED---\n"
+            }
+            tokenString += "\nAccess Token\n\n\(token.accessToken)\n\n"
+            if let refreshToken = token.refreshToken {
+                tokenString += "\nRefresh Token\n\n\(refreshToken)"
+            }
         }
-        
-        if let idToken = stateManager?.idToken {
-            tokens += "ID token:\n\(idToken)"
-        }
-        
-        tokensView.text = tokens
-    }
-    
-    func showAlert(title: String, message: String? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func showError(_ message: String) {
-        self.showAlert(title: "Error", message: message)
-    }
-    
-    func startProgress() {
-        self.activityIndicator.startAnimating()
-        self.introspectButton.isEnabled = false
-        self.refreshButton.isEnabled = false
-        self.revokeButton.isEnabled = false
-    }
-    
-    func stopProgress() {
-        self.activityIndicator.stopAnimating()
-        self.introspectButton.isEnabled = true
-        self.refreshButton.isEnabled = true
-        self.revokeButton.isEnabled = true
+        tokensView.text = tokenString
     }
 }

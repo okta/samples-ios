@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jQy-oV-mpd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jQy-oV-mpd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +28,7 @@
         <!--Browser Sample-->
         <scene sceneID="DLf-hz-SL6">
             <objects>
-                <viewController id="7xG-zU-9ge" customClass="SignInViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7xG-zU-9ge" customClass="ProfileViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lke-IO-LDS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,6 +48,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An2-Xc-HhS">
                                 <rect key="frame" x="72" y="169" width="11.5" height="15"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Username"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,7 +113,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rv2-4x-nQ0"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BPd-GR-LaN" firstAttribute="leading" secondItem="Lke-IO-LDS" secondAttribute="leading" constant="20" id="50b-Je-112"/>
                             <constraint firstItem="vfv-TW-IIH" firstAttribute="top" secondItem="T8M-xa-Fgu" secondAttribute="bottom" constant="30" id="7fT-zg-yRB"/>
@@ -175,10 +177,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wu9-nT-3sG">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-li-SOr">
                                 <rect key="frame" x="10" y="108" width="394" height="30"/>
                                 <subviews>
@@ -215,14 +213,11 @@
                             <constraint firstItem="PAP-el-3Sg" firstAttribute="trailing" secondItem="73o-W2-s8q" secondAttribute="trailing" id="hK3-KQ-3h3"/>
                             <constraint firstItem="73o-W2-s8q" firstAttribute="leading" secondItem="PAP-el-3Sg" secondAttribute="leading" id="iBo-YV-wUY"/>
                             <constraint firstItem="PAP-el-3Sg" firstAttribute="bottom" secondItem="73o-W2-s8q" secondAttribute="bottom" id="myl-5a-tiH"/>
-                            <constraint firstItem="wu9-nT-3sG" firstAttribute="centerY" secondItem="dRP-sl-Jvq" secondAttribute="centerY" id="q3p-P5-oao"/>
-                            <constraint firstItem="wu9-nT-3sG" firstAttribute="centerX" secondItem="dRP-sl-Jvq" secondAttribute="centerX" id="sNC-uU-ng7"/>
                             <constraint firstItem="PAP-el-3Sg" firstAttribute="trailing" secondItem="gSs-li-SOr" secondAttribute="trailing" constant="10" id="sQ5-4f-NV2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tokens" leftItemsSupplementBackButton="YES" id="6nX-0x-dCE"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="wu9-nT-3sG" id="6oo-9C-qcD"/>
                         <outlet property="introspectButton" destination="G9E-Bo-Ejc" id="3cA-4a-Qeg"/>
                         <outlet property="refreshButton" destination="pgB-zf-1Xi" id="v3V-Ev-CCG"/>
                         <outlet property="revokeButton" destination="5L9-nU-Etu" id="9j9-sh-zjZ"/>
@@ -236,7 +231,7 @@
         <!--Browser Sample-->
         <scene sceneID="D7d-0E-YIR">
             <objects>
-                <viewController id="Nwl-ZH-Kti" customClass="WelcomeViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nwl-ZH-Kti" customClass="WelcomeViewController" customModule="OktaBrowserSignIn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cqj-2T-xqe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,6 +245,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivm-qH-VEc">
                                 <rect key="frame" x="128.5" y="271.5" width="157" height="46"/>
                                 <color key="backgroundColor" white="0.95280393839999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="sign_in_button"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="157" id="EdO-hY-H2c"/>
                                     <constraint firstAttribute="height" constant="46" id="z5w-E3-GuP"/>
@@ -270,6 +266,7 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-Aa-hSX">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ephemeral_switch"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ephemeral Session" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="st9-qc-dAx">
                                         <rect key="frame" x="61" y="0.0" width="145" height="31"/>
@@ -279,30 +276,47 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhS-ot-ctS">
+                                <rect key="frame" x="186.5" y="822" width="41.5" height="40"/>
+                                <accessibility key="accessibilityConfiguration" identifier="client_id_label"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FFp-l7-4d1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n1O-cv-evI"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ivm-qH-VEc" firstAttribute="top" secondItem="W2X-Cq-Py4" secondAttribute="bottom" constant="40" id="6KJ-n9-y1s"/>
                             <constraint firstItem="vHM-pR-9Yk" firstAttribute="top" secondItem="Ivm-qH-VEc" secondAttribute="bottom" constant="35.5" id="I0S-VD-amz"/>
+                            <constraint firstItem="n1O-cv-evI" firstAttribute="bottom" secondItem="DhS-ot-ctS" secondAttribute="bottom" id="Lql-TD-rPj"/>
                             <constraint firstItem="Ivm-qH-VEc" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="NeD-ea-Sn1"/>
                             <constraint firstItem="W2X-Cq-Py4" firstAttribute="top" secondItem="n1O-cv-evI" secondAttribute="top" constant="110" id="dBe-Zc-6OZ"/>
                             <constraint firstItem="W2X-Cq-Py4" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="kOK-EG-Wxt"/>
+                            <constraint firstItem="DhS-ot-ctS" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="ljY-xm-Kn7"/>
                             <constraint firstItem="vHM-pR-9Yk" firstAttribute="centerX" secondItem="n1O-cv-evI" secondAttribute="centerX" id="tRe-ef-1Dh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Browser Sample" id="VPv-DX-tJJ"/>
                     <connections>
+                        <outlet property="clientIdLabel" destination="DhS-ot-ctS" id="6cC-0h-cW8"/>
                         <outlet property="ephemeralSwitch" destination="6fn-Aa-hSX" id="n9h-EC-eZ1"/>
+                        <outlet property="signInButton" destination="Ivm-qH-VEc" id="fLm-oA-aG9"/>
                         <segue destination="7xG-zU-9ge" kind="show" identifier="show-details" id="ed2-N3-pjB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tz-vg-goE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2217" y="-842"/>
+            <point key="canvasLocation" x="-2218.840579710145" y="-842.41071428571422"/>
         </scene>
     </scenes>
     <resources>
         <image name="userpic" width="40" height="40"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
