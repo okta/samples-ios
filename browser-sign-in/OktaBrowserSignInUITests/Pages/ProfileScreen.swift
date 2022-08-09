@@ -16,6 +16,11 @@ import XCTest
 class ProfileScreen {
     let app: XCUIApplication
     private lazy var signOutButton = app.buttons["Sign Out"]
+    private lazy var viewTokensButton = app.buttons["viewTokens"]
+    private lazy var refreshTokenButton = app.buttons["refresh"]
+    private lazy var tokenLabel = app.textViews["token"]
+    private lazy var revokeTokenButton = app.buttons["revoke"]
+    private lazy var introspectTokenButton = app.buttons["introspect"]
 
     init(app: XCUIApplication = XCUIApplication()) {
         self.app = app
@@ -30,6 +35,37 @@ class ProfileScreen {
         signOutButton.tap()
         app.tap()
         XCTAssertTrue(app.webViews.element.waitForNonExistence(timeout: 3))
+    }
+    
+    func refreshToken() {
+        _ = viewTokensButton.waitForExistence(timeout: 1)
+        viewTokensButton.tap()
+        XCTAssertTrue(refreshTokenButton.exists)
+        refreshTokenButton.tap()
+        _ = app.staticTexts["Token refreshed!"].waitForExistence(timeout: 2)
+        app.buttons["OK"].tap()
+        XCTAssertNotNil(tokenLabel.value)
+    }
+    
+    func revokeToken() {
+        _ = viewTokensButton.waitForExistence(timeout: 1)
+        viewTokensButton.tap()
+        XCTAssertTrue(refreshTokenButton.exists)
+        revokeTokenButton.tap()
+    }
+    
+    func introspectToken() {
+        _ = viewTokensButton.waitForExistence(timeout: 1)
+        viewTokensButton.tap()
+        XCTAssertTrue(introspectTokenButton.exists)
+        introspectTokenButton.tap()
+        _ = app.staticTexts["Access token is active!"].waitForExistence(timeout: 1)
+        app.buttons["OK"].tap()
+    }
+    
+    func valueLabel(for identifier: String) -> String {
+        _ = app.staticTexts[identifier].waitForExistence(timeout: 2)
+        return app.staticTexts[identifier].label
     }
 }
 

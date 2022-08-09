@@ -38,7 +38,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         continueAfterFailure = false
     }
     
-    func testCancel() throws {
+    func testCancelLogin() throws {
         signInScreen.isVisible()
         signInScreen.setEphemeral(true)
         signInScreen.login()
@@ -67,5 +67,48 @@ class OktaBrowserSignInUITests: XCTestCase {
         XCTAssertTrue(
             app.webViews.staticTexts["Unable to sign in"].waitForExistence(timeout: 1)
         )
+    }
+    
+    func testRefreshToken() {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        profileScreen.refreshToken()
+    }
+    
+    func testRevokoToken() {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        profileScreen.revokeToken()
+        signInScreen.isVisible()
+    }
+    
+    func testIntrospectToken() {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        profileScreen.introspectToken()
+    }
+    
+    func testSigninWithBrowser() {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        XCTAssertEqual(profileScreen.valueLabel(for: "Username"), username)
+    }
+    
+    func testSignoutOfBrowser() {
+        signInScreen.isVisible()
+        signInScreen.setEphemeral(true)
+        signInScreen.login(username: username, password: password)
+        profileScreen.wait()
+        XCTAssertEqual(profileScreen.valueLabel(for: "Username"), username)
+        profileScreen.signOut()
+        signInScreen.isVisible()
     }
 }

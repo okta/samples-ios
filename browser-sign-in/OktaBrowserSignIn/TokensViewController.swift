@@ -53,12 +53,12 @@ class TokensViewController: UIViewController {
         credential.introspect(.accessToken, completion: { result in
             switch result {
             case .success(let tokenInfo):
-                guard let isValid = tokenInfo.active else {
+                guard let isActive = tokenInfo.active else {
                     self.show(title: "An unexpected error occured with the TokenInfo")
                     return
                 }
-                let tokenValidity = isValid ? "valid" : "inValid"
-                self.show(title: "Access token is \(tokenValidity)!")
+                let message = isActive ? "active" : "inactive"
+                self.show(title: "Access token is \(message)!")
             case .failure(let error):
                 self.show(title: "Error", error: error.localizedDescription)
             }
@@ -77,6 +77,7 @@ class TokensViewController: UIViewController {
                 self.show(title: "Unable to Refresh Tokenn", error: error.localizedDescription)
             case .success:
                 self.showTokenInfo()
+                self.show(title: "Token refreshed!")
             }
         })
     }
