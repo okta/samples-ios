@@ -15,6 +15,7 @@ import XCTest
 
 class ProfileScreen {
     let app: XCUIApplication
+    lazy var usernameLabel = app.staticTexts["Username"].label
     private lazy var signOutButton = app.buttons["Sign Out"]
     private lazy var viewTokensButton = app.buttons["viewTokens"]
     private lazy var refreshTokenButton = app.buttons["refresh"]
@@ -61,11 +62,6 @@ class ProfileScreen {
         introspectTokenButton.tap()
         _ = app.staticTexts["Access token is active!"].waitForExistence(timeout: 1)
         app.buttons["OK"].tap()
-    }
-    
-    func valueLabel(for identifier: String) -> String {
-        _ = app.staticTexts[identifier].waitForExistence(timeout: 2)
-        return app.staticTexts[identifier].label
     }
 }
 

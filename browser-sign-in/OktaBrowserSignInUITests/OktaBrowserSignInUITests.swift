@@ -77,7 +77,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         profileScreen.refreshToken()
     }
     
-    func testRevokoToken() {
+    func testRevokeToken() {
         signInScreen.isVisible()
         signInScreen.setEphemeral(true)
         signInScreen.login(username: username, password: password)
@@ -99,7 +99,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         signInScreen.setEphemeral(true)
         signInScreen.login(username: username, password: password)
         profileScreen.wait()
-        XCTAssertEqual(profileScreen.valueLabel(for: "Username"), username)
+        XCTAssertEqual(profileScreen.usernameLabel, username)
     }
     
     func testSignoutOfBrowser() {
@@ -107,7 +107,7 @@ class OktaBrowserSignInUITests: XCTestCase {
         signInScreen.setEphemeral(true)
         signInScreen.login(username: username, password: password)
         profileScreen.wait()
-        XCTAssertEqual(profileScreen.valueLabel(for: "Username"), username)
+        XCTAssertEqual(profileScreen.usernameLabel, username)
         profileScreen.signOut()
         signInScreen.isVisible()
     }
