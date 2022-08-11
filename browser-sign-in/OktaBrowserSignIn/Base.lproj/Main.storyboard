@@ -87,6 +87,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xb1-2W-yce">
                                 <rect key="frame" x="20" y="306.5" width="96" height="33"/>
+                                <accessibility key="accessibilityConfiguration" identifier="viewTokens"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="View Tokens"/>
                                 <connections>
@@ -173,6 +174,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="73o-W2-s8q">
                                 <rect key="frame" x="0.0" y="148" width="414" height="714"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="token"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -182,6 +184,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9E-Bo-Ejc">
                                         <rect key="frame" x="0.0" y="0.0" width="124.5" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="introspect"/>
                                         <state key="normal" title="Introspect"/>
                                         <connections>
                                             <action selector="introspectTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="UAM-V4-wiF"/>
@@ -189,6 +192,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgB-zf-1Xi">
                                         <rect key="frame" x="134.5" y="0.0" width="125" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="refresh"/>
                                         <state key="normal" title="Refresh"/>
                                         <connections>
                                             <action selector="refreshTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="Fa0-LF-JqA"/>
@@ -196,6 +200,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5L9-nU-Etu">
                                         <rect key="frame" x="269.5" y="0.0" width="124.5" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="revoke"/>
                                         <state key="normal" title="Revoke"/>
                                         <connections>
                                             <action selector="revokeTapped" destination="1Jt-gd-28x" eventType="touchUpInside" id="r7h-6v-dHV"/>

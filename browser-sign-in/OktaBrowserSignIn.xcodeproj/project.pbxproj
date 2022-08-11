@@ -14,11 +14,11 @@
 		2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565521F2031D000ACBE2 /* LaunchScreen.storyboard */; };
 		2FA4565F21F5C819000ACBE2 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA4565E21F5C819000ACBE2 /* Okta.plist */; };
 		2FA4566121F61E80000ACBE2 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA4566021F61E80000ACBE2 /* TokensViewController.swift */; };
-		B415E72B2885D82900E2DB1A /* AuthFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72A2885D82900E2DB1A /* AuthFoundation */; };
-		B415E72D2885D82900E2DB1A /* OktaOAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72C2885D82900E2DB1A /* OktaOAuth2 */; };
-		B415E72F2885D82900E2DB1A /* WebAuthenticationUI in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72E2885D82900E2DB1A /* WebAuthenticationUI */; };
 		B415E7312887220D00E2DB1A /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7302887220D00E2DB1A /* SignInScreen.swift */; };
 		B415E7372887294900E2DB1A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7362887294900E2DB1A /* ProfileScreen.swift */; };
+		B4852A0428A3064A00201DC8 /* AuthFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = B4852A0328A3064A00201DC8 /* AuthFoundation */; };
+		B4852A0628A3064A00201DC8 /* OktaOAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B4852A0528A3064A00201DC8 /* OktaOAuth2 */; };
+		B4852A0828A3064A00201DC8 /* WebAuthenticationUI in Frameworks */ = {isa = PBXBuildFile; productRef = B4852A0728A3064A00201DC8 /* WebAuthenticationUI */; };
 		F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */; };
 		FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E2B862268B07600321DEB /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -57,9 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B415E72F2885D82900E2DB1A /* WebAuthenticationUI in Frameworks */,
-				B415E72D2885D82900E2DB1A /* OktaOAuth2 in Frameworks */,
-				B415E72B2885D82900E2DB1A /* AuthFoundation in Frameworks */,
+				B4852A0828A3064A00201DC8 /* WebAuthenticationUI in Frameworks */,
+				B4852A0628A3064A00201DC8 /* OktaOAuth2 in Frameworks */,
+				B4852A0428A3064A00201DC8 /* AuthFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,9 +152,9 @@
 			);
 			name = OktaBrowserSignIn;
 			packageProductDependencies = (
-				B415E72A2885D82900E2DB1A /* AuthFoundation */,
-				B415E72C2885D82900E2DB1A /* OktaOAuth2 */,
-				B415E72E2885D82900E2DB1A /* WebAuthenticationUI */,
+				B4852A0328A3064A00201DC8 /* AuthFoundation */,
+				B4852A0528A3064A00201DC8 /* OktaOAuth2 */,
+				B4852A0728A3064A00201DC8 /* WebAuthenticationUI */,
 			);
 			productName = OktaBrowserSignIn;
 			productReference = 2FA4564721F2031C000ACBE2 /* OktaBrowserSignIn.app */;
@@ -207,7 +207,7 @@
 			);
 			mainGroup = 2FA4563E21F2031C000ACBE2;
 			packageReferences = (
-				B415E7292885D82900E2DB1A /* XCRemoteSwiftPackageReference "okta-mobile-swift" */,
+				B4852A0228A3064A00201DC8 /* XCRemoteSwiftPackageReference "okta-mobile-swift" */,
 			);
 			productRefGroup = 2FA4564821F2031C000ACBE2 /* Products */;
 			projectDirPath = "";
@@ -515,30 +515,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B415E7292885D82900E2DB1A /* XCRemoteSwiftPackageReference "okta-mobile-swift" */ = {
+		B4852A0228A3064A00201DC8 /* XCRemoteSwiftPackageReference "okta-mobile-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/okta/okta-mobile-swift.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B415E72A2885D82900E2DB1A /* AuthFoundation */ = {
+		B4852A0328A3064A00201DC8 /* AuthFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B415E7292885D82900E2DB1A /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
+			package = B4852A0228A3064A00201DC8 /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
 			productName = AuthFoundation;
 		};
-		B415E72C2885D82900E2DB1A /* OktaOAuth2 */ = {
+		B4852A0528A3064A00201DC8 /* OktaOAuth2 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B415E7292885D82900E2DB1A /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
+			package = B4852A0228A3064A00201DC8 /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
 			productName = OktaOAuth2;
 		};
-		B415E72E2885D82900E2DB1A /* WebAuthenticationUI */ = {
+		B4852A0728A3064A00201DC8 /* WebAuthenticationUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B415E7292885D82900E2DB1A /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
+			package = B4852A0228A3064A00201DC8 /* XCRemoteSwiftPackageReference "okta-mobile-swift" */;
 			productName = WebAuthenticationUI;
 		};
 /* End XCSwiftPackageProductDependency section */
