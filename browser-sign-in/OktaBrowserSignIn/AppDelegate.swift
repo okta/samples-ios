@@ -22,14 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var configForUITests: [String: String]? {
         let env = ProcessInfo.processInfo.environment
-        guard let oktaURL = env["OKTA_URL"], !oktaURL.isEmpty,
-              let clientID = env["CLIENT_ID"], !clientID.isEmpty,
-              let redirectURI = env["REDIRECT_URI"], !redirectURI.isEmpty,
-              let logoutRedirectURI = env["LOGOUT_REDIRECT_URI"], !logoutRedirectURI.isEmpty
+        guard let oktaURL = env["E2E_DOMAIN"], !oktaURL.isEmpty,
+              let clientID = env["E2E_CLIENT_ID"], !clientID.isEmpty,
+              let redirectURI = env["E2E_REDIRECT_URI"], !redirectURI.isEmpty,
+              let logoutRedirectURI = env["E2E_LOGOUT_REDIRECT_URI"], !logoutRedirectURI.isEmpty
         else {
             return nil
         }
-        
         let configuration = [
             "issuer": "\(oktaURL)/oauth2/default",
             "clientId": clientID,

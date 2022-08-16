@@ -18,8 +18,10 @@
 		B415E72F2885D82900E2DB1A /* WebAuthenticationUI in Frameworks */ = {isa = PBXBuildFile; productRef = B415E72E2885D82900E2DB1A /* WebAuthenticationUI */; };
 		B415E7312887220D00E2DB1A /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7302887220D00E2DB1A /* SignInScreen.swift */; };
 		B415E7372887294900E2DB1A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415E7362887294900E2DB1A /* ProfileScreen.swift */; };
-		B45452C728A5561E004F6585 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = B45452C528A5561E004F6585 /* Okta.plist */; };
-		B45452C828A5561E004F6585 /* TestConfiguration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B45452C628A5561E004F6585 /* TestConfiguration.xcconfig */; };
+		B422680528AE7384008B44D9 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = B422680328AE7384008B44D9 /* Okta.plist */; };
+		B422680628AE7384008B44D9 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = B422680328AE7384008B44D9 /* Okta.plist */; };
+		B422680728AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */; };
+		B422680828AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */; };
 		F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */; };
 		FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E2B862268B07600321DEB /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,8 +48,8 @@
 		2FA4566021F61E80000ACBE2 /* TokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		B415E7302887220D00E2DB1A /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
 		B415E7362887294900E2DB1A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
-		B45452C528A5561E004F6585 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Okta.plist; path = ../../Shared/Okta.plist; sourceTree = "<group>"; };
-		B45452C628A5561E004F6585 /* TestConfiguration.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = TestConfiguration.xcconfig; path = ../../Shared/TestConfiguration.xcconfig; sourceTree = "<group>"; };
+		B422680328AE7384008B44D9 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Okta.plist; path = ../../Shared/Okta.plist; sourceTree = "<group>"; };
+		B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = TestConfiguration.xcconfig; path = ../../Shared/TestConfiguration.xcconfig; sourceTree = "<group>"; };
 		F53D4222223FA7C0000320D6 /* OktaBrowserSignInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaBrowserSignInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaBrowserSignInUITests.swift; sourceTree = "<group>"; };
 		F53D4226223FA7C0000320D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,8 +107,8 @@
 		2FA4564921F2031C000ACBE2 /* OktaBrowserSignIn */ = {
 			isa = PBXGroup;
 			children = (
-				B45452C528A5561E004F6585 /* Okta.plist */,
-				B45452C628A5561E004F6585 /* TestConfiguration.xcconfig */,
+				B422680328AE7384008B44D9 /* Okta.plist */,
+				B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */,
 				2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */,
 				FA0E2B862268B07600321DEB /* WelcomeViewController.swift */,
 				2FA4564C21F2031C000ACBE2 /* ProfileViewController.swift */,
@@ -230,8 +232,8 @@
 				2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */,
 				2FA4565421F2031D000ACBE2 /* Assets.xcassets in Resources */,
 				2FA4565221F2031C000ACBE2 /* Main.storyboard in Resources */,
-				B45452C828A5561E004F6585 /* TestConfiguration.xcconfig in Resources */,
-				B45452C728A5561E004F6585 /* Okta.plist in Resources */,
+				B422680728AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */,
+				B422680528AE7384008B44D9 /* Okta.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +241,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B422680628AE7384008B44D9 /* Okta.plist in Resources */,
+				B422680828AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +302,7 @@
 /* Begin XCBuildConfiguration section */
 		2FA4565921F2031D000ACBE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -359,6 +364,7 @@
 		};
 		2FA4565A21F2031D000ACBE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -414,6 +420,7 @@
 		};
 		2FA4565C21F2031D000ACBE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -433,6 +440,7 @@
 		};
 		2FA4565D21F2031D000ACBE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,8 +460,11 @@
 		};
 		F53D4229223FA7C0000320D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaBrowserSignInUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -470,8 +481,11 @@
 		};
 		F53D422A223FA7C0000320D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OktaBrowserSignInUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -523,8 +537,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/okta/okta-mobile-swift.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

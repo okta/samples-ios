@@ -5,7 +5,6 @@ on:
     paths:
       - '.github/workflows/tests.yaml'
       - 'browser-sign-in/**/*.swift'
-      - 'Tests/**/*.swift'
     branches:
       - master
       - dev-*
@@ -18,70 +17,30 @@ on:
     paths:
       - '.github/workflows/tests.yaml'
       - 'browser-sign-in/**/*.swift'
-      - 'Tests/**/*.swift'
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_13.3.app/Contents/Developer
 
 jobs:
-  SwiftBuild:
-    name: Swift Unit Tests
-    runs-on: macos-12
-    timeout-minutes: 10
-    steps:
-    - name: Get swift version
-      run: swift --version
-    - uses: actions/checkout@master
-    - name: Build
-      run: swift build --build-tests
-    - name: Test
-      run: swift test
-
-  XcodeBuild:
-    name: Xcode Unit Tests
-    runs-on: macos-12
-    timeout-minutes: 10
-    steps:
-    - uses: actions/checkout@master
-    - name: Test browser-sign-in
-      run: |
-        cd browser-sign-in
-        set -o pipefail
-        env NSUnbufferedIO=YES xcodebuild test \
-          -derivedDataPath ../Build/DerivedData \
-          -clonedSourcePackagesDirPath ../Build/ClonedSources \
-          -resultBundlePath ../TestResults/browser-sign-in.xcresult \
-          -project OktaBrowserSignIn.xcodeproj \
-          -scheme OktaBrowserSignIn \
-          -sdk iphonesimulator \
-          -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" | xcpretty
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v2
-      with:
-        path: ~/TestResults/*.xcresult
-        name: XcodeBuild-Results
-      if: success() || failure()
-  UITest-BrowserSignIn
+  UITest-BrowserSignIn:
     name: Browser Sign In (iOS)
     runs-on: macos-12
     timeout-minutes: 10
-    needs: 
-      - XcodeBuild
-      - SwiftBuild
     steps:
     - uses: actions/checkout@master
     - uses: ./.github/actions/setup-secrets
       with:
         okta_plist: "${{ secrets.TEST_OKTA_PLIST }}"
-        test_configuration: "${{ secrets.TEST_CONFIGURATION }}"
-    - name: Test
+        test_configuration: "${{ secrets.E2E_TEST_CONFIGURATION }}"
+    - name: Test Browser Sign In (iOS)
       run: |
         cd browser-sign-in
         xcodebuild \
             -derivedDataPath ~/Build/DerivedData \
             -clonedSourcePackagesDirPath ~/Build/ClonedSources \
-            -resultBundlePath ~/TestResults/DeviceAuthSignIn-iOS.xcresult \
+            -resultBundlePath ../TestResults/BrowserSignIn-iOS.xcresult \
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
-            -destination platform=iOS\ Simulator,OS=15.5,name=iPhone\ 11 \
-            clean test | xcpretty
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.4' \
+            test
