@@ -41,7 +41,7 @@ jobs:
             -resultBundlePath ~/TestResults/DeviceAuthSignIn-iOS.xcresult \
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
-            -destination platform=iOS\ Simulator,OS=15.5,name=iPhone\ 11 \
+            -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" | xcpretty
             clean test | xcpretty
     - name: Upload Test Results
       uses: actions/upload-artifact@v2
