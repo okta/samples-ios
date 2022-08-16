@@ -40,7 +40,6 @@ jobs:
     runs-on: macos-12
     timeout-minutes: 10
     needs: 
-      - XcodeBuild
       - SwiftBuild
     steps:
     - uses: actions/checkout@master
