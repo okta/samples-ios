@@ -12,12 +12,6 @@ jobs:
       name: Biometric Sign In
       script:
       - set -o pipefail && xcodebuild -project browser-sign-in-and-biometric-storage/OktaSignInAndStorage.xcodeproj -scheme OktaBrowserSignIn -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
-    - stage: Build
-      name: Objective-C project
-      install:
-      - pod install --project-directory=build-tests/ObjcTest --repo-update
-      script:
-      - set -o pipefail && xcodebuild -workspace build-tests/ObjcTest/ObjcTest.xcworkspace -scheme ObjcTest -destination platform\=iOS\ Simulator,OS\=latest,name\=iPhone\ 11 build | xcpretty
 
 notifications:
   slack:
