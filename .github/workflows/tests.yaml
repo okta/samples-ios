@@ -61,7 +61,8 @@ jobs:
         path: ~/TestResults/*.xcresult
         name: XcodeBuild-Results
       if: success() || failure()
-  UITest-BrowserSignIn
+
+  UITest-BrowserSignIn:
     name: Browser Sign In (iOS)
     runs-on: macos-12
     timeout-minutes: 10
@@ -85,3 +86,28 @@ jobs:
             -scheme OktaBrowserSignIn \
             -destination platform=iOS\ Simulator,OS=15.5,name=iPhone\ 11 \
             clean test | xcpretty
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        path: ~/TestResults/*.xcresult
+        name: BrowserSignIn-iOS-Results
+      if: success() || failure()
+  
+  Results:
+    name: Test Results
+    runs-on: macos-12
+    timeout-minutes: 5
+    needs: 
+      - UITest-BrowserSignIn
+    if: always()
+    steps:
+    - name: Download Test Results
+      uses: actions/download-artifact@v2
+      with:
+        path: ~/work/okta-mobile-swift/TestResults
+    - uses: kishikawakatsumi/xcresulttool@v1
+      with:
+        path: |
+          ../TestResults/XcodeBuild-Results/BrowserSignIn.xcresult
+        title: UI Test Results
+        show-passed-tests: false
