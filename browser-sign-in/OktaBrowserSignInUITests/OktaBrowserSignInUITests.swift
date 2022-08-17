@@ -19,11 +19,11 @@ import WebAuthenticationUI
 
 class OktaBrowserSignInUITests: XCTestCase {
     lazy var username: String? = {
-        ProcessInfo.processInfo.environment["LOGIN"]
+        ProcessInfo.processInfo.environment["E2E_USERNAME"]
     }()
     
     lazy var password: String? = {
-        ProcessInfo.processInfo.environment["PASS"]
+        ProcessInfo.processInfo.environment["E2E_PASSWORD"]
     }()
     
     lazy var signInScreen: SignInScreen = { SignInScreen(self) }()
