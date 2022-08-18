@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tests.yaml'
+      - 'browser-sign-in/**/*.swift'
+    branches:
+      - master
+      - dev-*
+      - release-*
+  pull_request:
+    branches:
+      - master
+      - dev-*
+      - release-*
+    paths:
+      - '.github/workflows/tests.yaml'
+      - 'browser-sign-in/**/*.swift'
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_13.3.app/Contents/Developer
+
+jobs:
+  UITest-BrowserSignIn:
+    name: Browser Sign In (iOS)
+    runs-on: macos-12
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./.github/actions/setup-secrets
+      with:
+        okta_plist: "${{ secrets.TEST_OKTA_PLIST }}"
+        test_configuration: "${{ secrets.E2E_TEST_CONFIGURATION }}"
+    - name: Test Browser Sign In (iOS)
+      run: |
+        cd browser-sign-in
+        xcodebuild \
+            -derivedDataPath ~/Build/DerivedData \
+            -clonedSourcePackagesDirPath ~/Build/ClonedSources \
+            -resultBundlePath ../TestResults/BrowserSignIn-iOS.xcresult \
+            -project OktaBrowserSignIn.xcodeproj \
+            -scheme OktaBrowserSignIn \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.4' \
+            test
+            
