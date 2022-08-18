@@ -38,7 +38,7 @@ jobs:
         xcodebuild \
             -derivedDataPath ~/Build/DerivedData \
             -clonedSourcePackagesDirPath ~/Build/ClonedSources \
-            -resultBundlePath ~/TestResults/BrowserSignIn-iOS-Results.xcresult \
+            -resultBundlePath ../TestResults/BrowserSignIn-iOS-Results.xcresult \
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
             -sdk iphonesimulator \
