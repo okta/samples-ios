@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             return nil
         }
-        
         let configuration = [
             "issuer": "\(oktaURL)/oauth2/default",
             "clientId": clientID,
