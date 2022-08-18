@@ -13,4 +13,6 @@ runs:
       shell: bash
       run: |
         echo "${{ inputs.TEST_OKTA_PLIST }}" > Shared/Okta.plist
+        cat > Shared/Okta.plist
         echo "${{ inputs.E2E_TEST_CONFIGURATION }}" > Shared/TestConfiguration.xcconfig
+        cat > Shared/TestConfiguration.xcconfig

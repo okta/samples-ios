@@ -32,15 +32,16 @@ jobs:
       with:
         okta_plist: "${{ secrets.TEST_OKTA_PLIST }}"
         test_configuration: "${{ secrets.E2E_TEST_CONFIGURATION }}"
-    - name: Test
+    - name: Test Browser Sign In (iOS)
       run: |
         cd browser-sign-in
         xcodebuild \
             -derivedDataPath ~/Build/DerivedData \
             -clonedSourcePackagesDirPath ~/Build/ClonedSources \
-            -resultBundlePath ~/TestResults/DeviceAuthSignIn-iOS.xcresult \
+            -resultBundlePath ~/TestResults/BrowserSignIn-iOS-Results.xcresult \
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
+            -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.4' \
             test
     - name: Upload Test Results
@@ -65,6 +66,6 @@ jobs:
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
         path: |
-          ../TestResults/XcodeBuild-Results/BrowserSignIn.xcresult
+          ../TestResults/XcodeBuild-Results/BrowserSignIn-iOS-Results.xcresult
         title: UI Test Results
         show-passed-tests: false
