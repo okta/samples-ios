@@ -102,6 +102,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "E2E_PASSWORD"
+            value = "$(E2E_PASSWORD)"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
