@@ -31,7 +31,7 @@ jobs:
     - uses: ./.github/actions/setup-secrets
       with:
         okta_plist: "${{ secrets.TEST_OKTA_PLIST }}"
-        test_configuration: "${{ secrets.TEST_CONFIGURATION }}"
+        test_configuration: "${{ secrets.E2E_TEST_CONFIGURATION }}"
     - name: Test
       run: |
         cd browser-sign-in
