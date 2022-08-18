@@ -69,3 +69,4 @@ jobs:
           ../TestResults/BrowserSignIn-iOS-Results/BrowserSignIn-iOS.xcresult
         title: UI Test Results
         show-passed-tests: false
+        
