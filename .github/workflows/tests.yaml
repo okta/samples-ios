@@ -38,7 +38,7 @@ jobs:
         xcodebuild \
             -derivedDataPath ~/Build/DerivedData \
             -clonedSourcePackagesDirPath ~/Build/ClonedSources \
-            -resultBundlePath ../TestResults/BrowserSignIn-iOS-Results.xcresult \
+            -resultBundlePath ~/TestResults/BrowserSignIn-iOS-Results.xcresult \
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
             -sdk iphonesimulator \
@@ -66,6 +66,6 @@ jobs:
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
         path: |
-          ../TestResults/XcodeBuild-Results/BrowserSignIn-iOS-Results.xcresult
+          ../TestResults/BrowserSignIn-iOS-Results/BrowserSignIn-iOS-Results.xcresult
         title: UI Test Results
         show-passed-tests: false
