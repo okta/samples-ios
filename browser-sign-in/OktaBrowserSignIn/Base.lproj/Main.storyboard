@@ -299,7 +299,6 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OQG-ph-Sjr">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="ephemeral_switch"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Biometric Storage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-N6-hHD">
                                         <rect key="frame" x="61" y="0.0" width="137" height="31"/>
