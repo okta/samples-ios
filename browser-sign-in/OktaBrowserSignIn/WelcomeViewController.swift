@@ -16,14 +16,17 @@
 
 import UIKit
 import WebAuthenticationUI
+import LocalAuthentication
 
 final class WelcomeViewController: UIViewController {
     lazy var auth = WebAuthentication.shared
+    lazy var context = LAContext()
     
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var ephemeralSwitch: UISwitch!
     @IBOutlet weak var clientIdLabel: UILabel!
-    
+    @IBOutlet weak var biometricStorageSwitch: UISwitch!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -35,13 +38,50 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
-    func navigateToDetailsPage() {
-        guard Credential.default != nil else { return }
-        performSegue(withIdentifier: "show-details", sender: self)
+    func SignInBehindBiometics() {
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            context.evaluatePolicy(
+                .deviceOwnerAuthentication,
+                localizedReason: "Log in to your account",
+                reply: { success, error in
+                    guard let error = error else {
+                        DispatchQueue.main.async {
+                            self.storeSignInBehindBiometics()
+                        }
+                        return
+                    }
+                    self.show(title: "Error", error: error.localizedDescription)
+                })
+        } else {
+            show(title: "Error", error: error?.localizedDescription)
+        }
+    }
+    func storeSignInBehindBiometics() {
+        self.auth?.signIn(from: self.view.window) { result in
+            switch result {
+            case .success(let token):
+                do {
+                    try Credential.store(
+                        token,
+                        security: [
+                            .accessibility(.afterFirstUnlock),
+                            .accessControl(.biometryAny),
+                            .context(self.context),
+                        ])
+                    self.performSegue(withIdentifier: "show-details", sender: self)
+                } catch {
+                    self.show(title: "Error", error: error.localizedDescription, after: 3.0)
+                    return
+                }
+            case .failure(let error):
+                self.show(title: "Error", error: error.localizedDescription)
+                return
+            }
+        }
     }
     
-    @IBAction private func signInTapped() {
-        auth?.ephemeralSession = ephemeralSwitch.isOn
+    func signIn() {
         auth?.signIn(from: view.window) { result in
             switch result {
             case .success(let token):
@@ -57,6 +97,12 @@ final class WelcomeViewController: UIViewController {
                 return
             }
         }
+    }
+
+    @IBAction private func signInTapped() {
+        auth?.ephemeralSession = ephemeralSwitch.isOn
+        let isBiometricsEnabled = biometricStorageSwitch.isOn
+        isBiometricsEnabled ? SignInBehindBiometics() : signIn()
     }
 }
 

@@ -243,17 +243,19 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2X-Cq-Py4">
                                 <rect key="frame" x="99" y="198" width="216" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.5" id="nUG-iQ-WSK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivm-qH-VEc">
                                 <rect key="frame" x="128.5" y="271.5" width="157" height="46"/>
-                                <color key="backgroundColor" white="0.95280393839999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="sign_in_button"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="157" id="EdO-hY-H2c"/>
-                                    <constraint firstAttribute="height" constant="46" id="z5w-E3-GuP"/>
+                                    <constraint firstAttribute="height" constant="46" id="ZZz-hl-P6S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Sign In"/>
@@ -266,8 +268,15 @@
                                     <action selector="signInTapped" destination="Nwl-ZH-Kti" eventType="touchUpInside" id="43h-fK-akn"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vHM-pR-9Yk">
-                                <rect key="frame" x="107" y="353" width="206" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhS-ot-ctS">
+                                <rect key="frame" x="67" y="841.5" width="280" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="client_id_label"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vHM-pR-9Yk">
+                                <rect key="frame" x="104" y="433" width="206" height="31"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-Aa-hSX">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -280,33 +289,50 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhS-ot-ctS">
-                                <rect key="frame" x="186.5" y="822" width="41.5" height="40"/>
-                                <accessibility key="accessibilityConfiguration" identifier="client_id_label"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FFp-l7-4d1"/>
+                                    <constraint firstAttribute="height" constant="31" id="5wq-z8-Vr3"/>
+                                    <constraint firstAttribute="width" constant="206" id="vMb-71-NBr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RBd-IF-up4">
+                                <rect key="frame" x="104" y="361" width="198" height="31"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OQG-ph-Sjr">
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ephemeral_switch"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Biometric Storage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-N6-hHD">
+                                        <rect key="frame" x="61" y="0.0" width="137" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="MZ3-XC-MBW"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n1O-cv-evI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ivm-qH-VEc" firstAttribute="top" secondItem="W2X-Cq-Py4" secondAttribute="bottom" constant="40" id="6KJ-n9-y1s"/>
-                            <constraint firstItem="vHM-pR-9Yk" firstAttribute="top" secondItem="Ivm-qH-VEc" secondAttribute="bottom" constant="35.5" id="I0S-VD-amz"/>
-                            <constraint firstItem="n1O-cv-evI" firstAttribute="bottom" secondItem="DhS-ot-ctS" secondAttribute="bottom" id="Lql-TD-rPj"/>
-                            <constraint firstItem="Ivm-qH-VEc" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="NeD-ea-Sn1"/>
-                            <constraint firstItem="W2X-Cq-Py4" firstAttribute="top" secondItem="n1O-cv-evI" secondAttribute="top" constant="110" id="dBe-Zc-6OZ"/>
-                            <constraint firstItem="W2X-Cq-Py4" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="kOK-EG-Wxt"/>
-                            <constraint firstItem="DhS-ot-ctS" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="ljY-xm-Kn7"/>
-                            <constraint firstItem="vHM-pR-9Yk" firstAttribute="centerX" secondItem="n1O-cv-evI" secondAttribute="centerX" id="tRe-ef-1Dh"/>
+                            <constraint firstItem="RBd-IF-up4" firstAttribute="leading" secondItem="n1O-cv-evI" secondAttribute="leading" constant="104" id="3pU-nD-hwb"/>
+                            <constraint firstItem="W2X-Cq-Py4" firstAttribute="leading" secondItem="n1O-cv-evI" secondAttribute="leading" constant="99" id="NWr-10-lI7"/>
+                            <constraint firstItem="DhS-ot-ctS" firstAttribute="bottom" secondItem="n1O-cv-evI" secondAttribute="bottom" id="SqP-IX-S1p"/>
+                            <constraint firstItem="Ivm-qH-VEc" firstAttribute="top" secondItem="W2X-Cq-Py4" secondAttribute="bottom" constant="40" id="VDJ-Wm-sS7"/>
+                            <constraint firstItem="DhS-ot-ctS" firstAttribute="leading" secondItem="Cqj-2T-xqe" secondAttribute="leadingMargin" constant="47" id="fv0-Wn-g3l"/>
+                            <constraint firstItem="DhS-ot-ctS" firstAttribute="centerX" secondItem="Cqj-2T-xqe" secondAttribute="centerX" id="h7Z-xp-3Wx"/>
+                            <constraint firstItem="n1O-cv-evI" firstAttribute="trailing" secondItem="Ivm-qH-VEc" secondAttribute="trailing" constant="128.5" id="jcE-Dt-LJr"/>
+                            <constraint firstItem="vHM-pR-9Yk" firstAttribute="leading" secondItem="n1O-cv-evI" secondAttribute="leading" constant="104" id="kFa-hL-rU2"/>
+                            <constraint firstItem="vHM-pR-9Yk" firstAttribute="top" secondItem="RBd-IF-up4" secondAttribute="bottom" constant="41" id="l13-yW-HmZ"/>
+                            <constraint firstItem="Ivm-qH-VEc" firstAttribute="leading" secondItem="n1O-cv-evI" secondAttribute="leading" constant="128.5" id="r3L-tY-vx3"/>
+                            <constraint firstItem="W2X-Cq-Py4" firstAttribute="top" secondItem="n1O-cv-evI" secondAttribute="top" constant="110" id="s73-73-pYd"/>
+                            <constraint firstItem="RBd-IF-up4" firstAttribute="top" secondItem="Ivm-qH-VEc" secondAttribute="bottom" constant="43.5" id="sfP-Ah-mFB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Browser Sample" id="VPv-DX-tJJ"/>
                     <connections>
+                        <outlet property="biometricStorageSwitch" destination="OQG-ph-Sjr" id="QVv-v2-Nj3"/>
                         <outlet property="clientIdLabel" destination="DhS-ot-ctS" id="6cC-0h-cW8"/>
                         <outlet property="ephemeralSwitch" destination="6fn-Aa-hSX" id="n9h-EC-eZ1"/>
                         <outlet property="signInButton" destination="Ivm-qH-VEc" id="fLm-oA-aG9"/>
