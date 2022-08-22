@@ -57,6 +57,7 @@ final class WelcomeViewController: UIViewController {
             show(title: "Error", error: error?.localizedDescription)
         }
     }
+    
     func storeSignInBehindBiometric() {
         self.auth?.signIn(from: self.view.window) { result in
             switch result {
@@ -67,7 +68,7 @@ final class WelcomeViewController: UIViewController {
                         security: [
                             .accessibility(.afterFirstUnlock),
                             .accessControl(.biometryAny),
-                            .context(self.context),
+                            .context(self.context)
                         ])
                     self.performSegue(withIdentifier: "show-details", sender: self)
                 } catch {
