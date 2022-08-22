@@ -38,7 +38,7 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
-    func SignInBehindBiometics() {
+    func SignInWithBiometrics() {
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             context.evaluatePolicy(
@@ -47,7 +47,7 @@ final class WelcomeViewController: UIViewController {
                 reply: { success, error in
                     guard let error = error else {
                         DispatchQueue.main.async {
-                            self.storeSignInBehindBiometics()
+                            self.storeSignInBehindBiometric()
                         }
                         return
                     }
@@ -57,7 +57,7 @@ final class WelcomeViewController: UIViewController {
             show(title: "Error", error: error?.localizedDescription)
         }
     }
-    func storeSignInBehindBiometics() {
+    func storeSignInBehindBiometric() {
         self.auth?.signIn(from: self.view.window) { result in
             switch result {
             case .success(let token):
@@ -102,7 +102,7 @@ final class WelcomeViewController: UIViewController {
     @IBAction private func signInTapped() {
         auth?.ephemeralSession = ephemeralSwitch.isOn
         let isBiometricsEnabled = biometricStorageSwitch.isOn
-        isBiometricsEnabled ? SignInBehindBiometics() : signIn()
+        isBiometricsEnabled ? SignInWithBiometrics() : signIn()
     }
 }
 
