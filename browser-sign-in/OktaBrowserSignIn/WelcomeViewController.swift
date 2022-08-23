@@ -58,9 +58,9 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
-    // This functions demonstrate how to determines if a particular policy either a passcode set, a fingerprint
-    // enrolled with Touch ID or a face set up with Face ID policy can be evaluated. Once you are are ready to authenticate, the
-    // storeSignInBehindBiometric method is called to perform the authentication.
+    /// This function demonstrates how to determine if biometric storage is eligible to the user, (e.g. either a passcode is set, a fingerprint is 
+    /// enrolled with Touch ID, or a face is set up with Face ID). Once you are are ready to authenticate, the
+    /// ``storeSignInBehindBiometric`` function is called to perform the authentication.
     func signInWithBiometrics() {
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
