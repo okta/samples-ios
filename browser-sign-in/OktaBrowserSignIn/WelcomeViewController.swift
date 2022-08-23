@@ -67,13 +67,15 @@ final class WelcomeViewController: UIViewController {
                 .deviceOwnerAuthentication,
                 localizedReason: "Log in to your account",
                 reply: { success, error in
-                    guard let error = error else {
-                        DispatchQueue.main.async {
+                    // Note: We need to wait for the FaceID prompt to be dismissed in order
+                    //       for our UIWindowScene to become foregrounded.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        guard let error = error else {
                             self.storeSignInBehindBiometric()
+                            return
                         }
-                        return
+                        self.show(title: "Error", error: error.localizedDescription)
                     }
-                    self.show(title: "Error", error: error.localizedDescription)
                 })
         } else {
             show(title: "Error", error: error?.localizedDescription)
