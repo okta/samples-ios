@@ -91,7 +91,7 @@ final class WelcomeViewController: UIViewController {
                     try Credential.store(
                         token,
                         security: [
-                            .accessibility(.afterFirstUnlock),
+                            .accessibility(.afterFirstUnlockThisDeviceOnly),
                             .accessControl(.biometryAny),
                             .context(self.context)
                         ])
