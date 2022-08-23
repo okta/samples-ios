@@ -38,8 +38,7 @@ final class WelcomeViewController: UIViewController {
         }
     }
 
-    /// This function demonstrates how to securely store the token in the device keychain after a
-    /// successful sign in.
+    /// This function demonstrates how to securely store the token in the device keychain after a successful sign in.
     func signIn() {
         auth?.signIn(from: view.window) { result in
             switch result {
@@ -107,13 +106,15 @@ final class WelcomeViewController: UIViewController {
             }
         }
     }
-
+    
+    /// This demonstrates how to securely store the sign in credentials behind a biometric factor ``signInWithBiometrics``
+    /// or using the default implementation provided ``signIn``.
+    ///
+    /// The biometrics storage switch is used to determine which one approach over the other.
     @IBAction private func signInTapped() {
         auth?.ephemeralSession = ephemeralSwitch.isOn
         let isBiometricsEnabled = biometricStorageSwitch.isOn
         
-        // This demonstrates how to securely store the sign in credentials behind a biometric factor
-        // or using the default implementation provided. Only choose one approach or the other and not both.
         if isBiometricsEnabled {
             signInWithBiometrics()
         } else {
