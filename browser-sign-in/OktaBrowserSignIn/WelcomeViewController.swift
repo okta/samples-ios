@@ -37,8 +37,31 @@ final class WelcomeViewController: UIViewController {
             signInButton.isEnabled = false
         }
     }
+
+    // This functions demonstrates how to securely store the given token returned after successfully
+    // authenticating a user in the device keychain using the default implementation provided.
+    func signIn() {
+        auth?.signIn(from: view.window) { result in
+            switch result {
+            case .success(let token):
+                do {
+                    try Credential.store(token)
+                    self.performSegue(withIdentifier: "show-details", sender: self)
+                } catch {
+                    self.show(title: "Error", error: error.localizedDescription, after: 3.0)
+                    return
+                }
+            case .failure(let error):
+                self.show(title: "Error", error: error.localizedDescription)
+                return
+            }
+        }
+    }
     
-    func SignInWithBiometrics() {
+    // This functions demonstrate how to determines if a particular policy either a passcode set, a fingerprint
+    // enrolled with Touch ID or a face set up with Face ID policy can be evaluated. Once you are are ready to authenticate, the
+    // storeSignInBehindBiometric method is called to perform the authentication.
+    func signInWithBiometrics() {
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             context.evaluatePolicy(
@@ -58,6 +81,8 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
+    // This functions demonstrates how to securely store the given token returned after successfully
+    // authenticating a user behind a biometric factor for later use.
     func storeSignInBehindBiometric() {
         self.auth?.signIn(from: self.view.window) { result in
             switch result {
@@ -81,29 +106,18 @@ final class WelcomeViewController: UIViewController {
             }
         }
     }
-    
-    func signIn() {
-        auth?.signIn(from: view.window) { result in
-            switch result {
-            case .success(let token):
-                do {
-                    try Credential.store(token)
-                    self.performSegue(withIdentifier: "show-details", sender: self)
-                } catch {
-                    self.show(title: "Error", error: error.localizedDescription, after: 3.0)
-                    return
-                }
-            case .failure(let error):
-                self.show(title: "Error", error: error.localizedDescription)
-                return
-            }
-        }
-    }
 
     @IBAction private func signInTapped() {
         auth?.ephemeralSession = ephemeralSwitch.isOn
         let isBiometricsEnabled = biometricStorageSwitch.isOn
-        isBiometricsEnabled ? SignInWithBiometrics() : signIn()
+        
+        // This demonstrates how to securely store the sign in credentials behind a biometric factor
+        // or using the default implementation provided. Only choose one approach or the other and not both.
+        if isBiometricsEnabled {
+            signInWithBiometrics()
+        } else {
+            signIn()
+        }
     }
 }
 
