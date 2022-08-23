@@ -81,8 +81,9 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
-    // This functions demonstrates how to securely store the given token returned after successfully
-    // authenticating a user behind a biometric factor for later use.
+    /// This function demonstrate how to securely store the token in the keychain after a successful sign in, using a biometric factor to control access.
+    ///
+    /// This is called by the ``signInWithBiometrics`` function after it determines the user is eligible for using biometrics on this device.
     func storeSignInBehindBiometric() {
         self.auth?.signIn(from: self.view.window) { result in
             switch result {
