@@ -38,8 +38,8 @@ final class WelcomeViewController: UIViewController {
         }
     }
 
-    // This functions demonstrates how to securely store the given token returned after successfully
-    // authenticating a user in the device keychain using the default implementation provided.
+    /// This function demonstrates how to securely store the token in the device keychain after a
+    /// successful sign in.
     func signIn() {
         auth?.signIn(from: view.window) { result in
             switch result {
