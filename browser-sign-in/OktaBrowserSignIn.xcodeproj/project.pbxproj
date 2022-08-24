@@ -37,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		25E623340F06F40C949465C6 /* Pods_OktaBrowserSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OktaBrowserSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA4564721F2031C000ACBE2 /* OktaBrowserSignIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OktaBrowserSignIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FA4564C21F2031C000ACBE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -77,21 +76,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		15A12AB2DA30B7926CE597F6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				25E623340F06F40C949465C6 /* Pods_OktaBrowserSignIn.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2FA4563E21F2031C000ACBE2 = {
 			isa = PBXGroup;
 			children = (
 				2FA4564921F2031C000ACBE2 /* OktaBrowserSignIn */,
 				F53D4223223FA7C0000320D6 /* OktaBrowserSignInUITests */,
 				2FA4564821F2031C000ACBE2 /* Products */,
-				15A12AB2DA30B7926CE597F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
