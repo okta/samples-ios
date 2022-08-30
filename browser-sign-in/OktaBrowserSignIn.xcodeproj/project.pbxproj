@@ -22,6 +22,7 @@
 		B422680628AE7384008B44D9 /* Okta.plist in Resources */ = {isa = PBXBuildFile; fileRef = B422680328AE7384008B44D9 /* Okta.plist */; };
 		B422680728AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */; };
 		B422680828AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */; };
+		B436548C28BD0CE6004A33A5 /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */; };
 		F53D4225223FA7C0000320D6 /* OktaBrowserSignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */; };
 		FA0E2B872268B07600321DEB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E2B862268B07600321DEB /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		B415E7362887294900E2DB1A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		B422680328AE7384008B44D9 /* Okta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Okta.plist; path = ../../Shared/Okta.plist; sourceTree = "<group>"; };
 		B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = TestConfiguration.xcconfig; path = ../../Shared/TestConfiguration.xcconfig; sourceTree = "<group>"; };
+		B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = ../../Shared/SampleCode.xcconfig; sourceTree = "<group>"; };
 		F53D4222223FA7C0000320D6 /* OktaBrowserSignInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OktaBrowserSignInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D4224223FA7C0000320D6 /* OktaBrowserSignInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OktaBrowserSignInUITests.swift; sourceTree = "<group>"; };
 		F53D4226223FA7C0000320D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		2FA4564921F2031C000ACBE2 /* OktaBrowserSignIn */ = {
 			isa = PBXGroup;
 			children = (
+				B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */,
 				B422680328AE7384008B44D9 /* Okta.plist */,
 				B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */,
 				2FA4564A21F2031C000ACBE2 /* AppDelegate.swift */,
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA4565721F2031D000ACBE2 /* LaunchScreen.storyboard in Resources */,
+				B436548C28BD0CE6004A33A5 /* SampleCode.xcconfig in Resources */,
 				2FA4565421F2031D000ACBE2 /* Assets.xcassets in Resources */,
 				2FA4565221F2031C000ACBE2 /* Main.storyboard in Resources */,
 				B422680728AE7384008B44D9 /* TestConfiguration.xcconfig in Resources */,
@@ -292,7 +296,7 @@
 /* Begin XCBuildConfiguration section */
 		2FA4565921F2031D000ACBE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
+			baseConfigurationReference = B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -354,7 +358,7 @@
 		};
 		2FA4565A21F2031D000ACBE2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
+			baseConfigurationReference = B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -410,7 +414,7 @@
 		};
 		2FA4565C21F2031D000ACBE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
+			baseConfigurationReference = B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -430,7 +434,7 @@
 		};
 		2FA4565D21F2031D000ACBE2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B422680428AE7384008B44D9 /* TestConfiguration.xcconfig */;
+			baseConfigurationReference = B436548B28BD0CE6004A33A5 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
