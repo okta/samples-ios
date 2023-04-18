@@ -25,7 +25,7 @@ jobs:
   UITest-BrowserSignIn:
     name: Browser Sign In (iOS)
     runs-on: macos-12
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
     - uses: actions/checkout@master
     - uses: ./.github/actions/setup-secrets
@@ -42,6 +42,6 @@ jobs:
             -project OktaBrowserSignIn.xcodeproj \
             -scheme OktaBrowserSignIn \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.4' \
+            -destination 'platform=iOS Simulator,name=iPhone 12' \
             test
             
