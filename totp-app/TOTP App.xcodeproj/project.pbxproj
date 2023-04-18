@@ -28,6 +28,7 @@
 		2F09E9102289A4CC00018D75 /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		2F09E912228C68AC00018D75 /* TokenCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCellView.swift; sourceTree = "<group>"; };
 		2F09E914228D8F9600018D75 /* ManualCodeEntryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCodeEntryController.swift; sourceTree = "<group>"; };
+		967D0AC629EF0864002A5AD3 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = ../../Shared/SampleCode.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		2F09E8FD228981D700018D75 /* TOTP App */ = {
 			isa = PBXGroup;
 			children = (
+				967D0AC629EF0864002A5AD3 /* SampleCode.xcconfig */,
 				2F09E8FE228981D700018D75 /* AppDelegate.swift */,
 				2F09E900228981D700018D75 /* TokensViewController.swift */,
 				2F09E9102289A4CC00018D75 /* QRScannerController.swift */,
@@ -184,6 +186,7 @@
 /* Begin XCBuildConfiguration section */
 		2F09E90B228981D800018D75 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 967D0AC629EF0864002A5AD3 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -245,6 +248,7 @@
 		};
 		2F09E90C228981D800018D75 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 967D0AC629EF0864002A5AD3 /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -303,13 +307,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K8Y9P894R8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "TOTP App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.okta.TOTP-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.okta-sample.TOTP-App$(SAMPLE_CODE_DISAMBIGUATOR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,13 +325,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K8Y9P894R8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "TOTP App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.okta.TOTP-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.okta-sample.TOTP-App$(SAMPLE_CODE_DISAMBIGUATOR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
