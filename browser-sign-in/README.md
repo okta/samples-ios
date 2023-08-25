@@ -9,6 +9,7 @@ Before running this sample, you will need the following:
 
 * An Okta Developer Account, you can sign up for one at https://developer.okta.com/signup/.
 * An Okta Application, configured for iOS client. This is done from the Okta Developer Console and you can find instructions [here][OIDC Native iOS Application Setup Instructions].  When following the wizard, use the default properties.  They are designed to work with our sample applications.
+* (For the Biometric Storage) An iOS device. You will need to deploy this sample to a physical iOS device for the Biometric Storage functionality to work properly.
 
 
 ## Running This Example
