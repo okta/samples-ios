@@ -10,10 +10,17 @@ executors:
     resource_class: macos.m1.medium.gen1
 
 jobs:
+  install_dependencies:
+    description: "Install Dependencies"
+    steps:
+      - run: gem install cocoapods
+
   setup:
     executor: apple-ci-arm-medium
     steps:
       - checkout
+      - run: (cd totp-app; pod install)
+      - run: (cd browser-sign-in; xcodebuild -resolvePackageDependencies)
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -41,38 +48,38 @@ workflows:
     jobs:
       - general-platform-helpers/job-semgrep-prepare:
           name: semgrep-prepare
-          filters:
-            branches:
-              only:
-                - master
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
       - general-platform-helpers/job-semgrep-scan:
           name: semgrep-scan
-          filters:
-            branches:
-              only:
-                - master
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
           requires:
             - semgrep-prepare
   security-scan:
     jobs:
       - setup:
-          filters:
-            branches:
-              only:
-                - master
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
       - general-platform-helpers/job-snyk-prepare:
           name: prepare-snyk
-          filters:
-            branches:
-              only:
-                - master
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
           requires:
             - setup
       - snyk-scan:
           name: execute-snyk
-          filters:
-            branches:
-              only:
-                - master
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
           requires:
             - prepare-snyk
