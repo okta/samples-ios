@@ -30,11 +30,9 @@ jobs:
       - run:
           name: Install rosetta # Needed for snyk to work on M1 machines.
           command: softwareupdate --install-rosetta --agree-to-license
-      - run:
-          name: run swift package show dependencies
-          command: swift package show-dependencies
       - platform-helpers-general/step-load-dependencies
       - platform-helpers-general/step-run-snyk-monitor:
+          run-on-non-main: true
           scan-all-projects: true
           skip-unresolved: false
           os: macos
