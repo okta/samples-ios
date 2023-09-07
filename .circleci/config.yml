@@ -1,0 +1,78 @@
+version: 2.1
+
+orbs:
+  platform-helpers-general: okta/general-platform-helpers@1.8
+
+executors:
+  apple-ci-arm-medium:
+    macos:
+      xcode: 14.3.1
+    resource_class: macos.m1.medium.gen1
+
+jobs:
+  setup:
+    executor: apple-ci-arm-medium
+    steps:
+      - checkout
+      - run: gem install cocoapods
+      - run: (cd totp-app; pod install)
+      - run: (cd browser-sign-in; xcodebuild -resolvePackageDependencies)
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+  snyk-scan:
+    executor: apple-ci-arm-medium
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Install rosetta # Needed for snyk to work on M1 machines.
+          command: softwareupdate --install-rosetta --agree-to-license
+      - platform-helpers-general/step-load-dependencies
+      - platform-helpers-general/step-run-snyk-monitor:
+          scan-all-projects: true
+          skip-unresolved: false
+          os: macos
+
+workflows:
+  semgrep:
+    jobs:
+      - platform-helpers-general/job-semgrep-prepare:
+          name: semgrep-prepare
+          filters:
+            branches:
+              only:
+                - master
+      - platform-helpers-general/job-semgrep-scan:
+          name: semgrep-scan
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - semgrep-prepare
+  security-scan:
+    jobs:
+      - setup:
+          filters:
+            branches:
+              only:
+                - master
+      - platform-helpers-general/job-snyk-prepare:
+          name: prepare-snyk
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - setup
+      - snyk-scan:
+          name: execute-snyk
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - prepare-snyk
