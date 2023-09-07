@@ -32,7 +32,6 @@ jobs:
           command: softwareupdate --install-rosetta --agree-to-license
       - platform-helpers-general/step-load-dependencies
       - platform-helpers-general/step-run-snyk-monitor:
-          run-on-non-main: true
           scan-all-projects: true
           skip-unresolved: false
           os: macos
@@ -42,38 +41,38 @@ workflows:
     jobs:
       - platform-helpers-general/job-semgrep-prepare:
           name: semgrep-prepare
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+          filters:
+            branches:
+              only:
+                - master
       - platform-helpers-general/job-semgrep-scan:
           name: semgrep-scan
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+          filters:
+            branches:
+              only:
+                - master
           requires:
             - semgrep-prepare
   security-scan:
     jobs:
-      - setup
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+      - setup:
+          filters:
+            branches:
+              only:
+                - master
       - platform-helpers-general/job-snyk-prepare:
           name: prepare-snyk
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+          filters:
+            branches:
+              only:
+                - master
           requires:
             - setup
       - snyk-scan:
           name: execute-snyk
-          #filters:
-          #  branches:
-          #    only:
-          #      - master
+          filters:
+            branches:
+              only:
+                - master
           requires:
             - prepare-snyk
