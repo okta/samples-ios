@@ -58,7 +58,7 @@ workflows:
             - semgrep-prepare
   security-scan:
     jobs:
-      - setup:
+      - setup
           #filters:
           #  branches:
           #    only:
