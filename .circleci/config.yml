@@ -6,8 +6,8 @@ orbs:
 executors:
   apple-ci-arm-medium:
     macos:
-      xcode: 14.3.1
-    resource_class: macos.m1.medium.gen1
+      xcode: 26.2.0
+    resource_class: m4pro.medium
 
 jobs:
   setup:
