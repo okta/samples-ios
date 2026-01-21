@@ -40,11 +40,11 @@ jobs:
 workflows:
   security-scan:
     jobs:
-      - setup:
-          filters:
-            branches:
-              only:
-                - master
+      - setup #:
+          #filters:
+          #  branches:
+          #    only:
+          #      - master
       - snyk-scan:
           name: execute-snyk
           context:
